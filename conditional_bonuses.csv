@@ -1,0 +1,3 @@
+character,ability_name,ability_type,condition_type,condition_value,bonus_type,bonus_value,confidence,full_description
+Asmodai,Exemplar of Hate,active,trait,Chaos,damage_multiplier,unknown,medium,Example description
+High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,damage_multiplier,unknown,medium,Example description
