@@ -163,20 +163,6 @@
             padding-left: 10px;
         }
         th:first-child { z-index: 15; }
-        .number-header {
-            background: #0a1429;
-            color: #ffd700;
-            font-weight: bold;
-            font-size: 0.8em;
-            min-width: 30px;
-        }
-        .number-cell {
-            background: #0a1429;
-            color: #ffd700;
-            font-weight: bold;
-            font-size: 0.8em;
-            min-width: 30px;
-        }
         td { cursor: pointer; transition: all 0.2s; }
         td:hover {
             transform: scale(1.05);
@@ -806,38 +792,28 @@
                 statusDiv.textContent = `🔄 Отрисовка матрицы ${displayedAtk.length}×${displayedDef.length}...`;
             }
             
-            // Header row with numbering
+            // Header row with numbering in name cells
             const headerRow = document.createElement('tr');
             const corner = document.createElement('th');
             corner.textContent = 'АТАКУЮЩИЙ ↓ / ЗАЩИЩАЮЩИЙСЯ →';
-            corner.colSpan = 2;
+            corner.colSpan = 1;
             headerRow.appendChild(corner);
             
             displayedDef.forEach((def, index) => {
-                const numTh = document.createElement('th');
-                numTh.className = 'number-header';
-                numTh.textContent = index + 1;
-                headerRow.appendChild(numTh);
-                
                 const nameTh = document.createElement('th');
-                nameTh.textContent = def.name;
+                nameTh.innerHTML = `${index + 1}. ${def.name}`;
                 nameTh.onmouseenter = (e) => showTooltip(e, def);
                 nameTh.onmouseleave = hideTooltip;
                 headerRow.appendChild(nameTh);
             });
             thead.appendChild(headerRow);
             
-            // Data rows with numbering
+            // Data rows with numbering in name cells
             displayedAtk.forEach((atk, atkIndex) => {
                 const row = document.createElement('tr');
                 
-                const numCell = document.createElement('td');
-                numCell.className = 'number-cell';
-                numCell.textContent = atkIndex + 1;
-                row.appendChild(numCell);
-                
                 const nameCell = document.createElement('td');
-                nameCell.textContent = atk.name;
+                nameCell.innerHTML = `${atkIndex + 1}. ${atk.name}`;
                 nameCell.onmouseenter = (e) => showTooltip(e, atk);
                 nameCell.onmouseleave = hideTooltip;
                 row.appendChild(nameCell);
