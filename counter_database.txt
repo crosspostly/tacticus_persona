@@ -1,1 +1,0 @@
-[Large JSON content from counter_database.json would go here]
