@@ -1,0 +1,89 @@
+{
+  "totalCharacters": 100,
+  "averagePowerLevel": 149,
+  "mostCountered": [
+    {
+      "name": "Abaddon The Despoiler",
+      "count": 5
+    },
+    {
+      "name": "Abraxas",
+      "count": 5
+    },
+    {
+      "name": "Actus",
+      "count": 5
+    },
+    {
+      "name": "Adamatar",
+      "count": 5
+    },
+    {
+      "name": "Aesoth",
+      "count": 5
+    }
+  ],
+  "leastCountered": [
+    {
+      "name": "Abaddon The Despoiler",
+      "count": 5
+    },
+    {
+      "name": "Abraxas",
+      "count": 5
+    },
+    {
+      "name": "Actus",
+      "count": 5
+    },
+    {
+      "name": "Adamatar",
+      "count": 5
+    },
+    {
+      "name": "Aesoth",
+      "count": 5
+    }
+  ],
+  "bestSynergies": [
+    {
+      "name": "Sibyll Devine",
+      "score": 0.7
+    },
+    {
+      "name": "Abraxas",
+      "score": 0.6899999999999998
+    },
+    {
+      "name": "Ahriman",
+      "score": 0.6899999999999998
+    },
+    {
+      "name": "Thaumachus",
+      "score": 0.6899999999999998
+    },
+    {
+      "name": "Aesoth",
+      "score": 0.6849999999999999
+    }
+  ],
+  "factionDistribution": {
+    "Chaos": 12,
+    "Orks": 9,
+    "Unknown": 67,
+    "Aeldari": 1,
+    "Tyranids": 4,
+    "Necrons": 1,
+    "Death Guard": 3,
+    "Blood Angels": 2,
+    "Space Wolves": 1
+  },
+  "roleDistribution": {
+    "TANK": 53,
+    "HEALER": 38,
+    "BUFFER": 51,
+    "SUMMONER": 24,
+    "CONTROLLER": 16,
+    "GENERAL": 10
+  }
+}
