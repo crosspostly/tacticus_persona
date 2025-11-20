@@ -29,7 +29,7 @@
             border-radius: 8px;
             border: 2px solid #00d4ff;
             z-index: 100;
-            min-width: 200px;
+            min-width: 220px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
         .import-section h3 {
@@ -55,14 +55,24 @@
             background: #00ff88;
             transform: scale(1.02);
         }
+        .import-btn.sync {
+            background: #00ff88;
+        }
+        .import-btn.sync:hover {
+            background: #00d4ff;
+        }
         .auto-load-status {
-            font-size: 0.8em;
+            font-size: 0.75em;
             color: #888;
             text-align: center;
             margin-top: 5px;
+            line-height: 1.3;
         }
         .auto-load-status.success {
             color: #00ff88;
+        }
+        .auto-load-status.error {
+            color: #ff6b6b;
         }
         .loading-overlay {
             position: fixed;
@@ -383,16 +393,16 @@
         <h1>⚔️ Warhammer 40K: Tacticus - Matchup Analyzer</h1>
         
         <div class="import-section">
-            <h3>📁 ДАННЫЕ</h3>
+            <h3>🔄 СИНХРОНИЗАЦИЯ</h3>
+            <button class="import-btn sync" onclick="syncAllData()">
+                🔄 Синхронизировать
+            </button>
             <button class="import-btn" onclick="document.getElementById('fileInput').click()">
-                Загрузить JSON
+                📤 Загрузить TXT
             </button>
-            <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="loadJSON(event)">
-            <button class="import-btn" onclick="useEmbeddedData()">
-                Встроенные данные
-            </button>
+            <input type="file" id="fileInput" accept=".txt,.json" style="display: none;" onchange="loadFile(event)">
             <div id="autoLoadStatus" class="auto-load-status">
-                Загрузка data.json...
+                Ожидание синхронизации...
             </div>
         </div>
         
@@ -432,7 +442,7 @@
 
         <div class="matrix-container">
             <div id="loading" class="loading">
-                Загрузка данных... Пожалуйста, подождите.
+                Нажмите "Синхронизировать" для загрузки данных
             </div>
             <table id="matchupTable" style="display: none;">
                 <thead id="tableHead"></thead>
@@ -461,18 +471,12 @@
     
     <div id="loadingOverlay" class="loading-overlay hidden">
         <div>
-            <div>⚔️ Загрузка данных...</div>
+            <div>⚔️ Синхронизация данных...</div>
             <div style="font-size: 0.7em; margin-top: 10px;">Пожалуйста, подождите</div>
         </div>
     </div>
 
     <script>
-        // EMBEDDED SAMPLE DATA (will calculate on-the-fly)
-        const EMBEDDED_CHARACTERS = [
-            {id:1,name:"Abaddon The Despoiler",hp:100,armor:25,dmg:15,melee:"Power / 5 hits",ranged:"Bolter / 3 hits / Range 2",traits:"Let the Galaxy Burn, Resilient, Terminator Armour",icon:"https://tacticus.wiki.gg/images/Abaddon_The_Despoiler_Icon_Large.png?d3a9b6"},
-            {id:2,name:"Abraxas",hp:70,armor:20,dmg:18,melee:"Flame / 2 hits",ranged:"Psychic / 1 hit / Range 2",traits:"Daemon, Flying, Summon, Weaver of Fates",icon:"https://tacticus.wiki.gg/images/Abraxas_Icon_Large.png?df9c9b"}
-        ];
-        
         const PIERCE_RATIOS = {
             'Psychic': 100, 'Direct': 100, 'Piercing': 80, 'Melta': 75,
             'Plasma': 65, 'Eviscerating': 50, 'Power': 40, 'Flame': 30,
@@ -482,13 +486,12 @@
             'Physical': 1
         };
         
- const MACHINES_OF_WAR = [
+        const MACHINES_OF_WAR = [
             'Biovore', 'Exorcist', 'Forgefiend', 'Galatian',
             'Malleus Rocket Launcher', 'Plagueburst Crawler',
             'Rukkatrukk', "Tson'ji"
         ];
 
-        // Function to check if entry is a character (has baseStats and attacks, not a machine/badge/component)
         function isCharacter(entry) {
             return entry.baseStats &&
                    entry.attacks &&
@@ -500,30 +503,117 @@
         
         let characters = [];
         let matchupMatrix = {};
+        let synergyDatabase = {};
+        let counterDatabase = {};
         let currentLimit = 50;
         let currentAttacker = null;
         let currentDefender = null;
 
-        // Auto-load data.json on page load
+        // Auto-sync on page load
         window.addEventListener('load', function() {
-            autoLoadDataJSON();
+            syncAllData();
         });
 
-        function autoLoadDataJSON() {
+        async function syncAllData() {
             const statusDiv = document.getElementById('autoLoadStatus');
             const loadingOverlay = document.getElementById('loadingOverlay');
             
-            statusDiv.textContent = 'Загрузка data.json...';
+            statusDiv.textContent = '🔄 Синхронизация...';
+            statusDiv.className = 'auto-load-status';
             loadingOverlay.classList.remove('hidden');
             
-            fetch('data.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Файл data.json не найден');
+            try {
+                // Try data.txt first, fallback to data.json
+                let mainData = null;
+                let dataSource = '';
+                
+                try {
+                    const txtResponse = await fetch('data.txt');
+                    if (txtResponse.ok) {
+                        const txtContent = await txtResponse.text();
+                        mainData = JSON.parse(txtContent);
+                        dataSource = 'data.txt';
                     }
-                    return response.json();
-                })
-                .then(data => {
+                } catch (e) {
+                    console.log('data.txt not found, trying data.json...');
+                }
+                
+                if (!mainData) {
+                    const jsonResponse = await fetch('data.json');
+                    if (!jsonResponse.ok) throw new Error('Файлы данных не найдены');
+                    mainData = await jsonResponse.json();
+                    dataSource = 'data.json';
+                }
+                
+                // Load synergy and counter databases
+                const [synergyResponse, counterResponse] = await Promise.all([
+                    fetch('synergy_database.json').catch(() => null),
+                    fetch('counter_database.json').catch(() => null)
+                ]);
+                
+                if (synergyResponse?.ok) {
+                    synergyDatabase = await synergyResponse.json();
+                }
+                
+                if (counterResponse?.ok) {
+                    counterDatabase = await counterResponse.json();
+                }
+                
+                // Process character data
+                const filtered = mainData.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
+                
+                characters = filtered.map((c, i) => ({
+                    id: i + 1,
+                    name: c.name,
+                    hp: parseInt(c.baseStats?.health || c.baseHealth || 100),
+                    armor: parseInt(c.baseStats?.armour || c.baseArmour || 20),
+                    dmg: parseInt(c.baseStats?.damage || c.baseDamage || 15),
+                    melee: c.attacks?.melee || c.meleeAttack || 'N/A',
+                    ranged: c.attacks?.ranged || c.rangedAttack || 'N/A',
+                    traits: c.traits || '',
+                    icon: c.images?.heroIcon || c.images?.heroArt || '',
+                    faction: c.faction || 'Unknown',
+                    activeAbility: c.activeAbility?.name || 'N/A',
+                    passiveAbility: c.passiveAbility?.name || 'N/A'
+                }));
+                
+                buildMatchupMatrix();
+                populateFilters();
+                renderTable();
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('matchupTable').style.display = 'table';
+                loadingOverlay.classList.add('hidden');
+                
+                const synergyStatus = Object.keys(synergyDatabase).length > 0 ? '✅' : '⚠️';
+                const counterStatus = Object.keys(counterDatabase).length > 0 ? '✅' : '⚠️';
+                
+                statusDiv.innerHTML = `
+                    ✅ ${characters.length} персонажей<br>
+                    ${synergyStatus} Синергии | ${counterStatus} Контры<br>
+                    <small>Источник: ${dataSource}</small>
+                `;
+                statusDiv.classList.add('success');
+                
+            } catch (error) {
+                console.error('Sync error:', error);
+                loadingOverlay.classList.add('hidden');
+                statusDiv.textContent = `❌ Ошибка: ${error.message}`;
+                statusDiv.classList.add('error');
+            }
+        }
+
+        function loadFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const reader = new FileReader();
+            loadingOverlay.classList.remove('hidden');
+            
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
                     const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                     
                     characters = filtered.map((c, i) => ({
@@ -549,15 +639,16 @@
                     document.getElementById('matchupTable').style.display = 'table';
                     loadingOverlay.classList.add('hidden');
                     
-                    statusDiv.textContent = `✅ Загружено ${characters.length} персонажей`;
+                    const statusDiv = document.getElementById('autoLoadStatus');
+                    statusDiv.innerHTML = `✅ Загружено ${characters.length} персонажей<br><small>Из файла</small>`;
                     statusDiv.classList.add('success');
-                })
-                .catch(error => {
-                    console.log('Auto-load failed:', error);
+                    
+                } catch (error) {
                     loadingOverlay.classList.add('hidden');
-                    statusDiv.textContent = 'Используйте встроенные данные';
-                    statusDiv.classList.remove('success');
-                });
+                    alert('❌ Ошибка загрузки: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
         }
 
         function extractAttackInfo(attackStr) {
@@ -567,7 +658,7 @@
             let hits = 1;
             for (const part of parts) {
                 if (part.toLowerCase().includes('hit')) {
-                    const match = part.match(/\\d+/);
+                    const match = part.match(/\d+/);
                     if (match) hits = parseInt(match[0]);
                 }
             }
@@ -578,7 +669,6 @@
             const atkTraits = attacker.traits ? attacker.traits.split(', ') : [];
             const defTraits = defender.traits ? defender.traits.split(', ') : [];
             
-            // Get attack info
             const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
             const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
             
@@ -588,7 +678,6 @@
             
             const pierce = PIERCE_RATIOS[atkType] || 20;
             
-            // ATTACK calculation
             let dmgMult = 1.0;
             if (atkTraits.includes('Crushing Strike')) dmgMult *= 1.25;
             if (atkTraits.includes('Let the Galaxy Burn')) dmgMult *= 1.15;
@@ -610,7 +699,6 @@
             const totalDmg = dmgPerHit * atkHits * incomingMult;
             const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
             
-            // DEFENSE calculation (reverse)
             const [defRangedType, defRangedHits] = extractAttackInfo(defender.ranged);
             const [defMeleeType, defMeleeHits] = extractAttackInfo(defender.melee);
             
@@ -649,88 +737,17 @@
             };
         }
 
-        function loadJSON(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            const reader = new FileReader();
-            loadingOverlay.classList.remove('hidden');
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
-                    
-                    characters = filtered.map((c, i) => ({
-                        id: i + 1,
-                        name: c.name,
-                        hp: parseInt(c.baseStats?.health || c.baseHealth || 100),
-                        armor: parseInt(c.baseStats?.armour || c.baseArmour || 20),
-                        dmg: parseInt(c.baseStats?.damage || c.baseDamage || 15),
-                        melee: c.attacks?.melee || c.meleeAttack || 'N/A',
-                        ranged: c.attacks?.ranged || c.rangedAttack || 'N/A',
-                        traits: c.traits || '',
-                        icon: c.images?.heroIcon || c.images?.heroArt || '',
-                        faction: c.faction || 'Unknown',
-                        activeAbility: c.activeAbility?.name || 'N/A',
-                        passiveAbility: c.passiveAbility?.name || 'N/A'
-                    }));
-                    
-                    buildMatchupMatrix();
-                    populateFilters();
-                    renderTable();
-                    
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('matchupTable').style.display = 'table';
-                    loadingOverlay.classList.add('hidden');
-                    
-                    const statusDiv = document.getElementById('autoLoadStatus');
-                    statusDiv.textContent = `✅ Загружено ${characters.length} персонажей`;
-                    statusDiv.classList.add('success');
-                    
-                    alert(`✅ Загружено ${characters.length} персонажей!`);
-                } catch (error) {
-                    loadingOverlay.classList.add('hidden');
-                    alert('❌ Ошибка загрузки JSON: ' + error.message);
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function useEmbeddedData() {
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            loadingOverlay.classList.remove('hidden');
-            
-            // Small delay to show loading for embedded data
-            setTimeout(() => {
-                characters = EMBEDDED_CHARACTERS;
-                buildMatchupMatrix();
-                populateFilters();
-                renderTable();
-                
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('matchupTable').style.display = 'table';
-                loadingOverlay.classList.add('hidden');
-                
-                const statusDiv = document.getElementById('autoLoadStatus');
-                statusDiv.textContent = `✅ Использовано ${characters.length} персонажей`;
-                statusDiv.classList.add('success');
-            }, 500);
-        }
-
         function buildMatchupMatrix() {
             matchupMatrix = {};
-            // Build matrix lazily - only calculate when needed for performance
             characters.forEach(attacker => {
                 matchupMatrix[attacker.name] = {};
                 characters.forEach(defender => {
-                    matchupMatrix[attacker.name][defender.name] = null; // Lazy initialization
+                    matchupMatrix[attacker.name][defender.name] = null;
                 });
             });
         }
 
         function getMatchup(attacker, defender) {
-            // Lazy calculation - only compute when actually needed
             if (matchupMatrix[attacker.name][defender.name] === null) {
                 matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
             }
@@ -786,13 +803,6 @@
             thead.innerHTML = '';
             tbody.innerHTML = '';
             
-            // Show loading message for large datasets
-            if (displayedAtk.length * displayedDef.length > 1000) {
-                const statusDiv = document.getElementById('autoLoadStatus');
-                statusDiv.textContent = `🔄 Отрисовка матрицы ${displayedAtk.length}×${displayedDef.length}...`;
-            }
-            
-            // Header row with numbering in name cells
             const headerRow = document.createElement('tr');
             const corner = document.createElement('th');
             corner.textContent = 'АТАКУЮЩИЙ ↓ / ЗАЩИЩАЮЩИЙСЯ →';
@@ -808,7 +818,6 @@
             });
             thead.appendChild(headerRow);
             
-            // Data rows with numbering in name cells
             displayedAtk.forEach((atk, atkIndex) => {
                 const row = document.createElement('tr');
                 
@@ -832,13 +841,6 @@
                 
                 tbody.appendChild(row);
             });
-            
-            // Update status after completion
-            if (displayedAtk.length * displayedDef.length > 1000) {
-                const statusDiv = document.getElementById('autoLoadStatus');
-                const totalCells = displayedAtk.length * displayedDef.length;
-                statusDiv.textContent = `✅ Матрица готова: ${totalCells} ячеек`;
-            }
         }
 
         function showTooltip(event, char) {
@@ -872,23 +874,19 @@
                 </div>
             `;
             
-            // Position tooltip intelligently to avoid going off-screen
             let left = event.pageX + 15;
             let top = event.pageY + 15;
             const tooltipWidth = window.innerWidth <= 768 ? 280 : 320;
             const tooltipHeight = window.innerWidth <= 768 ? 180 : 200;
             
-            // Check if tooltip would go off right edge
             if (left + tooltipWidth > window.innerWidth) {
                 left = event.pageX - tooltipWidth - 15;
             }
             
-            // Check if tooltip would go off bottom edge
             if (top + tooltipHeight > window.innerHeight) {
                 top = event.pageY - tooltipHeight - 15;
             }
             
-            // Ensure tooltip stays within viewport
             left = Math.max(10, Math.min(left, window.innerWidth - tooltipWidth - 10));
             top = Math.max(10, Math.min(top, window.innerHeight - tooltipHeight - 10));
             
@@ -905,7 +903,6 @@
             currentAttacker = attacker;
             currentDefender = defender;
             
-            // Ensure metrics are calculated
             const calculatedMetrics = metrics || getMatchup(attacker, defender);
             
             renderAnalysisTab(attacker, defender, calculatedMetrics);
@@ -986,49 +983,85 @@
         }
 
         function renderSynergyTab(attacker) {
-            const traits = attacker.traits ? attacker.traits.split(', ') : [];
+            const synergies = synergyDatabase[attacker.name] || [];
             
-            document.getElementById('synergyTab').innerHTML = `
-                <div class="panel-title">🤝 СИНЕРГИЯ</div>
+            if (synergies.length === 0) {
+                document.getElementById('synergyTab').innerHTML = `
+                    <div class="panel-title">🤝 СИНЕРГИЯ</div>
+                    <div style="background: #0f1a2e; padding: 15px; border-radius: 8px; text-align: center;">
+                        <p style="color: #888;">Нет данных о синергиях для ${attacker.name}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `<div class="panel-title">🤝 СИНЕРГИЯ</div>`;
+            
+            synergies.forEach(syn => {
+                const partners = syn.partners || syn.best_with || [];
+                const partnersList = Array.isArray(partners) 
+                    ? partners.map(p => `<span class="partner-badge">${p}</span>`).join('')
+                    : (typeof partners === 'string' ? `<span class="partner-badge">${partners}</span>` : '');
                 
-                <div style="background: #0f1a2e; padding: 15px; border-radius: 8px;">
-                    <h4 style="color: #00ff88; margin-bottom: 10px;">Лучшие партнёры для ${attacker.name}</h4>
-                    <ul class="synergy-list">
-                        ${traits.includes('Healer') ? '<li class="synergy-item">💚 <b>Healer</b> - работает с танками (Resilient, высокий HP)</li>' : ''}
-                        ${traits.includes('Summon') ? '<li class="synergy-item">👻 <b>Summoner</b> - синергия с buff персонажами</li>' : ''}
-                        ${traits.includes('Psyker') ? '<li class="synergy-item">🧠 <b>Psyker</b> - комбо с другими Psyker</li>' : ''}
-                        ${traits.includes('Heavy Weapon') ? '<li class="synergy-item">🔫 <b>Heavy Weapon</b> - получает buff от Thaddeus Noble</li>' : ''}
-                    </ul>
-                    
-                    <p style="margin-top: 15px; padding: 10px; background: #1a1a2e; border-radius: 5px; font-size: 0.9em;">
-                        💡 Загрузите полный JSON для детальной информации о синергиях
-                    </p>
-                </div>
-            `;
+                html += `
+                    <div class="synergy-item">
+                        <div style="font-weight: bold; color: #00ff88; margin-bottom: 5px;">
+                            ${syn.type === 'faction_buff' ? '🏛️ Фракционный Бафф' : 
+                              syn.type === 'trait_buff' ? '✨ Трейт Бафф' :
+                              syn.type === 'tank' ? '🛡️ Танк' :
+                              syn.type === 'support' ? '💚 Поддержка' :
+                              syn.type === 'summon' ? '👻 Призыватель' : '🤝 Синергия'}
+                        </div>
+                        <div style="font-size: 0.9em; margin-bottom: 5px;">${syn.effect || syn.best_with || ''}</div>
+                        ${syn.target_faction ? `<div style="font-size: 0.85em; color: #888;">Цель: ${syn.target_faction}</div>` : ''}
+                        ${syn.target_trait ? `<div style="font-size: 0.85em; color: #888;">Трейт: ${syn.target_trait}</div>` : ''}
+                        ${partnersList ? `<div style="margin-top: 8px;">${partnersList}</div>` : ''}
+                    </div>
+                `;
+            });
+            
+            document.getElementById('synergyTab').innerHTML = html;
         }
 
         function renderCountersTab(defender) {
-            const armor = defender.armor;
-            const hp = defender.hp;
-            const traits = defender.traits ? defender.traits.split(', ') : [];
+            const counters = counterDatabase[defender.name] || [];
             
-            const counters = [];
-            if (armor > 25) counters.push('Высокое пробитие (Psychic, Piercing, Melta)');
-            if (hp < 80) counters.push('Burst damage и multi-hit атаки');
-            if (traits.includes('Big Target')) counters.push('Beast Slayer персонажи (+30% урона)');
-            if (traits.includes('Close Combat Weakness')) counters.push('Melee атакующие (+50% урона)');
+            if (counters.length === 0) {
+                document.getElementById('countersTab').innerHTML = `
+                    <div class="panel-title">⚠️ КОНТРЫ</div>
+                    <div style="background: #0f1a2e; padding: 15px; border-radius: 8px;">
+                        <div class="synergy-item" style="border-left-color: #00ff88;">
+                            ✅ Нет явных слабостей у ${defender.name}
+                        </div>
+                    </div>
+                `;
+                return;
+            }
             
-            document.getElementById('countersTab').innerHTML = `
-                <div class="panel-title">⚠️ КОНТРЫ</div>
+            let html = `<div class="panel-title">⚠️ КОНТРЫ</div>`;
+            
+            counters.forEach(counter => {
+                const counterTypes = counter.counter_types || (counter.counter_type ? [counter.counter_type] : []);
+                const typesList = counterTypes.map(t => `<span class="partner-badge" style="border-color: #fbbf24;">${t}</span>`).join('');
+                const traitBadge = counter.counter_trait ? `<span class="partner-badge" style="border-color: #fbbf24;">${counter.counter_trait}</span>` : '';
                 
-                <div style="background: #0f1a2e; padding: 15px; border-radius: 8px;">
-                    <h4 style="color: #fbbf24; margin-bottom: 10px;">Слабости ${defender.name}</h4>
-                    <ul class="synergy-list">
-                        ${counters.map(c => `<li class="synergy-item">⚠️ ${c}</li>`).join('')}
-                        ${counters.length === 0 ? '<li class="synergy-item">✅ Нет явных слабостей</li>' : ''}
-                    </ul>
-                </div>
-            `;
+                html += `
+                    <div class="synergy-item" style="border-left-color: #fbbf24;">
+                        <div style="font-weight: bold; color: #fbbf24; margin-bottom: 5px;">
+                            ${counter.reason === 'low_hp' ? '❤️ Низкое HP' :
+                              counter.reason === 'high_armor' ? '🛡️ Высокая Броня' :
+                              counter.reason === 'big_target' ? '🎯 Большая Цель' :
+                              counter.reason === 'flying' ? '🦅 Летающий' :
+                              counter.reason === 'melee_weakness' ? '⚔️ Слабость к Мили' : '⚠️ Слабость'}
+                        </div>
+                        <div style="font-size: 0.9em; margin-bottom: 5px;">${counter.weakness}</div>
+                        ${typesList ? `<div style="margin-top: 8px;">${typesList}</div>` : ''}
+                        ${traitBadge ? `<div style="margin-top: 8px;">${traitBadge}</div>` : ''}
+                    </div>
+                `;
+            });
+            
+            document.getElementById('countersTab').innerHTML = html;
         }
 
         function getColorForPct(pct) {
