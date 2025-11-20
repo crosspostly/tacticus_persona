@@ -386,6 +386,42 @@
             color: #fff;
             font-weight: bold;
         }
+        
+        /* Иконка условного бонуса в ячейке матрицы */
+        .bonus-icon {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            font-size: 0.75em;
+            color: #ffcc00;
+            animation: bonusPulse 1.5s infinite;
+        }
+
+        @keyframes bonusPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* Блок условного бонуса в детальной панели */
+        .conditional-bonus-item {
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.15), rgba(0, 212, 255, 0.1));
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 2px solid #ffcc00;
+        }
+
+        /* Бэдж типа бонуса (active/passive) */
+        .bonus-badge {
+            display: inline-block;
+            background: #ffcc00;
+            color: #1a1a2e;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
@@ -492,6 +528,88 @@
             'Rukkatrukk', "Tson'ji"
         ];
 
+        // 🆕 Базы данных для условных бонусов
+        let traitsDB = [];
+        let characterTraitsDB = [];
+        let conditionalBonusesDB = [];
+
+        // ═══════════════════════════════════════════════════════════════
+        // ЗАГРУЗКА БАЗ ДАННЫХ УСЛОВНЫХ БОНУСОВ
+        // ═══════════════════════════════════════════════════════════════
+
+        async function loadConditionalDatabases() {
+            try {
+                const parseCSV = (text) => {
+                    const lines = text.trim().split('\n');
+                    const headers = lines[0].split(',').map(h => h.trim());
+                    return lines.slice(1).map(line => {
+                        // Учитываем запятые внутри кавычек
+                        const values = [];
+                        let current = '';
+                        let inQuotes = false;
+
+                        for (let char of line) {
+                            if (char === '"') {
+                                inQuotes = !inQuotes;
+                            } else if (char === ',' && !inQuotes) {
+                                values.push(current.trim());
+                                current = '';
+                            } else {
+                                current += char;
+                            }
+                        }
+                        values.push(current.trim());
+
+                        return headers.reduce((obj, header, i) => {
+                            obj[header] = values[i]?.replace(/^"|"$/g, '') || '';
+                            return obj;
+                        }, {});
+                    });
+                };
+
+                const [traitsText, charTraitsText, bonusesText] = await Promise.all([
+                    fetch('traits_database.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('character_traits.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('conditional_bonuses.csv').then(r => r.ok ? r.text() : null).catch(() => null)
+                ]);
+
+                if (traitsText) traitsDB = parseCSV(traitsText);
+                if (charTraitsText) characterTraitsDB = parseCSV(charTraitsText);
+                if (bonusesText) conditionalBonusesDB = parseCSV(bonusesText);
+
+                console.log('✅ Conditional databases loaded:', {
+                    traits: traitsDB.length,
+                    charTraits: characterTraitsDB.length,
+                    bonuses: conditionalBonusesDB.length
+                });
+
+                return true;
+            } catch (error) {
+                console.warn('⚠️ Could not load conditional databases:', error);
+                return false;
+            }
+        }
+
+        // Вспомогательные функции для работы с базами
+        function getCharacterTraits(characterName) {
+            if (characterTraitsDB.length === 0) {
+                // Fallback: парсим из строки traits
+                const char = characters.find(c => c.name === characterName);
+                return char?.traits ? char.traits.split(', ').map(t => t.trim()) : [];
+            }
+            return characterTraitsDB
+                .filter(row => row.character === characterName)
+                .map(row => row.trait);
+        }
+
+        function getTraitData(traitName) {
+            return traitsDB.find(row => row.trait_name === traitName);
+        }
+
+        function getConditionalBonuses(characterName) {
+            return conditionalBonusesDB.filter(row => row.character === characterName);
+        }
+
         function isCharacter(entry) {
             return entry.baseStats &&
                    entry.attacks &&
@@ -558,6 +676,9 @@
                 if (counterResponse?.ok) {
                     counterDatabase = await counterResponse.json();
                 }
+                
+                // 🆕 Загружаем базы условных бонусов
+                await loadConditionalDatabases();
                 
                 // Process character data
                 const filtered = mainData.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
@@ -672,50 +793,112 @@
             const [atkType, atkHits] = (rangedType && rangedHits > 0) 
                 ? [rangedType, rangedHits] 
                 : [meleeType, meleeHits];
-        
+
             const pierce = PIERCE_RATIOS[atkType] || 20;
-        
-            // Простые trait модификаторы
-            const atkTraits = attacker.traits ? attacker.traits.split(', ') : [];
-            const defTraits = defender.traits ? defender.traits.split(', ') : [];
-        
+
+            // 🆕 Получаем трейты (из базы если доступна, иначе из строки)
+            const atkTraits = getCharacterTraits(attacker.name);
+            const defTraits = getCharacterTraits(defender.name);
+
             let dmg = attacker.dmg;
             let armor = defender.armor;
-        
-            // === МОДИФИКАТОРЫ УРОНА ===
-            if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
-            if (atkTraits.includes('Let the Galaxy Burn')) dmg *= 1.15;
-        
-            // === МОДИФИКАТОРЫ БРОНИ ===
-            if (defTraits.includes('Terminator Armour')) armor *= 1.4;
-            if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
-        
-            // === МОДИФИКАТОРЫ ВХОДЯЩЕГО УРОНА ===
+
+            // 🆕 Применяем трейт-модификаторы атакующего
+            atkTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.effect_type === 'damage_multiplier' && trait.implemented === 'yes') {
+                    dmg *= parseFloat(trait.effect_value);
+                }
+            });
+
+            // Fallback на старый метод если база не загружена
+            if (traitsDB.length === 0) {
+                if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
+                if (atkTraits.includes('Let the Galaxy Burn')) dmg *= 1.15;
+            }
+
+            // 🆕 Применяем трейт-модификаторы защитника
+            defTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.effect_type === 'armor_multiplier' && trait.implemented === 'yes') {
+                    armor *= parseFloat(trait.effect_value);
+                }
+            });
+
+            // Fallback
+            if (traitsDB.length === 0) {
+                if (defTraits.includes('Terminator Armour')) armor *= 1.4;
+                if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
+            }
+
+            // 🆕 ПРОВЕРЯЕМ УСЛОВНЫЕ БОНУСЫ
+            let hasConditionalBonus = false;
+            let conditionalBonusDetails = null;
+
+            const bonuses = getConditionalBonuses(attacker.name);
+            bonuses.forEach(bonus => {
+                const conditionMet = defTraits.includes(bonus.condition_value);
+
+                if (conditionMet) {
+                    hasConditionalBonus = true;
+
+                    // Применяем бонус
+                    let bonusMultiplier = 1.5; // По умолчанию +50%
+                    if (bonus.bonus_value !== 'unknown' && !isNaN(parseFloat(bonus.bonus_value))) {
+                        bonusMultiplier = 1 + parseFloat(bonus.bonus_value) / 100;
+                    }
+
+                    dmg *= bonusMultiplier;
+
+                    conditionalBonusDetails = {
+                        name: bonus.ability_name,
+                        type: bonus.ability_type,
+                        target: bonus.condition_value,
+                        multiplier: bonusMultiplier
+                    };
+                }
+            });
+
+            // Модификаторы входящего урона
             let incomingMult = 1.0;
-            if (defTraits.includes('Resilient')) incomingMult = 0.8;
-            if (defTraits.includes('Big Target')) incomingMult = 1.3;
-        
-            // ✅ ПРАВИЛЬНАЯ ФОРМУЛА ИЗ ВИКИ:
-            // Damage = MAX(Damage - Armor, Damage × Pierce%)
+            defTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.implemented === 'yes') {
+                    if (trait.effect_type === 'damage_reduction') {
+                        incomingMult *= parseFloat(trait.effect_value);
+                    }
+                    if (trait.effect_type === 'damage_taken_multiplier') {
+                        incomingMult *= parseFloat(trait.effect_value);
+                    }
+                }
+            });
+
+            // Fallback
+            if (traitsDB.length === 0) {
+                if (defTraits.includes('Resilient')) incomingMult *= 0.8;
+                if (defTraits.includes('Big Target')) incomingMult *= 1.3;
+            }
+
+            // Расчёт урона по формуле из вики
             const dmgAfterArmor = Math.max(1, dmg - armor);
             const dmgPierce = Math.max(1, dmg * (pierce / 100));
             const dmgPerHit = Math.max(dmgAfterArmor, dmgPierce);
-        
+
             const totalDmg = dmgPerHit * atkHits * incomingMult;
-        
-            // Эффективность атаки: сколько % HP снимаем за один ход
             const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
-        
-            // Эффективность защиты: упрощённая оценка живучести
+
+            // Эффективность защиты
             const armorRatio = armor / dmg;
             const defenseEff = Math.min(100, Math.max(0, armorRatio * 50 + 25));
-        
+
             const average = (attackEff + defenseEff) / 2;
-        
+
             return {
                 attack: Math.round(attackEff * 10) / 10,
                 defense: Math.round(defenseEff * 10) / 10,
-                average: Math.round(average * 10) / 10
+                average: Math.round(average * 10) / 10,
+                hasConditionalBonus: hasConditionalBonus,  // 🆕
+                conditionalBonus: conditionalBonusDetails   // 🆕
             };
         }
 
@@ -814,7 +997,10 @@
                     const cell = document.createElement('td');
                     cell.innerHTML = `
                         <div style="font-size: 0.7em; color: #888;">${metrics.attack}% / ${metrics.defense}%</div>
-                        <div style="font-weight: bold; font-size: 1.1em;">${metrics.average}%</div>
+                        <div style="font-weight: bold; font-size: 1.1em; position: relative;">
+                            ${metrics.average}%
+                            ${metrics.hasConditionalBonus ? '<span class="bonus-icon">⚡</span>' : ''}
+                        </div>
                     `;
                     cell.className = getEffectivenessClass(metrics.average);
                     cell.onclick = () => showDetail(atk, def, metrics);
@@ -961,6 +1147,24 @@
                         Общая оценка для спаринга
                     </p>
                 </div>
+                
+                ${metrics.hasConditionalBonus && metrics.conditionalBonus ? `
+                    <div class="metric-box" style="border-left-color: #ffcc00;">
+                        <h4>⚡ УСЛОВНЫЙ БОНУС</h4>
+                        <div class="conditional-bonus-item">
+                            <div style="font-weight: bold; color: #ffcc00; margin-bottom: 5px;">
+                                ${metrics.conditionalBonus.name}
+                                <span class="bonus-badge">${metrics.conditionalBonus.type}</span>
+                            </div>
+                            <div style="font-size: 0.85em; color: #ccc;">
+                                Условие: Цель имеет трейт "${metrics.conditionalBonus.target}" ✅
+                            </div>
+                            <div style="font-size: 0.85em; color: #00ff88; margin-top: 5px;">
+                                Бонус: +${Math.round((metrics.conditionalBonus.multiplier - 1) * 100)}% урона
+                            </div>
+                        </div>
+                    </div>
+                ` : ''}
             `;
         }
 
