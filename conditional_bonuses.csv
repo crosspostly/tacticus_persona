@@ -1,3 +1,244 @@
 character,ability_name,ability_type,condition_type,condition_value,bonus_type,bonus_value,confidence,full_description
-Asmodai,Exemplar of Hate,active,trait,Chaos,damage_multiplier,unknown,medium,Example description
-High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,damage_multiplier,unknown,medium,Example description
+Abaddon The Despoiler,First Among Traitors,passive,trait,Chaos,damage_multiplier,unknown,medium,"First Among Traitors
+Other friendly Chaos units within 2 hexes deal +X Damage. This value is increased by +Y Damage for each attack Abaddon has performed in this battle, up to a maximum of Z Damage."
+Abraxas,Malefic Maelstrom,active,trait,Summon,damage_multiplier,unknown,medium,"Malefic Maelstrom
+Summon a Pink Horror on a free Hex adjacent to Abraxas. Until the end of this turn, whenever an enemy unit is dealt Psychic Damage, summon a Screamer of Tzeentch on a free Hex adjacent to Abraxas, preferring hexes adjacent to enemy units. Newly summoned units can immediately attack an enemy in range but cannot move.
+Split (Pink Horror Passive)
+When this unit gets defeated it summons 2 Blue Horrors in adjacent Hexes. Does not apply if Overkilled. Newly summoned Blue Horrors can immediately attack an enemy in melee if summoned during the enemy's turn, but cannot move until their next turn.
+Slashing Dive (Screamer Active)
+Flies over and deals a wave of damage from an initial melee target to targets up to 2 hexes behind. Deals 1x X Power Damage to the first target, 1x Y Power Damage to the second, and 1x Z Power Damage to the third. Lands in the hex directly behind the last target hit, or - in the case that hex is occupied - to the closest free hex to it."
+Abraxas,Malefic Maelstrom,active,trait,Summon,damage_multiplier,unknown,medium,"Malefic Maelstrom
+Summon a Pink Horror on a free Hex adjacent to Abraxas. Until the end of this turn, whenever an enemy unit is dealt Psychic Damage, summon a Screamer of Tzeentch on a free Hex adjacent to Abraxas, preferring hexes adjacent to enemy units. Newly summoned units can immediately attack an enemy in range but cannot move.
+Split (Pink Horror Passive)
+When this unit gets defeated it summons 2 Blue Horrors in adjacent Hexes. Does not apply if Overkilled. Newly summoned Blue Horrors can immediately attack an enemy in melee if summoned during the enemy's turn, but cannot move until their next turn.
+Slashing Dive (Screamer Active)
+Flies over and deals a wave of damage from an initial melee target to targets up to 2 hexes behind. Deals 1x X Power Damage to the first target, 1x Y Power Damage to the second, and 1x Z Power Damage to the third. Lands in the hex directly behind the last target hit, or - in the case that hex is occupied - to the closest free hex to it."
+Abraxas,Infernal Pacts,passive,trait,Chaos,damage_multiplier,unknown,medium,"Infernal Pacts
+Friendly Chaos units adjacent to Abraxas deal an additional 1x X Psychic Damage with their normal ranged attacks. Affected Daemons also gain the bonus Hit on their normal melee attack."
+Abraxas,Infernal Pacts,passive,trait,Daemon,damage_multiplier,unknown,medium,"Infernal Pacts
+Friendly Chaos units adjacent to Abraxas deal an additional 1x X Psychic Damage with their normal ranged attacks. Affected Daemons also gain the bonus Hit on their normal melee attack."
+Adamatar,Obsessive Annunciation,passive,trait,Chaos,damage_multiplier,unknown,medium,"Obsessive Annunciation
+All enemy units adjacent to Adamatar take +X Damage from ranged attacks. If an enemy was Overkilled this turn, enemies adjacent to Adamatar take +X Crit Damage from all attacks by friendly Chaos units."
+Ahriman,Psychic Stalk,passive,trait,Chaos,damage_multiplier,unknown,medium,"Psychic Stalk
+Attacks that deal Flame Damage and Psychic Damage to enemies that are on hexes with Fire deal +X% Damage. Affected attacks from friendly Chaos units deal an additional +Y Damage.
+The hex of each enemy that is hit by Ahriman's normal ranged attack catches Fire.
+Note: The bonus applies per hit and the Chaos unit bonus is added before the percent bonus is calculated."
+Aleph-Null,Scarab Hive,active,trait,Summon,damage_multiplier,unknown,medium,"Scarab Hive
+Summons 2 Scarab Swarms next to the target, whom they immediately attack using the Damage type Piercing. In any subsequent attack they use their normal Damage type.
+Scarab Summon (Active)
+Summons another Scarab Swarm in a free adjacent hex, which then immediately takes a turn.
+Reanimation Protocols (Passive)
+If there is at least one other friendly unit of the same type on the battlefield when this unit is defeated, it has a 35% chance to be immediately revived with 25% of its initial Health in the same hex or a random adjacent one. Does not apply if Overkilled."
+Ancient Thoread,Unbreakable Duty,active,trait,Summon,damage_multiplier,unknown,medium,"Unbreakable Duty
+Ancient Thoread and all friendly units within 2 hexes receive -X% Damage until the start of their next turn. If 2 or more friendly Imperial Characters are dead upon activation of this ability, Ancient Thoread gains Y extra Health and +Z Damage until the end of the battle and immediately performs a normal attack against an adjacent enemy.
+Note: Characters does not include Summons or NPC units."
+Archimatos,Daemonic Incursion,active,trait,Psyker,damage_multiplier,unknown,medium,"Daemonic Incursion
+Summons a Bloodletter adjacent to an enemy target within range 2. The Bloodletter immediately attacks the target. Keeps summoning Bloodletters up to a max of 6, as long as the target has not been defeated, is in range and has a free hex adjacent to it.
+Unstoppable Ferocity (Passive)
+Has one additional hit when attacking an enemy Psyker in melee, and one more additional hit against an enemy that it has moved into contact with that turn."
+Archimatos,Daemonic Incursion,active,trait,Summon,damage_multiplier,unknown,medium,"Daemonic Incursion
+Summons a Bloodletter adjacent to an enemy target within range 2. The Bloodletter immediately attacks the target. Keeps summoning Bloodletters up to a max of 6, as long as the target has not been defeated, is in range and has a free hex adjacent to it.
+Unstoppable Ferocity (Passive)
+Has one additional hit when attacking an enemy Psyker in melee, and one more additional hit against an enemy that it has moved into contact with that turn."
+Archimatos,Daemonic Incursion,active,trait,Daemon,damage_multiplier,unknown,medium,"Daemonic Incursion
+Summons a Bloodletter adjacent to an enemy target within range 2. The Bloodletter immediately attacks the target. Keeps summoning Bloodletters up to a max of 6, as long as the target has not been defeated, is in range and has a free hex adjacent to it.
+Unstoppable Ferocity (Passive)
+Has one additional hit when attacking an enemy Psyker in melee, and one more additional hit against an enemy that it has moved into contact with that turn."
+Asmodai,Exemplar of Hate,active,trait,Chaos,damage_multiplier,unknown,medium,"Exemplar of Hate
+Select an enemy on the battlefield. For this round and the next, all friendly units deal +X Damage against that enemy with melee or Overwatch attacks. If that enemy is Chaos, it gets Suppressed and Asmodai or another friendly Dark Angel immediately performs a normal attack against the target, dealing Y% of its own damage, to a maximum of Z damage per hit.
+Note: Healing or Repairing remove the bonus damage effect.
+(How does Exemplar of Hate work?)"
+Asmodai,Exemplar of Hate,active,trait,Ork,damage_multiplier,unknown,medium,"Exemplar of Hate
+Select an enemy on the battlefield. For this round and the next, all friendly units deal +X Damage against that enemy with melee or Overwatch attacks. If that enemy is Chaos, it gets Suppressed and Asmodai or another friendly Dark Angel immediately performs a normal attack against the target, dealing Y% of its own damage, to a maximum of Z damage per hit.
+Note: Healing or Repairing remove the bonus damage effect.
+(How does Exemplar of Hate work?)"
+Asmodai,Feared Interrogator,passive,trait,Chaos,damage_multiplier,unknown,medium,"Feared Interrogator
+Deals +X Damage against enemies that are Suppressed, Stunned, or that are adjacent to another friendly Dark Angel. Scores +Y hits, if the enemy is also Chaos."
+Atlacoya,Talons of the Emperor,active,trait,Psyker,damage_multiplier,unknown,medium,"Talons of the Emperor
+Deals 1x X Power Damage to an adjacent enemy unit. This attack deals +Y Damage for each time a friendly Character has used an active ability this battle. If the target is a Psyker or Atlacoya is adjacent to a friendly Adeptus Custodes, this attack deals Direct Damage instead."
+Atlacoya,Daughter of the Abyss,passive,trait,Psyker,damage_multiplier,unknown,medium,"Daughter of the Abyss
+Atlacoya takes -X Psychic Damage. Psychic Damage dealt to other friendly units within 2 hexes of Atlacoya is reduced by Y%. Enemy Psykers within 2 hexes receive +Z% Damage."
+Azkor,Beacon of Rage,passive,trait,Chaos,damage_multiplier,unknown,medium,"Beacon of Rage
+For each time he was attacked in battle, up to a maximum of 8 times, Azkor deals +X Damage. If Azkor has defeated an enemy in this battle, 50% of the extra damage granted by Beacon of Rage is added to the damage of melee attacks of adjacent friendly Chaos units."
+Baraqiel,Deathwing,passive,trait,Chaos,damage_multiplier,unknown,medium,"Each time Baraqiel blocks damage during an attack, all further incoming damage is reduced by X and the damage Baraqiel deals with melee or Plasma Cannon attacks is increased by Y for 1 round. This effect is doubled against Chaos enemies or when standing adjacent to another friendly Dark Angel.
+(HDTW Deathwing)"
+Boss Gulgortz,WAAAGH!,active,trait,Summon,damage_multiplier,unknown,medium,"If Boss Gulgortz has not moved, he summons 2 Ork Boyz in free adjacent hexes. Until the end of this turn, all friendly Orks and friendly units adjacent to Boss Gulgortz gain +1 Movement and their normal melee attacks deal +X Damage and score +1 Hit. Boss Gulgortz then charges a targeted enemy in movement range, performing a normal melee attack against it. All friendly Ork Boyz take a turn.
+Note: Using this ability requires a target within range to charge.
+Stikkbomb (Active)
+Throws a grenade at a target, dealing 2x X Blast Damage to the target and 1x X Blast Damage to units in hexes adjacent to the target. Range 2 and Indirect Fire applies."
+Boss Gulgortz,WAAAGH!,active,trait,Ork,damage_multiplier,unknown,medium,"If Boss Gulgortz has not moved, he summons 2 Ork Boyz in free adjacent hexes. Until the end of this turn, all friendly Orks and friendly units adjacent to Boss Gulgortz gain +1 Movement and their normal melee attacks deal +X Damage and score +1 Hit. Boss Gulgortz then charges a targeted enemy in movement range, performing a normal melee attack against it. All friendly Ork Boyz take a turn.
+Note: Using this ability requires a target within range to charge.
+Stikkbomb (Active)
+Throws a grenade at a target, dealing 2x X Blast Damage to the target and 1x X Blast Damage to units in hexes adjacent to the target. Range 2 and Indirect Fire applies."
+Boss Gulgortz,WAAAGH!,active,trait,Ork,damage_multiplier,unknown,medium,"If Boss Gulgortz has not moved, he summons 2 Ork Boyz in free adjacent hexes. Until the end of this turn, all friendly Orks and friendly units adjacent to Boss Gulgortz gain +1 Movement and their normal melee attacks deal +X Damage and score +1 Hit. Boss Gulgortz then charges a targeted enemy in movement range, performing a normal melee attack against it. All friendly Ork Boyz take a turn.
+Note: Using this ability requires a target within range to charge.
+Stikkbomb (Active)
+Throws a grenade at a target, dealing 2x X Blast Damage to the target and 1x X Blast Damage to units in hexes adjacent to the target. Range 2 and Indirect Fire applies."
+Castellan Creed,Supreme Commander,active,trait,Summon,damage_multiplier,unknown,medium,"Supreme Commander
+Summons up to 2 Cadian Guardsmen in free adjacent hexes. All friendly Cadian Guardsmen within 2 hexes then immediately take a turn. If Colour Sergeant Kell is in play, summons an additional Cadian Guardsman and activation range is 3."
+Castellan Creed,Sworn Protector,passive,trait,Psyker,damage_multiplier,unknown,medium,"Sworn Protector
+When Lord Castellan Creed is first targeted in battle, Colour Sergeant Kell appears in a free adjacent hex. Any time Creed is attacked, Kell switches hexes with him and takes the Damage instead, if they are adjacent to each other."
+Celestine,Geminae Superia,passive,trait,Summon,damage_multiplier,unknown,medium,"Geminae Superia
+When attacked, summon a Geminae Superia in a free adjacent hex, and immediately triggers its passive ability Lifewards. Can do this twice per battle.
+Lifewards (Passive)
+If Celestine is in an adjacent hex and takes damage, that post-Armour damage is taken as Direct Damage by the Geminae Superia instead."
+Corrodius,Cursed Plague Bell,passive,trait,Psyker,damage_multiplier,unknown,medium,"Cursed Plague Bell
+Friendly Chaos units starting their turn within Corrodius's Contagion aura gain +1 Movement for this turn. Enemy Psyker units within Corrodius's Contagion aura deal 1x X Psychic Damage to themselves each time one of their attacks deals Psychic damage."
+Corrodius,Cursed Plague Bell,passive,trait,Chaos,damage_multiplier,unknown,medium,"Cursed Plague Bell
+Friendly Chaos units starting their turn within Corrodius's Contagion aura gain +1 Movement for this turn. Enemy Psyker units within Corrodius's Contagion aura deal 1x X Psychic Damage to themselves each time one of their attacks deals Psychic damage."
+Dante,Lord of the Host,passive,trait,Flying,damage_multiplier,unknown,medium,"Lord of the Host
+Other friendly units within 2 hexes with Rapid Assault or Flying deal +X Damage with melee attacks. Affected units that are at or below 50% Health also score +1 hit with melee attacks."
+Dante,Lord of the Host,passive,trait,Flying,damage_multiplier,unknown,medium,"Lord of the Host
+Other friendly units within 2 hexes with Rapid Assault or Flying deal +X Damage with melee attacks. Affected units that are at or below 50% Health also score +1 hit with melee attacks."
+Eldryon,Doom,passive,trait,Ork,damage_multiplier,unknown,medium,"All enemy units exactly 2 hexes away from Eldryon take +X Damage from other friendly unit's normal attacks. Other friendly Aeldari units deal +Y Damage with all their attacks to affected units instead.
+Note: The additional damage is applied per hit and it works against units with Immune. Aeldari abilities (except Aethana's active) do gain the bonus damage."
+Eldryon,Doom,passive,trait,Ork,damage_multiplier,unknown,medium,"All enemy units exactly 2 hexes away from Eldryon take +X Damage from other friendly unit's normal attacks. Other friendly Aeldari units deal +Y Damage with all their attacks to affected units instead.
+Note: The additional damage is applied per hit and it works against units with Immune. Aeldari abilities (except Aethana's active) do gain the bonus damage."
+High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,damage_multiplier,unknown,medium,"Destroy The Witch
+Gains +1 Movement when there's an enemy Psyker on the battlefield. This unit and friendly adjacent units deal +X Damage with melee attacks against Psykers."
+High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,damage_multiplier,unknown,medium,"Destroy The Witch
+Gains +1 Movement when there's an enemy Psyker on the battlefield. This unit and friendly adjacent units deal +X Damage with melee attacks against Psykers."
+Hollan,Aberrant Hypermorph,active,trait,Summon,damage_multiplier,unknown,medium,"Aberrant Hypermorph
+Summons an Aberrant Hypermorph in a free adjacent hex. The Aberrant Hypermorph can immediately attack, but cannot move this turn.
+Hypermorph (Passive)
+Gain extra Damage equal to 15% of current Health."
+Marshal Dreir,Leading the Charge,active,trait,Summon,damage_multiplier,unknown,medium,"Leading the Charge
+If Dreir has not moved, he gains Infiltrate until the end of this turn and charges an enemy target that has a free adjacent hex within movement range 4, dealing 3x X Power Damage to it. Then, summon up to Y Death Riders in free adjacent hexes that can immediately attack enemies in range. All attacks triggered by this ability have +Z% Pierce Ratio for each friendly unit that has been defeated this battle.
+Frag Lance (Passive)
+When Charging, normal melee attacks deal an additional 1x X Blast Damage."
+Mataneo,Aggressive Onslaught,passive,trait,Summon,damage_multiplier,unknown,medium,"Aggressive Onslaught
+When charging, Mataneo summons 2 Jump Pack Intercessors adjacent to and immediately attacking his target. At the beginning of each of Mataneo's turns, if he is still on the battlefield, all Jump Pack Intercessors summoned this way leave the battlefield.
+Red Thirst (Passive)
+If this unit is at or below 50% Health, it gains +X Damage and scores +1 hit when charging."
+Mataneo,Aggressive Onslaught,passive,trait,Summon,damage_multiplier,unknown,medium,"Aggressive Onslaught
+When charging, Mataneo summons 2 Jump Pack Intercessors adjacent to and immediately attacking his target. At the beginning of each of Mataneo's turns, if he is still on the battlefield, all Jump Pack Intercessors summoned this way leave the battlefield.
+Red Thirst (Passive)
+If this unit is at or below 50% Health, it gains +X Damage and scores +1 hit when charging."
+Mephiston,The Quickening,active,trait,Ork,damage_multiplier,unknown,medium,"The Quickening
+Targets a hex within movement range 2 that is neither occupied by an enemy nor by a friendly unit in Deep Strike. Mephiston moves onto that hex. If a friendly unit is on that hex, that unit moves to Mephiston's previous location. All Blood Angels moving this way perform a normal melee attack after they move, dealing X% of their of their own damage to a maximum of Y Damage. Units moving this way do not trigger Overwatch or other movement related reactions.
+(How does The Quickening work?)"
+Nauseous Rotbone,Tainted Narthecium,passive,trait,Chaos,damage_multiplier,unknown,medium,"Tainted Narthecium
+An adjacent friendly Chaos unit that takes lethal damage has a 75% chance to be revived with X Health, even if Overkilled. Can only be triggered once per turn."
+Njal,Stormcaller,active,trait,Flying,damage_multiplier,unknown,medium,"Stormcaller
+Target an enemy within 3 hexes. The target's hex and all adjacent hexes get covered in Ice. All enemy units standing on hexes covered in Ice take 3x X Psychic Damage. Flying enemies damaged this way get Stunned for 1 round.
+This ability's Damage ignores all of the attacker bonuses and modifiers (including elevation), and cannot Crit."
+Njal,Stormcaller,active,trait,Flying,damage_multiplier,unknown,medium,"Stormcaller
+Target an enemy within 3 hexes. The target's hex and all adjacent hexes get covered in Ice. All enemy units standing on hexes covered in Ice take 3x X Psychic Damage. Flying enemies damaged this way get Stunned for 1 round.
+This ability's Damage ignores all of the attacker bonuses and modifiers (including elevation), and cannot Crit."
+Pestillian,Foul Infusion,active,trait,Chaos,damage_multiplier,unknown,medium,"Foul Infusion
+Pestillian and all friendly Chaos units within his Contagion aura deal an extra 1x X Toxic Damage with their normal melee attacks for this round and the next. Pestillian then immediately performs a normal melee attack against a random adjacent enemy."
+Pestillian,Explosive Maladies,passive,trait,Chaos,damage_multiplier,unknown,medium,"Explosive Maladies
+Friendly units adjacent to Pestillian deal an additional 1x X Blast Damage with their normal ranged attacks. Friendly Chaos units adjacent to Pestillian also deal this damage with normal melee attacks. Enemies defeated by affected attacks are always Overkilled."
+Re'vas,Early Warning Override,active,trait,Summon,damage_multiplier,unknown,medium,"Early Warning Override
+Summons 2 Shield Drones into free adjacent hexes. Newly summoned Shield Drones can immediately attack an enemy in melee, but cannot move this turn.
+Re'vas also starts Overwatching until the start of her next turn, ignoring the Close Combat Weakness trait and dealing +X Damage. When defeating a unit while Overwatching, she remains in Overwatch, retaining 1 fewer Hits compared to the previous attack.
+Savior Protocols (Passive)
+If a friendly adjacent Tau Empire Character is hit by an attack, there is a 50% chance that this Drone takes the hit instead.
+When moving, this Drone tries to prioritize hexes adjacent to friendly Tau Empire Characters, especially the character who summomned it.
+When attacking, this Drone tries to prioritize enemies with a Markerlight."
+Re'vas,Early Warning Override,active,trait,Summon,damage_multiplier,unknown,medium,"Early Warning Override
+Summons 2 Shield Drones into free adjacent hexes. Newly summoned Shield Drones can immediately attack an enemy in melee, but cannot move this turn.
+Re'vas also starts Overwatching until the start of her next turn, ignoring the Close Combat Weakness trait and dealing +X Damage. When defeating a unit while Overwatching, she remains in Overwatch, retaining 1 fewer Hits compared to the previous attack.
+Savior Protocols (Passive)
+If a friendly adjacent Tau Empire Character is hit by an attack, there is a 50% chance that this Drone takes the hit instead.
+When moving, this Drone tries to prioritize hexes adjacent to friendly Tau Empire Characters, especially the character who summomned it.
+When attacking, this Drone tries to prioritize enemies with a Markerlight."
+Roswitha,Brazier of Holy Fire,active,trait,Daemon,damage_multiplier,unknown,medium,"Brazier of Holy Fire
+Deals 2x X Flame Damage to a target enemy within range 2 and sets its hex on Fire. Deals 4x X Flame Damage vs Daemons instead. ALL Daemons within 2 hexes of the target take +Y% Extra Damage this round and the next. Immune Daemons only take +Z% Extra Damage.
+Note: Healing or Repairing remove the bonus damage effect."
+Roswitha,Condemnor Stake,passive,trait,Psyker,damage_multiplier,unknown,medium,"Condemnor Stake
+Deals +X Damage against Psykers."
+Shadowsun,Exemplar of the Kauyon,active,trait,Summon,damage_multiplier,unknown,medium,"Exemplar of the Kauyon
+Commander Shadowsun disappears, then reappears on a target Hex adjacent to an allied unit and immediately performs a normal attack against the closest enemy target. This attack deals an additional 2x X Blast Damage. A stationary Command-Link Drone is summoned in the hex she previously occupied.
+Initial cooldown: 1 round
+Savior Protocols (Passive)
+If a friendly adjacent Tau Empire Character is hit by an attack, there is a 50% chance that this Drone takes the hit instead.
+When moving, this Drone tries to prioritize hexes adjacent to friendly Tau Empire Characters, especially the character who summomned it.
+When attacking, this Drone tries to prioritize enemies with a Markerlight."
+Shadowsun,Exemplar of the Kauyon,active,trait,Summon,damage_multiplier,unknown,medium,"Exemplar of the Kauyon
+Commander Shadowsun disappears, then reappears on a target Hex adjacent to an allied unit and immediately performs a normal attack against the closest enemy target. This attack deals an additional 2x X Blast Damage. A stationary Command-Link Drone is summoned in the hex she previously occupied.
+Initial cooldown: 1 round
+Savior Protocols (Passive)
+If a friendly adjacent Tau Empire Character is hit by an attack, there is a 50% chance that this Drone takes the hit instead.
+When moving, this Drone tries to prioritize hexes adjacent to friendly Tau Empire Characters, especially the character who summomned it.
+When attacking, this Drone tries to prioritize enemies with a Markerlight."
+Sho'syl,MV71 Sniper Drone Squad,passive,trait,Summon,damage_multiplier,unknown,medium,"MV71 Sniper Drone Squad
+Instead of a ranged attack, Sho'syl summons a MV71 Sniper Drone and commands it to attack the target. This attack uses Sho'syl's Damage stat, while other effects, like buffs, are taken from the Drone. If Sho'syl already controls 3 MV71 Sniper Drones, the one with the lowest Health is removed before the new Drone is summoned.
+The target also gains a Markerlight until the end of Sho'syl's next turn.
+Savior Protocols (Passive)
+If a friendly adjacent Tau Empire Character is hit by an attack, there is a 50% chance that this Drone takes the hit instead.
+When moving, this Drone tries to prioritize hexes adjacent to friendly Tau Empire Characters, especially the character who summomned it.
+When attacking, this Drone tries to prioritize enemies with a Markerlight."
+Sho'syl,MV71 Sniper Drone Squad,passive,trait,Summon,damage_multiplier,unknown,medium,"MV71 Sniper Drone Squad
+Instead of a ranged attack, Sho'syl summons a MV71 Sniper Drone and commands it to attack the target. This attack uses Sho'syl's Damage stat, while other effects, like buffs, are taken from the Drone. If Sho'syl already controls 3 MV71 Sniper Drones, the one with the lowest Health is removed before the new Drone is summoned.
+The target also gains a Markerlight until the end of Sho'syl's next turn.
+Savior Protocols (Passive)
+If a friendly adjacent Tau Empire Character is hit by an attack, there is a 50% chance that this Drone takes the hit instead.
+When moving, this Drone tries to prioritize hexes adjacent to friendly Tau Empire Characters, especially the character who summomned it.
+When attacking, this Drone tries to prioritize enemies with a Markerlight."
+Snotflogga,Squig Hound,passive,trait,Summon,damage_multiplier,unknown,medium,"Squig Hound
+Friendly Grots ignore Battle Fatigue. Each time Snotflogga attacks, the Squig Hound also bites the target, dealing an additional 2x X Physical Damage. Then, if there are less than 5 friendly Grots on the battlefield, summon a Grot adjacent to the target that immediately can attack."
+Sy-Gex,Heavy Grav-Cannon,passive,trait,Gravis,damage_multiplier,unknown,medium,"Heavy Grav-Cannon
+Ranged attacks against Mk X Gravis, Terminator Armour, or Mechanical units deal +X Damage and have +Y% pierce ratio."
+Sy-Gex,Heavy Grav-Cannon,passive,trait,Terminator,damage_multiplier,unknown,medium,"Heavy Grav-Cannon
+Ranged attacks against Mk X Gravis, Terminator Armour, or Mechanical units deal +X Damage and have +Y% pierce ratio."
+Tanksmasha,Unstoppable Momentum,active,trait,Ork,damage_multiplier,unknown,medium,"Unstoppable Momentum
+Charges in one of 6 directions and keeps moving in a straight line until he hits an obstacle or a Big Target. Any enemies hit by the charge take 1x X Direct Damage, increased by Y Damage for each hex traversed from the starting hex to the enemy. Affected enemies get pushed and Suppressed for 1 round. A Big Target is Stunned for 1 round instead. Friendly units are also displaced, but take no damage or negative effects.
+Initial cooldown: 1 round
+(How Does Tanksmasha Work?)"
+Thaddeus Noble,Basilisk Barrage,active,trait,Ork,damage_multiplier,unknown,medium,"Basilisk Barrage
+If Thaddeus Noble has not moved, unleashes a barrage of 5 shells on any target on the battlefield, each dealing 2x X Blast Damage. 3 randomly hit the target hex or surrounding hexes and the remaining 2 hit the hexes surrounding those. For each round that has ended, 1 more of the shells hits the target hex, starting with the shells hitting the outer hexes. The Suppressive Fire trait also applies to this ability.
+This ability's Damage ignores all of the attacker bonuses and modifiers (including elevation), and cannot Crit.
+(How does Basilisk Barrage work?)"
+Thaumachus,Attempted Possession,active,trait,Summon,damage_multiplier,unknown,medium,"Attempted Possession
+Target an enemy within 2 hexes. The target and any Summons it has summoned become possessed and immediately perform a normal attack against the closest enemy unit, preferring unpossessed targets. Possessed units deal X% of their own Damage to a maximum of Y Damage per hit. Possessed Summons will move before attacking.
+(How does Attempted Possession Work?)"
+Thaumachus,Attempted Possession,active,trait,Summon,damage_multiplier,unknown,medium,"Attempted Possession
+Target an enemy within 2 hexes. The target and any Summons it has summoned become possessed and immediately perform a normal attack against the closest enemy unit, preferring unpossessed targets. Possessed units deal X% of their own Damage to a maximum of Y Damage per hit. Possessed Summons will move before attacking.
+(How does Attempted Possession Work?)"
+Thaumachus,Attempted Possession,active,trait,Ork,damage_multiplier,unknown,medium,"Attempted Possession
+Target an enemy within 2 hexes. The target and any Summons it has summoned become possessed and immediately perform a normal attack against the closest enemy unit, preferring unpossessed targets. Possessed units deal X% of their own Damage to a maximum of Y Damage per hit. Possessed Summons will move before attacking.
+(How does Attempted Possession Work?)"
+The Patermine,Might From Below,active,trait,Summon,damage_multiplier,unknown,medium,"Might From Below
+Deals 5x X Psychic Damage to an adjacent enemy, then summons a Purestrain Genestealer on each Decoy adjacent to the Patermine. The Purestrain Genestealers can immediately attack in melee, but cannot move this turn.
+This ability's Damage ignores all of the attacker bonuses and modifiers (including elevation), and cannot Crit."
+Tjark,Hunters Beyond Death,passive,trait,Psyker,damage_multiplier,unknown,medium,"Hunters Beyond Death
+Deals +X Damage against Psykers, and Enemy Psykers within 2 Hexes deal -X Damage.
+Unless they are Immune, Enemy Psykers within 2 Hexes will not hit an additional unit with their normal ranged attacks."
+Toth,Time Flux,passive,trait,Ork,damage_multiplier,unknown,medium,"At the beginning of his turn, Toth regenerates X Health plus an additional amount equal to the Damage of the last hit he received in the last enemy turn. The total amount restored cannot exceed Y Health.
+When Toth moves, he leaves a time ghost behind on the hex he moved from. The time ghost vanishes if the hex becomes occupied by another unit or if the terrain becomes impassable (as with Broken Ice). The first time Toth dies each battle, if his time ghost is on the battlefield then he revives with Z Health remaining at its location. This works even if Toth is Overkilled."
+Toth,Time Flux,passive,trait,Ork,damage_multiplier,unknown,medium,"At the beginning of his turn, Toth regenerates X Health plus an additional amount equal to the Damage of the last hit he received in the last enemy turn. The total amount restored cannot exceed Y Health.
+When Toth moves, he leaves a time ghost behind on the hex he moved from. The time ghost vanishes if the hex becomes occupied by another unit or if the terrain becomes impassable (as with Broken Ice). The first time Toth dies each battle, if his time ghost is on the battlefield then he revives with Z Health remaining at its location. This works even if Toth is Overkilled."
+Ulf,Savage Killer,passive,trait,Summon,damage_multiplier,unknown,medium,"Savage Killer
+When a Summon moves to or is summoned adjacent to Ulf, he immediately deals 5x X Power Damage to it. Ulf will also perform this ability against any enemy that attempts to use an active ability while in a Hex adjacent to him, in which case he deals his Damage before that unit's ability is activated."
+Ulf,Savage Killer,passive,trait,Summon,damage_multiplier,unknown,medium,"Savage Killer
+When a Summon moves to or is summoned adjacent to Ulf, he immediately deals 5x X Power Damage to it. Ulf will also perform this ability against any enemy that attempts to use an active ability while in a Hex adjacent to him, in which case he deals his Damage before that unit's ability is activated."
+Winged Prime,Alpha Warrior,active,trait,Summon,damage_multiplier,100,high,"Alpha Warrior
+If the Winged Prime has not moved this turn, summons a Tyranid Warrior on a free hex within Synapse range. The Tyranid Warrior cannot move this turn, but can immediately perform a normal attack against an enemy in range.
+Scything Talons (Active)
+Attacks an enemy in melee for 3x X Bio Damage and any enemy units adjacent to that target and to the Prime take 2x X Bio Damage. Double hits against Summons.
+Reinforced Hive Node (Passive)
+Every second round - starting from the first the Prime is in play - the Prime has +100% Armour and - if it has Block - 100% Block Chance."
+Winged Prime,Synaptic Lynchpin,passive,trait,Summon,damage_multiplier,unknown,medium,"Synaptic Lynchpin
+Whenever the Winged Prime, or another friendly unit with Synapse, performs a normal attack against an enemy and that enemy is not defeated, summon a Hormagaunt adjacent to the target, which immediately attacks the enemy. Cannot have more than X Hormagaunts summoned this way at the same time.
+Adrenal Glands (Passive)
+May move with +1 Movement if that move ends in a hex adjacent to an enemy.
+Hungering Swarm (Passive)
+Whenever this unit performs a melee attack, it deals +1 Hit for any friendly Hormagaunt or Ripper Swarm adjacent to the target."
+Winged Prime,Synaptic Lynchpin,passive,trait,Summon,damage_multiplier,unknown,medium,"Synaptic Lynchpin
+Whenever the Winged Prime, or another friendly unit with Synapse, performs a normal attack against an enemy and that enemy is not defeated, summon a Hormagaunt adjacent to the target, which immediately attacks the enemy. Cannot have more than X Hormagaunts summoned this way at the same time.
+Adrenal Glands (Passive)
+May move with +1 Movement if that move ends in a hex adjacent to an enemy.
+Hungering Swarm (Passive)
+Whenever this unit performs a melee attack, it deals +1 Hit for any friendly Hormagaunt or Ripper Swarm adjacent to the target."
+Yazaghor,Sorcerous Facade,active,trait,Psyker,damage_multiplier,unknown,medium,"Sorcerous Facade
+Target a friendly Psyker. Until the beginning of Yazaghor's next turn both he and the target deal an additional 1x X Psychic Damage with their normal attacks.
+Yazaghor performs a normal attack against the closest enemy unit, and then switches positions with the targeted Psyker.
+Note: this ability can only be used if Yazaghor has an enemy in range."
+Yazaghor,Sorcerous Facade,active,trait,Psyker,damage_multiplier,unknown,medium,"Sorcerous Facade
+Target a friendly Psyker. Until the beginning of Yazaghor's next turn both he and the target deal an additional 1x X Psychic Damage with their normal attacks.
+Yazaghor performs a normal attack against the closest enemy unit, and then switches positions with the targeted Psyker.
+Note: this ability can only be used if Yazaghor has an enemy in range."
+Yazaghor,Reality Unbound,passive,trait,Ork,damage_multiplier,unknown,medium,"Reality Unbound
+For each different enemy unit that was dealt Psychic Damage this turn Yazaghor deals +X Maximum Damage with his normal ranged attacks. If three or more different enemy units have been dealt Psychic Damage this turn he gains +1 Movement and his normal ranged attack gets +1 Range until the end of this turn.
+Note: Bonus Maximum Damage extends the high end of the 20% variance range. See this How Does That Work article for more information."
