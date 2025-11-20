@@ -3,97 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tacticus Matchup Analyzer - 100 Characters</title>
+    <title>WH40K Tacticus - Анализатор Матчей</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #1a1a2e;
+            background: linear-gradient(135deg, #1a1a2e, #0f0f1e);
             color: #e4e4e4;
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
             padding: 20px;
         }
-        .container { max-width: 1900px; margin: 0 auto; }
         h1 {
             text-align: center;
             margin-bottom: 30px;
             color: #00d4ff;
             font-size: 2.5em;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            background: linear-gradient(45deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .import-section {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+        .status-bar {
             background: #16213e;
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             border: 2px solid #00d4ff;
-            z-index: 100;
-            min-width: 200px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-        .import-section h3 {
-            color: #00d4ff;
-            margin: 0 0 10px 0;
-            font-size: 0.9em;
             text-align: center;
-        }
-        .import-btn {
-            background: #00d4ff;
-            color: #1a1a2e;
-            border: none;
-            padding: 8px 15px;
-            font-size: 0.9em;
             font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            margin-bottom: 5px;
         }
-        .import-btn:hover {
-            background: #00ff88;
-            transform: scale(1.02);
-        }
-        .auto-load-status {
-            font-size: 0.8em;
-            color: #888;
-            text-align: center;
-            margin-top: 5px;
-        }
-        .auto-load-status.success {
+        .status-bar.success {
+            border-color: #00ff88;
             color: #00ff88;
+            background: #0a1a0a;
         }
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            color: #00d4ff;
-            font-size: 1.5em;
-            font-weight: bold;
+        .main-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
         }
-        .loading-overlay.hidden {
-            display: none;
-        }
-        .filters {
+        .control-panel {
             background: #16213e;
             padding: 20px;
             border-radius: 10px;
-            margin-bottom: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            border: 2px solid #00d4ff;
+            max-height: 80vh;
+            overflow-y: auto;
         }
-        .filter-group { display: flex; flex-direction: column; gap: 10px; }
-        .filter-group label { color: #00d4ff; font-weight: bold; }
-        select {
+        .control-section {
+            margin-bottom: 25px;
+        }
+        .control-section h3 {
+            color: #00d4ff;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            border-bottom: 2px solid #0f1a2e;
+            padding-bottom: 5px;
+        }
+        select, button {
+            width: 100%;
             padding: 10px;
             background: #0f1a2e;
             color: #e4e4e4;
@@ -101,212 +75,172 @@
             border-radius: 5px;
             font-size: 1em;
             cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
         }
-        .limit-group {
-            grid-column: span 2;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
+        button {
+            background: #00d4ff;
+            color: #1a1a2e;
+            font-weight: bold;
         }
-        .legend {
-            background: #16213e;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
+        button:hover {
+            background: #00ff88;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
         }
-        .legend-item { display: flex; align-items: center; gap: 8px; }
-        .legend-color { width: 30px; height: 20px; border-radius: 3px; }
-        .excellent { background: #00ff00; }
-        .good { background: #4ade80; }
-        .neutral { background: #fbbf24; }
-        .poor { background: #fb923c; }
-        .terrible { background: #ef4444; }
-        .matrix-container {
+        .display-area {
             background: #16213e;
             padding: 20px;
             border-radius: 10px;
-            overflow: auto;
-            max-height: 70vh;
+            border: 2px solid #00d4ff;
+            min-height: 500px;
         }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            font-size: 0.75em; 
-        }
-        th, td {
-            padding: 6px 4px;
-            text-align: center;
-            border: 1px solid #0f1a2e;
-            min-width: 70px;
-        }
-        th {
-            background: #0f1a2e;
-            color: #00d4ff;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        th:first-child, td:first-child {
-            position: sticky;
-            left: 0;
-            background: #0f1a2e;
-            font-weight: bold;
-            z-index: 5;
-            min-width: 140px;
-            text-align: left;
-            padding-left: 10px;
-        }
-        th:first-child { z-index: 15; }
-        td { cursor: pointer; transition: all 0.2s; }
-        td:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-            z-index: 100;
-        }
-        .cell-90-100 { background: #00ff00; color: #000; font-weight: bold; }
-        .cell-70-89 { background: #4ade80; color: #000; }
-        .cell-50-69 { background: #fbbf24; color: #000; }
-        .cell-30-49 { background: #fb923c; color: #fff; }
-        .cell-0-29 { background: #ef4444; color: #fff; }
-        
-        .detail-panel {
-            position: fixed;
-            right: -550px;
-            top: 0;
-            width: 520px;
-            height: 100vh;
-            background: #16213e;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            overflow-y: auto;
-            transition: right 0.3s ease;
-            z-index: 1000;
-        }
-        .detail-panel.active { right: 0; }
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #ef4444;
-            color: #fff;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-size: 1.5em;
-            cursor: pointer;
-            line-height: 0;
-        }
-        .close-btn:hover { background: #dc2626; }
-        
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #0f1a2e;
-        }
-        .tab {
-            padding: 10px 20px;
-            background: #0f1a2e;
-            border: none;
-            color: #e4e4e4;
-            cursor: pointer;
-            border-radius: 5px 5px 0 0;
-            font-weight: bold;
-        }
-        .tab.active {
-            background: #00d4ff;
-            color: #1a1a2e;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        
-        .panel-title {
-            font-size: 1.6em;
-            color: #00d4ff;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: bold;
+        .character-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
         .char-card {
             background: #0f1a2e;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .char-card h3 { 
-            color: #00ff88; 
-            margin-bottom: 10px; 
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .char-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
             border: 2px solid #00d4ff;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .char-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+            border-color: #00ff88;
+        }
+        .char-card.selected {
+            border-color: #00ff88;
+            background: #0a1a0a;
+        }
+        .char-name {
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .char-faction {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        .char-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            font-size: 0.85em;
         }
         .stat-row {
             display: flex;
             justify-content: space-between;
-            padding: 5px 0;
-            border-bottom: 1px solid #1a1a2e;
-            font-size: 0.9em;
+            padding: 2px 0;
         }
-        .stat-label { color: #00d4ff; font-weight: bold; }
-        .vs-divider {
+        .stat-label { color: #888; }
+        .stat-value { color: #fff; font-weight: bold; }
+        .char-traits {
+            margin-top: 8px;
+            font-size: 0.8em;
+            color: #00ff88;
+            font-style: italic;
+        }
+        .battle-area {
+            display: none;
+            padding: 20px;
+            background: #0f1a2e;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .battle-area.active {
+            display: block;
+        }
+        .battle-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
             text-align: center;
+        }
+        .vs-divider {
             font-size: 2em;
             color: #ff6b6b;
-            margin: 15px 0;
             font-weight: bold;
+            animation: pulse 2s infinite;
         }
-        .metric-box {
-            background: #1a1a2e;
-            padding: 12px;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .battle-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .battle-card {
+            background: #16213e;
+            padding: 15px;
             border-radius: 8px;
-            margin: 10px 0;
-            border-left: 4px solid #00d4ff;
+            border: 2px solid #00d4ff;
         }
-        .metric-box h4 { color: #00d4ff; margin-bottom: 8px; font-size: 1em; }
-        .metric-value {
-            font-size: 2em;
-            font-weight: bold;
+        .battle-card.attacker {
+            border-color: #00ff88;
+        }
+        .battle-card.defender {
+            border-color: #ff6b6b;
+        }
+        .result-area {
+            background: linear-gradient(135deg, #16213e, #0f1a2e);
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #00d4ff;
             text-align: center;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 5px 0;
+        }
+        .win-probability {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 0 0 10px currentColor;
+        }
+        .win-probability.high { color: #00ff88; }
+        .win-probability.medium { color: #fbbf24; }
+        .win-probability.low { color: #ff6b6b; }
+        .analysis-text {
+            margin-top: 15px;
+            padding: 15px;
+            background: #0f1a2e;
+            border-radius: 8px;
+            border-left: 4px solid #00d4ff;
+            text-align: left;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .synergy-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #0a1a0a;
+            border-radius: 8px;
+            border: 2px solid #00ff88;
         }
         .synergy-list {
             list-style: none;
             padding: 0;
+            margin-top: 10px;
         }
         .synergy-item {
-            background: #1a1a2e;
-            padding: 12px;
-            margin: 8px 0;
+            background: #16213e;
+            padding: 10px;
+            margin: 5px 0;
             border-radius: 5px;
             border-left: 3px solid #00ff88;
-        }
-        .partner-badge {
-            display: inline-block;
-            background: #0f1a2e;
-            padding: 5px 10px;
-            border-radius: 15px;
-            margin: 3px;
-            font-size: 0.85em;
-            border: 1px solid #00d4ff;
+            font-size: 0.9em;
         }
         .loading {
             text-align: center;
@@ -314,736 +248,540 @@
             font-size: 1.2em;
             color: #00d4ff;
         }
-        .tooltip {
-            position: absolute;
-            background: #0f1a2e;
-            border: 2px solid #00d4ff;
-            border-radius: 8px;
+        .error {
+            color: #ff6b6b;
+            background: #2a0a0a;
             padding: 15px;
-            display: none;
-            z-index: 999;
-            max-width: 320px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            transition: all 0.2s ease;
+            border-radius: 8px;
+            border: 2px solid #ff6b6b;
+            margin: 10px 0;
         }
         @media (max-width: 768px) {
-            .tooltip {
-                max-width: 280px;
-                font-size: 0.9em;
+            .main-grid {
+                grid-template-columns: 1fr;
             }
-            .tooltip img {
-                width: 60px;
-                height: 60px;
+            .control-panel {
+                max-height: none;
             }
-        }
-        .tooltip.active { 
-            display: block; 
-            animation: tooltipFadeIn 0.2s ease;
-        }
-        @keyframes tooltipFadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .tooltip img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            border: 2px solid #00d4ff;
-            box-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
-            object-fit: cover;
-            background: #16213e;
-        }
-        .tooltip .char-name {
-            font-weight: bold;
-            color: #00d4ff;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-        .tooltip .char-stats {
-            font-size: 0.85em;
-            line-height: 1.4;
-        }
-        .tooltip .stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 2px 0;
-        }
-        .tooltip .stat-label {
-            color: #888;
-        }
-        .tooltip .stat-value {
-            color: #fff;
-            font-weight: bold;
+            .battle-header {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .vs-divider {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>⚔️ Warhammer 40K: Tacticus - Matchup Analyzer</h1>
+        <h1>⚔️ WH40K Tacticus - Анализатор Матчей</h1>
         
-        <div class="import-section">
-            <h3>📁 ДАННЫЕ</h3>
-            <button class="import-btn" onclick="document.getElementById('fileInput').click()">
-                Загрузить JSON
-            </button>
-            <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="loadJSON(event)">
-            <button class="import-btn" onclick="useEmbeddedData()">
-                Встроенные данные
-            </button>
-            <div id="autoLoadStatus" class="auto-load-status">
-                Загрузка data.json...
-            </div>
+        <div id="statusBar" class="status-bar">
+            🔄 Загрузка данных...
         </div>
         
-        <div class="filters">
-            <div class="filter-group">
-                <label>🗡️ ФИЛЬТР АТАКУЮЩИХ</label>
-                <select id="attackerFilter">
-                    <option value="">Все персонажи</option>
-                </select>
+        <div class="main-grid">
+            <div class="control-panel">
+                <div class="control-section">
+                    <h3>🗡️ АТАКУЮЩИЙ</h3>
+                    <select id="attackerSelect">
+                        <option value="">Выберите персонажа</option>
+                    </select>
+                </div>
+                
+                <div class="control-section">
+                    <h3>🛡️ ЗАЩИЩАЮЩИЙСЯ</h3>
+                    <select id="defenderSelect">
+                        <option value="">Выберите персонажа</option>
+                    </select>
+                </div>
+                
+                <div class="control-section">
+                    <h3>⚡️ ДЕЙСТВИЯ</h3>
+                    <button onclick="analyzeBattle()">🔍 Анализировать бой</button>
+                    <button onclick="loadRandomMatchup()">🎲 Случайный матч</button>
+                    <button onclick="resetSelection()">🔄 Сбросить выбор</button>
+                </div>
+                
+                <div class="control-section">
+                    <h3>📊 ФИЛЬТРЫ</h3>
+                    <select id="factionFilter" onchange="filterCharacters()">
+                        <option value="">Все фракции</option>
+                    </select>
+                    <select id="rarityFilter" onchange="filterCharacters()">
+                        <option value="">Все редкости</option>
+                    </select>
+                </div>
             </div>
             
-            <div class="filter-group">
-                <label>🛡️ ФИЛЬТР ЗАЩИЩАЮЩИХСЯ</label>
-                <select id="defenderFilter">
-                    <option value="">Все персонажи</option>
-                </select>
+            <div class="display-area">
+                <div id="characterDisplay" class="character-list">
+                    <div class="loading">Загрузка персонажей...</div>
+                </div>
+                
+                <div id="battleArea" class="battle-area">
+                    <div class="battle-header">
+                        <div id="attackerCard" class="battle-card attacker"></div>
+                        <div class="vs-divider">VS</div>
+                        <div id="defenderCard" class="battle-card defender"></div>
+                    </div>
+                    
+                    <div class="result-area">
+                        <h3>🎯 Результат анализа</h3>
+                        <div id="winProbability" class="win-probability">--%</div>
+                        <div id="analysisResult" class="analysis-text"></div>
+                        
+                        <div id="synergySection" class="synergy-section">
+                            <h3>🤝 Синергия и контры</h3>
+                            <ul id="synergyList" class="synergy-list"></ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="limit-group">
-                <label>📊 ПОКАЗАТЬ ПЕРВЫХ</label>
-                <select id="limitSelect">
-                    <option value="20">20 персонажей</option>
-                    <option value="30">30 персонажей</option>
-                    <option value="50" selected>50 персонажей</option>
-                    <option value="100">Все (100)</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="legend">
-            <div class="legend-item"><div class="legend-color excellent"></div><span>Отлично (90-100%)</span></div>
-            <div class="legend-item"><div class="legend-color good"></div><span>Хорошо (70-89%)</span></div>
-            <div class="legend-item"><div class="legend-color neutral"></div><span>Нейтрально (50-69%)</span></div>
-            <div class="legend-item"><div class="legend-color poor"></div><span>Плохо (30-49%)</span></div>
-            <div class="legend-item"><div class="legend-color terrible"></div><span>Ужасно (0-29%)</span></div>
-        </div>
-
-        <div class="matrix-container">
-            <div id="loading" class="loading">
-                Загрузка данных... Пожалуйста, подождите.
-            </div>
-            <table id="matchupTable" style="display: none;">
-                <thead id="tableHead"></thead>
-                <tbody id="tableBody"></tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="detail-panel" id="detailPanel">
-        <button class="close-btn" onclick="closeDetail()">×</button>
-        
-        <div class="tabs">
-            <button class="tab active" onclick="switchTab('analysis')">📊 Анализ</button>
-            <button class="tab" onclick="switchTab('synergy')">🤝 Синергия</button>
-            <button class="tab" onclick="switchTab('counters')">⚠️ Контры</button>
-        </div>
-        
-        <div id="detailContent">
-            <div id="analysisTab" class="tab-content active"></div>
-            <div id="synergyTab" class="tab-content"></div>
-            <div id="countersTab" class="tab-content"></div>
-        </div>
-    </div>
-    
-    <div class="tooltip" id="tooltip"></div>
-    
-    <div id="loadingOverlay" class="loading-overlay hidden">
-        <div>
-            <div>⚔️ Загрузка данных...</div>
-            <div style="font-size: 0.7em; margin-top: 10px;">Пожалуйста, подождите</div>
         </div>
     </div>
 
     <script>
-        // EMBEDDED SAMPLE DATA (will calculate on-the-fly)
-        const EMBEDDED_CHARACTERS = [
-            {id:1,name:"Abaddon The Despoiler",hp:100,armor:25,dmg:15,melee:"Power / 5 hits",ranged:"Bolter / 3 hits / Range 2",traits:"Let the Galaxy Burn, Resilient, Terminator Armour",icon:"https://tacticus.wiki.gg/images/Abaddon_The_Despoiler_Icon_Large.png?d3a9b6"},
-            {id:2,name:"Abraxas",hp:70,armor:20,dmg:18,melee:"Flame / 2 hits",ranged:"Psychic / 1 hit / Range 2",traits:"Daemon, Flying, Summon, Weaver of Fates",icon:"https://tacticus.wiki.gg/images/Abraxas_Icon_Large.png?df9c9b"}
-        ];
-        
-        const PIERCE_RATIOS = {
-            'Psychic': 100, 'Direct': 100, 'Piercing': 80, 'Melta': 75,
-            'Plasma': 65, 'Eviscerating': 50, 'Power': 40, 'Flame': 30,
-            'Energy': 30, 'Bolter': 20, 'Chain': 20, 'Pulse': 20,
-            'Blast': 15, 'Heavy Round': 15, 'Bio': 15, 'Molecular': 15,
-            'Particle': 15, 'Toxic': 15, 'Las': 10, 'Projectile': 5,
-            'Physical': 1
-        };
-        
- const MACHINES_OF_WAR = [
-            'Biovore', 'Exorcist', 'Forgefiend', 'Galatian',
-            'Malleus Rocket Launcher', 'Plagueburst Crawler',
-            'Rukkatrukk', "Tson'ji"
-        ];
-
-        // Function to check if entry is a character (has baseStats and attacks, not a machine/badge/component)
-        function isCharacter(entry) {
-            return entry.baseStats &&
-                   entry.attacks &&
-                   (!entry.rawInfobox?.Type ||
-                    (entry.rawInfobox?.Type && !entry.rawInfobox.Type.includes("Badge") &&
-                     !entry.rawInfobox.Type.includes("Component") &&
-                     !entry.rawInfobox.Type.includes("Mythic")));
-        }
-        
+        // Глобальные переменные
         let characters = [];
-        let matchupMatrix = {};
-        let currentLimit = 50;
-        let currentAttacker = null;
-        let currentDefender = null;
+        let matchups = [];
+        let synergies = [];
+        let selectedAttacker = null;
+        let selectedDefender = null;
 
-        // Auto-load data.json on page load
-        window.addEventListener('load', function() {
-            autoLoadDataJSON();
-        });
-
-        function autoLoadDataJSON() {
-            const statusDiv = document.getElementById('autoLoadStatus');
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            
-            statusDiv.textContent = 'Загрузка data.json...';
-            loadingOverlay.classList.remove('hidden');
-            
-            fetch('data.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Файл data.json не найден');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
-                    
-                    characters = filtered.map((c, i) => ({
-                        id: i + 1,
-                        name: c.name,
-                        hp: parseInt(c.baseStats?.health || c.baseHealth || 100),
-                        armor: parseInt(c.baseStats?.armour || c.baseArmour || 20),
-                        dmg: parseInt(c.baseStats?.damage || c.baseDamage || 15),
-                        melee: c.attacks?.melee || c.meleeAttack || 'N/A',
-                        ranged: c.attacks?.ranged || c.rangedAttack || 'N/A',
-                        traits: c.traits || '',
-                        icon: c.images?.heroIcon || c.images?.heroArt || '',
-                        faction: c.faction || 'Unknown',
-                        activeAbility: c.activeAbility?.name || 'N/A',
-                        passiveAbility: c.passiveAbility?.name || 'N/A'
-                    }));
-                    
-                    buildMatchupMatrix();
-                    populateFilters();
-                    renderTable();
-                    
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('matchupTable').style.display = 'table';
-                    loadingOverlay.classList.add('hidden');
-                    
-                    statusDiv.textContent = `✅ Загружено ${characters.length} персонажей`;
-                    statusDiv.classList.add('success');
-                })
-                .catch(error => {
-                    console.log('Auto-load failed:', error);
-                    loadingOverlay.classList.add('hidden');
-                    statusDiv.textContent = 'Используйте встроенные данные';
-                    statusDiv.classList.remove('success');
-                });
-        }
-
-        function extractAttackInfo(attackStr) {
-            if (!attackStr || attackStr === 'N/A') return [null, 0];
-            const parts = attackStr.split('/').map(p => p.trim());
-            const damageType = parts[0] || 'Physical';
-            let hits = 1;
-            for (const part of parts) {
-                if (part.toLowerCase().includes('hit')) {
-                    const match = part.match(/\\d+/);
-                    if (match) hits = parseInt(match[0]);
+        // Функция загрузки текстовых файлов
+        async function loadTextFile(filename) {
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки ${filename}: ${response.status}`);
                 }
+                const text = await response.text();
+                return text.trim().split('\n').filter(line => line.trim());
+            } catch (error) {
+                console.error(`Ошибка при загрузке ${filename}:`, error);
+                throw error;
             }
-            return [damageType, hits];
         }
 
-        function calculateMatchup(attacker, defender) {
-            const atkTraits = attacker.traits ? attacker.traits.split(', ') : [];
-            const defTraits = defender.traits ? defender.traits.split(', ') : [];
-            
-            // Get attack info
-            const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
-            const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
-            
-            const [atkType, atkHits] = (rangedType && rangedHits > 0) 
-                ? [rangedType, rangedHits] 
-                : [meleeType, meleeHits];
-            
-            const pierce = PIERCE_RATIOS[atkType] || 20;
-            
-            // ATTACK calculation
-            let dmgMult = 1.0;
-            if (atkTraits.includes('Crushing Strike')) dmgMult *= 1.25;
-            if (atkTraits.includes('Let the Galaxy Burn')) dmgMult *= 1.15;
-            
-            let armorMult = 1.0;
-            let incomingMult = 1.0;
-            if (defTraits.includes('Resilient')) incomingMult *= 0.80;
-            if (defTraits.includes('Terminator Armour')) armorMult *= 1.40;
-            if (defTraits.includes('Big Target')) incomingMult *= 1.30;
-            if (defTraits.includes('Mk X Gravis')) armorMult *= 1.50;
-            
-            const effectiveDmg = attacker.dmg * dmgMult;
-            const effectiveArmor = defender.armor * armorMult;
-            
-            const dmgAfterArmor = Math.max(1, effectiveDmg - effectiveArmor);
-            const dmgAfterPierce = Math.max(1, effectiveDmg * (pierce / 100));
-            const dmgPerHit = Math.max(dmgAfterArmor, dmgAfterPierce);
-            
-            const totalDmg = dmgPerHit * atkHits * incomingMult;
-            const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
-            
-            // DEFENSE calculation (reverse)
-            const [defRangedType, defRangedHits] = extractAttackInfo(defender.ranged);
-            const [defMeleeType, defMeleeHits] = extractAttackInfo(defender.melee);
-            
-            const [defType, defHits] = (defRangedType && defRangedHits > 0)
-                ? [defRangedType, defRangedHits]
-                : [defMeleeType, defMeleeHits];
-            
-            const defPierce = PIERCE_RATIOS[defType] || 20;
-            
-            let defDmgMult = 1.0;
-            if (defTraits.includes('Crushing Strike')) defDmgMult *= 1.25;
-            
-            let atkArmorMult = 1.0;
-            let atkIncomingMult = 1.0;
-            if (atkTraits.includes('Resilient')) atkIncomingMult *= 0.80;
-            if (atkTraits.includes('Terminator Armour')) atkArmorMult *= 1.40;
-            if (atkTraits.includes('Big Target')) atkIncomingMult *= 1.30;
-            
-            const defEffectiveDmg = defender.dmg * defDmgMult;
-            const atkEffectiveArmor = attacker.armor * atkArmorMult;
-            
-            const defDmgAfterArmor = Math.max(1, defEffectiveDmg - atkEffectiveArmor);
-            const defDmgAfterPierce = Math.max(1, defEffectiveDmg * (defPierce / 100));
-            const defDmgPerHit = Math.max(defDmgAfterArmor, defDmgAfterPierce);
-            
-            const totalDefDmg = defDmgPerHit * defHits * atkIncomingMult;
-            const damageTakenPct = (totalDefDmg / attacker.hp) * 100;
-            const defenseEff = Math.max(0, 100 - damageTakenPct);
-            
-            const average = (attackEff + defenseEff) / 2;
-            
-            return {
-                attack: Math.round(attackEff * 10) / 10,
-                defense: Math.round(defenseEff * 10) / 10,
-                average: Math.round(average * 10) / 10
-            };
-        }
-
-        function loadJSON(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            const reader = new FileReader();
-            loadingOverlay.classList.remove('hidden');
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
-                    
-                    characters = filtered.map((c, i) => ({
-                        id: i + 1,
-                        name: c.name,
-                        hp: parseInt(c.baseStats?.health || c.baseHealth || 100),
-                        armor: parseInt(c.baseStats?.armour || c.baseArmour || 20),
-                        dmg: parseInt(c.baseStats?.damage || c.baseDamage || 15),
-                        melee: c.attacks?.melee || c.meleeAttack || 'N/A',
-                        ranged: c.attacks?.ranged || c.rangedAttack || 'N/A',
-                        traits: c.traits || '',
-                        icon: c.images?.heroIcon || c.images?.heroArt || '',
-                        faction: c.faction || 'Unknown',
-                        activeAbility: c.activeAbility?.name || 'N/A',
-                        passiveAbility: c.passiveAbility?.name || 'N/A'
-                    }));
-                    
-                    buildMatchupMatrix();
-                    populateFilters();
-                    renderTable();
-                    
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('matchupTable').style.display = 'table';
-                    loadingOverlay.classList.add('hidden');
-                    
-                    const statusDiv = document.getElementById('autoLoadStatus');
-                    statusDiv.textContent = `✅ Загружено ${characters.length} персонажей`;
-                    statusDiv.classList.add('success');
-                    
-                    alert(`✅ Загружено ${characters.length} персонажей!`);
-                } catch (error) {
-                    loadingOverlay.classList.add('hidden');
-                    alert('❌ Ошибка загрузки JSON: ' + error.message);
+        // Парсинг персонажей из текстового файла
+        function parseCharacters(lines) {
+            characters = [];
+            lines.forEach((line, index) => {
+                const parts = line.split('|');
+                if (parts.length >= 9) {
+                    characters.push({
+                        name: parts[0].trim(),
+                        hp: parseInt(parts[1]) || 0,
+                        armor: parseInt(parts[2]) || 0,
+                        damage: parseInt(parts[3]) || 0,
+                        melee: parts[4].trim(),
+                        ranged: parts[5].trim(),
+                        traits: parts[6].trim(),
+                        rarity: parts[7].trim(),
+                        faction: parts[8].trim(),
+                        id: index + 1
+                    });
                 }
-            };
-            reader.readAsText(file);
-        }
-
-        function useEmbeddedData() {
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            loadingOverlay.classList.remove('hidden');
-            
-            // Small delay to show loading for embedded data
-            setTimeout(() => {
-                characters = EMBEDDED_CHARACTERS;
-                buildMatchupMatrix();
-                populateFilters();
-                renderTable();
-                
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('matchupTable').style.display = 'table';
-                loadingOverlay.classList.add('hidden');
-                
-                const statusDiv = document.getElementById('autoLoadStatus');
-                statusDiv.textContent = `✅ Использовано ${characters.length} персонажей`;
-                statusDiv.classList.add('success');
-            }, 500);
-        }
-
-        function buildMatchupMatrix() {
-            matchupMatrix = {};
-            // Build matrix lazily - only calculate when needed for performance
-            characters.forEach(attacker => {
-                matchupMatrix[attacker.name] = {};
-                characters.forEach(defender => {
-                    matchupMatrix[attacker.name][defender.name] = null; // Lazy initialization
-                });
             });
+            console.log(`Загружено персонажей: ${characters.length}`);
+            return characters;
         }
 
-        function getMatchup(attacker, defender) {
-            // Lazy calculation - only compute when actually needed
-            if (matchupMatrix[attacker.name][defender.name] === null) {
-                matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
+        // Парсинг матчей из текстового файла
+        function parseMatchups(lines) {
+            matchups = [];
+            lines.forEach(line => {
+                const parts = line.split(';');
+                if (parts.length >= 4) {
+                    matchups.push({
+                        attacker: parts[0].trim(),
+                        defender: parts[1].trim(),
+                        winRate: parseInt(parts[2]) || 50,
+                        description: parts[3].trim()
+                    });
+                }
+            });
+            console.log(`Загружено матчей: ${matchups.length}`);
+            return matchups;
+        }
+
+        // Парсинг синергии из текстового файла
+        function parseSynergies(lines) {
+            synergies = [];
+            lines.forEach(line => {
+                const parts = line.split(';');
+                if (parts.length >= 4) {
+                    synergies.push({
+                        char1: parts[0].trim(),
+                        char2: parts[1].trim(),
+                        synergy: parseInt(parts[2]) || 50,
+                        description: parts[3].trim()
+                    });
+                }
+            });
+            console.log(`Загружено синергий: ${synergies.length}`);
+            return synergies;
+        }
+
+        // Загрузка всех данных
+        async function loadAllData() {
+            try {
+                const statusBar = document.getElementById('statusBar');
+                statusBar.textContent = '📁 Загрузка персонажей...';
+                
+                const characterLines = await loadTextFile('characters.txt');
+                parseCharacters(characterLines);
+                
+                statusBar.textContent = '⚔️ Загрузка матчей...';
+                const matchupLines = await loadTextFile('matchups.txt');
+                parseMatchups(matchupLines);
+                
+                statusBar.textContent = '🤝 Загрузка синергии...';
+                const synergyLines = await loadTextFile('synergy.txt');
+                parseSynergies(synergyLines);
+                
+                statusBar.textContent = '✅ Данные загружены успешно!';
+                statusBar.classList.add('success');
+                
+                initializeUI();
+                
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                const statusBar = document.getElementById('statusBar');
+                statusBar.innerHTML = `<div class="error">❌ Ошибка: ${error.message}</div>`;
+                
+                // Загружаем встроенные данные
+                loadEmbeddedData();
             }
-            return matchupMatrix[attacker.name][defender.name];
         }
 
-        function populateFilters() {
-            const atkFilter = document.getElementById('attackerFilter');
-            const defFilter = document.getElementById('defenderFilter');
+        // Встроенные данные на случай ошибки
+        function loadEmbeddedData() {
+            const statusBar = document.getElementById('statusBar');
+            statusBar.textContent = '🔧 Использование встроенных данных...';
             
-            atkFilter.innerHTML = '<option value="">Все персонажи</option>';
-            defFilter.innerHTML = '<option value="">Все персонажи</option>';
+            characters = [
+                {id: 1, name: "Abaddon The Despoiler", hp: 100, armor: 25, damage: 15, melee: "Power / 5 hits", ranged: "Bolter / 3 hits / Range 2", traits: "Let the Galaxy Burn, Resilient", rarity: "Legendary", faction: "Chaos"},
+                {id: 2, name: "Dante", hp: 95, armor: 24, damage: 16, melee: "Axe Mortalis / 4 hits", ranged: "Bolter / 3 hits / Range 2", traits: "Blood Angels, Chapter Master", rarity: "Epic", faction: "Imperium"},
+                {id: 3, name: "Ghazghkull Thraka", hp: 110, armor: 28, damage: 14, melee: "Power Klaw / 3 hits", ranged: "Shoota / 3 hits / Range 2", traits: "Orks, Warboss, WAAAGH!", rarity: "Epic", faction: "Orks"},
+                {id: 4, name: "Eldrad Ulthran", hp: 60, armor: 12, damage: 25, melee: "Witch Staff / 3 hits", ranged: "Psychic / 2 hits / Range 4", traits: "Farseer, Psychic, Eldar", rarity: "Epic", faction: "Eldar"},
+                {id: 5, name: "Roboute Guilliman", hp: 120, armor: 30, damage: 20, melee: "Hand of Dominion / 5 hits", ranged: "Bolter / 4 hits / Range 3", traits: "Ultramarines, Primarch", rarity: "Legendary", faction: "Imperium"}
+            ];
+            
+            matchups = [
+                {attacker: "Abaddon The Despoiler", defender: "Dante", winRate: 85, description: "Abaddon's superior damage and traits give him advantage"},
+                {attacker: "Dante", defender: "Ghazghkull Thraka", winRate: 70, description: "Dante's speed vs Ghazghkull's toughness"},
+                {attacker: "Ghazghkull Thraka", defender: "Eldrad Ulthran", winRate: 60, description: "Ork durability vs psychic power"},
+                {attacker: "Eldrad Ulthran", defender: "Roboute Guilliman", winRate: 40, description: "Primarch's overwhelming stats"}
+            ];
+            
+            synergies = [
+                {char1: "Abaddon The Despoiler", char2: "Dante", synergy: 75, description: "Chaos vs Imperial rivalry"},
+                {char1: "Dante", char2: "Ghazghkull Thraka", synergy: 60, description: "Cross-faction battle"},
+                {char1: "Ghazghkull Thraka", char2: "Eldrad Ulthran", synergy: 50, description: "Ork vs Eldar ancient conflict"}
+            ];
+            
+            statusBar.textContent = '✅ Встроенные данные загружены!';
+            statusBar.classList.add('success');
+            
+            initializeUI();
+        }
+
+        // Инициализация интерфейса
+        function initializeUI() {
+            populateSelects();
+            populateFilters();
+            displayCharacters();
+        }
+
+        // Заполнение селектов персонажами
+        function populateSelects() {
+            const attackerSelect = document.getElementById('attackerSelect');
+            const defenderSelect = document.getElementById('defenderSelect');
+            
+            attackerSelect.innerHTML = '<option value="">Выберите персонажа</option>';
+            defenderSelect.innerHTML = '<option value="">Выберите персонажа</option>';
             
             characters.forEach(char => {
-                const opt1 = document.createElement('option');
-                opt1.value = char.name;
-                opt1.textContent = char.name;
-                atkFilter.appendChild(opt1);
-                
-                const opt2 = document.createElement('option');
-                opt2.value = char.name;
-                opt2.textContent = char.name;
-                defFilter.appendChild(opt2);
-            });
-        }
-
-        function getEffectivenessClass(pct) {
-            if (pct >= 90) return 'cell-90-100';
-            if (pct >= 70) return 'cell-70-89';
-            if (pct >= 50) return 'cell-50-69';
-            if (pct >= 30) return 'cell-30-49';
-            return 'cell-0-29';
-        }
-
-        function renderTable() {
-            const atkFilter = document.getElementById('attackerFilter').value;
-            const defFilter = document.getElementById('defenderFilter').value;
-            const limit = parseInt(document.getElementById('limitSelect').value);
-            
-            let displayedAtk = characters.slice(0, limit);
-            if (atkFilter) {
-                displayedAtk = characters.filter(c => c.name === atkFilter);
-            }
-            
-            let displayedDef = characters.slice(0, limit);
-            if (defFilter) {
-                displayedDef = characters.filter(c => c.name === defFilter);
-            }
-            
-            const thead = document.getElementById('tableHead');
-            const tbody = document.getElementById('tableBody');
-            
-            thead.innerHTML = '';
-            tbody.innerHTML = '';
-            
-            // Show loading message for large datasets
-            if (displayedAtk.length * displayedDef.length > 1000) {
-                const statusDiv = document.getElementById('autoLoadStatus');
-                statusDiv.textContent = `🔄 Отрисовка матрицы ${displayedAtk.length}×${displayedDef.length}...`;
-            }
-            
-            // Header row with numbering in name cells
-            const headerRow = document.createElement('tr');
-            const corner = document.createElement('th');
-            corner.textContent = 'АТАКУЮЩИЙ ↓ / ЗАЩИЩАЮЩИЙСЯ →';
-            corner.colSpan = 1;
-            headerRow.appendChild(corner);
-            
-            displayedDef.forEach((def, index) => {
-                const nameTh = document.createElement('th');
-                nameTh.innerHTML = `${index + 1}. ${def.name}`;
-                nameTh.onmouseenter = (e) => showTooltip(e, def);
-                nameTh.onmouseleave = hideTooltip;
-                headerRow.appendChild(nameTh);
-            });
-            thead.appendChild(headerRow);
-            
-            // Data rows with numbering in name cells
-            displayedAtk.forEach((atk, atkIndex) => {
-                const row = document.createElement('tr');
-                
-                const nameCell = document.createElement('td');
-                nameCell.innerHTML = `${atkIndex + 1}. ${atk.name}`;
-                nameCell.onmouseenter = (e) => showTooltip(e, atk);
-                nameCell.onmouseleave = hideTooltip;
-                row.appendChild(nameCell);
-                
-                displayedDef.forEach(def => {
-                    const metrics = getMatchup(atk, def);
-                    const cell = document.createElement('td');
-                    cell.innerHTML = `
-                        <div style="font-size: 0.7em; color: #888;">${metrics.attack}% / ${metrics.defense}%</div>
-                        <div style="font-weight: bold; font-size: 1.1em;">${metrics.average}%</div>
-                    `;
-                    cell.className = getEffectivenessClass(metrics.average);
-                    cell.onclick = () => showDetail(atk, def, metrics);
-                    row.appendChild(cell);
-                });
-                
-                tbody.appendChild(row);
+                const option1 = new Option(`${char.name} (${char.faction})`, char.id);
+                const option2 = new Option(`${char.name} (${char.faction})`, char.id);
+                attackerSelect.add(option1);
+                defenderSelect.add(option2);
             });
             
-            // Update status after completion
-            if (displayedAtk.length * displayedDef.length > 1000) {
-                const statusDiv = document.getElementById('autoLoadStatus');
-                const totalCells = displayedAtk.length * displayedDef.length;
-                statusDiv.textContent = `✅ Матрица готова: ${totalCells} ячеек`;
-            }
-        }
-
-        function showTooltip(event, char) {
-            const tooltip = document.getElementById('tooltip');
-            const hasImage = char.icon && char.icon.trim() !== '';
-            
-            tooltip.innerHTML = `
-                ${hasImage ? 
-                    `<img src="${char.icon}" alt="${char.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                     <div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:none;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>` : 
-                    '<div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>'
+            attackerSelect.addEventListener('change', (e) => {
+                selectedAttacker = characters.find(c => c.id == e.target.value);
+                if (selectedAttacker && selectedDefender) {
+                    analyzeBattle();
                 }
+            });
+            
+            defenderSelect.addEventListener('change', (e) => {
+                selectedDefender = characters.find(c => c.id == e.target.value);
+                if (selectedAttacker && selectedDefender) {
+                    analyzeBattle();
+                }
+            });
+        }
+
+        // Заполнение фильтров
+        function populateFilters() {
+            const factionFilter = document.getElementById('factionFilter');
+            const rarityFilter = document.getElementById('rarityFilter');
+            
+            // Фракции
+            const factions = [...new Set(characters.map(c => c.faction))];
+            factionFilter.innerHTML = '<option value="">Все фракции</option>';
+            factions.forEach(faction => {
+                factionFilter.add(new Option(faction, faction));
+            });
+            
+            // Редкость
+            const rarities = [...new Set(characters.map(c => c.rarity))];
+            rarityFilter.innerHTML = '<option value="">Все редкости</option>';
+            rarities.forEach(rarity => {
+                rarityFilter.add(new Option(rarity, rarity));
+            });
+        }
+
+        // Отображение персонажей
+        function displayCharacters() {
+            const display = document.getElementById('characterDisplay');
+            
+            const factionFilter = document.getElementById('factionFilter').value;
+            const rarityFilter = document.getElementById('rarityFilter').value;
+            
+            let filteredChars = characters;
+            
+            if (factionFilter) {
+                filteredChars = filteredChars.filter(c => c.faction === factionFilter);
+            }
+            
+            if (rarityFilter) {
+                filteredChars = filteredChars.filter(c => c.rarity === rarityFilter);
+            }
+            
+            display.innerHTML = '';
+            
+            if (filteredChars.length === 0) {
+                display.innerHTML = '<div class="loading">Персонажи не найдены</div>';
+                return;
+            }
+            
+            filteredChars.forEach(char => {
+                const card = createCharacterCard(char);
+                display.appendChild(card);
+            });
+        }
+
+        // Создание карточки персонажа
+        function createCharacterCard(char) {
+            const card = document.createElement('div');
+            card.className = 'char-card';
+            card.onclick = () => selectCharacter(char);
+            
+            card.innerHTML = `
                 <div class="char-name">${char.name}</div>
+                <div class="char-faction">${char.faction} • ${char.rarity}</div>
                 <div class="char-stats">
                     <div class="stat-row">
-                        <span class="stat-label">HP:</span>
+                        <span class="stat-label">❤️ HP:</span>
                         <span class="stat-value">${char.hp}</span>
                     </div>
                     <div class="stat-row">
-                        <span class="stat-label">ARM:</span>
+                        <span class="stat-label">🛡️ Броня:</span>
                         <span class="stat-value">${char.armor}</span>
                     </div>
                     <div class="stat-row">
-                        <span class="stat-label">DMG:</span>
-                        <span class="stat-value">${char.dmg}</span>
+                        <span class="stat-label">⚔️ Урон:</span>
+                        <span class="stat-value">${char.damage}</span>
                     </div>
-                    <div style="margin-top:5px;color:#888;font-size:0.9em;">
-                        <div>⚔️ ${char.melee}</div>
-                        <div>🏹 ${char.ranged}</div>
+                    <div class="stat-row">
+                        <span class="stat-label">🗡️ Ближний:</span>
+                        <span class="stat-value">${char.melee}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🏹 Дальний:</span>
+                        <span class="stat-value">${char.ranged}</span>
                     </div>
                 </div>
+                <div class="char-traits">${char.traits}</div>
             `;
             
-            // Position tooltip intelligently to avoid going off-screen
-            let left = event.pageX + 15;
-            let top = event.pageY + 15;
-            const tooltipWidth = window.innerWidth <= 768 ? 280 : 320;
-            const tooltipHeight = window.innerWidth <= 768 ? 180 : 200;
-            
-            // Check if tooltip would go off right edge
-            if (left + tooltipWidth > window.innerWidth) {
-                left = event.pageX - tooltipWidth - 15;
+            return card;
+        }
+
+        // Выбор персонажа
+        function selectCharacter(char) {
+            if (!selectedAttacker) {
+                selectedAttacker = char;
+                document.getElementById('attackerSelect').value = char.id;
+            } else if (!selectedDefender && char.id !== selectedAttacker.id) {
+                selectedDefender = char;
+                document.getElementById('defenderSelect').value = char.id;
+                analyzeBattle();
+            } else {
+                resetSelection();
+                selectedAttacker = char;
+                document.getElementById('attackerSelect').value = char.id;
             }
             
-            // Check if tooltip would go off bottom edge
-            if (top + tooltipHeight > window.innerHeight) {
-                top = event.pageY - tooltipHeight - 15;
+            updateCharacterCards();
+        }
+
+        // Обновление выделения карточек
+        function updateCharacterCards() {
+            const cards = document.querySelectorAll('.char-card');
+            cards.forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        // Анализ боя
+        function analyzeBattle() {
+            if (!selectedAttacker || !selectedDefender) {
+                return;
             }
             
-            // Ensure tooltip stays within viewport
-            left = Math.max(10, Math.min(left, window.innerWidth - tooltipWidth - 10));
-            top = Math.max(10, Math.min(top, window.innerHeight - tooltipHeight - 10));
+            const battleArea = document.getElementById('battleArea');
+            battleArea.classList.add('active');
             
-            tooltip.style.left = left + 'px';
-            tooltip.style.top = top + 'px';
-            tooltip.classList.add('active');
+            // Отображение карточек бойцов
+            document.getElementById('attackerCard').innerHTML = createBattleCard(selectedAttacker, 'Атакующий');
+            document.getElementById('defenderCard').innerHTML = createBattleCard(selectedDefender, 'Защищающийся');
+            
+            // Расчет вероятности победы
+            const winRate = calculateWinRate(selectedAttacker, selectedDefender);
+            
+            // Отображение результатов
+            displayResults(winRate);
         }
 
-        function hideTooltip() {
-            document.getElementById('tooltip').classList.remove('active');
-        }
-
-        function showDetail(attacker, defender, metrics) {
-            currentAttacker = attacker;
-            currentDefender = defender;
-            
-            // Ensure metrics are calculated
-            const calculatedMetrics = metrics || getMatchup(attacker, defender);
-            
-            renderAnalysisTab(attacker, defender, calculatedMetrics);
-            renderSynergyTab(attacker);
-            renderCountersTab(defender);
-            
-            document.getElementById('detailPanel').classList.add('active');
-        }
-
-        function closeDetail() {
-            document.getElementById('detailPanel').classList.remove('active');
-        }
-
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            event.target.classList.add('active');
-            document.getElementById(tabName + 'Tab').classList.add('active');
-        }
-
-        function renderAnalysisTab(atk, def, metrics) {
-            const [atkType, atkHits] = extractAttackInfo(atk.ranged)[0] ? extractAttackInfo(atk.ranged) : extractAttackInfo(atk.melee);
-            const pierce = PIERCE_RATIOS[atkType] || 20;
-            
-            document.getElementById('analysisTab').innerHTML = `
-                <div class="panel-title">ДЕТАЛЬНЫЙ АНАЛИЗ</div>
-                
-                <div class="char-card">
-                    <h3>
-                        ${atk.icon ? `<img src="${atk.icon}" class="char-icon">` : ''}
-                        ⚔️ ${atk.name}
-                    </h3>
-                    <div class="stat-row"><span class="stat-label">HP:</span><span>${atk.hp}</span></div>
-                    <div class="stat-row"><span class="stat-label">Броня:</span><span>${atk.armor}</span></div>
-                    <div class="stat-row"><span class="stat-label">Урон:</span><span>${atk.dmg}</span></div>
-                    <div class="stat-row"><span class="stat-label">Ближний:</span><span>${atk.melee}</span></div>
-                    <div class="stat-row"><span class="stat-label">Дальний:</span><span>${atk.ranged}</span></div>
-                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.8em;">${atk.traits}</span></div>
-                </div>
-                
-                <div class="vs-divider">⚔️ VS ⚔️</div>
-                
-                <div class="char-card">
-                    <h3>
-                        ${def.icon ? `<img src="${def.icon}" class="char-icon">` : ''}
-                        🛡️ ${def.name}
-                    </h3>
-                    <div class="stat-row"><span class="stat-label">HP:</span><span>${def.hp}</span></div>
-                    <div class="stat-row"><span class="stat-label">Броня:</span><span>${def.armor}</span></div>
-                    <div class="stat-row"><span class="stat-label">Урон:</span><span>${def.dmg}</span></div>
-                    <div class="stat-row"><span class="stat-label">Ближний:</span><span>${def.melee}</span></div>
-                    <div class="stat-row"><span class="stat-label">Дальний:</span><span>${def.ranged}</span></div>
-                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.8em;">${def.traits}</span></div>
-                </div>
-                
-                <div class="metric-box">
-                    <h4>⚔️ ЭФФЕКТИВНОСТЬ АТАКИ</h4>
-                    <div class="metric-value" style="background: #${getColorForPct(metrics.attack)}">${metrics.attack}%</div>
-                    <p style="font-size: 0.85em; margin-top: 5px;">
-                        ${atkType} (${pierce}% pierce) × ${atkHits} hits
-                    </p>
-                </div>
-                
-                <div class="metric-box">
-                    <h4>🛡️ ЭФФЕКТИВНОСТЬ ЗАЩИТЫ</h4>
-                    <div class="metric-value" style="background: #${getColorForPct(metrics.defense)}">${metrics.defense}%</div>
-                </div>
-                
-                <div class="metric-box">
-                    <h4>📊 СРЕДНЯЯ ЭФФЕКТИВНОСТЬ</h4>
-                    <div class="metric-value" style="background: #${getColorForPct(metrics.average)}">${metrics.average}%</div>
-                    <p style="font-size: 0.85em; margin-top: 5px;">
-                        Общая оценка для спаринга
-                    </p>
+        // Создание боевой карточки
+        function createBattleCard(char, role) {
+            return `
+                <h4 style="color: #00d4ff; margin-bottom: 10px;">${role}</h4>
+                <div style="font-weight: bold; font-size: 1.1em; margin-bottom: 8px;">${char.name}</div>
+                <div style="font-size: 0.9em; color: #888; margin-bottom: 10px;">${char.faction}</div>
+                <div style="font-size: 0.85em;">
+                    <div>❤️ HP: ${char.hp}</div>
+                    <div>🛡️ Броня: ${char.armor}</div>
+                    <div>⚔️ Урон: ${char.damage}</div>
+                    <div>🗡️ ${char.melee}</div>
+                    <div>🏹 ${char.ranged}</div>
                 </div>
             `;
         }
 
-        function renderSynergyTab(attacker) {
-            const traits = attacker.traits ? attacker.traits.split(', ') : [];
+        // Расчет вероятности победы
+        function calculateWinRate(attacker, defender) {
+            // Поиск в базе матчей
+            const matchup = matchups.find(m => 
+                m.attacker === attacker.name && m.defender === defender.name
+            );
             
-            document.getElementById('synergyTab').innerHTML = `
-                <div class="panel-title">🤝 СИНЕРГИЯ</div>
-                
-                <div style="background: #0f1a2e; padding: 15px; border-radius: 8px;">
-                    <h4 style="color: #00ff88; margin-bottom: 10px;">Лучшие партнёры для ${attacker.name}</h4>
-                    <ul class="synergy-list">
-                        ${traits.includes('Healer') ? '<li class="synergy-item">💚 <b>Healer</b> - работает с танками (Resilient, высокий HP)</li>' : ''}
-                        ${traits.includes('Summon') ? '<li class="synergy-item">👻 <b>Summoner</b> - синергия с buff персонажами</li>' : ''}
-                        ${traits.includes('Psyker') ? '<li class="synergy-item">🧠 <b>Psyker</b> - комбо с другими Psyker</li>' : ''}
-                        ${traits.includes('Heavy Weapon') ? '<li class="synergy-item">🔫 <b>Heavy Weapon</b> - получает buff от Thaddeus Noble</li>' : ''}
-                    </ul>
-                    
-                    <p style="margin-top: 15px; padding: 10px; background: #1a1a2e; border-radius: 5px; font-size: 0.9em;">
-                        💡 Загрузите полный JSON для детальной информации о синергиях
-                    </p>
-                </div>
-            `;
+            if (matchup) {
+                return matchup.winRate;
+            }
+            
+            // Если нет в базе, рассчитываем на основе характеристик
+            const attackScore = (attacker.damage + attacker.hp/10 + attacker.armor/5) * 10;
+            const defenseScore = (defender.damage + defender.hp/10 + defender.armor/5) * 10;
+            
+            let winRate = 50 + (attackScore - defenseScore) / 2;
+            winRate = Math.max(10, Math.min(90, winRate));
+            
+            return Math.round(winRate);
         }
 
-        function renderCountersTab(defender) {
-            const armor = defender.armor;
-            const hp = defender.hp;
-            const traits = defender.traits ? defender.traits.split(', ') : [];
+        // Отображение результатов
+        function displayResults(winRate) {
+            const winProb = document.getElementById('winProbability');
+            const analysis = document.getElementById('analysisResult');
+            const synergyList = document.getElementById('synergyList');
             
-            const counters = [];
-            if (armor > 25) counters.push('Высокое пробитие (Psychic, Piercing, Melta)');
-            if (hp < 80) counters.push('Burst damage и multi-hit атаки');
-            if (traits.includes('Big Target')) counters.push('Beast Slayer персонажи (+30% урона)');
-            if (traits.includes('Close Combat Weakness')) counters.push('Melee атакующие (+50% урона)');
+            winProb.textContent = winRate + '%';
+            winProb.className = 'win-probability';
             
-            document.getElementById('countersTab').innerHTML = `
-                <div class="panel-title">⚠️ КОНТРЫ</div>
-                
-                <div style="background: #0f1a2e; padding: 15px; border-radius: 8px;">
-                    <h4 style="color: #fbbf24; margin-bottom: 10px;">Слабости ${defender.name}</h4>
-                    <ul class="synergy-list">
-                        ${counters.map(c => `<li class="synergy-item">⚠️ ${c}</li>`).join('')}
-                        ${counters.length === 0 ? '<li class="synergy-item">✅ Нет явных слабостей</li>' : ''}
-                    </ul>
-                </div>
-            `;
+            if (winRate >= 70) {
+                winProb.classList.add('high');
+                analysis.innerHTML = `<strong>💪 Отличный матч!</strong><br>${selectedAttacker.name} имеет значительное преимущество над ${selectedDefender.name}. Рекомендую использовать этого персонажа в бою.`;
+            } else if (winRate >= 55) {
+                winProb.classList.add('medium');
+                analysis.innerHTML = `<strong>⚖️ Хороший матч</strong><br>${selectedAttacker.name} имеет умеренное преимущество. Бой будет конкурентным, но шансы на победу выше.`;
+            } else {
+                winProb.classList.add('low');
+                analysis.innerHTML = `<strong>⚠️ Сложный матч</strong><br>${selectedAttacker.name} находится в невыгодном положении против ${selectedDefender.name}. Рассмотрите смену тактики.`;
+            }
+            
+            // Синергия и контры
+            const synergy = synergies.find(s => 
+                (s.char1 === selectedAttacker.name && s.char2 === selectedDefender.name) ||
+                (s.char2 === selectedAttacker.name && s.char1 === selectedDefender.name)
+            );
+            
+            synergyList.innerHTML = '';
+            
+            if (synergy) {
+                const item = document.createElement('li');
+                item.className = 'synergy-item';
+                item.innerHTML = `<strong>🤝 Синергия:</strong> ${synergy.description} (${synergy.synergy}%)`;
+                synergyList.appendChild(item);
+            }
+            
+            // Поиск контров
+            const counters = synergies.filter(s => s.char1 === selectedDefender.name);
+            counters.slice(0, 3).forEach(counter => {
+                const item = document.createElement('li');
+                item.className = 'synergy-item';
+                item.innerHTML = `<strong>⚠️ Контр для ${selectedDefender.name}:</strong> ${counter.char2} - ${counter.description}`;
+                synergyList.appendChild(item);
+            });
         }
 
-        function getColorForPct(pct) {
-            if (pct >= 90) return '00ff00';
-            if (pct >= 70) return '4ade80';
-            if (pct >= 50) return 'fbbf24';
-            if (pct >= 30) return 'fb923c';
-            return 'ef4444';
+        // Случайный матч
+        function loadRandomMatchup() {
+            if (characters.length < 2) return;
+            
+            const randomAttacker = characters[Math.floor(Math.random() * characters.length)];
+            let randomDefender = characters[Math.floor(Math.random() * characters.length)];
+            
+            while (randomDefender.id === randomAttacker.id) {
+                randomDefender = characters[Math.floor(Math.random() * characters.length)];
+            }
+            
+            selectedAttacker = randomAttacker;
+            selectedDefender = randomDefender;
+            
+            document.getElementById('attackerSelect').value = randomAttacker.id;
+            document.getElementById('defenderSelect').value = randomDefender.id;
+            
+            analyzeBattle();
         }
 
-        document.getElementById('attackerFilter').addEventListener('change', renderTable);
-        document.getElementById('defenderFilter').addEventListener('change', renderTable);
-        document.getElementById('limitSelect').addEventListener('change', (e) => {
-            currentLimit = parseInt(e.target.value);
-            renderTable();
+        // Сброс выбора
+        function resetSelection() {
+            selectedAttacker = null;
+            selectedDefender = null;
+            
+            document.getElementById('attackerSelect').value = '';
+            document.getElementById('defenderSelect').value = '';
+            document.getElementById('battleArea').classList.remove('active');
+            
+            updateCharacterCards();
+        }
+
+        // Фильтрация персонажей
+        function filterCharacters() {
+            displayCharacters();
+        }
+
+        // Запуск приложения
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllData();
         });
     </script>
 </body>

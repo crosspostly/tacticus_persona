@@ -1,0 +1,49 @@
+Abaddon The Despoiler;Uraka the Hound;85;Chaos warriors synergy
+Abaddon The Despoiler;Alpharius;75;Alpha Legion tactics
+Abraxas;Ahriman;80;Chaos sorcerers
+Ahriman;Abraxas;80;Chaos psychic alliance
+Alpharius;Cypher;90;Fallen angels and Alpha Legion
+Belisarius Cawl;Techmarine;95;Mechanicus expertise
+Cato Sicarius;Primaris Captain;85;Ultramarines brotherhood
+Commissar Yarrick;Nork Deddog;80;Imperial Guard veteran team
+Creed;Lord Commissar;75;Imperial command structure
+Cypher;Alpharius;90;Stealth and infiltration
+Dante;Mephiston;90;Blood Angels chapter
+Eldrad Ulthran;Warlock;85;Eldar psychic council
+Farsight Enclaves Commander;Xenophon;70;Tactical commanders
+Ghazghkull Thraka;Ork Warboss;95;Ork WAAAGH! leadership
+Inquisitor Greyfax;Kaldor Draigo;80;Imperial anti-Chaos forces
+Jain Zar;Warlock;85;Eldar aspect warriors
+Kaldor Draigo;Saint Celestine;85;Imperial champions
+Lord Commissar;Creed;75;Imperial Guard command
+Mephiston;Dante;90;Blood Angels leadership
+Nork Deddog;Commissar Yarrick;80;Imperial Guard protection
+Primaris Captain;Cato Sicarius;85;Ultramarines cohesion
+Roboute Guilliman;Kaldor Draigo;90;Imperial supreme command
+Saint Celestine;Inquisitor Greyfax;75;Imperial faith and order
+Techmarine;Belisarius Cawl;95;Mechanicus knowledge
+Uraka the Hound;Abaddon The Despoiler;85;Chaos berzerkers
+Vindicare Assassin;Cypher;70;Imperial stealth agents
+Warlock;Eldrad Ulthran;85;Eldar psychic power
+Xenophon;Farsight Enclaves Commander;70;Cross-faction tactics
+Yarrick's Staff;Commissar Yarrick;80;Heroic Imperial leadership
+Zahndrekh;Belisarius Cawl;70;Ancient knowledge alliance
+Asdrubael Vect;Lucius the Eternal;65;Dark Eldar and Slaanesh cruelty
+Azrael;Belisarius Cawl;75;Dark Angels and Mechanicus
+Baharroth;Maugan Ra;85;Eldar Phoenix Lords
+Karandras;Fuegan;80;Eldar Phoenix Lords
+Maugan Ra;Baharroth;85;Eldar Phoenix Lords council
+Fuegan;Karandras;80;Eldar Phoenix Lords
+Illidian Stormraven;Dante;90;Blood Angels chapter
+Khârn the Betrayer;Abaddon The Despoiler;95;Chaos champions
+Lucius the Eternal;Fabius Bile;70;Chaos corruption
+Typhus;Khârn the Betrayer;80;Chaos gods alliance
+Ahriman's Exile;Typhus;75;Thousand Sons and Death Guard
+Fabius Bile;Lucius the Eternal;65;Chaos experiments
+Huron Blackheart;Khârn the Betrayer;80;Chaos pirates and berzerkers
+Nightbringer;Deceiver;95;C'Tan gods
+Deceiver;Nightbringer;95;Necron C'Tan alliance
+Trazyn the Infinite;Anrakyr the Traveller;80;Necron explorers
+Anrakyr the Traveller;Trazyn the Infinite;80;Necron knowledge seekers
+Obyron;Zahndrekh;90;Necron Royal Court
+Vargard Obyron;Obyron;85;Necron Royal Guard

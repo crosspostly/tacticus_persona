@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест загрузки данных</title>
+</head>
+<body>
+    <h1>Тест загрузки текстовых файлов</h1>
+    <div id="status">Проверка...</div>
+    <div id="characters"></div>
+    <div id="matchups"></div>
+    <div id="synergy"></div>
+    
+    <script>
+        async function testFile(filename) {
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const text = await response.text();
+                const lines = text.trim().split('\n').filter(line => line.trim());
+                return { success: true, count: lines.length, sample: lines[0] };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+        
+        async function runTests() {
+            const status = document.getElementById('status');
+            const chars = document.getElementById('characters');
+            const matches = document.getElementById('matchups');
+            const syn = document.getElementById('synergy');
+            
+            status.innerHTML = '<h2>🔄 Загрузка...</h2>';
+            
+            const charTest = await testFile('characters.txt');
+            chars.innerHTML = `<h3>Персонажи: ${charTest.success ? '✅' : '❌'}</h3><p>${charTest.success ? `${charTest.count} персонажей<br>Пример: ${charTest.sample}` : charTest.error}</p>`;
+            
+            const matchTest = await testFile('matchups.txt');
+            matches.innerHTML = `<h3>Матчи: ${matchTest.success ? '✅' : '❌'}</h3><p>${matchTest.success ? `${matchTest.count} матчей<br>Пример: ${matchTest.sample}` : matchTest.error}</p>`;
+            
+            const synTest = await testFile('synergy.txt');
+            syn.innerHTML = `<h3>Синергия: ${synTest.success ? '✅' : '❌'}</h3><p>${synTest.success ? `${synTest.count} связей<br>Пример: ${synTest.sample}` : synTest.error}</p>`;
+            
+            if (charTest.success && matchTest.success && synTest.success) {
+                status.innerHTML = '<h2 style="color: green;">✅ Все файлы загружены успешно!</h2>';
+            } else {
+                status.innerHTML = '<h2 style="color: red;">❌ Проблемы с загрузкой файлов</h2>';
+            }
+        }
+        
+        runTests();
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+Abaddon The Despoiler;Dante;85;Abaddon's superior damage and traits give him advantage
+Abaddon The Despoiler;Ghazghkull Thraka;75;Even matchup but Abaddon's better armor helps
+Abaddon The Despoiler;Roboute Guilliman;45;Guilliman's stats are too overwhelming
+Abraxas;Eldrad Ulthran;70;Psychic battle, Abraxas has slight edge
+Ahriman;Mephiston;65;Close psychic duel, experience matters
+Alpharius;Cypher;80;Both are stealthy but Alpharius has better teamwork
+Belisarius Cawl;Techmarine;90;Superior technology and experience
+Cato Sicarius;Primaris Captain;75;Chapter master vs regular captain
+Commissar Yarrick;Lord Commissar;85;Veteran experience wins
+Creed;Xenophon;70;Both strategists, similar capabilities
+Cypher;Vindicare Assassin;60;Sniper advantage vs close combat
+Dante;Mephiston;80;Blood Angels internal matchup
+Eldrad Ulthran;Warlock;85;Farseer vs regular warlock
+Farsight Enclaves Commander;Xenophon;70;Tau vs Imperial tactical matchup
+Ghazghkull Thraka;Ork Warboss;90;Warboss superiority
+Inquisitor Greyfax;Vindicare Assassin;55;Assassin range advantage
+Jain Zar;Warlock;75;Eldar vs Eldar, Phoenix Lord advantage
+Kaldor Draigo;Inquisitor Greyfax;80;Grey Knights experience vs Inquisition
+Lord Commissar;Nork Deddog;40;Ogryn's bulk is overwhelming
+Mephiston;Ahriman;70;Psychic duel, Blood Angels win
+Nork Deddog;Ork Warboss;60;Close battle between tough fighters
+Primaris Captain;Xenophon;65;Similar skill levels
+Roboute Guilliman;Abaddon The Despoiler;55;Primarch power vs Chaos champion
+Saint Celestine;Jain Zar;70;Saint vs Phoenix Lord
+Techmarine;Belisarius Cawl;45;Cawl's superior knowledge
+Uraka the Hound;Ghazghkull Thraka;50;Even matchup between warriors
+Vindicare Assassin;Cypher;65;Range vs stealth advantage
+Warlock;Jain Zar;60;Phoenix Lord experience
+Xenophon;Creed;55;Imperial tactical battle
+Yarrick's Staff;Commissar Yarrick;50;Heroic vs regular commissar
+Zahndrekh;Belisarius Cawl;70;Necron vs Mechanicus ancient knowledge
+Asdrubael Vect;Eldrad Ulthran;65;Dark Eldar vs Eldar ancient rivalry
+Azrael;Dante;80;Chapter masters battle
+Baharroth;Karandras;75;Phoenix Lord vs Phoenix Lord
+Karandras;Baharroth;80;Phoenix Lord combat superiority
+Maugan Ra;Fuegan;70;Phoenix Lord vs Phoenix Lord
+Fuegan;Maugan Ra;75;Fire vs Darkness advantage
+Illidian Stormraven;Khârn the Betrayer;55;Blood Angel vs World Eater
+Khârn the Betrayer;Typhus;85;Khorne vs Nurgle battle
+Lucius the Eternal;Ahriman's Exile;60;Slaanesh vs Tzeentch psychic
+Typhus;Fabius Bile;75;Death Guard vs Chaos apothecary
+Ahriman's Exile;Lucius the Eternal;65;Tzeentch vs Slaanesh
+Fabius Bile;Huron Blackheart;50;Mad scientist vs pirate
+Huron Blackheart;Asdrubael Vect;70;Pirate vs Dark Eldar archon
+Nightbringer;Roboute Guilliman;40;C'Tan vs Primarch
+Deceiver;Abaddon The Despoiler;45;C'Tan vs Chaos champion
+Trazyn the Infinite;Belisarius Cawl;80;Collector vs Mechanicus
+Anrakyr the Traveller;Zahndrekh;75;Necron Overlords battle
+Obyron;Vargard Obyron;85;Royal Guard vs Royal Guard
+Vargard Obyron;Obyron;80;Equal Necron warriors

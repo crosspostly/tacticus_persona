@@ -1,0 +1,49 @@
+Abaddon The Despoiler|100|25|15|Power / 5 hits|Bolter / 3 hits / Range 2|Let the Galaxy Burn, Resilient, Terminator Armour|Legendary|Chaos
+Abraxas|70|20|18|Flame / 2 hits|Psychic / 1 hit / Range 2|Daemon, Flying, Summon, Weaver of Fates|Epic|Chaos
+Ahriman|65|15|22|Force Weapon / 3 hits|Inferno Bolts / 2 hits / Range 3|Psyker, Master of Sorcery, Thousand Sons|Epic|Chaos
+Alpharius|80|20|16|Power Sword / 4 hits|Bolter / 3 hits / Range 2|Infiltrate, Stealth, Alpha Legion|Epic|Chaos
+Belisarius Cawl|85|18|14|Power Maul / 3 hits|Mechadendrite / 2 hits / Range 1|Tech-Priest, Forge World, Mechanicus|Epic|Imperium
+Cato Sicarius|90|22|17|Power Sword / 4 hits|Bolter / 3 hits / Range 2|Ultramarines, Chapter Master, Tactics|Epic|Imperium
+Commissar Yarrick|75|20|15|Power Claw / 3 hits|Storm Bolter / 2 hits / Range 2|Commissar, Heroic, Imperial Guard|Epic|Imperium
+Creed|70|18|14|Power Sword / 3 hits|Lasgun / 4 hits / Range 3|Strategy, Imperial Guard, Commander|Rare|Imperium
+Cypher|85|16|20|Power Sword / 5 hits|Plasma Pistol / 2 hits / Range 2|Mysterious, Fallen, Gunslinger|Epic|Imperium
+Dante|95|24|16|Axe Mortalis / 4 hits|Bolter / 3 hits / Range 2|Blood Angels, Chapter Master, Sanguine Guard|Epic|Imperium
+Eldrad Ulthran|60|12|25|Witch Staff / 3 hits|Psychic / 2 hits / Range 4|Farseer, Psychic, Eldar|Epic|Eldar
+Farsight Enclaves Commander|80|18|19|Plasma Rifle / 3 hits|Missile Pod / 2 hits / Range 3|Tau, Commander, Crisis Suits|Epic|Tau
+Ghazghkull Thraka|110|28|14|Power Klaw / 3 hits|Shoota / 3 hits / Range 2|Orks, Warboss, WAAAGH!|Epic|Orks
+Inquisitor Greyfax|70|16|18|Power Sword / 4 hits|Condemnor Boltgun / 2 hits / Range 3|Inquisition, Psyker Hunter, Puritan|Epic|Imperium
+Jain Zar|75|14|22|Silvershriek / 5 hits|Shuriken Pistol / 3 hits / Range 2|Howling Banshees, Phoenix Lord, Eldar|Epic|Eldar
+Kaldor Draigo|100|26|18|Force Sword / 4 hits|Storm Bolter / 3 hits / Range 2|Grey Knights, Grand Master, Daemon Hunter|Epic|Imperium
+Lord Commissar|65|18|13|Power Sword / 3 hits|Bolter / 3 hits / Range 2|Commissar, Imperial Guard, Leadership|Rare|Imperium
+Mephiston|85|20|21|Force Sword / 4 hits|Plasma Pistol / 2 hits / Range 2|Blood Angels, Chief Librarian, Psychic|Epic|Imperium
+Nork Deddog|95|30|12|Choppa / 3 hits|Shoota / 2 hits / Range 2|Ogryn, Bodyguard, Imperial Guard|Rare|Imperium
+Ork Warboss|100|25|15|Power Klaw / 3 hits|Shoota / 3 hits / Range 2|Orks, Leader, WAAAGH!|Rare|Orks
+Primaris Captain|85|22|16|Power Sword / 4 hits|Bolter / 3 hits / Range 2|Ultramarines, Primaris, Captain|Rare|Imperium
+Roboute Guilliman|120|30|20|Hand of Dominion / 5 hits|Bolter / 4 hits / Range 3|Ultramarines, Primarch, Avenging Son|Legendary|Imperium
+Saint Celestine|80|18|17|Ardent Blade / 4 hits|Inferno Pistol / 2 hits / Range 2|Adepta Sororitas, Living Saint, Miracle Worker|Epic|Imperium
+Techmarine|70|20|14|Power Axe / 3 hits|Plasma Cutter / 2 hits / Range 2|Tech-Priest, Mechanicus, Engineer|Rare|Imperium
+Uraka the Hound|90|22|16|Chainsword / 4 hits|Bolter / 3 hits / Range 2|World Eaters, Berzerker, Khorne|Epic|Chaos
+Vindicare Assassin|75|15|25|Exitus Rifle / 2 hits / Range 4|Exitus Pistol / 2 hits / Range 2|Assassin, Sniper, Imperium|Epic|Imperium
+Warlock|65|14|20|Witchblade / 4 hits|Shuriken Pistol / 3 hits / Range 2|Eldar, Psyker, Conceal|Rare|Eldar
+Xenophon|80|18|17|Power Spear / 4 hits|Bolter / 3 hits / Range 2|Imperial Fists, Veteran, Tactics|Rare|Imperium
+Yarrick's Staff|75|20|15|Power Maul / 3 hits|Storm Bolter / 2 hits / Range 2|Imperial Guard, Commissar, Heroic|Rare|Imperium
+Zahndrekh|85|19|16|Warscythe / 4 hits|Gauss Flayer / 3 hits / Range 2|Necrons, Overlord, Royal Court|Epic|Necrons
+Asdrubael Vect|75|18|17|Poisoned Blade / 4 hits|Splinter Pistol / 3 hits / Range 2|Dark Eldar, Archon, Cruel|Epic|Dark Eldar
+Azrael|90|23|15|The Lion's Sword / 4 hits|Bolter / 3 hits / Range 2|Dark Angels, Chapter Master, Unforgiven|Epic|Imperium
+Baharroth|70|16|20|Power Sword / 5 hits|Shuriken Pistol / 3 hits / Range 2|Eldar, Phoenix Lord, Swooping Hawks|Epic|Eldar
+Karandras|80|18|22|Scorpion's Claw / 4 hits|Shuriken Pistol / 3 hits / Range 2|Eldar, Phoenix Lord, Striking Scorpions|Epic|Eldar
+Maugan Ra|75|17|24|Maugan Ra's Mace / 4 hits|Shuriken Cannon / 2 hits / Range 3|Eldar, Phoenix Lord, Dark Reapers|Epic|Eldar
+Fuegan|85|20|21|Fire Pike / 3 hits|Fusion Gun / 2 hits / Range 2|Eldar, Phoenix Lord, Fire Dragons|Epic|Eldar
+Illidian Stormraven|95|22|18|Power Sword / 4 hits|Bolter / 3 hits / Range 2|Blood Angels, Stormraven, Veteran|Rare|Imperium
+Khârn the Betrayer|105|26|20|Gorechild / 3 hits|Plasma Pistol / 2 hits / Range 2|World Eaters, Berzerker, Khorne|Legendary|Chaos
+Lucius the Eternal|80|19|17|Lash of Torment / 4 hits|Bolter / 3 hits / Range 2|Emperor's Children, Noise Marine, Slaanesh|Epic|Chaos
+Typhus|95|24|18|Manreaper / 4 hits|Bolter / 3 hits / Range 2|Death Guard, Plague Marine, Nurgle|Epic|Chaos
+Ahriman's Exile|70|15|23|Force Staff / 4 hits|Inferno Bolts / 2 hits / Range 3|Thousand Sons, Sorcerer, Tzeentch|Epic|Chaos
+Fabius Bile|65|14|19|Chirurgeon's Tools / 3 hits|Needle Pistol / 3 hits / Range 2|Chaos, Apothecary, Mad Scientist|Rare|Chaos
+Huron Blackheart|85|20|16|Power Axe / 4 hits|Bolter / 3 hits / Range 2|Red Corsairs, Chapter Master, Pirate|Epic|Chaos
+Nightbringer|120|35|25|Scythe / 3 hits|None / C'Tan Power|Necrons, C'Tan, Star God|Legendary|Necrons
+Deceiver|110|30|22|Phase Shifter / 4 hits|None / C'Tan Power|Necrons, C'Tan, Deceiver|Legendary|Necrons
+Trazyn the Infinite|75|18|16|Empathic Obliterator / 3 hits|Gauss Blaster / 3 hits / Range 2|Necrons, Overlord, Collector|Epic|Necrons
+Anrakyr the Traveller|80|19|17|Tachyon Arrow / 2 hits / Range 4|Gauss Cannon / 2 hits / Range 3|Necrons, Overlord, Traveller|Epic|Necrons
+Obyron|85|22|15|Warscythe / 4 hits|Gauss Flayer / 3 hits / Range 2|Necrons, Overlord, Royal Court|Epic|Necrons
+Vargard Obyron|90|23|16|Veil of Darkness / 3 hits|Gauss Blaster / 3 hits / Range 2|Necrons, Overlord, Royal Court|Epic|Necrons
