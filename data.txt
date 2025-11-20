@@ -1,0 +1,1 @@
+[text file with hero data would be too large - see data.json]
