@@ -1,1 +1,0 @@
-[Large JSON content from synergy_database.json would go here]
