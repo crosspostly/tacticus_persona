@@ -1,0 +1,86 @@
+{
+  "chaos_death_ball": {
+    "name": "☠️ Chaos Death Ball",
+    "rating": 5,
+    "characters": [
+      "Abaddon The Despoiler",
+      "Typhus",
+      "Kharn"
+    ],
+    "synergy": "Abaddon buffs all Chaos damage, Typhus AoE plague, Kharn unstoppable melee",
+    "strengths": "Massive damage output, high survivability",
+    "weaknesses": "Slow movement, vulnerable to kiting"
+  },
+  "ultramarine_core": {
+    "name": "🔵 Ultramarine Core",
+    "rating": 5,
+    "characters": [
+      "Marneus Calgar",
+      "Titus",
+      "Bellator"
+    ],
+    "synergy": "Calgar passive +damage to all Ultramarines, Titus tank, Bellator DPS",
+    "strengths": "Balanced, high damage, good survivability",
+    "weaknesses": "Requires all 3 for max effect"
+  },
+  "psyker_chain": {
+    "name": "🧠 Psyker Chain",
+    "rating": 4,
+    "characters": [
+      "Ahriman",
+      "Mephiston",
+      "Njal"
+    ],
+    "synergy": "All deal Psychic damage (100% pierce), chain abilities",
+    "strengths": "Ignores all armor, massive burst",
+    "weaknesses": "Squishy, low HP"
+  },
+  "summon_spam": {
+    "name": "👻 Summon Spam",
+    "rating": 4,
+    "characters": [
+      "Abraxas",
+      "Sho'syl",
+      "Neurothrope"
+    ],
+    "synergy": "Multiple summons overwhelm enemy, map control",
+    "strengths": "Action economy, board control",
+    "weaknesses": "Summons are weak individually"
+  },
+  "heavy_weapon_squad": {
+    "name": "🔫 Heavy Weapon Squad",
+    "rating": 5,
+    "characters": [
+      "Thaddeus Noble",
+      "Calandis",
+      "Maugan Ra"
+    ],
+    "synergy": "Thaddeus Spotter buffs Heavy Weapon users massively",
+    "strengths": "Insane ranged damage, stationary power",
+    "weaknesses": "Low mobility, needs positioning"
+  },
+  "tank_healer": {
+    "name": "🛡️ Tank + Healer",
+    "rating": 4,
+    "characters": [
+      "Aesoth",
+      "Incisus",
+      "Morvenn Vahl"
+    ],
+    "synergy": "High HP tanks with healing support, sustain wars",
+    "strengths": "Extreme survivability, long battles",
+    "weaknesses": "Low damage output"
+  },
+  "necron_immortality": {
+    "name": "⚡ Necron Immortality",
+    "rating": 4,
+    "characters": [
+      "Imospekh",
+      "Anuphet",
+      "Thutmose"
+    ],
+    "synergy": "Living Metal regeneration, Reanimation Protocols",
+    "strengths": "Hard to kill, comeback potential",
+    "weaknesses": "Slow early game"
+  }
+}

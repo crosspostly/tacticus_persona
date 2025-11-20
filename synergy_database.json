@@ -1,0 +1,659 @@
+{
+  "Abaddon The Despoiler": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": []
+    },
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Abraxas": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    },
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Actus": [],
+  "Adamatar": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    }
+  ],
+  "Aesoth": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Aethana": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Aeldari",
+      "effect": "Buffs Aeldari allies",
+      "range": 2,
+      "partners": [
+        "Calandis",
+        "Eldryon",
+        "Jain Zar",
+        "Maugan Ra"
+      ]
+    }
+  ],
+  "Ahriman": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    }
+  ],
+  "Aleph-Null": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Ancient Thoread": [],
+  "Angrax": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Anuphet": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Archimatos": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Arjac": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Asmodai": [],
+  "Atlacoya": [],
+  "Aun'Shi": [],
+  "Azkor": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    },
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Azrael": [],
+  "Baraqiel": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Bellator": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Boss Gulgortz": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Brother Burchard": [],
+  "Brother Jaeger": [],
+  "Calandis": [],
+  "Castellan Creed": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Celestine": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Certus": [],
+  "Commissar Yarrick": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Corrodius": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    },
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Dante": [],
+  "Darkstrider": [],
+  "Deathleaper": [],
+  "Eldryon": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Aeldari",
+      "effect": "Buffs Aeldari allies",
+      "range": 2,
+      "partners": [
+        "Aethana",
+        "Calandis",
+        "Jain Zar",
+        "Maugan Ra"
+      ]
+    }
+  ],
+  "Exitor-Rho": [],
+  "Forcas": [],
+  "Gibbascrapz": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Haarken Worldclaimer": [],
+  "High Marshal Helbrecht": [],
+  "Hollan": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    },
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Imospekh": [],
+  "Incisus": [
+    {
+      "type": "support",
+      "effect": "Can heal allies",
+      "best_with": "High HP tanks",
+      "partners": [
+        "Corrodius",
+        "Tyrant Guard",
+        "Brother Burchard",
+        "Maladus",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Isaak": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Isabella": [
+    {
+      "type": "support",
+      "effect": "Can heal allies",
+      "best_with": "High HP tanks",
+      "partners": [
+        "Corrodius",
+        "Tyrant Guard",
+        "Brother Burchard",
+        "Maladus",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Jain Zar": [],
+  "Judh": [],
+  "Kariyan": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Kharn": [],
+  "Kut Skoden": [],
+  "Lucien": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Lucius": [],
+  "Macer": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Makhotep": [],
+  "Maladus": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Marneus Calgar": [],
+  "Marshal Dreir": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Mataneo": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Maugan Ra": [],
+  "Mephiston": [],
+  "Morvenn Vahl": [],
+  "Nauseous Rotbone": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    },
+    {
+      "type": "support",
+      "effect": "Can heal allies",
+      "best_with": "High HP tanks",
+      "partners": [
+        "Corrodius",
+        "Tyrant Guard",
+        "Brother Burchard",
+        "Maladus",
+        "Pestillian"
+      ]
+    },
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nicodemus"
+      ]
+    }
+  ],
+  "Neurothrope": [],
+  "Nicodemus": [
+    {
+      "type": "support",
+      "effect": "Can heal allies",
+      "best_with": "High HP tanks",
+      "partners": [
+        "Corrodius",
+        "Tyrant Guard",
+        "Brother Burchard",
+        "Maladus",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Njal": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Parasite of Mortrex": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Pestillian": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    },
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Ragnar": [],
+  "Re'vas": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Roswitha": [],
+  "Sarquael": [],
+  "Shadowsun": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Shiron": [],
+  "Sho'syl": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Sibyll Devine": [],
+  "Snappawrecka": [],
+  "Snotflogga": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Sword Brother Godswyl": [],
+  "Sy-Gex": [],
+  "Tan Gi'da": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Tanksmasha": [],
+  "Tarvakh": [],
+  "Thaddeus Noble": [
+    {
+      "type": "trait_buff",
+      "target_trait": "Heavy Weapon",
+      "effect": "Buffs Heavy Weapon users",
+      "partners": [
+        "Baraqiel",
+        "Calandis",
+        "Certus",
+        "Maugan Ra",
+        "Sarquael"
+      ]
+    }
+  ],
+  "Thaumachus": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    }
+  ],
+  "The Patermine": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Thutmose": [],
+  "Titus": [],
+  "Tjark": [],
+  "Toth": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Trajann": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Typhus": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Tyrant Guard": [],
+  "Tyrith": [
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Ulf": [],
+  "Varro Tigurius": [],
+  "Vindicta": [],
+  "Vitruvius": [],
+  "Volk": [],
+  "Winged Prime": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Wrask": [
+    {
+      "type": "faction_buff",
+      "target_faction": "Chaos",
+      "effect": "Damage boost to Chaos allies",
+      "range": 2,
+      "partners": [
+        "Abaddon The Despoiler"
+      ]
+    },
+    {
+      "type": "tank",
+      "effect": "High survivability",
+      "best_with": "Healers and buffers",
+      "partners": [
+        "Incisus",
+        "Isabella",
+        "Nauseous Rotbone"
+      ]
+    }
+  ],
+  "Xybia": [
+    {
+      "type": "summon",
+      "effect": "Creates additional units",
+      "best_with": "AOE damage dealers",
+      "partners": []
+    }
+  ],
+  "Yazaghor": []
+}

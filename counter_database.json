@@ -1,0 +1,582 @@
+{
+  "Abaddon The Despoiler": [],
+  "Abraxas": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Actus": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Adamatar": [],
+  "Aesoth": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    },
+    {
+      "reason": "big_target",
+      "weakness": "Beast Slayer trait (+30% damage)",
+      "counter_trait": "Beast Slayer"
+    }
+  ],
+  "Aethana": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Ahriman": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Aleph-Null": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Ancient Thoread": [],
+  "Angrax": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Anuphet": [],
+  "Archimatos": [],
+  "Arjac": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Asmodai": [],
+  "Atlacoya": [],
+  "Aun'Shi": [],
+  "Azkor": [],
+  "Azrael": [],
+  "Baraqiel": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Bellator": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Boss Gulgortz": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Brother Burchard": [],
+  "Brother Jaeger": [],
+  "Calandis": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Castellan Creed": [],
+  "Celestine": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Certus": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Commissar Yarrick": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Corrodius": [],
+  "Dante": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Darkstrider": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "melee_weakness",
+      "weakness": "Melee attackers (+50% damage)",
+      "counter_type": "Melee"
+    }
+  ],
+  "Deathleaper": [],
+  "Eldryon": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Exitor-Rho": [],
+  "Forcas": [],
+  "Gibbascrapz": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    },
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Haarken Worldclaimer": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "High Marshal Helbrecht": [],
+  "Hollan": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Imospekh": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Incisus": [],
+  "Isaak": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Isabella": [],
+  "Jain Zar": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Judh": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Kariyan": [],
+  "Kharn": [],
+  "Kut Skoden": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    },
+    {
+      "reason": "big_target",
+      "weakness": "Beast Slayer trait (+30% damage)",
+      "counter_trait": "Beast Slayer"
+    }
+  ],
+  "Lucien": [],
+  "Lucius": [],
+  "Macer": [],
+  "Makhotep": [],
+  "Maladus": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Marneus Calgar": [],
+  "Marshal Dreir": [],
+  "Mataneo": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Maugan Ra": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Mephiston": [],
+  "Morvenn Vahl": [
+    {
+      "reason": "big_target",
+      "weakness": "Beast Slayer trait (+30% damage)",
+      "counter_trait": "Beast Slayer"
+    }
+  ],
+  "Nauseous Rotbone": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Neurothrope": [
+    {
+      "reason": "melee_weakness",
+      "weakness": "Melee attackers (+50% damage)",
+      "counter_type": "Melee"
+    },
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Nicodemus": [],
+  "Njal": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Parasite of Mortrex": [],
+  "Pestillian": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Ragnar": [],
+  "Re'vas": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Roswitha": [],
+  "Sarquael": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Shadowsun": [
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Shiron": [],
+  "Sho'syl": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "melee_weakness",
+      "weakness": "Melee attackers (+50% damage)",
+      "counter_type": "Melee"
+    },
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Sibyll Devine": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Snappawrecka": [
+    {
+      "reason": "big_target",
+      "weakness": "Beast Slayer trait (+30% damage)",
+      "counter_trait": "Beast Slayer"
+    }
+  ],
+  "Snotflogga": [],
+  "Sword Brother Godswyl": [],
+  "Sy-Gex": [],
+  "Tan Gi'da": [],
+  "Tanksmasha": [],
+  "Tarvakh": [],
+  "Thaddeus Noble": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Thaumachus": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "The Patermine": [],
+  "Thutmose": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ],
+  "Titus": [],
+  "Tjark": [],
+  "Toth": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Trajann": [],
+  "Typhus": [],
+  "Tyrant Guard": [
+    {
+      "reason": "big_target",
+      "weakness": "Beast Slayer trait (+30% damage)",
+      "counter_trait": "Beast Slayer"
+    }
+  ],
+  "Tyrith": [],
+  "Ulf": [],
+  "Varro Tigurius": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Vindicta": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Vitruvius": [],
+  "Volk": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "big_target",
+      "weakness": "Beast Slayer trait (+30% damage)",
+      "counter_trait": "Beast Slayer"
+    }
+  ],
+  "Winged Prime": [],
+  "Wrask": [
+    {
+      "reason": "high_armor",
+      "weakness": "High pierce damage (Psychic, Piercing, Melta)",
+      "counter_types": [
+        "Psychic",
+        "Piercing",
+        "Melta"
+      ]
+    }
+  ],
+  "Xybia": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    }
+  ],
+  "Yazaghor": [
+    {
+      "reason": "low_hp",
+      "weakness": "Burst damage and multi-hit attacks",
+      "counter_types": [
+        "Multi-hit"
+      ]
+    },
+    {
+      "reason": "flying",
+      "weakness": "Ranged attackers with high pierce",
+      "counter_type": "Ranged"
+    }
+  ]
+}
