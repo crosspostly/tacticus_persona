@@ -64,6 +64,24 @@
         .auto-load-status.success {
             color: #00ff88;
         }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            color: #00d4ff;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .loading-overlay.hidden {
+            display: none;
+        }
         .filters {
             background: #16213e;
             padding: 20px;
@@ -322,6 +340,16 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
             transition: all 0.2s ease;
         }
+        @media (max-width: 768px) {
+            .tooltip {
+                max-width: 280px;
+                font-size: 0.9em;
+            }
+            .tooltip img {
+                width: 60px;
+                height: 60px;
+            }
+        }
         .tooltip.active { 
             display: block; 
             animation: tooltipFadeIn 0.2s ease;
@@ -444,6 +472,13 @@
     </div>
     
     <div class="tooltip" id="tooltip"></div>
+    
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div>
+            <div>⚔️ Загрузка данных...</div>
+            <div style="font-size: 0.7em; margin-top: 10px;">Пожалуйста, подождите</div>
+        </div>
+    </div>
 
     <script>
         // EMBEDDED SAMPLE DATA (will calculate on-the-fly)
@@ -461,11 +496,21 @@
             'Physical': 1
         };
         
-        const MACHINES_OF_WAR = [
+ const MACHINES_OF_WAR = [
             'Biovore', 'Exorcist', 'Forgefiend', 'Galatian',
             'Malleus Rocket Launcher', 'Plagueburst Crawler',
             'Rukkatrukk', "Tson'ji"
         ];
+
+        // Function to check if entry is a character (has baseStats and attacks, not a machine/badge/component)
+        function isCharacter(entry) {
+            return entry.baseStats &&
+                   entry.attacks &&
+                   (!entry.rawInfobox?.Type ||
+                    (entry.rawInfobox?.Type && !entry.rawInfobox.Type.includes("Badge") &&
+                     !entry.rawInfobox.Type.includes("Component") &&
+                     !entry.rawInfobox.Type.includes("Mythic")));
+        }
         
         let characters = [];
         let matchupMatrix = {};
@@ -480,7 +525,10 @@
 
         function autoLoadDataJSON() {
             const statusDiv = document.getElementById('autoLoadStatus');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            
             statusDiv.textContent = 'Загрузка data.json...';
+            loadingOverlay.classList.remove('hidden');
             
             fetch('data.json')
                 .then(response => {
@@ -490,7 +538,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    const filtered = data.filter(c => !MACHINES_OF_WAR.includes(c.name));
+                    const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                     
                     characters = filtered.map((c, i) => ({
                         id: i + 1,
@@ -513,12 +561,14 @@
                     
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('matchupTable').style.display = 'table';
+                    loadingOverlay.classList.add('hidden');
                     
                     statusDiv.textContent = `✅ Загружено ${characters.length} персонажей`;
                     statusDiv.classList.add('success');
                 })
                 .catch(error => {
                     console.log('Auto-load failed:', error);
+                    loadingOverlay.classList.add('hidden');
                     statusDiv.textContent = 'Используйте встроенные данные';
                     statusDiv.classList.remove('success');
                 });
@@ -617,11 +667,13 @@
             const file = event.target.files[0];
             if (!file) return;
             
+            const loadingOverlay = document.getElementById('loadingOverlay');
             const reader = new FileReader();
+            loadingOverlay.classList.remove('hidden');
             reader.onload = function(e) {
                 try {
                     const data = JSON.parse(e.target.result);
-                    const filtered = data.filter(c => !MACHINES_OF_WAR.includes(c.name));
+                    const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                     
                     characters = filtered.map((c, i) => ({
                         id: i + 1,
@@ -644,6 +696,7 @@
                     
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('matchupTable').style.display = 'table';
+                    loadingOverlay.classList.add('hidden');
                     
                     const statusDiv = document.getElementById('autoLoadStatus');
                     statusDiv.textContent = `✅ Загружено ${characters.length} персонажей`;
@@ -651,6 +704,7 @@
                     
                     alert(`✅ Загружено ${characters.length} персонажей!`);
                 } catch (error) {
+                    loadingOverlay.classList.add('hidden');
                     alert('❌ Ошибка загрузки JSON: ' + error.message);
                 }
             };
@@ -658,27 +712,43 @@
         }
 
         function useEmbeddedData() {
-            characters = EMBEDDED_CHARACTERS;
-            buildMatchupMatrix();
-            populateFilters();
-            renderTable();
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.remove('hidden');
             
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('matchupTable').style.display = 'table';
-            
-            const statusDiv = document.getElementById('autoLoadStatus');
-            statusDiv.textContent = `✅ Использовано ${characters.length} персонажей`;
-            statusDiv.classList.add('success');
+            // Small delay to show loading for embedded data
+            setTimeout(() => {
+                characters = EMBEDDED_CHARACTERS;
+                buildMatchupMatrix();
+                populateFilters();
+                renderTable();
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('matchupTable').style.display = 'table';
+                loadingOverlay.classList.add('hidden');
+                
+                const statusDiv = document.getElementById('autoLoadStatus');
+                statusDiv.textContent = `✅ Использовано ${characters.length} персонажей`;
+                statusDiv.classList.add('success');
+            }, 500);
         }
 
         function buildMatchupMatrix() {
             matchupMatrix = {};
+            // Build matrix lazily - only calculate when needed for performance
             characters.forEach(attacker => {
                 matchupMatrix[attacker.name] = {};
                 characters.forEach(defender => {
-                    matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
+                    matchupMatrix[attacker.name][defender.name] = null; // Lazy initialization
                 });
             });
+        }
+
+        function getMatchup(attacker, defender) {
+            // Lazy calculation - only compute when actually needed
+            if (matchupMatrix[attacker.name][defender.name] === null) {
+                matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
+            }
+            return matchupMatrix[attacker.name][defender.name];
         }
 
         function populateFilters() {
@@ -730,6 +800,12 @@
             thead.innerHTML = '';
             tbody.innerHTML = '';
             
+            // Show loading message for large datasets
+            if (displayedAtk.length * displayedDef.length > 1000) {
+                const statusDiv = document.getElementById('autoLoadStatus');
+                statusDiv.textContent = `🔄 Отрисовка матрицы ${displayedAtk.length}×${displayedDef.length}...`;
+            }
+            
             // Header row with numbering
             const headerRow = document.createElement('tr');
             const corner = document.createElement('th');
@@ -767,7 +843,7 @@
                 row.appendChild(nameCell);
                 
                 displayedDef.forEach(def => {
-                    const metrics = matchupMatrix[atk.name][def.name];
+                    const metrics = getMatchup(atk, def);
                     const cell = document.createElement('td');
                     cell.innerHTML = `
                         <div style="font-size: 0.7em; color: #888;">${metrics.attack}% / ${metrics.defense}%</div>
@@ -780,12 +856,25 @@
                 
                 tbody.appendChild(row);
             });
+            
+            // Update status after completion
+            if (displayedAtk.length * displayedDef.length > 1000) {
+                const statusDiv = document.getElementById('autoLoadStatus');
+                const totalCells = displayedAtk.length * displayedDef.length;
+                statusDiv.textContent = `✅ Матрица готова: ${totalCells} ячеек`;
+            }
         }
 
         function showTooltip(event, char) {
             const tooltip = document.getElementById('tooltip');
+            const hasImage = char.icon && char.icon.trim() !== '';
+            
             tooltip.innerHTML = `
-                ${char.icon ? `<img src="${char.icon}" alt="${char.name}" onerror="this.style.display='none';">` : '<div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>'}
+                ${hasImage ? 
+                    `<img src="${char.icon}" alt="${char.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                     <div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:none;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>` : 
+                    '<div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>'
+                }
                 <div class="char-name">${char.name}</div>
                 <div class="char-stats">
                     <div class="stat-row">
@@ -808,19 +897,24 @@
             `;
             
             // Position tooltip intelligently to avoid going off-screen
-            const tooltipRect = tooltip.getBoundingClientRect();
             let left = event.pageX + 15;
             let top = event.pageY + 15;
+            const tooltipWidth = window.innerWidth <= 768 ? 280 : 320;
+            const tooltipHeight = window.innerWidth <= 768 ? 180 : 200;
             
             // Check if tooltip would go off right edge
-            if (left + 320 > window.innerWidth) {
-                left = event.pageX - 335;
+            if (left + tooltipWidth > window.innerWidth) {
+                left = event.pageX - tooltipWidth - 15;
             }
             
             // Check if tooltip would go off bottom edge
-            if (top + 200 > window.innerHeight) {
-                top = event.pageY - 200;
+            if (top + tooltipHeight > window.innerHeight) {
+                top = event.pageY - tooltipHeight - 15;
             }
+            
+            // Ensure tooltip stays within viewport
+            left = Math.max(10, Math.min(left, window.innerWidth - tooltipWidth - 10));
+            top = Math.max(10, Math.min(top, window.innerHeight - tooltipHeight - 10));
             
             tooltip.style.left = left + 'px';
             tooltip.style.top = top + 'px';
@@ -835,7 +929,10 @@
             currentAttacker = attacker;
             currentDefender = defender;
             
-            renderAnalysisTab(attacker, defender, metrics);
+            // Ensure metrics are calculated
+            const calculatedMetrics = metrics || getMatchup(attacker, defender);
+            
+            renderAnalysisTab(attacker, defender, calculatedMetrics);
             renderSynergyTab(attacker);
             renderCountersTab(defender);
             
