@@ -496,11 +496,21 @@
             'Physical': 1
         };
         
-        const MACHINES_OF_WAR = [
+ const MACHINES_OF_WAR = [
             'Biovore', 'Exorcist', 'Forgefiend', 'Galatian',
             'Malleus Rocket Launcher', 'Plagueburst Crawler',
             'Rukkatrukk', "Tson'ji"
         ];
+
+        // Function to check if entry is a character (has baseStats and attacks, not a machine/badge/component)
+        function isCharacter(entry) {
+            return entry.baseStats &&
+                   entry.attacks &&
+                   (!entry.rawInfobox?.Type ||
+                    (entry.rawInfobox?.Type && !entry.rawInfobox.Type.includes("Badge") &&
+                     !entry.rawInfobox.Type.includes("Component") &&
+                     !entry.rawInfobox.Type.includes("Mythic")));
+        }
         
         let characters = [];
         let matchupMatrix = {};
@@ -528,7 +538,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    const filtered = data.filter(c => !MACHINES_OF_WAR.includes(c.name));
+                    const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                     
                     characters = filtered.map((c, i) => ({
                         id: i + 1,
@@ -663,7 +673,7 @@
             reader.onload = function(e) {
                 try {
                     const data = JSON.parse(e.target.result);
-                    const filtered = data.filter(c => !MACHINES_OF_WAR.includes(c.name));
+                    const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                     
                     characters = filtered.map((c, i) => ({
                         id: i + 1,
