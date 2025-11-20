@@ -21,26 +21,48 @@
             text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
         .import-section {
+            position: fixed;
+            top: 20px;
+            right: 20px;
             background: #16213e;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #00d4ff;
+            z-index: 100;
+            min-width: 200px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .import-section h3 {
+            color: #00d4ff;
+            margin: 0 0 10px 0;
+            font-size: 0.9em;
             text-align: center;
         }
         .import-btn {
             background: #00d4ff;
             color: #1a1a2e;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.1em;
+            padding: 8px 15px;
+            font-size: 0.9em;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
+            width: 100%;
+            margin-bottom: 5px;
         }
         .import-btn:hover {
             background: #00ff88;
-            transform: scale(1.05);
+            transform: scale(1.02);
+        }
+        .auto-load-status {
+            font-size: 0.8em;
+            color: #888;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .auto-load-status.success {
+            color: #00ff88;
         }
         .filters {
             background: #16213e;
@@ -118,11 +140,25 @@
             background: #0f1a2e;
             font-weight: bold;
             z-index: 5;
-            min-width: 120px;
+            min-width: 140px;
             text-align: left;
             padding-left: 10px;
         }
         th:first-child { z-index: 15; }
+        .number-header {
+            background: #0a1429;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 0.8em;
+            min-width: 30px;
+        }
+        .number-cell {
+            background: #0a1429;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 0.8em;
+            min-width: 30px;
+        }
         td { cursor: pointer; transition: all 0.2s; }
         td:hover {
             transform: scale(1.05);
@@ -282,15 +318,49 @@
             padding: 15px;
             display: none;
             z-index: 999;
-            max-width: 300px;
+            max-width: 320px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
         }
-        .tooltip.active { display: block; }
+        .tooltip.active { 
+            display: block; 
+            animation: tooltipFadeIn 0.2s ease;
+        }
+        @keyframes tooltipFadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .tooltip img {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             margin-bottom: 10px;
+            border: 2px solid #00d4ff;
+            box-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
+            object-fit: cover;
+            background: #16213e;
+        }
+        .tooltip .char-name {
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .tooltip .char-stats {
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        .tooltip .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 2px 0;
+        }
+        .tooltip .stat-label {
+            color: #888;
+        }
+        .tooltip .stat-value {
+            color: #fff;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -299,13 +369,17 @@
         <h1>⚔️ Warhammer 40K: Tacticus - Matchup Analyzer</h1>
         
         <div class="import-section">
+            <h3>📁 ДАННЫЕ</h3>
             <button class="import-btn" onclick="document.getElementById('fileInput').click()">
-                📁 ЗАГРУЗИТЬ JSON ФАЙЛ
+                Загрузить JSON
             </button>
             <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="loadJSON(event)">
-            <p style="margin-top: 10px; color: #888; font-size: 0.9em;">
-                Загрузите tacticus_full_*.json для обновления данных
-            </p>
+            <button class="import-btn" onclick="useEmbeddedData()">
+                Встроенные данные
+            </button>
+            <div id="autoLoadStatus" class="auto-load-status">
+                Загрузка data.json...
+            </div>
         </div>
         
         <div class="filters">
@@ -344,10 +418,7 @@
 
         <div class="matrix-container">
             <div id="loading" class="loading">
-                Загрузите JSON файл с персонажами или используйте встроенные данные...<br>
-                <button onclick="useEmbeddedData()" style="margin-top: 15px; padding: 10px 20px; background: #00d4ff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-                    Использовать встроенные данные
-                </button>
+                Загрузка данных... Пожалуйста, подождите.
             </div>
             <table id="matchupTable" style="display: none;">
                 <thead id="tableHead"></thead>
@@ -401,6 +472,57 @@
         let currentLimit = 50;
         let currentAttacker = null;
         let currentDefender = null;
+
+        // Auto-load data.json on page load
+        window.addEventListener('load', function() {
+            autoLoadDataJSON();
+        });
+
+        function autoLoadDataJSON() {
+            const statusDiv = document.getElementById('autoLoadStatus');
+            statusDiv.textContent = 'Загрузка data.json...';
+            
+            fetch('data.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Файл data.json не найден');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const filtered = data.filter(c => !MACHINES_OF_WAR.includes(c.name));
+                    
+                    characters = filtered.map((c, i) => ({
+                        id: i + 1,
+                        name: c.name,
+                        hp: parseInt(c.baseStats?.health || c.baseHealth || 100),
+                        armor: parseInt(c.baseStats?.armour || c.baseArmour || 20),
+                        dmg: parseInt(c.baseStats?.damage || c.baseDamage || 15),
+                        melee: c.attacks?.melee || c.meleeAttack || 'N/A',
+                        ranged: c.attacks?.ranged || c.rangedAttack || 'N/A',
+                        traits: c.traits || '',
+                        icon: c.images?.heroIcon || c.images?.heroArt || '',
+                        faction: c.faction || 'Unknown',
+                        activeAbility: c.activeAbility?.name || 'N/A',
+                        passiveAbility: c.passiveAbility?.name || 'N/A'
+                    }));
+                    
+                    buildMatchupMatrix();
+                    populateFilters();
+                    renderTable();
+                    
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('matchupTable').style.display = 'table';
+                    
+                    statusDiv.textContent = `✅ Загружено ${characters.length} персонажей`;
+                    statusDiv.classList.add('success');
+                })
+                .catch(error => {
+                    console.log('Auto-load failed:', error);
+                    statusDiv.textContent = 'Используйте встроенные данные';
+                    statusDiv.classList.remove('success');
+                });
+        }
 
         function extractAttackInfo(attackStr) {
             if (!attackStr || attackStr === 'N/A') return [null, 0];
@@ -510,7 +632,7 @@
                         melee: c.attacks?.melee || c.meleeAttack || 'N/A',
                         ranged: c.attacks?.ranged || c.rangedAttack || 'N/A',
                         traits: c.traits || '',
-                        icon: c.images?.heroIcon || '',
+                        icon: c.images?.heroIcon || c.images?.heroArt || '',
                         faction: c.faction || 'Unknown',
                         activeAbility: c.activeAbility?.name || 'N/A',
                         passiveAbility: c.passiveAbility?.name || 'N/A'
@@ -522,6 +644,10 @@
                     
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('matchupTable').style.display = 'table';
+                    
+                    const statusDiv = document.getElementById('autoLoadStatus');
+                    statusDiv.textContent = `✅ Загружено ${characters.length} персонажей`;
+                    statusDiv.classList.add('success');
                     
                     alert(`✅ Загружено ${characters.length} персонажей!`);
                 } catch (error) {
@@ -539,6 +665,10 @@
             
             document.getElementById('loading').style.display = 'none';
             document.getElementById('matchupTable').style.display = 'table';
+            
+            const statusDiv = document.getElementById('autoLoadStatus');
+            statusDiv.textContent = `✅ Использовано ${characters.length} персонажей`;
+            statusDiv.classList.add('success');
         }
 
         function buildMatchupMatrix() {
@@ -600,24 +730,35 @@
             thead.innerHTML = '';
             tbody.innerHTML = '';
             
-            // Header
+            // Header row with numbering
             const headerRow = document.createElement('tr');
             const corner = document.createElement('th');
             corner.textContent = 'АТАКУЮЩИЙ ↓ / ЗАЩИЩАЮЩИЙСЯ →';
+            corner.colSpan = 2;
             headerRow.appendChild(corner);
             
-            displayedDef.forEach(def => {
-                const th = document.createElement('th');
-                th.textContent = def.name;
-                th.onmouseenter = (e) => showTooltip(e, def);
-                th.onmouseleave = hideTooltip;
-                headerRow.appendChild(th);
+            displayedDef.forEach((def, index) => {
+                const numTh = document.createElement('th');
+                numTh.className = 'number-header';
+                numTh.textContent = index + 1;
+                headerRow.appendChild(numTh);
+                
+                const nameTh = document.createElement('th');
+                nameTh.textContent = def.name;
+                nameTh.onmouseenter = (e) => showTooltip(e, def);
+                nameTh.onmouseleave = hideTooltip;
+                headerRow.appendChild(nameTh);
             });
             thead.appendChild(headerRow);
             
-            // Rows
-            displayedAtk.forEach(atk => {
+            // Data rows with numbering
+            displayedAtk.forEach((atk, atkIndex) => {
                 const row = document.createElement('tr');
+                
+                const numCell = document.createElement('td');
+                numCell.className = 'number-cell';
+                numCell.textContent = atkIndex + 1;
+                row.appendChild(numCell);
                 
                 const nameCell = document.createElement('td');
                 nameCell.textContent = atk.name;
@@ -644,16 +785,45 @@
         function showTooltip(event, char) {
             const tooltip = document.getElementById('tooltip');
             tooltip.innerHTML = `
-                ${char.icon ? `<img src="${char.icon}" alt="${char.name}">` : ''}
-                <div style="font-weight: bold; color: #00d4ff; margin-bottom: 5px;">${char.name}</div>
-                <div style="font-size: 0.85em;">
-                    HP: ${char.hp} | ARM: ${char.armor} | DMG: ${char.dmg}<br>
-                    Melee: ${char.melee}<br>
-                    Ranged: ${char.ranged}
+                ${char.icon ? `<img src="${char.icon}" alt="${char.name}" onerror="this.style.display='none';">` : '<div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>'}
+                <div class="char-name">${char.name}</div>
+                <div class="char-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">HP:</span>
+                        <span class="stat-value">${char.hp}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">ARM:</span>
+                        <span class="stat-value">${char.armor}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">DMG:</span>
+                        <span class="stat-value">${char.dmg}</span>
+                    </div>
+                    <div style="margin-top:5px;color:#888;font-size:0.9em;">
+                        <div>⚔️ ${char.melee}</div>
+                        <div>🏹 ${char.ranged}</div>
+                    </div>
                 </div>
             `;
-            tooltip.style.left = event.pageX + 15 + 'px';
-            tooltip.style.top = event.pageY + 15 + 'px';
+            
+            // Position tooltip intelligently to avoid going off-screen
+            const tooltipRect = tooltip.getBoundingClientRect();
+            let left = event.pageX + 15;
+            let top = event.pageY + 15;
+            
+            // Check if tooltip would go off right edge
+            if (left + 320 > window.innerWidth) {
+                left = event.pageX - 335;
+            }
+            
+            // Check if tooltip would go off bottom edge
+            if (top + 200 > window.innerHeight) {
+                top = event.pageY - 200;
+            }
+            
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
             tooltip.classList.add('active');
         }
 
