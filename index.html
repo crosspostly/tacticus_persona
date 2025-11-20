@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacticus Matchup Analyzer - 100 Characters</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #e4e4e4;
+            padding: 20px;
+        }
+        .container { max-width: 1900px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00d4ff;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        .import-section {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .import-btn {
+            background: #00d4ff;
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .import-btn:hover {
+            background: #00ff88;
+            transform: scale(1.05);
+        }
+        .filters {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .filter-group { display: flex; flex-direction: column; gap: 10px; }
+        .filter-group label { color: #00d4ff; font-weight: bold; }
+        select {
+            padding: 10px;
+            background: #0f1a2e;
+            color: #e4e4e4;
+            border: 2px solid #00d4ff;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .limit-group {
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+        }
+        .legend {
+            background: #16213e;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .legend-color { width: 30px; height: 20px; border-radius: 3px; }
+        .excellent { background: #00ff00; }
+        .good { background: #4ade80; }
+        .neutral { background: #fbbf24; }
+        .poor { background: #fb923c; }
+        .terrible { background: #ef4444; }
+        .matrix-container {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            overflow: auto;
+            max-height: 70vh;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            font-size: 0.75em; 
+        }
+        th, td {
+            padding: 6px 4px;
+            text-align: center;
+            border: 1px solid #0f1a2e;
+            min-width: 70px;
+        }
+        th {
+            background: #0f1a2e;
+            color: #00d4ff;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        th:first-child, td:first-child {
+            position: sticky;
+            left: 0;
+            background: #0f1a2e;
+            font-weight: bold;
+            z-index: 5;
+            min-width: 120px;
+            text-align: left;
+            padding-left: 10px;
+        }
+        th:first-child { z-index: 15; }
+        td { cursor: pointer; transition: all 0.2s; }
+        td:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            z-index: 100;
+        }
+        .cell-90-100 { background: #00ff00; color: #000; font-weight: bold; }
+        .cell-70-89 { background: #4ade80; color: #000; }
+        .cell-50-69 { background: #fbbf24; color: #000; }
+        .cell-30-49 { background: #fb923c; color: #fff; }
+        .cell-0-29 { background: #ef4444; color: #fff; }
+        
+        .detail-panel {
+            position: fixed;
+            right: -550px;
+            top: 0;
+            width: 520px;
+            height: 100vh;
+            background: #16213e;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            overflow-y: auto;
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+        .detail-panel.active { right: 0; }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ef4444;
+            color: #fff;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            line-height: 0;
+        }
+        .close-btn:hover { background: #dc2626; }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #0f1a2e;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #0f1a2e;
+            border: none;
+            color: #e4e4e4;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            font-weight: bold;
+        }
+        .tab.active {
+            background: #00d4ff;
+            color: #1a1a2e;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        .panel-title {
+            font-size: 1.6em;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .char-card {
+            background: #0f1a2e;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .char-card h3 { 
+            color: #00ff88; 
+            margin-bottom: 10px; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .char-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #00d4ff;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #1a1a2e;
+            font-size: 0.9em;
+        }
+        .stat-label { color: #00d4ff; font-weight: bold; }
+        .vs-divider {
+            text-align: center;
+            font-size: 2em;
+            color: #ff6b6b;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .metric-box {
+            background: #1a1a2e;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #00d4ff;
+        }
+        .metric-box h4 { color: #00d4ff; margin-bottom: 8px; font-size: 1em; }
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .synergy-list {
+            list-style: none;
+            padding: 0;
+        }
+        .synergy-item {
+            background: #1a1a2e;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 3px solid #00ff88;
+        }
+        .partner-badge {
+            display: inline-block;
+            background: #0f1a2e;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 3px;
+            font-size: 0.85em;
+            border: 1px solid #00d4ff;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: #00d4ff;
+        }
+        .tooltip {
+            position: absolute;
+            background: #0f1a2e;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
+            z-index: 999;
+            max-width: 300px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        .tooltip.active { display: block; }
+        .tooltip img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚔️ Warhammer 40K: Tacticus - Matchup Analyzer</h1>
+        
+        <div class="import-section">
+            <button class="import-btn" onclick="document.getElementById('fileInput').click()">
+                📁 ЗАГРУЗИТЬ JSON ФАЙЛ
+            </button>
+            <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="loadJSON(event)">
+            <p style="margin-top: 10px; color: #888; font-size: 0.9em;">
+                Загрузите tacticus_full_*.json для обновления данных
+            </p>
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label>🗡️ ФИЛЬТР АТАКУЮЩИХ</label>
+                <select id="attackerFilter">
+                    <option value="">Все персонажи</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>🛡️ ФИЛЬТР ЗАЩИЩАЮЩИХСЯ</label>
+                <select id="defenderFilter">
+                    <option value="">Все персонажи</option>
+                </select>
+            </div>
+            
+            <div class="limit-group">
+                <label>📊 ПОКАЗАТЬ ПЕРВЫХ</label>
+                <select id="limitSelect">
+                    <option value="20">20 персонажей</option>
+                    <option value="30">30 персонажей</option>
+                    <option value="50" selected>50 персонажей</option>
+                    <option value="100">Все (100)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color excellent"></div><span>Отлично (90-100%)</span></div>
+            <div class="legend-item"><div class="legend-color good"></div><span>Хорошо (70-89%)</span></div>
+            <div class="legend-item"><div class="legend-color neutral"></div><span>Нейтрально (50-69%)</span></div>
+            <div class="legend-item"><div class="legend-color poor"></div><span>Плохо (30-49%)</span></div>
+            <div class="legend-item"><div class="legend-color terrible"></div><span>Ужасно (0-29%)</span></div>
+        </div>
+
+        <div class="matrix-container">
+            <div id="loading" class="loading">
+                Загрузите JSON файл с персонажами или используйте встроенные данные...<br>
+                <button onclick="useEmbeddedData()" style="margin-top: 15px; padding: 10px 20px; background: #00d4ff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                    Использовать встроенные данные
+                </button>
+            </div>
+            <table id="matchupTable" style="display: none;">
+                <thead id="tableHead"></thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="detail-panel" id="detailPanel">
+        <button class="close-btn" onclick="closeDetail()">×</button>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('analysis')">📊 Анализ</button>
+            <button class="tab" onclick="switchTab('synergy')">🤝 Синергия</button>
+            <button class="tab" onclick="switchTab('counters')">⚠️ Контры</button>
+        </div>
+        
+        <div id="detailContent">
+            <div id="analysisTab" class="tab-content active"></div>
+            <div id="synergyTab" class="tab-content"></div>
+            <div id="countersTab" class="tab-content"></div>
+        </div>
+    </div>
+    
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // EMBEDDED SAMPLE DATA (will calculate on-the-fly)
+        const EMBEDDED_CHARACTERS = [
+            {id:1,name:"Abaddon The Despoiler",hp:100,armor:25,dmg:15,melee:"Power / 5 hits",ranged:"Bolter / 3 hits / Range 2",traits:"Let the Galaxy Burn, Resilient, Terminator Armour",icon:"https://tacticus.wiki.gg/images/Abaddon_The_Despoiler_Icon_Large.png?d3a9b6"},
+            {id:2,name:"Abraxas",hp:70,armor:20,dmg:18,melee:"Flame / 2 hits",ranged:"Psychic / 1 hit / Range 2",traits:"Daemon, Flying, Summon, Weaver of Fates",icon:"https://tacticus.wiki.gg/images/Abraxas_Icon_Large.png?df9c9b"}
+        ];
+        
+        const PIERCE_RATIOS = {
+            'Psychic': 100, 'Direct': 100, 'Piercing': 80, 'Melta': 75,
+            'Plasma': 65, 'Eviscerating': 50, 'Power': 40, 'Flame': 30,
+            'Energy': 30, 'Bolter': 20, 'Chain': 20, 'Pulse': 20,
+            'Blast': 15, 'Heavy Round': 15, 'Bio': 15, 'Molecular': 15,
+            'Particle': 15, 'Toxic': 15, 'Las': 10, 'Projectile': 5,
+            'Physical': 1
+        };
+        
+        const MACHINES_OF_WAR = [
+            'Biovore', 'Exorcist', 'Forgefiend', 'Galatian',
+            'Malleus Rocket Launcher', 'Plagueburst Crawler',
+            'Rukkatrukk', "Tson'ji"
+        ];
+        
+        let characters = [];
+        let matchupMatrix = {};
+        let currentLimit = 50;
+        let currentAttacker = null;
+        let currentDefender = null;
+
+        function extractAttackInfo(attackStr) {
+            if (!attackStr || attackStr === 'N/A') return [null, 0];
+            const parts = attackStr.split('/').map(p => p.trim());
+            const damageType = parts[0] || 'Physical';
+            let hits = 1;
+            for (const part of parts) {
+                if (part.toLowerCase().includes('hit')) {
+                    const match = part.match(/\\d+/);
+                    if (match) hits = parseInt(match[0]);
+                }
+            }
+            return [damageType, hits];
+        }
+
+        function calculateMatchup(attacker, defender) {
+            const atkTraits = attacker.traits ? attacker.traits.split(', ') : [];
+            const defTraits = defender.traits ? defender.traits.split(', ') : [];
+            
+            // Get attack info
+            const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
+            const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
+            
+            const [atkType, atkHits] = (rangedType && rangedHits > 0) 
+                ? [rangedType, rangedHits] 
+                : [meleeType, meleeHits];
+            
+            const pierce = PIERCE_RATIOS[atkType] || 20;
+            
+            // ATTACK calculation
+            let dmgMult = 1.0;
+            if (atkTraits.includes('Crushing Strike')) dmgMult *= 1.25;
+            if (atkTraits.includes('Let the Galaxy Burn')) dmgMult *= 1.15;
+            
+            let armorMult = 1.0;
+            let incomingMult = 1.0;
+            if (defTraits.includes('Resilient')) incomingMult *= 0.80;
+            if (defTraits.includes('Terminator Armour')) armorMult *= 1.40;
+            if (defTraits.includes('Big Target')) incomingMult *= 1.30;
+            if (defTraits.includes('Mk X Gravis')) armorMult *= 1.50;
+            
+            const effectiveDmg = attacker.dmg * dmgMult;
+            const effectiveArmor = defender.armor * armorMult;
+            
+            const dmgAfterArmor = Math.max(1, effectiveDmg - effectiveArmor);
+            const dmgAfterPierce = Math.max(1, effectiveDmg * (pierce / 100));
+            const dmgPerHit = Math.max(dmgAfterArmor, dmgAfterPierce);
+            
+            const totalDmg = dmgPerHit * atkHits * incomingMult;
+            const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
+            
+            // DEFENSE calculation (reverse)
+            const [defRangedType, defRangedHits] = extractAttackInfo(defender.ranged);
+            const [defMeleeType, defMeleeHits] = extractAttackInfo(defender.melee);
+            
+            const [defType, defHits] = (defRangedType && defRangedHits > 0)
+                ? [defRangedType, defRangedHits]
+                : [defMeleeType, defMeleeHits];
+            
+            const defPierce = PIERCE_RATIOS[defType] || 20;
+            
+            let defDmgMult = 1.0;
+            if (defTraits.includes('Crushing Strike')) defDmgMult *= 1.25;
+            
+            let atkArmorMult = 1.0;
+            let atkIncomingMult = 1.0;
+            if (atkTraits.includes('Resilient')) atkIncomingMult *= 0.80;
+            if (atkTraits.includes('Terminator Armour')) atkArmorMult *= 1.40;
+            if (atkTraits.includes('Big Target')) atkIncomingMult *= 1.30;
+            
+            const defEffectiveDmg = defender.dmg * defDmgMult;
+            const atkEffectiveArmor = attacker.armor * atkArmorMult;
+            
+            const defDmgAfterArmor = Math.max(1, defEffectiveDmg - atkEffectiveArmor);
+            const defDmgAfterPierce = Math.max(1, defEffectiveDmg * (defPierce / 100));
+            const defDmgPerHit = Math.max(defDmgAfterArmor, defDmgAfterPierce);
+            
+            const totalDefDmg = defDmgPerHit * defHits * atkIncomingMult;
+            const damageTakenPct = (totalDefDmg / attacker.hp) * 100;
+            const defenseEff = Math.max(0, 100 - damageTakenPct);
+            
+            const average = (attackEff + defenseEff) / 2;
+            
+            return {
+                attack: Math.round(attackEff * 10) / 10,
+                defense: Math.round(defenseEff * 10) / 10,
+                average: Math.round(average * 10) / 10
+            };
+        }
+
+        function loadJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    const filtered = data.filter(c => !MACHINES_OF_WAR.includes(c.name));
+                    
+                    characters = filtered.map((c, i) => ({
+                        id: i + 1,
+                        name: c.name,
+                        hp: parseInt(c.baseStats?.health || c.baseHealth || 100),
+                        armor: parseInt(c.baseStats?.armour || c.baseArmour || 20),
+                        dmg: parseInt(c.baseStats?.damage || c.baseDamage || 15),
+                        melee: c.attacks?.melee || c.meleeAttack || 'N/A',
+                        ranged: c.attacks?.ranged || c.rangedAttack || 'N/A',
+                        traits: c.traits || '',
+                        icon: c.images?.heroIcon || '',
+                        faction: c.faction || 'Unknown',
+                        activeAbility: c.activeAbility?.name || 'N/A',
+                        passiveAbility: c.passiveAbility?.name || 'N/A'
+                    }));
+                    
+                    buildMatchupMatrix();
+                    populateFilters();
+                    renderTable();
+                    
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('matchupTable').style.display = 'table';
+                    
+                    alert(`✅ Загружено ${characters.length} персонажей!`);
+                } catch (error) {
+                    alert('❌ Ошибка загрузки JSON: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function useEmbeddedData() {
+            characters = EMBEDDED_CHARACTERS;
+            buildMatchupMatrix();
+            populateFilters();
+            renderTable();
+            
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('matchupTable').style.display = 'table';
+        }
+
+        function buildMatchupMatrix() {
+            matchupMatrix = {};
+            characters.forEach(attacker => {
+                matchupMatrix[attacker.name] = {};
+                characters.forEach(defender => {
+                    matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
+                });
+            });
+        }
+
+        function populateFilters() {
+            const atkFilter = document.getElementById('attackerFilter');
+            const defFilter = document.getElementById('defenderFilter');
+            
+            atkFilter.innerHTML = '<option value="">Все персонажи</option>';
+            defFilter.innerHTML = '<option value="">Все персонажи</option>';
+            
+            characters.forEach(char => {
+                const opt1 = document.createElement('option');
+                opt1.value = char.name;
+                opt1.textContent = char.name;
+                atkFilter.appendChild(opt1);
+                
+                const opt2 = document.createElement('option');
+                opt2.value = char.name;
+                opt2.textContent = char.name;
+                defFilter.appendChild(opt2);
+            });
+        }
+
+        function getEffectivenessClass(pct) {
+            if (pct >= 90) return 'cell-90-100';
+            if (pct >= 70) return 'cell-70-89';
+            if (pct >= 50) return 'cell-50-69';
+            if (pct >= 30) return 'cell-30-49';
+            return 'cell-0-29';
+        }
+
+        function renderTable() {
+            const atkFilter = document.getElementById('attackerFilter').value;
+            const defFilter = document.getElementById('defenderFilter').value;
+            const limit = parseInt(document.getElementById('limitSelect').value);
+            
+            let displayedAtk = characters.slice(0, limit);
+            if (atkFilter) {
+                displayedAtk = characters.filter(c => c.name === atkFilter);
+            }
+            
+            let displayedDef = characters.slice(0, limit);
+            if (defFilter) {
+                displayedDef = characters.filter(c => c.name === defFilter);
+            }
+            
+            const thead = document.getElementById('tableHead');
+            const tbody = document.getElementById('tableBody');
+            
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+            
+            // Header
+            const headerRow = document.createElement('tr');
+            const corner = document.createElement('th');
+            corner.textContent = 'АТАКУЮЩИЙ ↓ / ЗАЩИЩАЮЩИЙСЯ →';
+            headerRow.appendChild(corner);
+            
+            displayedDef.forEach(def => {
+                const th = document.createElement('th');
+                th.textContent = def.name;
+                th.onmouseenter = (e) => showTooltip(e, def);
+                th.onmouseleave = hideTooltip;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            
+            // Rows
+            displayedAtk.forEach(atk => {
+                const row = document.createElement('tr');
+                
+                const nameCell = document.createElement('td');
+                nameCell.textContent = atk.name;
+                nameCell.onmouseenter = (e) => showTooltip(e, atk);
+                nameCell.onmouseleave = hideTooltip;
+                row.appendChild(nameCell);
+                
+                displayedDef.forEach(def => {
+                    const metrics = matchupMatrix[atk.name][def.name];
+                    const cell = document.createElement('td');
+                    cell.innerHTML = `
+                        <div style="font-size: 0.7em; color: #888;">${metrics.attack}% / ${metrics.defense}%</div>
+                        <div style="font-weight: bold; font-size: 1.1em;">${metrics.average}%</div>
+                    `;
+                    cell.className = getEffectivenessClass(metrics.average);
+                    cell.onclick = () => showDetail(atk, def, metrics);
+                    row.appendChild(cell);
+                });
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        function showTooltip(event, char) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.innerHTML = `
+                ${char.icon ? `<img src="${char.icon}" alt="${char.name}">` : ''}
+                <div style="font-weight: bold; color: #00d4ff; margin-bottom: 5px;">${char.name}</div>
+                <div style="font-size: 0.85em;">
+                    HP: ${char.hp} | ARM: ${char.armor} | DMG: ${char.dmg}<br>
+                    Melee: ${char.melee}<br>
+                    Ranged: ${char.ranged}
+                </div>
+            `;
+            tooltip.style.left = event.pageX + 15 + 'px';
+            tooltip.style.top = event.pageY + 15 + 'px';
+            tooltip.classList.add('active');
+        }
+
+        function hideTooltip() {
+            document.getElementById('tooltip').classList.remove('active');
+        }
+
+        function showDetail(attacker, defender, metrics) {
+            currentAttacker = attacker;
+            currentDefender = defender;
+            
+            renderAnalysisTab(attacker, defender, metrics);
+            renderSynergyTab(attacker);
+            renderCountersTab(defender);
+            
+            document.getElementById('detailPanel').classList.add('active');
+        }
+
+        function closeDetail() {
+            document.getElementById('detailPanel').classList.remove('active');
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Tab').classList.add('active');
+        }
+
+        function renderAnalysisTab(atk, def, metrics) {
+            const [atkType, atkHits] = extractAttackInfo(atk.ranged)[0] ? extractAttackInfo(atk.ranged) : extractAttackInfo(atk.melee);
+            const pierce = PIERCE_RATIOS[atkType] || 20;
+            
+            document.getElementById('analysisTab').innerHTML = `
+                <div class="panel-title">ДЕТАЛЬНЫЙ АНАЛИЗ</div>
+                
+                <div class="char-card">
+                    <h3>
+                        ${atk.icon ? `<img src="${atk.icon}" class="char-icon">` : ''}
+                        ⚔️ ${atk.name}
+                    </h3>
+                    <div class="stat-row"><span class="stat-label">HP:</span><span>${atk.hp}</span></div>
+                    <div class="stat-row"><span class="stat-label">Броня:</span><span>${atk.armor}</span></div>
+                    <div class="stat-row"><span class="stat-label">Урон:</span><span>${atk.dmg}</span></div>
+                    <div class="stat-row"><span class="stat-label">Ближний:</span><span>${atk.melee}</span></div>
+                    <div class="stat-row"><span class="stat-label">Дальний:</span><span>${atk.ranged}</span></div>
+                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.8em;">${atk.traits}</span></div>
+                </div>
+                
+                <div class="vs-divider">⚔️ VS ⚔️</div>
+                
+                <div class="char-card">
+                    <h3>
+                        ${def.icon ? `<img src="${def.icon}" class="char-icon">` : ''}
+                        🛡️ ${def.name}
+                    </h3>
+                    <div class="stat-row"><span class="stat-label">HP:</span><span>${def.hp}</span></div>
+                    <div class="stat-row"><span class="stat-label">Броня:</span><span>${def.armor}</span></div>
+                    <div class="stat-row"><span class="stat-label">Урон:</span><span>${def.dmg}</span></div>
+                    <div class="stat-row"><span class="stat-label">Ближний:</span><span>${def.melee}</span></div>
+                    <div class="stat-row"><span class="stat-label">Дальний:</span><span>${def.ranged}</span></div>
+                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.8em;">${def.traits}</span></div>
+                </div>
+                
+                <div class="metric-box">
+                    <h4>⚔️ ЭФФЕКТИВНОСТЬ АТАКИ</h4>
+                    <div class="metric-value" style="background: #${getColorForPct(metrics.attack)}">${metrics.attack}%</div>
+                    <p style="font-size: 0.85em; margin-top: 5px;">
+                        ${atkType} (${pierce}% pierce) × ${atkHits} hits
+                    </p>
+                </div>
+                
+                <div class="metric-box">
+                    <h4>🛡️ ЭФФЕКТИВНОСТЬ ЗАЩИТЫ</h4>
+                    <div class="metric-value" style="background: #${getColorForPct(metrics.defense)}">${metrics.defense}%</div>
+                </div>
+                
+                <div class="metric-box">
+                    <h4>📊 СРЕДНЯЯ ЭФФЕКТИВНОСТЬ</h4>
+                    <div class="metric-value" style="background: #${getColorForPct(metrics.average)}">${metrics.average}%</div>
+                    <p style="font-size: 0.85em; margin-top: 5px;">
+                        Общая оценка для спаринга
+                    </p>
+                </div>
+            `;
+        }
+
+        function renderSynergyTab(attacker) {
+            const traits = attacker.traits ? attacker.traits.split(', ') : [];
+            
+            document.getElementById('synergyTab').innerHTML = `
+                <div class="panel-title">🤝 СИНЕРГИЯ</div>
+                
+                <div style="background: #0f1a2e; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #00ff88; margin-bottom: 10px;">Лучшие партнёры для ${attacker.name}</h4>
+                    <ul class="synergy-list">
+                        ${traits.includes('Healer') ? '<li class="synergy-item">💚 <b>Healer</b> - работает с танками (Resilient, высокий HP)</li>' : ''}
+                        ${traits.includes('Summon') ? '<li class="synergy-item">👻 <b>Summoner</b> - синергия с buff персонажами</li>' : ''}
+                        ${traits.includes('Psyker') ? '<li class="synergy-item">🧠 <b>Psyker</b> - комбо с другими Psyker</li>' : ''}
+                        ${traits.includes('Heavy Weapon') ? '<li class="synergy-item">🔫 <b>Heavy Weapon</b> - получает buff от Thaddeus Noble</li>' : ''}
+                    </ul>
+                    
+                    <p style="margin-top: 15px; padding: 10px; background: #1a1a2e; border-radius: 5px; font-size: 0.9em;">
+                        💡 Загрузите полный JSON для детальной информации о синергиях
+                    </p>
+                </div>
+            `;
+        }
+
+        function renderCountersTab(defender) {
+            const armor = defender.armor;
+            const hp = defender.hp;
+            const traits = defender.traits ? defender.traits.split(', ') : [];
+            
+            const counters = [];
+            if (armor > 25) counters.push('Высокое пробитие (Psychic, Piercing, Melta)');
+            if (hp < 80) counters.push('Burst damage и multi-hit атаки');
+            if (traits.includes('Big Target')) counters.push('Beast Slayer персонажи (+30% урона)');
+            if (traits.includes('Close Combat Weakness')) counters.push('Melee атакующие (+50% урона)');
+            
+            document.getElementById('countersTab').innerHTML = `
+                <div class="panel-title">⚠️ КОНТРЫ</div>
+                
+                <div style="background: #0f1a2e; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #fbbf24; margin-bottom: 10px;">Слабости ${defender.name}</h4>
+                    <ul class="synergy-list">
+                        ${counters.map(c => `<li class="synergy-item">⚠️ ${c}</li>`).join('')}
+                        ${counters.length === 0 ? '<li class="synergy-item">✅ Нет явных слабостей</li>' : ''}
+                    </ul>
+                </div>
+            `;
+        }
+
+        function getColorForPct(pct) {
+            if (pct >= 90) return '00ff00';
+            if (pct >= 70) return '4ade80';
+            if (pct >= 50) return 'fbbf24';
+            if (pct >= 30) return 'fb923c';
+            return 'ef4444';
+        }
+
+        document.getElementById('attackerFilter').addEventListener('change', renderTable);
+        document.getElementById('defenderFilter').addEventListener('change', renderTable);
+        document.getElementById('limitSelect').addEventListener('change', (e) => {
+            currentLimit = parseInt(e.target.value);
+            renderTable();
+        });
+    </script>
+</body>
+</html>
