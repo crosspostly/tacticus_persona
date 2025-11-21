@@ -1,0 +1,211 @@
+{
+  "Abaddon": [
+    {
+      "reason": "slow_ramp",
+      "weakness": "Needs several rounds to buff up, vulnerable to early burst damage",
+      "counter_types": ["AoE burst", "Early game pressure"],
+      "confidence": "medium",
+      "source": "Reddit 2025-09"
+    }
+  ],
+  "Eldryon": [
+    {
+      "reason": "positioning_dependent",
+      "weakness": "Must be exactly 2 hexes away, squishy, falls to snipers",
+      "counter_types": ["Ranged focus fire", "Mobility denial"],
+      "counter_trait": "Sniper",
+      "confidence": "high",
+      "source": "alittlebithuman.com + Reddit"
+    }
+  ],
+  "Kharn": [
+    {
+      "reason": "low_defense",
+      "weakness": "Weak defense, easily killed by mass damage or control",
+      "counter_types": ["AoE damage", "Control abilities"],
+      "confidence": "high",
+      "source": "Multi-hit discussions"
+    }
+  ],
+  "Thaddeus": [
+    {
+      "reason": "niche_utility",
+      "weakness": "Very situational, lacks broad synergy",
+      "counter_types": ["Any non-overwatch team"],
+      "confidence": "low",
+      "source": "Reddit 2024"
+    }
+  ],
+  "Maugan Ra": [
+    {
+      "reason": "positioning_squishy",
+      "weakness": "Not a tank, vulnerable without proper positioning",
+      "counter_types": ["Melee rush", "Focus fire"],
+      "confidence": "medium",
+      "source": "Aeldari guides"
+    }
+  ],
+  "Re'vas": [
+    {
+      "reason": "overwatch_counterable",
+      "weakness": "Overwatch can be suppressed",
+      "counter_types": ["Suppress", "Thaddeus"],
+      "counter_trait": "Suppress",
+      "confidence": "medium",
+      "source": "Counter discussions 2023"
+    }
+  ],
+  "Aleph-Null": [
+    {
+      "reason": "mech_only",
+      "weakness": "Only heals mechanical units, limited team flexibility",
+      "counter_types": ["Anti-mech weapons", "Non-mech focus"],
+      "confidence": "low",
+      "source": "Mythic Journey analysis"
+    }
+  ],
+  "Shadowsun": [
+    {
+      "reason": "tau_dependent",
+      "weakness": "Buffs only work for Tau faction",
+      "counter_types": ["Anti-Tau strategies"],
+      "confidence": "low",
+      "source": "Faction analysis"
+    }
+  ],
+  "Darkstrider": [
+    {
+      "reason": "positioning_difficult",
+      "weakness": "Aura hard to position effectively, takes turn to setup",
+      "counter_types": ["Early pressure", "Mobility denial"],
+      "confidence": "medium",
+      "source": "YouTube analysis 2023"
+    }
+  ],
+  "Magnus": [
+    {
+      "reason": "psychic_resistance",
+      "weakness": "Vulnerable to psychic resistance, high-value target",
+      "counter_types": ["Anti-psyker", "Focus fire"],
+      "confidence": "medium",
+      "source": "Boss guide 2024"
+    }
+  ],
+  "Yarrick": [
+    {
+      "reason": "delayed_summon",
+      "weakness": "Delayed summon after nerf, guardsmen die easily",
+      "counter_types": ["AoE damage", "Fast clear"],
+      "confidence": "medium",
+      "source": "Reddit nerf discussions 2024"
+    }
+  ],
+  "Creed": [
+    {
+      "reason": "setup_dependent",
+      "weakness": "Needs Yarrick to setup first, delayed effectiveness",
+      "counter_types": ["Early aggression", "Anti-summon"],
+      "confidence": "medium",
+      "source": "Reddit Creed analysis 2024"
+    }
+  ],
+  "Celestine": [
+    {
+      "reason": "can_be_surrounded",
+      "weakness": "If Geminae surrounded, cannot resurrect properly",
+      "counter_types": ["Surround tactics", "Mass damage"],
+      "confidence": "medium",
+      "source": "Sisters rules discussions"
+    }
+  ],
+  "Isabella": [
+    {
+      "reason": "passive_only_non_lethal",
+      "weakness": "Passive doesn't heal lethal damage, focus target",
+      "counter_types": ["Burst damage", "One-shot kills"],
+      "confidence": "high",
+      "source": "alittlebithuman.com guide"
+    }
+  ],
+  "Screamer Killer": [
+    {
+      "reason": "anti_summon",
+      "weakness": "100% crit vs summons, AoE attacks kill summons instantly",
+      "counter_types": ["No summon teams", "Ranged focus"],
+      "confidence": "very_high",
+      "source": "Boss guide 2023-2024"
+    }
+  ],
+  "Ghazghkull": [
+    {
+      "reason": "anti_tank_weapons",
+      "weakness": "Vulnerable to specialized anti-tank fire, mass control",
+      "counter_types": ["Anti-tank", "Mass control"],
+      "confidence": "medium",
+      "source": "Orks guides"
+    }
+  ],
+  "Mortarion": [
+    {
+      "reason": "anti_nurgle",
+      "weakness": "Falls to anti-Nurgle specialized damage or high-pierce multi-hits",
+      "counter_types": ["High pierce", "Multi-hit"],
+      "confidence": "medium",
+      "source": "Death Guard analysis"
+    }
+  ],
+  "Dante": [
+    {
+      "reason": "limited_buff_scope",
+      "weakness": "Buffs limited to certain characters, doesn't work with all",
+      "counter_types": ["Non-buffable teams"],
+      "confidence": "low",
+      "source": "Reddit comparisons 2025"
+    }
+  ],
+  "Ragnar": [
+    {
+      "reason": "buff_dependent",
+      "weakness": "Not exceptional alone, needs buffers like Calgar/Eldryon",
+      "counter_types": ["Kill buffers first", "Isolation"],
+      "confidence": "medium",
+      "source": "Damage calculation threads"
+    }
+  ],
+  "Trajan": [
+    {
+      "reason": "new_meta",
+      "weakness": "Too new to have established counters, likely very strong",
+      "counter_types": ["TBD"],
+      "confidence": "low",
+      "source": "Reddit speculation 2025"
+    }
+  ],
+  "Calgar": [
+    {
+      "reason": "melee_weak",
+      "weakness": "Not exceptional in melee compared to damage output, positioning required",
+      "counter_types": ["Ranged kiting", "Isolation"],
+      "confidence": "low",
+      "source": "YouTube review 2025"
+    }
+  ],
+  "Actus": [
+    {
+      "reason": "mech_only",
+      "weakness": "Only works with mechanical units",
+      "counter_types": ["Anti-mech strategies"],
+      "confidence": "low",
+      "source": "AdMech guides"
+    }
+  ],
+  "Rho": [
+    {
+      "reason": "positioning_required",
+      "weakness": "Enemies must be adjacent to Rho for passive to trigger",
+      "counter_types": ["Ranged focus", "Avoid adjacency"],
+      "confidence": "medium",
+      "source": "Facebook discussions 2025"
+    }
+  ]
+}
