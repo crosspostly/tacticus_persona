@@ -674,6 +674,15 @@
                     dataSource = 'data.json';
                 }
                 
+                // 🔧 FIX: Если данные в формате { "characters": [...] }, извлекаем массив
+                let dataArray = mainData;
+                if (mainData.characters && Array.isArray(mainData.characters)) {
+                    dataArray = mainData.characters;
+                    console.log('✅ Detected new data.json structure with "characters" key');
+                } else if (!Array.isArray(mainData)) {
+                    throw new Error('Неизвестный формат данных');
+                }
+                
                 // Load synergy and counter databases
                 const [synergyResponse, counterResponse] = await Promise.all([
                     fetch('synergy_database.json').catch(() => null),
@@ -692,7 +701,7 @@
                 await loadConditionalDatabases();
                 
                 // Process character data
-                const filtered = mainData.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
+                const filtered = dataArray.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                 
                 characters = filtered.map((c, i) => ({
                     id: i + 1,
@@ -748,7 +757,16 @@
             reader.onload = function(e) {
                 try {
                     const data = JSON.parse(e.target.result);
-                    const filtered = data.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
+                    
+                    // 🔧 FIX: Проверяем формат данных
+                    let dataArray = data;
+                    if (data.characters && Array.isArray(data.characters)) {
+                        dataArray = data.characters;
+                    } else if (!Array.isArray(data)) {
+                        throw new Error('Неизвестный формат файла');
+                    }
+                    
+                    const filtered = dataArray.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                     
                     characters = filtered.map((c, i) => ({
                         id: i + 1,
@@ -1036,7 +1054,7 @@
             
             tooltip.innerHTML = `
                 ${hasImage ? 
-                    `<img src="${char.icon}" alt="${char.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    `<img src="${char.icon}" alt="${char.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                      <div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:none;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>` : 
                     '<div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>'
                 }
