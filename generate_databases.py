@@ -7,6 +7,8 @@
   - conditional_bonuses.csv (условные бонусы из описаний способностей)
   - character_factions.csv (связи персонаж ↔ фракция)
   - character_attack_types.csv (типы атак персонажей)
+
+Version: 2.0.1 - Updated 21.11.2025
 """
 
 import json
