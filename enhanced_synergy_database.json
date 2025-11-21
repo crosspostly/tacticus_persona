@@ -1,0 +1,322 @@
+{
+  "Abaddon": [
+    {
+      "type": "faction_buff",
+      "effect": "Buff increases with each attack, synergizes with Chaos units",
+      "partners": ["Kharn", "Trajan", "Dante", "Ragnar"],
+      "best_with": "Kharn (best Chaos synergy), Dante, Trajan for raid meta teams",
+      "source": "Reddit discussions 2025-09",
+      "confidence": "high"
+    }
+  ],
+  "Eldryon": [
+    {
+      "type": "damage_amplifier",
+      "effect": "+898 damage to all units, +1197 to Aeldari within 2 hexes per hit",
+      "partners": ["Maugan Ra", "Aleph-Null"],
+      "best_with": "Maugan Ra (6 hits = 7182 bonus damage)",
+      "positioning": "Must be exactly 2 hexes away from target",
+      "source": "alittlebithuman.com guide + Reddit",
+      "confidence": "very_high",
+      "notes": "Was nerfed but still meta for raids"
+    }
+  ],
+  "Bellator": [
+    {
+      "type": "multi_hit_team",
+      "effect": "Summons buff multi-hit teams, 6 melee hits",
+      "partners": ["Ragnar", "Kharn", "Aun'shi", "Dante"],
+      "best_with": "Multi-hit raid teams with Ragnar and Kharn",
+      "source": "Multi-hit Reddit infographic 2025",
+      "confidence": "high",
+      "notes": "In meta teams, loses to Calgar in pure damage"
+    }
+  ],
+  "Kharn": [
+    {
+      "type": "multi_hit_damage",
+      "effect": "High multi-hit damage dealer, synergizes with AoE buffers",
+      "partners": ["Abaddon", "Ragnar", "Dante", "Eldryon", "Calgar"],
+      "best_with": "Abaddon (Chaos boost), Eldryon (damage per hit), Calgar (damage stat buff)",
+      "source": "Reddit multi-hit teams 2025",
+      "confidence": "very_high"
+    }
+  ],
+  "Thaddeus": [
+    {
+      "type": "suppress_counter",
+      "effect": "Suppress against overwatch heroes, buffs heavy weapons",
+      "partners": ["Heavy weapon trait characters"],
+      "counters": ["Re'vas", "Wolf (overwatch heroes)"],
+      "best_with": "Situational - counter to specific opponents",
+      "source": "Reddit WH40KTacticus 2024",
+      "confidence": "medium",
+      "notes": "Lacks broad faction synergy, very niche"
+    }
+  ],
+  "Maugan Ra": [
+    {
+      "type": "ranged_multi_hit",
+      "effect": "6-hit ranged attacks, scales massively with Eldryon buff",
+      "partners": ["Eldryon"],
+      "best_with": "Eldryon (7182 bonus damage with 6 hits)",
+      "source": "alittlebithuman.com + YouTube guides",
+      "confidence": "very_high",
+      "notes": "God tier with Eldryon positioning"
+    }
+  ],
+  "Anuphet": [
+    {
+      "type": "summon_warrior",
+      "effect": "Summons Necron Warriors, synergizes with Relentless March",
+      "partners": ["Makhotep", "Aleph-Null"],
+      "best_with": "Makhotep + Aleph-Null (3-unit Necron core)",
+      "source": "Reddit Synergy discussions 2023-2024",
+      "confidence": "high",
+      "notes": "Necrons have strong internal synergy"
+    }
+  ],
+  "Makhotep": [
+    {
+      "type": "necron_synergy",
+      "effect": "Core Necron synergy with Fabricator Claws",
+      "partners": ["Aleph-Null", "Anuphet"],
+      "best_with": "Aleph-Null + Anuphet",
+      "source": "Reddit faction synergy 2023",
+      "confidence": "high"
+    }
+  ],
+  "Aleph-Null": [
+    {
+      "type": "mech_healer",
+      "effect": "Heals mechanical units, 5+ hits with buffs, pairs with Re'vas",
+      "partners": ["Re'vas", "Actus", "Thorad", "Kolgar"],
+      "best_with": "Re'vas (legendary events), Actus (6 hits in arena), AdMech teams",
+      "source": "YouTube Mythic Journey + Reddit",
+      "confidence": "very_high",
+      "notes": "Super good in legendary events mechanical track"
+    }
+  ],
+  "Re'vas": [
+    {
+      "type": "admech_core",
+      "effect": "Most usable in guild raids, arenas, LREs",
+      "partners": ["Rho", "Actus", "Tan'gida", "Aleph-Null"],
+      "best_with": "AdMech team core with Rho/Actus/Gida",
+      "source": "Facebook Tacticus groups 2024",
+      "confidence": "very_high",
+      "notes": "Top tier for guild content"
+    }
+  ],
+  "Aun'shi": [
+    {
+      "type": "reactivate_ability",
+      "effect": "Allows used active abilities to trigger again, buffs Tau allies per round",
+      "partners": ["Yarrick", "Creed", "Certus"],
+      "best_with": "Yarrick (double summon guardsmen), Creed combo",
+      "passive_buffs": "Round 1: -25% damage reduction, Round 2: extra movement, Round 3: damage boost",
+      "source": "YouTube guide + Reddit 2023",
+      "confidence": "very_high",
+      "notes": "OP ability reactivation, meta for Tau"
+    }
+  ],
+  "Shadowsun": [
+    {
+      "type": "markerlight",
+      "effect": "Applies markerlight (+15% ranged damage to all Tau)",
+      "partners": ["Darkstrider", "Certus", "Tau faction"],
+      "best_with": "Darkstrider (passive + markerlight synergy)",
+      "source": "Reddit markerlight discussions 2024 + YouTube",
+      "confidence": "high",
+      "notes": "Markerlights now work on bosses (July 2023 buff)"
+    }
+  ],
+  "Darkstrider": [
+    {
+      "type": "markerlight_buff",
+      "effect": "+15% damage from markerlights (multiplicative), strong aura",
+      "partners": ["Shadowsun", "Tau Empire units"],
+      "best_with": "Tau teams for multiplicative damage stacking",
+      "source": "YouTube Darkstrider analysis 2023",
+      "confidence": "high",
+      "notes": "Markerlights are multiplicative with other buffs (elevation, etc)"
+    }
+  ],
+  "Magnus": [
+    {
+      "type": "psychic_master",
+      "effect": "Strongest psychic caster, buffs Thousand Sons",
+      "partners": ["Typhus", "Thousand Sons psychic units"],
+      "best_with": "Typhus (sets up 3+ units for psychic damage bonus)",
+      "source": "Reddit + YouTube Magnus guides",
+      "confidence": "high",
+      "notes": "Thousand Sons do max damage after taking psychic hits"
+    }
+  ],
+  "Typhus": [
+    {
+      "type": "thousand_sons_enabler",
+      "effect": "Sets up psychic damage for Thousand Sons max damage",
+      "partners": ["Magnus", "Thousand Sons faction", "Maladus", "Nosio"],
+      "best_with": "Magnus + Thousand Sons team",
+      "source": "Reddit full TS team 2023",
+      "confidence": "high"
+    }
+  ],
+  "Dante": [
+    {
+      "type": "multi_hit_buffer",
+      "effect": "Buffs Blood Angels and multi-hit teams, same damage as Eldryon passive at same level",
+      "partners": ["Ragnar", "Kharn", "Mephiston", "Blood Angels"],
+      "best_with": "Ragnar + Kharn multi-hit raid teams",
+      "active": "Reduces boss damage -21% to -25%",
+      "source": "Reddit comparisons 2025",
+      "confidence": "very_high",
+      "notes": "Released as Eldryon alternative, works with Imperials"
+    }
+  ],
+  "Ragnar": [
+    {
+      "type": "multi_hit_core",
+      "effect": "7 melee hits, benefits from all damage buffs",
+      "partners": ["Calgar", "Eldryon", "Dante", "Kharn", "Aethana"],
+      "best_with": "Calgar (+1300 dmg) + Eldryon (+900 per hit) = +2200 per hit x7",
+      "source": "Reddit damage calculations 2025",
+      "confidence": "very_high",
+      "notes": "War Howl + Calgar + Eldryon = insane damage"
+    }
+  ],
+  "Trajan": [
+    {
+      "type": "multi_hit_meta",
+      "effect": "Like old Eldryon but for all damage types, creates new multi-hit meta",
+      "partners": ["Ragnar", "Kharn", "Dante", "AdMech teams"],
+      "best_with": "Multi-hit raid teams, can work with mech teams",
+      "source": "Reddit Trajan discussions 2025",
+      "confidence": "very_high",
+      "notes": "Likely to dominate multi-hit guild raids, +300k damage for Screamer"
+    }
+  ],
+  "Calgar": [
+    {
+      "type": "damage_stat_buffer",
+      "effect": "+300 damage (level 37), +400 for Imperials, buffs adjacent allies",
+      "partners": ["Ragnar", "Bellator", "Isabella", "Burchard", "Trajan"],
+      "best_with": "Ragnar (7 hits x damage buff), Isabella (improves healing)",
+      "source": "Reddit + YouTube Calgar guide 2025",
+      "confidence": "very_high",
+      "notes": "At level 50 D3: +1300 damage for Imperials, stacks with other buffs"
+    }
+  ],
+  "Yarrick": [
+    {
+      "type": "guardsmen_summoner",
+      "effect": "Summons 4-5 guardsmen, passive buffs battle fatigue units",
+      "partners": ["Creed", "Aun'shi", "Kell"],
+      "best_with": "Creed (reactivates all guardsmen), Aun'shi (double active)",
+      "source": "Reddit Creed synergy 2024",
+      "confidence": "high",
+      "notes": "Nerfed from instant summon to delayed, still strong with Creed"
+    }
+  ],
+  "Creed": [
+    {
+      "type": "guardsmen_reactivator",
+      "effect": "Summons 2-3 guardsmen, reactivates all guardsmen in range 2/3",
+      "partners": ["Yarrick", "Kell"],
+      "best_with": "Yarrick (combo for 6-8 guardsmen double turn)",
+      "source": "Reddit detailed Creed analysis 2024",
+      "confidence": "medium",
+      "notes": "Nerfed indirectly by Yarrick changes, needs setup time"
+    }
+  ],
+  "Celestine": [
+    {
+      "type": "resurrect_tank",
+      "effect": "Resurrects on death, heals Geminae, 4+ invuln aura",
+      "partners": ["Geminae Superia", "Imperial units", "Sororitas"],
+      "best_with": "Geminae bodyguards, Isabella",
+      "source": "YouTube + Reddit Sisters guides",
+      "confidence": "high",
+      "notes": "Hard to kill, resurrects at end of phase"
+    }
+  ],
+  "Isabella": [
+    {
+      "type": "passive_healer",
+      "effect": "Heals 1197 HP per hit taken (max), revives Imperials",
+      "partners": ["Bellator", "Burchard", "Calgar", "Asoth", "Trajan"],
+      "best_with": "Bellator (6 hits = 7200 HP healed), tank teams",
+      "strategy": "Turtle formation - surround with 3-4 tanks",
+      "source": "alittlebithuman.com + YouTube",
+      "confidence": "very_high",
+      "notes": "Best healer in game by far, enables LRE pushing"
+    }
+  ],
+  "Actus": [
+    {
+      "type": "admech_reactivator",
+      "effect": "Reactivates mechanical units for second attack",
+      "partners": ["Rho", "Tan'gida", "Aleph-Null", "AdMech faction"],
+      "best_with": "Rho (core AdMech), Aleph-Null (6 hits in arena)",
+      "source": "Facebook + YouTube AdMech guides",
+      "confidence": "very_high",
+      "notes": "Core of AdMech raid team"
+    }
+  ],
+  "Rho": [
+    {
+      "type": "admech_damage_core",
+      "effect": "Attacks target when any mech unit attacks enemy next to Rho",
+      "partners": ["Actus", "Tan'gida", "Re'vas", "Aleph-Null"],
+      "best_with": "Full AdMech team",
+      "source": "Facebook Tacticus 2025",
+      "confidence": "very_high",
+      "notes": "Core of AdMech team, huge damage multiplier"
+    }
+  ],
+  "Tan'gida": [
+    {
+      "type": "admech_support",
+      "effect": "Drone summons, supports AdMech team",
+      "partners": ["Actus", "Rho", "Re'vas"],
+      "best_with": "AdMech raid core",
+      "source": "Reddit AdMech discussions 2024",
+      "confidence": "high",
+      "notes": "Crucial for AdMech but can substitute Sho'syl or Anuphet"
+    }
+  ],
+  "Ghazghkull": [
+    {
+      "type": "ork_tank",
+      "effect": "Massive tank, buffs Orks with AoE",
+      "partners": ["Mozrog", "Mek"],
+      "best_with": "Mozrog (deadly combo), Mek support",
+      "source": "YouTube Orks 10th edition",
+      "confidence": "high",
+      "notes": "Armored train strategy with Mozrog"
+    }
+  ],
+  "Mortarion": [
+    {
+      "type": "death_guard_tank",
+      "effect": "Contagion AoE, close range tank",
+      "partners": ["Typhus", "Death Guard units"],
+      "best_with": "Typhus + Death Guard mass poison",
+      "source": "YouTube Death Guard guides",
+      "confidence": "high",
+      "notes": "Controls map with AoE poison"
+    }
+  ],
+  "Roboute Guilliman": [
+    {
+      "type": "ultramarine_super_buffer",
+      "effect": "Reroll 1s to hit for Imperium within 12\", reroll hits for Ultramarines within 6\", reroll wounds of 1",
+      "partners": ["Ultramarines", "Intercessors", "Aggressors", "Victrix Guard"],
+      "best_with": "Ultramarine Intercessors (move and double fire)",
+      "source": "YouTube Guilliman guide 2019",
+      "confidence": "high",
+      "notes": "350 points, resurrects on 4+, CP battery"
+    }
+  ]
+}
