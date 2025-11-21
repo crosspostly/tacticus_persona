@@ -1,0 +1,17 @@
+{
+  "name": "tacticus_persona",
+  "version": "1.0.0",
+  "description": "```\r ├── index.html              # Main page\r ├── data.json              # Character data (JSON)\r ├── data.txt               # Character data (TXT) - Priority\r ├── synergy_database.json  # Synergy database (JSON)\r ├── synergy_database.txt   # Synergy database (TXT) - Priority\r ├── counter_database.json  # Counter database (JSON)\r └── counter_database.txt   # Counter database (TXT) - Priority\r ```",
+  "main": "damage-calc-fixed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.1.2",
+    "node-fetch": "^2.7.0",
+    "puppeteer": "^24.31.0"
+  }
+}

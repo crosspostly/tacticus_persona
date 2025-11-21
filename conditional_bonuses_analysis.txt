@@ -1,0 +1,351 @@
+ПОЛНЫЙ СПИСОК УСЛОВНЫХ БОНУСОВ
+====================================================================================================
+
+
+Abaddon The Despoiler - First Among Traitors
+Условия: within 2 hexes
+Описание: First Among Traitors
+Other friendly Chaos units within 2 hexes deal +X Damage. This value is increased by +Y Damage for each attack Abaddon has performed in this battle, up to a maximum of Z Damage.
+----------------------------------------------------------------------------------------------------
+
+Abraxas - Infernal Pacts
+Условия: adjacent to
+Описание: Infernal Pacts
+Friendly Chaos units adjacent to Abraxas deal an additional 1x X Psychic Damage with their normal ranged attacks. Affected Daemons also gain the bonus Hit on their normal melee attack.
+----------------------------------------------------------------------------------------------------
+
+Actus - Galvanic Field
+Условия: Mechanical unit
+Описание: Galvanic Field
+Whenever Actus repairs another unit, that unit immediately attacks a target in range, dealing X% of its own Damage to a maximum of Y Damage per hit. Actus can repair other friendly units even if they are at full Health.
+Note: Repair only affects Mechanical units.
+----------------------------------------------------------------------------------------------------
+
+Adamatar - Obsessive Annunciation
+Условия: adjacent to
+Описание: Obsessive Annunciation
+All enemy units adjacent to Adamatar take +X Damage from ranged attacks. If an enemy was Overkilled this turn, enemies adjacent to Adamatar take +X Crit Damage from all attacks by friendly Chaos units.
+----------------------------------------------------------------------------------------------------
+
+Aesoth - Stand Vigil
+Условия: within 2 hexes
+Описание: Stand Vigil
+Friendly surrounding units have +X Armour and deal +Y% Damage with attacks that are not normal attacks. If a friendly Adeptus Custodes uses an Active Ability, Stand Vigil affects all other friendly units within 2 hexes for 1 round.
+----------------------------------------------------------------------------------------------------
+
+Aethana - Path of Command
+Условия: within 2 hexes
+Описание: Path of Command
+Other friendly units within 2 hexes gain +X Damage. Their Crit chance - if they have one - is increased by +Y%. Affected Aeldari units gain an additional +Z Damage.
+----------------------------------------------------------------------------------------------------
+
+Aleph-Null - Fabricator Claw Array
+Условия: Mechanical unit
+Описание: Fabricator Claw Array
+After moving, repairs one random adjacent friendly Mechanical unit for X Health. If Aleph-Null does not move, then this ability triggers at the end of its turn.
+Note: Can restore lost members to damaged Scarab Swarms.
+----------------------------------------------------------------------------------------------------
+
+Ancient Thoread - Astartes Banner
+Условия: within 2 hexes
+Описание: Astartes Banner
+Other friendly units within 2 hexes score an additional hit with their melee attacks. This additional hit can deal a maximum of X Damage.
+Note: The bonus hit applies to normal melee attacks and melee abilities.
+----------------------------------------------------------------------------------------------------
+
+Angrax - Hateful Assault
+Условия: adjacent to
+Описание: Hateful Assault
+Attacks any enemy that moves from a hex adjacent to him, dealing 2x X Power Damage.
+----------------------------------------------------------------------------------------------------
+
+Arjac - Anvil Shield
+Условия: Stunned
+Описание: Anvil Shield
+Arjac blocks an additional X Damage and when he Blocks he covers the attacker's Hex in Ice. If Arjac is below 35% Health, or if his attacker is on a Hex covered in Ice, he gains +Y% Block Chance and if he blocks a melee attack, the attacker is Stunned until the end of the attacker's nex
+----------------------------------------------------------------------------------------------------
+
+Asmodai - Feared Interrogator
+Условия: adjacent to, Suppressed, Stunned
+Описание: Feared Interrogator
+Deals +X Damage against enemies that are Suppressed, Stunned, or that are adjacent to another friendly Dark Angel. Scores +Y hits, if the enemy is also Chaos.
+----------------------------------------------------------------------------------------------------
+
+Atlacoya - Daughter of the Abyss
+Условия: Psyker, enemy Psyker, within 2 hexes
+Описание: Daughter of the Abyss
+Atlacoya takes -X Psychic Damage. Psychic Damage dealt to other friendly units within 2 hexes of Atlacoya is reduced by Y%. Enemy Psykers within 2 hexes receive +Z% Damage.
+----------------------------------------------------------------------------------------------------
+
+Aun'Shi - Serene Unifier
+Условия: within 2 hexes
+Описание: Serene Unifier
+Aun'Shi grants himself, and adjacent friendly units a bonus based on the current round at the beginning of his turn. Friendly Tau Empire units within 2 Hexes also receive this bonus. The bonus lasts until the start of the unit's next turn, even if Aun'Shi is defeated. The following Bu
+----------------------------------------------------------------------------------------------------
+
+Azrael - Lion Helm
+Условия: within 2 hexes
+Описание: Friendly units within 2 Hexes block an additional X Damage when they Block and deal +Y Damage while firing Overwatch. Other friendly Dark Angels within 2 Hexes also have their Block Chance increased by +Z%.
+----------------------------------------------------------------------------------------------------
+
+Baraqiel - Deathwing
+Условия: against Chaos, adjacent to
+Описание: Each time Baraqiel blocks damage during an attack, all further incoming damage is reduced by X and the damage Baraqiel deals with melee or Plasma Cannon attacks is increased by Y for 1 round. This effect is doubled against Chaos enemies or when standing adjacent to another friendly Dark Angel.
+(HDTW
+----------------------------------------------------------------------------------------------------
+
+Bellator - Shock Assault
+Условия: adjacent to
+Описание: Shock Assault
+Whenever Bellator attacks, any Inceptor adjacent to him also attacks eligible targets, dealing +X Damage for this attack.
+----------------------------------------------------------------------------------------------------
+
+Brother Burchard - Boltstorm
+Условия: adjacent to, within range, Suppressed
+Описание: Normal ranged attacks deal an additional 3x X Bolter Damage to the target and to each enemy adjacent to the target that is also within range of Brother Burchard. Enemies hit are Suppressed for 1 round.
+----------------------------------------------------------------------------------------------------
+
+Castellan Creed - Sworn Protector
+Условия: adjacent to
+Описание: Sworn Protector
+When Lord Castellan Creed is first targeted in battle, Colour Sergeant Kell appears in a free adjacent hex. Any time Creed is attacked, Kell switches hexes with him and takes the Damage instead, if they are adjacent to each other.
+----------------------------------------------------------------------------------------------------
+
+Corrodius - Cursed Plague Bell
+Условия: Psyker, enemy Psyker
+Описание: Cursed Plague Bell
+Friendly Chaos units starting their turn within Corrodius's Contagion aura gain +1 Movement for this turn. Enemy Psyker units within Corrodius's Contagion aura deal 1x X Psychic Damage to themselves each time one of their attacks deals Psychic damage.
+----------------------------------------------------------------------------------------------------
+
+Dante - Lord of the Host
+Условия: Flying, at or below 50%, below 50% Health, within 2 hexes
+Описание: Lord of the Host
+Other friendly units within 2 hexes with Rapid Assault or Flying deal +X Damage with melee attacks. Affected units that are at or below 50% Health also score +1 hit with melee attacks.
+----------------------------------------------------------------------------------------------------
+
+Darkstrider - Structural Analyser
+Условия: adjacent to, within 2 hexes
+Описание: Structural Analyser
+Units hit by ranged attacks from Darkstrider receive a Markerlight for one round.
+Friendly units adjacent to Darkstrider deal +X Damage with ranged attacks against targets with a Markerlight. Friendly Tau Empire units within 2 hexes of Darkstrider are also affected.
+----------------------------------------------------------------------------------------------------
+
+Exitor-Rho - Optimised Gait
+Условия: Mechanical unit, adjacent to
+Описание: Optimised Gait
+Whenever an enemy adjacent to Exitor-Rho is attacked by another friendly Mechanical unit, deal 2x X Energy Damage to that enemy. If an enemy adjacent to Exitor-Rho is defeated by a friendly Mechanical unit or an attack triggered from this ability, Exitor-Rho moves onto its hex.
+----------------------------------------------------------------------------------------------------
+
+High Marshal Helbrecht - Destroy The Witch
+Условия: against Psyker, Psyker, enemy Psyker
+Описание: Destroy The Witch
+Gains +1 Movement when there's an enemy Psyker on the battlefield. This unit and friendly adjacent units deal +X Damage with melee attacks against Psykers.
+----------------------------------------------------------------------------------------------------
+
+Incisus - Narthecium
+Условия: Mechanical unit
+Описание: When an adjacent friendly non-Mechanical unit is defeated, it is immediately revived with X Health, unless Overkilled. Can only be triggered once per turn.
+----------------------------------------------------------------------------------------------------
+
+Isabella - Medicus Ministorum
+Условия: Mechanical unit
+Описание: Medicus Ministorum
+Any friendly adjacent non-Mechanical unit that takes damage Regenerates X Health afterwards, unless it is defeated.
+Note: Medicus Ministorum triggers once per attack, not per hit.
+----------------------------------------------------------------------------------------------------
+
+Judh - Hypersensory Abilities
+Условия: within 2 hexes
+Описание: Hypersensory Abilities
+The first time each enemy turn that Judh is attacked, she cannot fall below X% of her current Health. After the attack, she moves to a free adjacent hex and places a Decoy on the hex she moved from. Then, if she is within 2 hexes of the unit that attacked her, she deals 3x Y P
+----------------------------------------------------------------------------------------------------
+
+Kariyan - Legacy of Combat
+Условия: Big Target, adjacent to
+Описание: Legacy of Combat
+After performing his first attack each turn, Kariyan performs an additional attack. If he is adjacent to an enemy Big Target, this attack deals 1x X Piercing Damage to it. If there is no adjacent enemy Big Target, Kariyan deals 3x Y Power Damage to each adjacent enemy instead.
+----------------------------------------------------------------------------------------------------
+
+Lucien - Visions of Heresy
+Условия: at or below 50%, below 50% Health, within range
+Описание: Visions of Heresy
+After performing a normal attack, Lucien performs a second attack targeting an enemy within range 2, dealing 2x X Bolter Damage. If Lucien is at or below 50% Health, all of his attacks have +Y% pierce ratio.
+----------------------------------------------------------------------------------------------------
+
+Macer - Skullsmasher
+Условия: Stunned
+Описание: Skullsmasher
+Macer deals +X Damage for each 10% of his maximum Health he is currently missing. In addition, if Macer has defeated an enemy this battle, all enemies he attacks become Stunned.
+----------------------------------------------------------------------------------------------------
+
+Makhotep - Relentless March
+Условия: Mechanical unit
+Описание: Relentless March
+Gives +1 Movement to all friendly units that start their turn in an adjacent hex. Also repairs affected Mechanical units for X Health.
+----------------------------------------------------------------------------------------------------
+
+Maladus - Haze of Corruption
+Условия: adjacent to
+Описание: Haze of Corruption
+Anytime Maladus Phlegmore defeats its target, any leftover Damage and an additional 1x X Toxic Damage is dealt to a random enemy unit adjacent to both Maladus Phlegmore and the initial target. If this unit is also defeated, an additional unit adjacent to both Maladus Phlegmore and
+----------------------------------------------------------------------------------------------------
+
+Mataneo - Aggressive Onslaught
+Условия: at or below 50%, below 50% Health, adjacent to
+Описание: Aggressive Onslaught
+When charging, Mataneo summons 2 Jump Pack Intercessors adjacent to and immediately attacking his target. At the beginning of each of Mataneo's turns, if he is still on the battlefield, all Jump Pack Intercessors summoned this way leave the battlefield.
+Red Thirst (Passive)
+If t
+----------------------------------------------------------------------------------------------------
+
+Mephiston - Fury of the Ancients
+Условия: adjacent to
+Описание: Fury of the Ancients
+After moving, deals 2x X Psychic Damage to an adjacent enemy and an additional enemy adjacent to the initial one. For 2 rounds, affected units cannot be revived, healed, repaired, nor otherwise restore Health. If Mephiston does not move, this ability triggers at the end of his t
+----------------------------------------------------------------------------------------------------
+
+Morvenn Vahl - Righteous Repugnance
+Условия: adjacent to
+Описание: Righteous Repugnance
+Normal melee attacks deal an additional 3x X Power Damage to the target and to all enemy units adjacent to both the target and to Morvenn Vahl. When Morvenn Vahl defeats a unit with a melee attack, it has a Y% chance to count twice for Act of Faith.
+----------------------------------------------------------------------------------------------------
+
+Nicodemus - Sanguinary Priest
+Условия: Mechanical unit
+Описание: Sanguinary Priest
+After moving, all adjacent friendly non-Mechanical units Regenerate X Health. If Nicodemus does not move, this ability triggers at the end of his turn.
+----------------------------------------------------------------------------------------------------
+
+Pestillian - Explosive Maladies
+Условия: adjacent to
+Описание: Explosive Maladies
+Friendly units adjacent to Pestillian deal an additional 1x X Blast Damage with their normal ranged attacks. Friendly Chaos units adjacent to Pestillian also deal this damage with normal melee attacks. Enemies defeated by affected attacks are always Overkilled.
+----------------------------------------------------------------------------------------------------
+
+Roswitha - Condemnor Stake
+Условия: against Psyker, Psyker
+Описание: Condemnor Stake
+Deals +X Damage against Psykers.
+----------------------------------------------------------------------------------------------------
+
+Sarquael - Grim Retribution
+Условия: adjacent to, within range
+Описание: Grim Retribution
+During each enemy turn, if there is no enemy adjacent to Sarquael, he shoots back at the first enemy within range that attacked him or a friendly adjacent Dark Angel. This shot counts as Overwatch and deals 1x X Plasma Damage.
+----------------------------------------------------------------------------------------------------
+
+Shadowsun - Defender of the Greater Good
+Условия: adjacent to, within 2 hexes
+Описание: Defender of the Greater Good
+Friendly units adjacent to Shadowsun or her Command-Link Drone deal +X Damage with ranged attacks, except attacks that deal Psychic Damage. Affected attacks also have a chance to score an additional hit. This chance is 25% for each round in which Shadowsun has been on th
+----------------------------------------------------------------------------------------------------
+
+Shiron - Terrifying Crescendo
+Условия: Suppressed
+Описание: Terrifying Crescendo
+Shiron's ranged attacks deal +X Damage for each time he Overkilled or would have Suppressed an enemy unit, up to a maximum of 6 times.
+----------------------------------------------------------------------------------------------------
+
+Sho'syl - MV71 Sniper Drone Squad
+Условия: adjacent to
+Описание: MV71 Sniper Drone Squad
+Instead of a ranged attack, Sho'syl summons a MV71 Sniper Drone and commands it to attack the target. This attack uses Sho'syl's Damage stat, while other effects, like buffs, are taken from the Drone. If Sho'syl already controls 3 MV71 Sniper Drones, the one with the lowest H
+----------------------------------------------------------------------------------------------------
+
+Sibyll Devine - Nightshroud
+Условия: adjacent to
+Описание: Nightshroud
+All friendly units starting their turn adjacent to Sibyll Devine gain Infiltrate for that turn and take -X damage from each hit in their and the next enemy turn.
+----------------------------------------------------------------------------------------------------
+
+Snotflogga - Squig Hound
+Условия: adjacent to
+Описание: Squig Hound
+Friendly Grots ignore Battle Fatigue. Each time Snotflogga attacks, the Squig Hound also bites the target, dealing an additional 2x X Physical Damage. Then, if there are less than 5 friendly Grots on the battlefield, summon a Grot adjacent to the target that immediately can attack.
+----------------------------------------------------------------------------------------------------
+
+Sy-Gex - Heavy Grav-Cannon
+Условия: Mechanical unit, Terminator
+Описание: Heavy Grav-Cannon
+Ranged attacks against Mk X Gravis, Terminator Armour, or Mechanical units deal +X Damage and have +Y% pierce ratio.
+----------------------------------------------------------------------------------------------------
+
+Tan Gi'da - Control Edict
+Условия: within range
+Описание: Control Edict
+While Protector Imperative is active: After Tan Gi'da attacks, summon a Skitarii Vanguard in a free adjacent hex. Cannot have more than X Skitarii Vanguards summoned this way at the same time.
+While Conqueror Imperative is active: After Tan Gi'da attacks, all friendly adjacent Mechanic
+----------------------------------------------------------------------------------------------------
+
+Tarvakh - Trophy Taker
+Условия: at or below 50%
+Описание: Trophy Taker
+Tarvakh's attacks against units that are at or below 50% of their maximum Health deal +X Damage and additional +X Crit Damage. His Crit Chance is increased by Y% for each unit that he defeated this battle.
+----------------------------------------------------------------------------------------------------
+
+Thaddeus Noble - Spotter
+Условия: within 2 hexes
+Описание: Friendly units within 2 hexes with the trait Heavy Weapon gain +X Damage.
+----------------------------------------------------------------------------------------------------
+
+Thaumachus - Arcane Shield
+Условия: within 2 hexes
+Описание: Arcane Shield
+After moving, Thaumachus applies a Shield to the closest friendly unit within 2 hexes, preferring Thousand Sons units, then other Chaos units, then other friendly units, and lastly casting it on himself if there is no other valid target. The shield has X Health and lasts one round.
+If 
+----------------------------------------------------------------------------------------------------
+
+The Patermine - Cosmic Horror
+Условия: Suppressed
+Описание: Cosmic Horror
+Whenever the Patermine defeats an enemy, it places a Decoy on the hex of that enemy. Other enemies surrounding the defeated unit have a X% chance to be Suppressed for 1 round, and have a X% chance to trigger Battle Fatigue a second time, if they have it. When the Patermine moves onto a
+----------------------------------------------------------------------------------------------------
+
+Tjark - Hunters Beyond Death
+Условия: against Psyker, Psyker, enemy Psyker, within 2 hexes
+Описание: Hunters Beyond Death
+Deals +X Damage against Psykers, and Enemy Psykers within 2 Hexes deal -X Damage.
+Unless they are Immune, Enemy Psykers within 2 Hexes will not hit an additional unit with their normal ranged attacks.
+----------------------------------------------------------------------------------------------------
+
+Trajann - Legendary Commander
+Условия: adjacent to
+Описание: Legendary Commander
+Enemies receive +X Damage if they are adjacent to any friendly unit that has used an active ability this turn. If the affected enemies are also adjacent to Trajann, friendly Characters score Y additional hits against them with their first attack that is not a normal attack.
+----------------------------------------------------------------------------------------------------
+
+Tyrant Guard - Guardian Organism
+Условия: Big Target
+Описание: Guardian Organism
+If the Tyrant Guard is within Synapse range or did not move during its previous turn, it and friendly units affected by its Big Target trait take -X% Damage during the enemy's next turn, up to a maximum of -Y Damage per hit.
+Note: The percent damage reduction occurs pre-Armour.
+----------------------------------------------------------------------------------------------------
+
+Tyrith - Unwavering Sentinel
+Условия: adjacent to, within range
+Описание: Unwavering Sentinel
+During each enemy turn, after Tyrith is attacked and the attacker is within range 2, she deals 2x X Bolter Damage to the attacker. If there is an enemy adjacent to Tyrith, the range of this ability is reduced to 1.
+----------------------------------------------------------------------------------------------------
+
+Ulf - Savage Killer
+Условия: adjacent to
+Описание: Savage Killer
+When a Summon moves to or is summoned adjacent to Ulf, he immediately deals 5x X Power Damage to it. Ulf will also perform this ability against any enemy that attempts to use an active ability while in a Hex adjacent to him, in which case he deals his Damage before that unit's ability 
+----------------------------------------------------------------------------------------------------
+
+Vindicta - Fire of Absolution
+Условия: adjacent to, on Fire
+Описание: Fire of Absolution
+When performing a ranged attack, also deals 3x X Flame Damage to all units adjacent to the target. Has a 30% chance of setting each adjacent hex on Fire as well.
+----------------------------------------------------------------------------------------------------
+
+Winged Prime - Synaptic Lynchpin
+Условия: adjacent to
+Описание: Synaptic Lynchpin
+Whenever the Winged Prime, or another friendly unit with Synapse, performs a normal attack against an enemy and that enemy is not defeated, summon a Hormagaunt adjacent to the target, which immediately attacks the enemy. Cannot have more than X Hormagaunts summoned this way at the 
+----------------------------------------------------------------------------------------------------
+
+Xybia - Decoy
+Условия: adjacent to
+Описание: After moving, places a Decoy on an empty adjacent hex. Then, if there are 2 or more decoys adjacent to Xybia, summons a Neophyte Hybrid on one adjacent decoy. If Xybia does not move, then this ability triggers at the end of her turn.
+----------------------------------------------------------------------------------------------------
