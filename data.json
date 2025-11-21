@@ -568,7 +568,7 @@
     },
     {
       "name": "Shiron",
-      "faction": "Pages with broken file links",
+      "faction": "Emperor's Children",
       "description": "Shiron Capersi the Idolator, Noise Marine, is a character of the Emperor's Children faction.",
       "baseStats": {
         "health": "85",
@@ -1336,7 +1336,7 @@
     },
     {
       "name": "Incisus",
-      "faction": "Pages using EmbedVideo",
+      "faction": "Ultramarines",
       "description": "Apothecary Andreas Incisus is a character of the Ultramarines faction.",
       "baseStats": {
         "health": "100",
@@ -2048,7 +2048,7 @@
     },
     {
       "name": "Adamatar",
-      "faction": "Uncommon",
+      "faction": "Emperor's Children",
       "description": "Adamatar Xandassus, Mirrorborn, Lord Kakophonist is a character of the Emperor's Children faction.",
       "baseStats": {
         "health": "100",
@@ -5191,7 +5191,7 @@
     },
     {
       "name": "Dante",
-      "faction": "Pages with broken file links",
+      "faction": "Blood Angels",
       "description": "Commander Dante, Chapter Master, is a character of the Blood Angels faction.",
       "baseStats": {
         "health": "90",
@@ -7279,7 +7279,7 @@
     },
     {
       "name": "Lucius",
-      "faction": "Legendary",
+      "faction": "Emperor's Children",
       "description": "Lucius the Eternal, Champion of Slaanesh, is a character of the Emperor's Children faction.",
       "baseStats": {
         "health": "90",
@@ -7901,7 +7901,7 @@
     },
     {
       "name": "Marshal Dreir",
-      "faction": "Pages with broken file links",
+      "faction": "Astra Militarum",
       "description": "Lord Marshal Varnan Dreir is a character of the Astra Militarum faction.",
       "baseStats": {
         "health": "100",
@@ -11032,7 +11032,7 @@
     },
     {
       "name": "Tarvakh",
-      "faction": "Rare",
+      "faction": "World Eaters",
       "description": "Tarvakh, the Headsman, Master of Executions is a character of the World Eaters faction.",
       "baseStats": {
         "health": "95",
