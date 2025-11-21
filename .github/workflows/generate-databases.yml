@@ -37,6 +37,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add traits_database.csv character_traits.csv conditional_bonuses.csv character_factions.csv
-          git commit -m "🤖 Auto-generate databases from data.json"
+          git add traits_database.csv character_traits.csv conditional_bonuses.csv character_factions.csv character_attack_types.csv
+          git commit -m "🤖 Auto-generate 5 CSV databases from data.json
+          
+          - traits_database.csv (trait effects)
+          - character_traits.csv (character ↔ trait links)
+          - conditional_bonuses.csv (vs Psyker, Mechanical, etc)
+          - character_factions.csv (character ↔ faction links)
+          - character_attack_types.csv (attack types & pierce ratios)"
           git push
