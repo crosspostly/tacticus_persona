@@ -20,53 +20,37 @@
             font-size: 2.5em;
             text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
-        .import-section {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #16213e;
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid #00d4ff;
-            z-index: 100;
-            min-width: 220px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-        .import-section h3 {
-            color: #00d4ff;
-            margin: 0 0 10px 0;
-            font-size: 0.9em;
-            text-align: center;
-        }
-        .import-btn {
-            background: #00d4ff;
+        
+        /* 🆕 КНОПКА СИНХРОНИЗАЦИИ */
+        .sync-button {
+            background: #00ff88;
             color: #1a1a2e;
             border: none;
-            padding: 8px 15px;
-            font-size: 0.9em;
+            padding: 15px 30px;
+            font-size: 1.1em;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            width: 100%;
-            margin-bottom: 5px;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
         }
-        .import-btn:hover {
-            background: #00ff88;
-            transform: scale(1.02);
-        }
-        .import-btn.sync {
-            background: #00ff88;
-        }
-        .import-btn.sync:hover {
+        .sync-button:hover {
             background: #00d4ff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
         }
+        .sync-button:active {
+            transform: translateY(0);
+        }
+        
         .auto-load-status {
-            font-size: 0.75em;
+            font-size: 0.85em;
             color: #888;
             text-align: center;
-            margin-top: 5px;
-            line-height: 1.3;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
         .auto-load-status.success {
             color: #00ff88;
@@ -74,6 +58,7 @@
         .auto-load-status.error {
             color: #ff6b6b;
         }
+        
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -427,18 +412,12 @@
     <div class="container">
         <h1>⚔️ Warhammer 40K: Tacticus - Matchup Analyzer</h1>
         
-        <div class="import-section">
-            <h3>🔄 СИНХРОНИЗАЦИЯ</h3>
-            <button class="import-btn sync" onclick="syncAllData()">
-                🔄 Синхронизировать
-            </button>
-            <button class="import-btn" onclick="document.getElementById('fileInput').click()">
-                📤 Загрузить TXT
-            </button>
-            <input type="file" id="fileInput" accept=".txt,.json" style="display: none;" onchange="loadFile(event)">
-            <div id="autoLoadStatus" class="auto-load-status">
-                Ожидание синхронизации...
-            </div>
+        <!-- 🆕 КНОПКА ВМЕСТО ПЛАВАЮЩЕЙ ПАНЕЛИ -->
+        <button class="sync-button" onclick="syncAllData()">
+            🔄 СИНХРОНИЗАЦИЯ
+        </button>
+        <div id="autoLoadStatus" class="auto-load-status">
+            Нажмите кнопку для загрузки данных...
         </div>
         
         <div class="filters">
@@ -511,7 +490,7 @@
 
         <div class="matrix-container">
             <div id="loading" class="loading">
-                Нажмите "Синхронизировать" для загрузки данных
+                Нажмите "Синхронизация" для загрузки данных
             </div>
             <table id="matchupTable" style="display: none;">
                 <thead id="tableHead"></thead>
@@ -664,7 +643,7 @@
         let currentDefender = null;
 
         window.addEventListener('load', function() {
-            syncAllData();
+            // Не автозагружаем - ждём нажатия кнопки
         });
 
         async function syncAllData() {
@@ -705,17 +684,34 @@
                     throw new Error('Неизвестный формат данных');
                 }
                 
-                const [synergyResponse, counterResponse] = await Promise.all([
+                // 🆕 ЗАГРУЖАЕМ ENHANCED БАЗЫ ДАННЫХ
+                const [synergyResponse, counterResponse, enhancedSynergyResponse, enhancedCounterResponse] = await Promise.all([
                     fetch('synergy_database.json').catch(() => null),
-                    fetch('counter_database.json').catch(() => null)
+                    fetch('counter_database.json').catch(() => null),
+                    fetch('enhanced_synergy_database.json').catch(() => null),
+                    fetch('enhanced_counter_database.json').catch(() => null)
                 ]);
                 
                 if (synergyResponse?.ok) {
                     synergyDatabase = await synergyResponse.json();
                 }
                 
+                // 🆕 ПРИОРИТЕТ ENHANCED БАЗАМ
+                if (enhancedSynergyResponse?.ok) {
+                    const enhancedData = await enhancedSynergyResponse.json();
+                    synergyDatabase = {...synergyDatabase, ...enhancedData};
+                    console.log('✅ Enhanced synergy database loaded');
+                }
+                
                 if (counterResponse?.ok) {
                     counterDatabase = await counterResponse.json();
+                }
+                
+                // 🆕 ПРИОРИТЕТ ENHANCED БАЗАМ
+                if (enhancedCounterResponse?.ok) {
+                    const enhancedData = await enhancedCounterResponse.json();
+                    counterDatabase = {...counterDatabase, ...enhancedData};
+                    console.log('✅ Enhanced counter database loaded');
                 }
                 
                 await loadConditionalDatabases();
@@ -737,7 +733,6 @@
                     passiveAbility: c.passiveAbility || {}
                 }));
                 
-                // 🆕 СОРТИРОВКА ПО АЛФАВИТУ ПО УМОЛЧАНИЮ
                 characters.sort((a, b) => a.name.localeCompare(b.name));
                 
                 buildMatchupMatrix();
@@ -755,7 +750,7 @@
                 statusDiv.innerHTML = `
                     ✅ ${characters.length} персонажей<br>
                     ${csvStatus} CSV базы (${traitsDB.length} traits)<br>
-                    ${synergyStatus} Синергии | ${counterStatus} Контры<br>
+                    ${synergyStatus} Синергии (${Object.keys(synergyDatabase).length}) | ${counterStatus} Контры (${Object.keys(counterDatabase).length})<br>
                     <small>Источник: ${dataSource}</small>
                 `;
                 statusDiv.classList.add('success');
@@ -936,8 +931,22 @@
             const totalDmg = dmgPerHit * atkHits * incomingMult;
             const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
 
-            const armorRatio = armor / dmg;
-            const defenseEff = Math.min(100, Math.max(0, armorRatio * 50 + 25));
+            // 🆕 ИСПРАВЛЕННАЯ ФОРМУЛА ЗАЩИТЫ
+            // Старая: const defenseEff = Math.min(100, Math.max(0, armorRatio * 50 + 25));
+            // Проблема: при armor >= dmg * 1.5 давала 100%
+            
+            // Новая логика:
+            // - Если броня полностью блокирует урон (armor >= dmg) → высокая защита
+            // - Если броня частично блокирует → средняя защита
+            // - Учитываем pierce - чем выше pierce, тем ниже эффективность брони
+            
+            const armorEffectiveness = Math.max(0, (armor - dmg * (pierce / 100)));
+            const hpProtectionRounds = defender.hp / Math.max(1, dmg - armor);
+            
+            // Защита = комбинация блокирования урона + выживаемости
+            // Максимум 85% (никогда не даём 100%)
+            const rawDefense = (armorEffectiveness / dmg) * 40 + Math.min(30, hpProtectionRounds * 3);
+            const defenseEff = Math.min(85, Math.max(5, rawDefense));
 
             const average = (attackEff + defenseEff) / 2;
 
@@ -967,7 +976,6 @@
             return matchupMatrix[attacker.name][defender.name];
         }
 
-        // 🆕 ОБНОВЛЕННЫЕ ФИЛЬТРЫ
         function populateFilters() {
             const atkFilter = document.getElementById('attackerFilter');
             const defFilter = document.getElementById('defenderFilter');
@@ -977,7 +985,6 @@
             atkFilter.innerHTML = '<option value="">Все персонажи</option>';
             defFilter.innerHTML = '<option value="">Все персонажи</option>';
             
-            // 🆕 Собираем уникальные фракции
             const factions = [...new Set(characters.map(c => c.faction))].sort();
             factionFilter.innerHTML = '<option value="">Все фракции</option>';
             factions.forEach(faction => {
@@ -989,7 +996,6 @@
                 }
             });
             
-            // 🆕 Собираем уникальные трейты
             const allTraits = new Set();
             characters.forEach(char => {
                 const traits = getCharacterTraits(char.name);
@@ -1028,7 +1034,6 @@
             return 'cell-0-29';
         }
 
-        // 🆕 ОБНОВЛЕННАЯ ЛОГИКА RENDER
         function renderTable() {
             const atkFilter = document.getElementById('attackerFilter').value;
             const defFilter = document.getElementById('defenderFilter').value;
@@ -1038,7 +1043,6 @@
             const sortOrder = document.getElementById('sortOrder').value;
             const limit = parseInt(document.getElementById('limitSelect').value);
             
-            // Применяем фильтры
             let filteredChars = characters.filter(c => {
                 if (factionFilter && c.faction !== factionFilter) return false;
                 if (traitFilter && !getCharacterTraits(c.name).includes(traitFilter)) return false;
@@ -1052,7 +1056,6 @@
                 return true;
             });
             
-            // Применяем сортировку
             if (sortOrder === 'alpha') {
                 filteredChars.sort((a, b) => a.name.localeCompare(b.name));
             } else if (sortOrder === 'hp') {
@@ -1252,6 +1255,9 @@
                 <div class="metric-box">
                     <h4>🛡️ ЭФФЕКТИВНОСТЬ ЗАЩИТЫ</h4>
                     <div class="metric-value" style="background: #${getColorForPct(metrics.defense)}">${metrics.defense}%</div>
+                    <p style="font-size: 0.85em; margin-top: 5px; color: #888;">
+                        Учитывает броню, HP и pierce атакующего
+                    </p>
                 </div>
                 
                 <div class="metric-box">
@@ -1319,6 +1325,7 @@
                         ${syn.target_faction ? `<div style="font-size: 0.85em; color: #888;">Цель: ${syn.target_faction}</div>` : ''}
                         ${syn.target_trait ? `<div style="font-size: 0.85em; color: #888;">Трейт: ${syn.target_trait}</div>` : ''}
                         ${partnersList ? `<div style="margin-top: 8px;">${partnersList}</div>` : ''}
+                        ${syn.source ? `<div style="font-size: 0.7em; color: #666; margin-top: 5px;">📚 ${syn.source}</div>` : ''}
                     </div>
                 `;
             });
@@ -1360,6 +1367,7 @@
                         <div style="font-size: 0.9em; margin-bottom: 5px;">${counter.weakness}</div>
                         ${typesList ? `<div style="margin-top: 8px;">${typesList}</div>` : ''}
                         ${traitBadge ? `<div style="margin-top: 8px;">${traitBadge}</div>` : ''}
+                        ${counter.source ? `<div style="font-size: 0.7em; color: #666; margin-top: 5px;">📚 ${counter.source}</div>` : ''}
                     </div>
                 `;
             });
@@ -1375,7 +1383,6 @@
             return 'ef4444';
         }
 
-        // 🆕 EVENT LISTENERS
         document.getElementById('attackerFilter').addEventListener('change', renderTable);
         document.getElementById('defenderFilter').addEventListener('change', renderTable);
         document.getElementById('factionFilter').addEventListener('change', renderTable);
