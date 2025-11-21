@@ -1,16 +1,4 @@
 character,faction
-Corrodius,Death Guard
-Wrask,Chaos
-Winged Prime,Tyranids
-Thaumachus,Chaos
-Shiron,Emperor's Children
-Atlacoya,Imperial
-Brother Burchard,Black Templars
-Nauseous Rotbone,Death Guard
-Kut Skoden,Astra Militarum
-Lucien,Imperial
-Incisus,Ultramarines
-Isaak,Xenos
 Abaddon The Despoiler,Black Legion
 Abraxas,Chaos
 Actus,Adeptus Mechanicus
@@ -25,18 +13,21 @@ Anuphet,Necrons
 Archimatos,Black Legion
 Arjac,Space Wolves
 Asmodai,Imperial
+Atlacoya,Imperial
 Aun'Shi,Tau Empire
 Azkor,Chaos
 Azrael,Dark Angels
 Baraqiel,Dark Angels
 Bellator,Ultramarines
 Boss Gulgortz,Orks
+Brother Burchard,Black Templars
 Brother Jaeger,Black Templars
 Calandis,Aeldari
 Castellan Creed,Astra Militarum
 Celestine,Adepta Sororitas
 Certus,Ultramarines
 Commissar Yarrick,Astra Militarum
+Corrodius,Death Guard
 Dante,Blood Angels
 Darkstrider,Tau Empire
 Deathleaper,Tyranids
@@ -48,11 +39,15 @@ Haarken Worldclaimer,Black Legion
 High Marshal Helbrecht,Black Templars
 Hollan,Xenos
 Imospekh,Necrons
+Incisus,Ultramarines
+Isaak,Xenos
 Isabella,Imperial
 Jain Zar,Aeldari
 Judh,Xenos
 Kariyan,Imperial
 Kharn,Chaos
+Kut Skoden,Astra Militarum
+Lucien,Imperial
 Lucius,Emperor's Children
 Macer,Chaos
 Makhotep,Necrons
@@ -63,6 +58,7 @@ Mataneo,Imperial
 Maugan Ra,Aeldari
 Mephiston,Imperial
 Morvenn Vahl,Adepta Sororitas
+Nauseous Rotbone,Death Guard
 Neurothrope,Tyranids
 Nicodemus,Imperial
 Njal,Space Wolves
@@ -73,6 +69,7 @@ Re'vas,Tau Empire
 Roswitha,Adepta Sororitas
 Sarquael,Dark Angels
 Shadowsun,Xenos
+Shiron,Emperor's Children
 Sho'syl,Tau Empire
 Sibyll Devine,Astra Militarum
 Snappawrecka,Orks
@@ -83,6 +80,7 @@ Tan Gi'da,Adeptus Mechanicus
 Tanksmasha,Orks
 Tarvakh,World Eaters
 Thaddeus Noble,Astra Militarum
+Thaumachus,Chaos
 The Patermine,Xenos
 Thutmose,Necrons
 Titus,Imperial
@@ -97,5 +95,7 @@ Varro Tigurius,Ultramarines
 Vindicta,Adepta Sororitas
 Vitruvius,Adeptus Mechanicus
 Volk,Black Legion
+Winged Prime,Tyranids
+Wrask,Chaos
 Xybia,Xenos
 Yazaghor,Chaos

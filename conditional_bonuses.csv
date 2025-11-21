@@ -1,19 +1,17 @@
 character,ability_name,ability_type,condition_type,condition_value,bonus_value,confidence
-Corrodius,Poxwalkers,active,trait,Mechanical,30,low
-Corrodius,Cursed Plague Bell,passive,trait,Psyker,50,low
-Winged Prime,Alpha Warrior,active,trait,Summon,100,high
-Winged Prime,Synaptic Lynchpin,passive,trait,Summon,30,low
-Atlacoya,Daughter of the Abyss,passive,trait,Psyker,50,low
-Incisus,Narthecium,passive,trait,Mechanical,30,low
 Abraxas,Malefic Maelstrom,active,trait,Summon,30,low
 Actus,Defend the Divine Work,active,trait,Mechanical,30,low
 Actus,Galvanic Field,passive,trait,Mechanical,30,low
 Aleph-Null,Fabricator Claw Array,passive,trait,Mechanical,30,low
 Archimatos,Daemonic Incursion,active,trait,Psyker,50,low
+Atlacoya,Daughter of the Abyss,passive,trait,Psyker,50,low
 Baraqiel,Deathwing,passive,faction,Chaos,19,low
 Celestine,Geminae Superia,passive,trait,Summon,30,low
+Corrodius,Poxwalkers,active,trait,Mechanical,30,low
+Corrodius,Cursed Plague Bell,passive,trait,Psyker,50,low
 Exitor-Rho,Optimised Gait,passive,trait,Mechanical,30,low
 High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,50,low
+Incisus,Narthecium,passive,trait,Mechanical,30,low
 Isabella,Rites of Restoration,active,trait,Mechanical,30,low
 Isabella,Medicus Ministorum,passive,trait,Mechanical,30,low
 Kariyan,Legacy of Combat,passive,trait,Big Target,19,low
@@ -31,3 +29,5 @@ Tanksmasha,Unstoppable Momentum,active,trait,Big Target,19,low
 Tjark,Hunters Beyond Death,passive,trait,Psyker,50,low
 Tyrant Guard,Guardian Organism,passive,trait,Big Target,19,low
 Ulf,Savage Killer,passive,trait,Summon,30,low
+Winged Prime,Alpha Warrior,active,trait,Summon,100,high
+Winged Prime,Synaptic Lynchpin,passive,trait,Summon,30,low

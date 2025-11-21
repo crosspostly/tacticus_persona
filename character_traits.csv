@@ -1,34 +1,4 @@
 character,trait
-Corrodius,Contagions of Nurgle
-Corrodius,Resilient
-Wrask,Blessings of Khorne
-Wrask,Deep Strike
-Wrask,Rapid Assault
-Wrask,Terminator Armour
-Wrask,Unstoppable
-Winged Prime,Final Vengeance
-Winged Prime,Flying
-Winged Prime,Synapse
-Thaumachus,Flying
-Thaumachus,Psyker
-Thaumachus,Weaver of Fates
-Shiron,Heavy Weapon
-Shiron,Suppressive Fire
-Shiron,Thrill Seekers
-Atlacoya,Parry
-Atlacoya,Terrifying
-Brother Burchard,Crushing Strike
-Brother Burchard,Mk X Gravis
-Brother Burchard,Suppressive Fire
-Nauseous Rotbone,Contagions of Nurgle
-Nauseous Rotbone,Healer
-Nauseous Rotbone,Resilient
-Kut Skoden,Big Target
-Lucien,Rapid Assault
-Lucien,Resilient
-Lucien,Unstoppable
-Incisus,Healer
-Isaak,Ambush
 Abaddon The Despoiler,Let the Galaxy Burn
 Abaddon The Despoiler,Resilient
 Abaddon The Despoiler,Terminator Armour
@@ -63,6 +33,8 @@ Arjac,Resilient
 Arjac,Terminator Armour
 Arjac,Unstoppable
 Asmodai,Terrifying
+Atlacoya,Parry
+Atlacoya,Terrifying
 Aun'Shi,None
 Azkor,Blessings of Khorne
 Azkor,Daemon
@@ -82,6 +54,9 @@ Boss Gulgortz,Crushing Strike
 Boss Gulgortz,Get Stuck In
 Boss Gulgortz,Final Vengeance
 Boss Gulgortz,Mechanical
+Brother Burchard,Crushing Strike
+Brother Burchard,Mk X Gravis
+Brother Burchard,Suppressive Fire
 Brother Jaeger,Final Vengeance
 Brother Jaeger,Parry
 Brother Jaeger,Rapid Assault
@@ -94,6 +69,8 @@ Certus,Heavy Weapon
 Certus,Infiltrate
 Certus,Overwatch
 Commissar Yarrick,Resilient
+Corrodius,Contagions of Nurgle
+Corrodius,Resilient
 Dante,Deep Strike
 Dante,Final Vengeance
 Dante,Flying
@@ -124,6 +101,8 @@ Hollan,Ambush
 Hollan,Healer
 Imospekh,Living Metal
 Imospekh,Overwatch
+Incisus,Healer
+Isaak,Ambush
 Isabella,Act of Faith
 Isabella,Healer
 Jain Zar,Infiltrate
@@ -137,6 +116,10 @@ Kariyan,Resilient
 Kharn,Blessings of Khorne
 Kharn,Final Vengeance
 Kharn,Rapid Assault
+Kut Skoden,Big Target
+Lucien,Rapid Assault
+Lucien,Resilient
+Lucien,Unstoppable
 Lucius,Thrill Seekers
 Lucius,Parry
 Macer,Blessings of Khorne
@@ -162,6 +145,9 @@ Morvenn Vahl,Act of Faith
 Morvenn Vahl,Big Target
 Morvenn Vahl,Explodes
 Morvenn Vahl,Mechanical
+Nauseous Rotbone,Contagions of Nurgle
+Nauseous Rotbone,Healer
+Nauseous Rotbone,Resilient
 Neurothrope,Close Combat Weakness
 Neurothrope,Flying
 Neurothrope,Psyker
@@ -192,6 +178,9 @@ Shadowsun,Camouflage
 Shadowsun,Close Combat Weakness
 Shadowsun,Flying
 Shadowsun,Infiltrate
+Shiron,Heavy Weapon
+Shiron,Suppressive Fire
+Shiron,Thrill Seekers
 Sho'syl,Camouflage
 Sho'syl,Close Combat Weakness
 Sibyll Devine,Psyker
@@ -214,6 +203,9 @@ Tarvakh,Blessings of Khorne
 Tarvakh,Rapid Assault
 Thaddeus Noble,Indirect Fire
 Thaddeus Noble,Suppressive Fire
+Thaumachus,Flying
+Thaumachus,Psyker
+Thaumachus,Weaver of Fates
 The Patermine,Infiltrate
 The Patermine,Synapse
 The Patermine,Terrifying
@@ -249,6 +241,14 @@ Volk,Big Target
 Volk,Daemon
 Volk,Let the Galaxy Burn
 Volk,Suppressive Fire
+Winged Prime,Final Vengeance
+Winged Prime,Flying
+Winged Prime,Synapse
+Wrask,Blessings of Khorne
+Wrask,Deep Strike
+Wrask,Rapid Assault
+Wrask,Terminator Armour
+Wrask,Unstoppable
 Xybia,Ambush
 Xybia,Psyker
 Yazaghor,Flying
