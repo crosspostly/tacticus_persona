@@ -12626,7 +12626,7 @@
       "traits": [
         "Psyker"
       ],
-      "rarity": Uncommon,
+      "rarity": "Uncommon",
       "activeAbility": {
         "name": "Storm of Wrath",
         "description": "Deals 1x X Psychic Damage to a unit within 2 hexes and up to Y adjacent units. This ability's Damage ignores all of the attacker bonuses and modifiers (including elevation), and cannot Crit.",
