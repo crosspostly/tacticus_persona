@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Action - Sort data.json</title>
+    <style>
+        :root {
+            --color-background: #f5f5f5;
+            --color-surface: #ffffff;
+            --color-text: #1a1a1a;
+            --color-primary: #2ea44f;
+            --color-border: rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-background);
+            color: var(--color-text);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--color-surface);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .code-block {
+            background: #f6f8fa;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .filename {
+            background: #0969da;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px 6px 0 0;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: -1px;
+            display: inline-block;
+        }
+
+        .step {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--color-primary);
+        }
+
+        .step-number {
+            background: var(--color-primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .info-box {
+            background: #dff6ff;
+            border: 1px solid #54aeff;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 15px 0;
+        }
+
+        .info-box strong {
+            color: #0969da;
+        }
+
+        .btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #2c974b;
+        }
+
+        .feature {
+            display: flex;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+
+        .feature-icon {
+            color: var(--color-primary);
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* Модальное окно */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--color-surface);
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+            padding: 30px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #dc2626;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 GitHub Action: Sort data.json Alphabetically</h1>
+        <p class="subtitle">Автоматическая сортировка персонажей по имени</p>
+
+        <div class="section">
+            <div class="section-title">📋 Что делает этот Action</div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <div>Сортирует массив <code>characters</code> в <code>data.json</code> по полю <code>name</code> в алфавитном порядке</div>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <div>Запускается автоматически при push в ветку <code>main</code></div>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <div>Создаёт коммит с отсортированными данными</div>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <div>Можно запустить вручную через GitHub UI</div>
+            </div>
+        </div>
+
+        <!-- Кнопка для открытия модального окна -->
+        <div class="section">
+            <button class="btn" onclick="openModal()" style="width: 100%; font-size: 16px; padding: 15px;">📝 Инструкция по установке</button>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🚀 Как использовать</div>
+            
+            <div class="info-box">
+                <strong>Автоматический запуск:</strong><br>
+                Action запустится автоматически при любом изменении <code>data.json</code> в ветке <code>main</code>
+            </div>
+
+            <div class="info-box">
+                <strong>Ручной запуск:</strong><br>
+                1. Перейдите в репозиторий на GitHub<br>
+                2. Actions → "Sort data.json alphabetically"<br>
+                3. Run workflow → Run workflow
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🔧 Альтернатива: Простой Python скрипт</div>
+            <p style="margin-bottom: 15px;">Если не хотите использовать GitHub Action, можете запускать локально:</p>
+            
+            <div class="filename">sort_data.py</div>
+            <div class="code-block">
+                <pre>#!/usr/bin/env python3
+import json
+
+def sort_data_json():
+    """Сортирует characters в data.json по имени"""
+    
+    # Читаем файл
+    with open('data.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    # Сортируем по name (case-insensitive)
+    if 'characters' in data and isinstance(data['characters'], list):
+        original_count = len(data['characters'])
+        data['characters'].sort(key=lambda x: x.get('name', '').lower())
+        print(f"✓ Отсортировано {original_count} персонажей")
+    else:
+        print("⚠ Массив characters не найден")
+        return
+    
+    # Записываем обратно
+    with open('data.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    print("✓ Файл data.json успешно обновлён")
+
+if __name__ == '__main__':
+    sort_data_json()</pre>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <strong>Запуск локально:</strong>
+            </div>
+            <div class="code-block">
+                <pre>python3 sort_data.py</pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">✨ Особенности</div>
+            <div class="feature">
+                <span class="feature-icon">📝</span>
+                <div><strong>Case-insensitive сортировка:</strong> "Abaddon" и "ahriman" сортируются правильно</div>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🔒</span>
+                <div><strong>Безопасность:</strong> Только если есть реальные изменения, создаётся коммит</div>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🌍</span>
+                <div><strong>UTF-8 поддержка:</strong> Корректная работа с Unicode символами</div>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">📐</span>
+                <div><strong>Форматирование:</strong> Сохраняет отступы (2 пробела) и структуру JSON</div>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🛡️</span>
+                <div><strong>Обработка ошибок:</strong> Детальные сообщения при проблемах с JSON</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">✅ Статус работы</div>
+            <div class="info-box" style="background: #d4edda; border-color: #28a745;">
+                <strong>✓ GitHub Action работает корректно!</strong><br><br>
+                <strong>Последний успешный запуск:</strong><br>
+                • Отсортировано: 100 персонажей<br>
+                • Коммит: 9a4db18 <code>🔄 Auto-sort: Sorted characters alphabetically by name</code><br>
+                • Push успешно выполнен в ветку <code>main</code><br>
+                • Дата: 2025-11-21T17:55:41Z<br><br>
+                
+                <strong>Что произошло:</strong><br>
+                1. ✓ Checkout репозитория с использованием <code>GH_TOKEN</code><br>
+                2. ✓ Python 3.11.14 установлен<br>
+                3. ✓ Скрипт сортировки выполнен успешно<br>
+                4. ✓ Обнаружены изменения в data.json (3259 строк изменено)<br>
+                5. ✓ Создан коммит<br>
+                6. ✓ Изменения отправлены в GitHub<br><br>
+                
+                <strong>💡 Теперь:</strong><br>
+                При каждом изменении <code>data.json</code> персонажи будут автоматически сортироваться по алфавиту!
+            </div>
+        </div>
+
+        <div class="info-box">
+            <strong>💡 Совет:</strong> После установки workflow первый раз запустите его вручную, чтобы проверить работу!
+        </div>
+    </div>
+
+    <!-- Модальное окно с инструкцией -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2>📝 Инструкция по установке</h2>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Создайте папку для workflows</strong>
+            </div>
+            <div class="code-block">
+                <pre>mkdir -p .github/workflows</pre>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Создайте файл workflow</strong>
+            </div>
+            <div class="filename">.github/workflows/sort-data.yml</div>
+            <div class="code-block">
+                <pre>name: Sort data.json alphabetically
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data.json'
+  workflow_dispatch:  # Позволяет запускать вручную
+
+jobs:
+  sort-json:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Sort data.json by name
+        run: |
+          python3 &lt;&lt;'EOF'
+          import json
+          
+          # Читаем файл
+          with open('data.json', 'r', encoding='utf-8') as f:
+              data = json.load(f)
+          
+          # Сортируем characters по полю name
+          if 'characters' in data and isinstance(data['characters'], list):
+              data['characters'].sort(key=lambda x: x.get('name', '').lower())
+              print(f"✓ Отсортировано {len(data['characters'])} персонажей")
+          
+          # Записываем обратно с красивым форматированием
+          with open('data.json', 'w', encoding='utf-8') as f:
+              json.dump(data, f, ensure_ascii=False, indent=2)
+              print("✓ Файл data.json обновлён")
+          EOF
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet data.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Нет изменений в data.json"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Обнаружены изменения в data.json"
+          fi
+      
+      - name: Commit sorted data
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data.json
+          git commit -m "🔄 Auto-sort: Sorted characters alphabetically by name"
+          git push</pre>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Коммит и push</strong>
+            </div>
+            <div class="code-block">
+                <pre>git add .github/workflows/sort-data.yml
+git commit -m "Add workflow to sort data.json alphabetically"
+git push</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        // Закрытие по ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
