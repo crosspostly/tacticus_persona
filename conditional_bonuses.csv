@@ -1,77 +1,33 @@
-character,ability_name,ability_type,condition_type,condition_value,bonus_type,bonus_value,confidence,full_description
-Abraxas,Malefic Maelstrom,active,trait,Summon,damage_multiplier,unknown,medium,"Malefic Maelstrom
-Summon a Pink Horror on a free Hex adjacent to Abraxas. Until the end of this turn, whenever an enemy unit is dealt Psychic Damage, summon a Screamer of Tzeentch on a free Hex adjace"
-Actus,Defend the Divine Work,active,trait,Mechanical,damage_multiplier,unknown,medium,"Defend the Divine Work
-Repairs himself and all friendly adjacent units X Health.
-Note: Repair only affects Mechanical units."
-Actus,Galvanic Field,passive,trait,Mechanical,damage_multiplier,unknown,medium,"Galvanic Field
-Whenever Actus repairs another unit, that unit immediately attacks a target in range, dealing X% of its own Damage to a maximum of Y Damage per hit. Actus can repair other friendly unit"
-Aleph-Null,Fabricator Claw Array,passive,trait,Mechanical,damage_multiplier,unknown,medium,"Fabricator Claw Array
-After moving, repairs one random adjacent friendly Mechanical unit for X Health. If Aleph-Null does not move, then this ability triggers at the end of its turn.
-Note: Can restore"
-Archimatos,Daemonic Incursion,active,trait,Psyker,damage_multiplier,unknown,medium,"Daemonic Incursion
-Summons a Bloodletter adjacent to an enemy target within range 2. The Bloodletter immediately attacks the target. Keeps summoning Bloodletters up to a max of 6, as long as the targe"
-Atlacoya,Daughter of the Abyss,passive,trait,Psyker,damage_multiplier,unknown,medium,"Daughter of the Abyss
-Atlacoya takes -X Psychic Damage. Psychic Damage dealt to other friendly units within 2 hexes of Atlacoya is reduced by Y%. Enemy Psykers within 2 hexes receive +Z% Damage."
-Boss Gulgortz,WAAAGH!,active,trait,Ork,damage_multiplier,unknown,medium,"If Boss Gulgortz has not moved, he summons 2 Ork Boyz in free adjacent hexes. Until the end of this turn, all friendly Orks and friendly units adjacent to Boss Gulgortz gain +1 Movement and their norm"
-Celestine,Geminae Superia,passive,trait,Summon,damage_multiplier,unknown,medium,"Geminae Superia
-When attacked, summon a Geminae Superia in a free adjacent hex, and immediately triggers its passive ability Lifewards. Can do this twice per battle.
-Lifewards (Passive)
-If Celestine i"
-Corrodius,Poxwalkers,active,trait,Mechanical,damage_multiplier,unknown,medium,"Summons Poxwalkers in X% of free hexes (rounded up) within Corrodius's Contagion aura. Newly summoned Poxwalkers immediately attack in melee, but cannot move this turn.
-Cursed of the Walking Pox (Pass"
-Corrodius,Cursed Plague Bell,passive,trait,Psyker,damage_multiplier,unknown,medium,"Cursed Plague Bell
-Friendly Chaos units starting their turn within Corrodius's Contagion aura gain +1 Movement for this turn. Enemy Psyker units within Corrodius's Contagion aura deal 1x X Psychic Dam"
-Exitor-Rho,Optimised Gait,passive,trait,Mechanical,damage_multiplier,unknown,medium,"Optimised Gait
-Whenever an enemy adjacent to Exitor-Rho is attacked by another friendly Mechanical unit, deal 2x X Energy Damage to that enemy. If an enemy adjacent to Exitor-Rho is defeated by a frie"
-High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,damage_multiplier,unknown,medium,"Destroy The Witch
-Gains +1 Movement when there's an enemy Psyker on the battlefield. This unit and friendly adjacent units deal +X Damage with melee attacks against Psykers."
-Incisus,Narthecium,passive,trait,Mechanical,damage_multiplier,unknown,medium,"When an adjacent friendly non-Mechanical unit is defeated, it is immediately revived with X Health, unless Overkilled. Can only be triggered once per turn."
-Isabella,Rites of Restoration,active,trait,Mechanical,damage_multiplier,unknown,medium,"Rites of Restoration
-Heals herself and all adjacent friendly units for X Health. Resurrects 1 random friendly Imperial Character and up to 2 random friendly Imperial Summons that have been defeated in"
-Isabella,Medicus Ministorum,passive,trait,Mechanical,damage_multiplier,unknown,medium,"Medicus Ministorum
-Any friendly adjacent non-Mechanical unit that takes damage Regenerates X Health afterwards, unless it is defeated.
-Note: Medicus Ministorum triggers once per attack, not per hit."
-Kariyan,Legacy of Combat,passive,trait,Big Target,damage_multiplier,unknown,medium,"Legacy of Combat
-After performing his first attack each turn, Kariyan performs an additional attack. If he is adjacent to an enemy Big Target, this attack deals 1x X Piercing Damage to it. If there is"
-Makhotep,Relentless March,passive,trait,Mechanical,damage_multiplier,unknown,medium,"Relentless March
-Gives +1 Movement to all friendly units that start their turn in an adjacent hex. Also repairs affected Mechanical units for X Health."
-Mataneo,Aggressive Onslaught,passive,trait,Summon,damage_multiplier,unknown,medium,"Aggressive Onslaught
-When charging, Mataneo summons 2 Jump Pack Intercessors adjacent to and immediately attacking his target. At the beginning of each of Mataneo's turns, if he is still on the battle"
-Nicodemus,Blood Chalice,active,trait,Mechanical,damage_multiplier,unknown,medium,"Blood Chalice
-All adjacent friendly non-Mechanical units are set to 50% Health. Until the start of their next turn, affected units gain +X% pierce ratio with melee attacks and heal for Y Health if the"
-Nicodemus,Sanguinary Priest,passive,trait,Mechanical,damage_multiplier,unknown,medium,"Sanguinary Priest
-After moving, all adjacent friendly non-Mechanical units Regenerate X Health. If Nicodemus does not move, this ability triggers at the end of his turn."
-Njal,Stormcaller,active,trait,Flying,damage_multiplier,unknown,medium,"Stormcaller
-Target an enemy within 3 hexes. The target's hex and all adjacent hexes get covered in Ice. All enemy units standing on hexes covered in Ice take 3x X Psychic Damage. Flying enemies damage"
-Parasite of Mortrex,Barbed Ovipositor,passive,trait,Summon,damage_multiplier,unknown,medium,"Barbed Ovipositor
-When the Parasite of Mortrex defeats a unit it targeted that is not Mechanical it summons a Ripper Swarm in the defeated unit's hex."
-Roswitha,Brazier of Holy Fire,active,trait,Daemon,damage_multiplier,unknown,medium,"Brazier of Holy Fire
-Deals 2x X Flame Damage to a target enemy within range 2 and sets its hex on Fire. Deals 4x X Flame Damage vs Daemons instead. ALL Daemons within 2 hexes of the target take +Y% Ex"
-Roswitha,Condemnor Stake,passive,trait,Psyker,damage_multiplier,unknown,medium,"Condemnor Stake
-Deals +X Damage against Psykers."
-Shadowsun,Exemplar of the Kauyon,active,trait,Summon,damage_multiplier,unknown,medium,"Exemplar of the Kauyon
-Commander Shadowsun disappears, then reappears on a target Hex adjacent to an allied unit and immediately performs a normal attack against the closest enemy target. This attack "
-Sy-Gex,Heavy Grav-Cannon,passive,trait,Mechanical,damage_multiplier,unknown,medium,"Heavy Grav-Cannon
-Ranged attacks against Mk X Gravis, Terminator Armour, or Mechanical units deal +X Damage and have +Y% pierce ratio."
-Tan Gi'da,Doctrina Imperatives,active,trait,Mechanical,damage_multiplier,unknown,medium,"Doctrina Imperatives
-Tan Gi'da switches between two Imperatives that affect him and all friendly adjacent Mechanical units:
-This ability can be used once per turn instead of once per battle; each use "
-Tanksmasha,Unstoppable Momentum,active,trait,Big Target,damage_multiplier,unknown,medium,"Unstoppable Momentum
-Charges in one of 6 directions and keeps moving in a straight line until he hits an obstacle or a Big Target. Any enemies hit by the charge take 1x X Direct Damage, increased by Y"
-Thaumachus,Attempted Possession,active,trait,Summon,damage_multiplier,unknown,medium,"Attempted Possession
-Target an enemy within 2 hexes. The target and any Summons it has summoned become possessed and immediately perform a normal attack against the closest enemy unit, preferring unpo"
-Tjark,Hunters Beyond Death,passive,trait,Psyker,damage_multiplier,unknown,medium,"Hunters Beyond Death
-Deals +X Damage against Psykers, and Enemy Psykers within 2 Hexes deal -X Damage.
-Unless they are Immune, Enemy Psykers within 2 Hexes will not hit an additional unit with their n"
-Tyrant Guard,Guardian Organism,passive,trait,Big Target,damage_multiplier,unknown,medium,"Guardian Organism
-If the Tyrant Guard is within Synapse range or did not move during its previous turn, it and friendly units affected by its Big Target trait take -X% Damage during the enemy's next t"
-Ulf,Savage Killer,passive,trait,Summon,damage_multiplier,unknown,medium,"Savage Killer
-When a Summon moves to or is summoned adjacent to Ulf, he immediately deals 5x X Power Damage to it. Ulf will also perform this ability against any enemy that attempts to use an active a"
-Winged Prime,Alpha Warrior,active,trait,Summon,damage_multiplier,unknown,medium,"Alpha Warrior
-If the Winged Prime has not moved this turn, summons a Tyranid Warrior on a free hex within Synapse range. The Tyranid Warrior cannot move this turn, but can immediately perform a normal"
-Winged Prime,Synaptic Lynchpin,passive,trait,Summon,damage_multiplier,unknown,medium,"Synaptic Lynchpin
-Whenever the Winged Prime, or another friendly unit with Synapse, performs a normal attack against an enemy and that enemy is not defeated, summon a Hormagaunt adjacent to the target"
-Yazaghor,Sorcerous Facade,active,trait,Psyker,damage_multiplier,unknown,medium,"Sorcerous Facade
-Target a friendly Psyker. Until the beginning of Yazaghor's next turn both he and the target deal an additional 1x X Psychic Damage with their normal attacks.
-Yazaghor performs a norm"
+character,ability_name,ability_type,condition_type,condition_value,bonus_value,confidence
+Corrodius,Poxwalkers,active,trait,Mechanical,30,low
+Corrodius,Cursed Plague Bell,passive,trait,Psyker,50,low
+Winged Prime,Alpha Warrior,active,trait,Summon,100,high
+Winged Prime,Synaptic Lynchpin,passive,trait,Summon,30,low
+Atlacoya,Daughter of the Abyss,passive,trait,Psyker,50,low
+Incisus,Narthecium,passive,trait,Mechanical,30,low
+Abraxas,Malefic Maelstrom,active,trait,Summon,30,low
+Actus,Defend the Divine Work,active,trait,Mechanical,30,low
+Actus,Galvanic Field,passive,trait,Mechanical,30,low
+Aleph-Null,Fabricator Claw Array,passive,trait,Mechanical,30,low
+Archimatos,Daemonic Incursion,active,trait,Psyker,50,low
+Baraqiel,Deathwing,passive,faction,Chaos,19,low
+Celestine,Geminae Superia,passive,trait,Summon,30,low
+Exitor-Rho,Optimised Gait,passive,trait,Mechanical,30,low
+High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,50,low
+Isabella,Rites of Restoration,active,trait,Mechanical,30,low
+Isabella,Medicus Ministorum,passive,trait,Mechanical,30,low
+Kariyan,Legacy of Combat,passive,trait,Big Target,19,low
+Makhotep,Relentless March,passive,trait,Mechanical,30,low
+Mataneo,Aggressive Onslaught,passive,trait,Summon,50,high
+Nicodemus,Blood Chalice,active,trait,Mechanical,50,high
+Nicodemus,Sanguinary Priest,passive,trait,Mechanical,30,low
+Njal,Stormcaller,active,trait,Flying,19,low
+Parasite of Mortrex,Barbed Ovipositor,passive,trait,Summon,30,low
+Roswitha,Brazier of Holy Fire,active,trait,Daemon,30,low
+Roswitha,Condemnor Stake,passive,trait,Psyker,50,low
+Sy-Gex,Heavy Grav-Cannon,passive,trait,Mechanical,30,low
+Tan Gi'da,Doctrina Imperatives,active,trait,Mechanical,30,low
+Tanksmasha,Unstoppable Momentum,active,trait,Big Target,19,low
+Tjark,Hunters Beyond Death,passive,trait,Psyker,50,low
+Tyrant Guard,Guardian Organism,passive,trait,Big Target,19,low
+Ulf,Savage Killer,passive,trait,Summon,30,low

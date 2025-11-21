@@ -1,0 +1,101 @@
+character,melee_type,melee_hits,melee_pierce,ranged_type,ranged_hits,ranged_pierce,primary_type,primary_pierce
+Corrodius,Plasma,1,65,N/A,0,0,Plasma,65
+Wrask,Flame,4,30,N/A,0,0,Flame,30
+Winged Prime,Bio,6,15,N/A,0,0,Bio,15
+Thaumachus,Flame,1,30,Psychic,1,100,Flame,30
+Shiron,Eviscerating,3,50,Eviscerating,6,50,Eviscerating,50
+Atlacoya,Power,3,40,N/A,0,0,Power,40
+Brother Burchard,Power,3,40,Bolter,3,20,Power,40
+Nauseous Rotbone,Power,4,40,N/A,0,0,Power,40
+Kut Skoden,Physical,4,1,N/A,0,0,Physical,1
+Lucien,Physical,4,1,Blast,3,15,Physical,1
+Incisus,Piercing,1,80,N/A,0,0,Piercing,80
+Isaak,Bio,3,15,Bio,1,15,Bio,15
+Abaddon The Despoiler,Power,5,40,Bolter,3,20,Power,40
+Abraxas,Flame,2,30,Psychic,1,100,Flame,30
+Actus,Energy,2,30,Energy,2,30,Energy,30
+Adamatar,Eviscerating,3,50,N/A,0,0,Eviscerating,50
+Aesoth,Physical,1,1,N/A,0,0,Physical,1
+Aethana,Piercing,3,80,N/A,0,0,Piercing,80
+Ahriman,Flame,1,30,Psychic,1,100,Flame,30
+Aleph-Null,Particle,5,15,N/A,0,0,Particle,15
+Ancient Thoread,Power,2,40,N/A,0,0,Power,40
+Angrax,Power,4,40,N/A,0,0,Power,40
+Anuphet,Energy,4,30,Energy,3,30,Energy,30
+Archimatos,Psychic,2,100,Psychic,1,100,Psychic,100
+Arjac,Power,3,40,N/A,0,0,Power,40
+Asmodai,Power,4,40,N/A,0,0,Power,40
+Aun'Shi,Power,5,40,N/A,0,0,Power,40
+Azkor,Eviscerating,2,50,N/A,0,0,Eviscerating,50
+Azrael,Power,3,40,Plasma,1,65,Power,40
+Baraqiel,Power,3,40,N/A,0,0,Power,40
+Bellator,Bolter,6,20,N/A,0,0,Bolter,20
+Boss Gulgortz,Eviscerating,2,50,Projectile,1,5,Eviscerating,50
+Brother Jaeger,Power,3,40,N/A,0,0,Power,40
+Calandis,Physical,1,1,Energy,1,30,Physical,1
+Castellan Creed,Las,2,10,N/A,0,0,Las,10
+Celestine,Power,3,40,N/A,0,0,Power,40
+Certus,Physical,1,1,Bolter,1,20,Physical,1
+Commissar Yarrick,Power,3,40,Bolter,2,20,Power,40
+Dante,Piercing,4,80,N/A,0,0,Piercing,80
+Darkstrider,Physical,3,1,Pulse,2,20,Physical,1
+Deathleaper,Bio,3,15,N/A,0,0,Bio,15
+Eldryon,Piercing,2,80,Psychic,2,100,Piercing,80
+Exitor-Rho,Energy,2,30,N/A,0,0,Energy,30
+Forcas,Power,6,40,N/A,0,0,Power,40
+Gibbascrapz,Physical,4,1,N/A,0,0,Physical,1
+Haarken Worldclaimer,Piercing,4,80,N/A,0,0,Piercing,80
+High Marshal Helbrecht,Power,6,40,Bolter,3,20,Power,40
+Hollan,Toxic,1,15,N/A,0,0,Toxic,15
+Imospekh,Molecular,6,15,Molecular,6,15,Molecular,15
+Isabella,Bolter,3,20,N/A,0,0,Bolter,20
+Jain Zar,Piercing,3,80,N/A,0,0,Piercing,80
+Judh,Projectile,3,5,Projectile,3,5,Projectile,5
+Kariyan,Power,3,40,N/A,0,0,Power,40
+Kharn,Eviscerating,4,50,N/A,0,0,Eviscerating,50
+Lucius,Power,6,40,N/A,0,0,Power,40
+Macer,Chain,3,20,N/A,0,0,Chain,20
+Makhotep,Physical,1,1,Molecular,2,15,Physical,1
+Maladus,Power,3,40,N/A,0,0,Power,40
+Marneus Calgar,Power,2,40,N/A,0,0,Power,40
+Marshal Dreir,Power,3,40,N/A,0,0,Power,40
+Mataneo,Plasma,1,65,N/A,0,0,Plasma,65
+Maugan Ra,Power,5,40,Heavy Round,6,15,Power,40
+Mephiston,Psychic,3,100,Psychic,2,100,Psychic,100
+Morvenn Vahl,Power,2,40,Bolter,3,20,Power,40
+Neurothrope,Physical,1,1,Psychic,1,100,Physical,1
+Nicodemus,Chain,3,20,N/A,0,0,Chain,20
+Njal,Psychic,3,100,Psychic,2,100,Psychic,100
+Parasite of Mortrex,Toxic,1,15,N/A,0,0,Toxic,15
+Pestillian,Toxic,1,15,N/A,0,0,Toxic,15
+Ragnar,Chain,7,20,N/A,0,0,Chain,20
+Re'vas,Flame,6,30,Pulse,6,20,Flame,30
+Roswitha,Chain,3,20,Bolter,2,20,Chain,20
+Sarquael,Physical,1,1,Plasma,1,65,Physical,1
+Shadowsun,Blast,2,15,Melta,2,75,Blast,15
+Sho'syl,Pulse,1,20,Piercing,1,80,Pulse,20
+Sibyll Devine,Psychic,1,100,Psychic,1,100,Psychic,100
+Snappawrecka,Chain,3,20,Projectile,3,5,Chain,20
+Snotflogga,Physical,3,1,N/A,0,0,Physical,1
+Sword Brother Godswyl,Power,1,40,N/A,0,0,Power,40
+Sy-Gex,Flame,4,30,Physical,4,1,Flame,30
+Tan Gi'da,Physical,2,1,Toxic,1,15,Physical,1
+Tanksmasha,Eviscerating,3,50,N/A,0,0,Eviscerating,50
+Tarvakh,Piercing,1,80,N/A,0,0,Piercing,80
+Thaddeus Noble,Las,1,10,Blast,3,15,Las,10
+The Patermine,Eviscerating,5,50,N/A,0,0,Eviscerating,50
+Thutmose,Plasma,2,65,Plasma,2,65,Plasma,65
+Titus,Chain,4,20,N/A,0,0,Chain,20
+Tjark,Physical,4,1,N/A,0,0,Physical,1
+Toth,Power,4,40,Flame,5,30,Power,40
+Trajann,Piercing,3,80,N/A,0,0,Piercing,80
+Typhus,Power,1,40,Psychic,1,100,Power,40
+Tyrant Guard,Piercing,2,80,N/A,0,0,Piercing,80
+Tyrith,Power,3,40,Bolter,2,20,Power,40
+Ulf,Power,3,40,N/A,0,0,Power,40
+Varro Tigurius,Physical,1,1,Psychic,1,100,Physical,1
+Vindicta,Physical,1,1,Flame,4,30,Physical,1
+Vitruvius,Power,1,40,Molecular,1,15,Power,40
+Volk,Power,4,40,Heavy Round,6,15,Power,40
+Xybia,Psychic,2,100,Psychic,2,100,Psychic,100
+Yazaghor,Physical,1,1,Heavy Round,1,15,Physical,1
