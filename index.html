@@ -98,26 +98,28 @@
             border-radius: 10px;
             margin-bottom: 20px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
-        .filter-group { display: flex; flex-direction: column; gap: 10px; }
-        .filter-group label { color: #00d4ff; font-weight: bold; }
+        .filter-group { display: flex; flex-direction: column; gap: 8px; }
+        .filter-group label { color: #00d4ff; font-weight: bold; font-size: 0.9em; }
         select {
             padding: 10px;
             background: #0f1a2e;
             color: #e4e4e4;
             border: 2px solid #00d4ff;
             border-radius: 5px;
-            font-size: 1em;
+            font-size: 0.95em;
             cursor: pointer;
         }
         .limit-group {
-            grid-column: span 2;
+            grid-column: span 3;
             display: flex;
             align-items: center;
             gap: 15px;
             justify-content: center;
+            padding-top: 10px;
+            border-top: 2px solid #0f1a2e;
         }
         .legend {
             background: #16213e;
@@ -387,7 +389,6 @@
             font-weight: bold;
         }
         
-        /* Иконка условного бонуса в ячейке матрицы */
         .bonus-icon {
             position: absolute;
             top: 2px;
@@ -402,7 +403,6 @@
             50% { opacity: 0.6; transform: scale(1.2); }
         }
 
-        /* Блок условного бонуса в детальной панели */
         .conditional-bonus-item {
             background: linear-gradient(135deg, rgba(255, 204, 0, 0.15), rgba(0, 212, 255, 0.1));
             padding: 10px;
@@ -411,7 +411,6 @@
             border: 2px solid #ffcc00;
         }
 
-        /* Бэдж типа бонуса (active/passive) */
         .bonus-badge {
             display: inline-block;
             background: #ffcc00;
@@ -444,6 +443,30 @@
         
         <div class="filters">
             <div class="filter-group">
+                <label>🎯 СОРТИРОВКА</label>
+                <select id="sortOrder">
+                    <option value="alpha">Алфавит (A-Z)</option>
+                    <option value="hp">По HP (больше → меньше)</option>
+                    <option value="armor">По броне (больше → меньше)</option>
+                    <option value="damage">По урону (больше → меньше)</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>🏰 ФРАКЦИЯ</label>
+                <select id="factionFilter">
+                    <option value="">Все фракции</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>✨ ТРЕЙТ</label>
+                <select id="traitFilter">
+                    <option value="">Все трейты</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
                 <label>🗡️ ФИЛЬТР АТАКУЮЩИХ</label>
                 <select id="attackerFilter">
                     <option value="">Все персонажи</option>
@@ -454,6 +477,16 @@
                 <label>🛡️ ФИЛЬТР ЗАЩИЩАЮЩИХСЯ</label>
                 <select id="defenderFilter">
                     <option value="">Все персонажи</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>⚡ ТИП УРОНА</label>
+                <select id="damageTypeFilter">
+                    <option value="">Все типы</option>
+                    <option value="melee">Только Melee</option>
+                    <option value="ranged">Только Ranged</option>
+                    <option value="both">Оба типа</option>
                 </select>
             </div>
             
@@ -528,16 +561,11 @@
             'Rukkatrukk', "Tson'ji"
         ];
 
-        // 🆕 Базы данных для условных бонусов
         let traitsDB = [];
         let characterTraitsDB = [];
         let conditionalBonusesDB = [];
         let characterFactionsDB = [];
         let characterAttackTypesDB = [];
-
-        // ═══════════════════════════════════════════════════════════════
-        // ЗАГРУЗКА БАЗ ДАННЫХ УСЛОВНЫХ БОНУСОВ
-        // ═══════════════════════════════════════════════════════════════
 
         async function loadConditionalDatabases() {
             try {
@@ -545,7 +573,6 @@
                     const lines = text.trim().split('\n');
                     const headers = lines[0].split(',').map(h => h.trim());
                     return lines.slice(1).map(line => {
-                        // Учитываем запятые внутри кавычек
                         const values = [];
                         let current = '';
                         let inQuotes = false;
@@ -563,7 +590,7 @@
                         values.push(current.trim());
 
                         return headers.reduce((obj, header, i) => {
-                            obj[header] = values[i]?.replace(/^"|"$/g, '') || '';
+                            obj[header] = values[i]?.replace(/^\"|\"$/g, '') || '';
                             return obj;
                         }, {});
                     });
@@ -598,10 +625,8 @@
             }
         }
 
-        // Вспомогательные функции для работы с базами
         function getCharacterTraits(characterName) {
             if (characterTraitsDB.length === 0) {
-                // Fallback: парсим из строки traits
                 const char = characters.find(c => c.name === characterName);
                 if (!char || !char.traits) return [];
                 return typeof char.traits === 'string' 
@@ -638,7 +663,6 @@
         let currentAttacker = null;
         let currentDefender = null;
 
-        // Auto-sync on page load
         window.addEventListener('load', function() {
             syncAllData();
         });
@@ -652,7 +676,6 @@
             loadingOverlay.classList.remove('hidden');
             
             try {
-                // Try data.txt first, fallback to data.json
                 let mainData = null;
                 let dataSource = '';
                 
@@ -674,7 +697,6 @@
                     dataSource = 'data.json';
                 }
                 
-                // 🔧 FIX: Если данные в формате { "characters": [...] }, извлекаем массив
                 let dataArray = mainData;
                 if (mainData.characters && Array.isArray(mainData.characters)) {
                     dataArray = mainData.characters;
@@ -683,7 +705,6 @@
                     throw new Error('Неизвестный формат данных');
                 }
                 
-                // Load synergy and counter databases
                 const [synergyResponse, counterResponse] = await Promise.all([
                     fetch('synergy_database.json').catch(() => null),
                     fetch('counter_database.json').catch(() => null)
@@ -697,10 +718,8 @@
                     counterDatabase = await counterResponse.json();
                 }
                 
-                // 🆕 Загружаем базы условных бонусов
                 await loadConditionalDatabases();
                 
-                // Process character data
                 const filtered = dataArray.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                 
                 characters = filtered.map((c, i) => ({
@@ -717,6 +736,9 @@
                     activeAbility: c.activeAbility || {},
                     passiveAbility: c.passiveAbility || {}
                 }));
+                
+                // 🆕 СОРТИРОВКА ПО АЛФАВИТУ ПО УМОЛЧАНИЮ
+                characters.sort((a, b) => a.name.localeCompare(b.name));
                 
                 buildMatchupMatrix();
                 populateFilters();
@@ -758,7 +780,6 @@
                 try {
                     const data = JSON.parse(e.target.result);
                     
-                    // 🔧 FIX: Проверяем формат данных
                     let dataArray = data;
                     if (data.characters && Array.isArray(data.characters)) {
                         dataArray = data.characters;
@@ -782,6 +803,8 @@
                         activeAbility: c.activeAbility || {},
                         passiveAbility: c.passiveAbility || {}
                     }));
+                    
+                    characters.sort((a, b) => a.name.localeCompare(b.name));
                     
                     buildMatchupMatrix();
                     populateFilters();
@@ -818,7 +841,6 @@
         }
 
         function calculateMatchup(attacker, defender) {
-            // Получаем тип атаки и количество хитов
             const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
             const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
             const [atkType, atkHits] = (rangedType && rangedHits > 0) 
@@ -827,14 +849,12 @@
 
             const pierce = PIERCE_RATIOS[atkType] || 20;
 
-            // 🆕 Получаем трейты (из базы если доступна, иначе из строки)
             const atkTraits = getCharacterTraits(attacker.name);
             const defTraits = getCharacterTraits(defender.name);
 
             let dmg = attacker.dmg;
             let armor = defender.armor;
 
-            // 🆕 Применяем трейт-модификаторы атакующего
             atkTraits.forEach(traitName => {
                 const trait = getTraitData(traitName);
                 if (trait && trait.effect_type === 'damage_multiplier' && trait.implemented === 'yes') {
@@ -842,13 +862,11 @@
                 }
             });
 
-            // Fallback на старый метод если база не загружена
             if (traitsDB.length === 0) {
                 if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
                 if (atkTraits.includes('Let the Galaxy Burn')) dmg *= 1.15;
             }
 
-            // 🆕 Применяем трейт-модификаторы защитника
             defTraits.forEach(traitName => {
                 const trait = getTraitData(traitName);
                 if (trait && trait.effect_type === 'armor_multiplier' && trait.implemented === 'yes') {
@@ -856,13 +874,11 @@
                 }
             });
 
-            // Fallback
             if (traitsDB.length === 0) {
                 if (defTraits.includes('Terminator Armour')) armor *= 1.4;
                 if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
             }
 
-            // 🆕 ПРОВЕРЯЕМ УСЛОВНЫЕ БОНУСЫ
             let hasConditionalBonus = false;
             let conditionalBonusDetails = null;
 
@@ -877,8 +893,7 @@
                 if (conditionMet) {
                     hasConditionalBonus = true;
 
-                    // Применяем бонус
-                    let bonusMultiplier = 1.5; // По умолчанию +50%
+                    let bonusMultiplier = 1.5;
                     if (bonus.bonus_value && bonus.bonus_value !== 'unknown' && !isNaN(parseFloat(bonus.bonus_value))) {
                         bonusMultiplier = 1 + parseFloat(bonus.bonus_value) / 100;
                     }
@@ -896,7 +911,6 @@
                 }
             });
 
-            // Модификаторы входящего урона
             let incomingMult = 1.0;
             defTraits.forEach(traitName => {
                 const trait = getTraitData(traitName);
@@ -910,13 +924,11 @@
                 }
             });
 
-            // Fallback
             if (traitsDB.length === 0) {
                 if (defTraits.includes('Resilient')) incomingMult *= 0.8;
                 if (defTraits.includes('Big Target')) incomingMult *= 1.3;
             }
 
-            // Расчёт урона по формуле из вики
             const dmgAfterArmor = Math.max(1, dmg - armor);
             const dmgPierce = Math.max(1, dmg * (pierce / 100));
             const dmgPerHit = Math.max(dmgAfterArmor, dmgPierce);
@@ -924,7 +936,6 @@
             const totalDmg = dmgPerHit * atkHits * incomingMult;
             const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
 
-            // Эффективность защиты
             const armorRatio = armor / dmg;
             const defenseEff = Math.min(100, Math.max(0, armorRatio * 50 + 25));
 
@@ -934,8 +945,8 @@
                 attack: Math.round(attackEff * 10) / 10,
                 defense: Math.round(defenseEff * 10) / 10,
                 average: Math.round(average * 10) / 10,
-                hasConditionalBonus: hasConditionalBonus,  // 🆕
-                conditionalBonus: conditionalBonusDetails   // 🆕
+                hasConditionalBonus: hasConditionalBonus,
+                conditionalBonus: conditionalBonusDetails
             };
         }
 
@@ -956,12 +967,45 @@
             return matchupMatrix[attacker.name][defender.name];
         }
 
+        // 🆕 ОБНОВЛЕННЫЕ ФИЛЬТРЫ
         function populateFilters() {
             const atkFilter = document.getElementById('attackerFilter');
             const defFilter = document.getElementById('defenderFilter');
+            const factionFilter = document.getElementById('factionFilter');
+            const traitFilter = document.getElementById('traitFilter');
             
             atkFilter.innerHTML = '<option value="">Все персонажи</option>';
             defFilter.innerHTML = '<option value="">Все персонажи</option>';
+            
+            // 🆕 Собираем уникальные фракции
+            const factions = [...new Set(characters.map(c => c.faction))].sort();
+            factionFilter.innerHTML = '<option value="">Все фракции</option>';
+            factions.forEach(faction => {
+                if (faction && faction !== 'Unknown') {
+                    const opt = document.createElement('option');
+                    opt.value = faction;
+                    opt.textContent = faction;
+                    factionFilter.appendChild(opt);
+                }
+            });
+            
+            // 🆕 Собираем уникальные трейты
+            const allTraits = new Set();
+            characters.forEach(char => {
+                const traits = getCharacterTraits(char.name);
+                traits.forEach(t => allTraits.add(t));
+            });
+            
+            const sortedTraits = [...allTraits].sort();
+            traitFilter.innerHTML = '<option value="">Все трейты</option>';
+            sortedTraits.forEach(trait => {
+                if (trait) {
+                    const opt = document.createElement('option');
+                    opt.value = trait;
+                    opt.textContent = trait;
+                    traitFilter.appendChild(opt);
+                }
+            });
             
             characters.forEach(char => {
                 const opt1 = document.createElement('option');
@@ -984,19 +1028,49 @@
             return 'cell-0-29';
         }
 
+        // 🆕 ОБНОВЛЕННАЯ ЛОГИКА RENDER
         function renderTable() {
             const atkFilter = document.getElementById('attackerFilter').value;
             const defFilter = document.getElementById('defenderFilter').value;
+            const factionFilter = document.getElementById('factionFilter').value;
+            const traitFilter = document.getElementById('traitFilter').value;
+            const damageTypeFilter = document.getElementById('damageTypeFilter').value;
+            const sortOrder = document.getElementById('sortOrder').value;
             const limit = parseInt(document.getElementById('limitSelect').value);
             
-            let displayedAtk = characters.slice(0, limit);
-            if (atkFilter) {
-                displayedAtk = characters.filter(c => c.name === atkFilter);
+            // Применяем фильтры
+            let filteredChars = characters.filter(c => {
+                if (factionFilter && c.faction !== factionFilter) return false;
+                if (traitFilter && !getCharacterTraits(c.name).includes(traitFilter)) return false;
+                if (damageTypeFilter) {
+                    const hasMelee = c.melee && c.melee !== 'N/A';
+                    const hasRanged = c.ranged && c.ranged !== 'N/A';
+                    if (damageTypeFilter === 'melee' && !hasMelee) return false;
+                    if (damageTypeFilter === 'ranged' && !hasRanged) return false;
+                    if (damageTypeFilter === 'both' && (!hasMelee || !hasRanged)) return false;
+                }
+                return true;
+            });
+            
+            // Применяем сортировку
+            if (sortOrder === 'alpha') {
+                filteredChars.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortOrder === 'hp') {
+                filteredChars.sort((a, b) => b.hp - a.hp);
+            } else if (sortOrder === 'armor') {
+                filteredChars.sort((a, b) => b.armor - a.armor);
+            } else if (sortOrder === 'damage') {
+                filteredChars.sort((a, b) => b.dmg - a.dmg);
             }
             
-            let displayedDef = characters.slice(0, limit);
+            let displayedAtk = filteredChars.slice(0, limit);
+            if (atkFilter) {
+                displayedAtk = filteredChars.filter(c => c.name === atkFilter);
+            }
+            
+            let displayedDef = filteredChars.slice(0, limit);
             if (defFilter) {
-                displayedDef = characters.filter(c => c.name === defFilter);
+                displayedDef = filteredChars.filter(c => c.name === defFilter);
             }
             
             const thead = document.getElementById('tableHead');
@@ -1301,8 +1375,13 @@
             return 'ef4444';
         }
 
+        // 🆕 EVENT LISTENERS
         document.getElementById('attackerFilter').addEventListener('change', renderTable);
         document.getElementById('defenderFilter').addEventListener('change', renderTable);
+        document.getElementById('factionFilter').addEventListener('change', renderTable);
+        document.getElementById('traitFilter').addEventListener('change', renderTable);
+        document.getElementById('damageTypeFilter').addEventListener('change', renderTable);
+        document.getElementById('sortOrder').addEventListener('change', renderTable);
         document.getElementById('limitSelect').addEventListener('change', (e) => {
             currentLimit = parseInt(e.target.value);
             renderTable();
