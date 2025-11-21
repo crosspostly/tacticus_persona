@@ -677,14 +677,14 @@
                 let dataSource = '';
                 
                 try {
-                    const txtResponse = await fetch('data.txt');
+                    const txtResponse = await fetch('data.json');
                     if (txtResponse.ok) {
                         const txtContent = await txtResponse.text();
                         mainData = JSON.parse(txtContent);
-                        dataSource = 'data.txt';
+                        dataSource = 'data.json';
                     }
                 } catch (e) {
-                    console.log('data.txt not found, trying data.json...');
+                    console.log('data.json not found, trying data.json...');
                 }
                 
                 if (!mainData) {
