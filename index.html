@@ -173,7 +173,7 @@
             padding-left: 10px;
         }
         th:first-child { z-index: 15; }
-        td { cursor: pointer; transition: all 0.2s; }
+        td { cursor: pointer; transition: all 0.2s; position: relative; }
         td:hover {
             transform: scale(1.05);
             box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
@@ -532,6 +532,8 @@
         let traitsDB = [];
         let characterTraitsDB = [];
         let conditionalBonusesDB = [];
+        let characterFactionsDB = [];
+        let characterAttackTypesDB = [];
 
         // ═══════════════════════════════════════════════════════════════
         // ЗАГРУЗКА БАЗ ДАННЫХ УСЛОВНЫХ БОНУСОВ
@@ -567,25 +569,31 @@
                     });
                 };
 
-                const [traitsText, charTraitsText, bonusesText] = await Promise.all([
+                const [traitsText, charTraitsText, bonusesText, factionsText, attacksText] = await Promise.all([
                     fetch('traits_database.csv').then(r => r.ok ? r.text() : null).catch(() => null),
                     fetch('character_traits.csv').then(r => r.ok ? r.text() : null).catch(() => null),
-                    fetch('conditional_bonuses.csv').then(r => r.ok ? r.text() : null).catch(() => null)
+                    fetch('conditional_bonuses.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('character_factions.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('character_attack_types.csv').then(r => r.ok ? r.text() : null).catch(() => null)
                 ]);
 
                 if (traitsText) traitsDB = parseCSV(traitsText);
                 if (charTraitsText) characterTraitsDB = parseCSV(charTraitsText);
                 if (bonusesText) conditionalBonusesDB = parseCSV(bonusesText);
+                if (factionsText) characterFactionsDB = parseCSV(factionsText);
+                if (attacksText) characterAttackTypesDB = parseCSV(attacksText);
 
-                console.log('✅ Conditional databases loaded:', {
+                console.log('✅ CSV databases loaded:', {
                     traits: traitsDB.length,
                     charTraits: characterTraitsDB.length,
-                    bonuses: conditionalBonusesDB.length
+                    bonuses: conditionalBonusesDB.length,
+                    factions: characterFactionsDB.length,
+                    attacks: characterAttackTypesDB.length
                 });
 
                 return true;
             } catch (error) {
-                console.warn('⚠️ Could not load conditional databases:', error);
+                console.warn('⚠️ Could not load CSV databases:', error);
                 return false;
             }
         }
@@ -595,7 +603,10 @@
             if (characterTraitsDB.length === 0) {
                 // Fallback: парсим из строки traits
                 const char = characters.find(c => c.name === characterName);
-                return char?.traits ? char.traits.split(', ').map(t => t.trim()) : [];
+                if (!char || !char.traits) return [];
+                return typeof char.traits === 'string' 
+                    ? char.traits.split(', ').map(t => t.trim()).filter(t => t)
+                    : char.traits;
             }
             return characterTraitsDB
                 .filter(row => row.character === characterName)
@@ -694,8 +705,8 @@
                     traits: c.traits || '',
                     icon: c.images?.heroIcon || c.images?.heroArt || '',
                     faction: c.faction || 'Unknown',
-                    activeAbility: c.activeAbility?.name || 'N/A',
-                    passiveAbility: c.passiveAbility?.name || 'N/A'
+                    activeAbility: c.activeAbility || {},
+                    passiveAbility: c.passiveAbility || {}
                 }));
                 
                 buildMatchupMatrix();
@@ -708,9 +719,11 @@
                 
                 const synergyStatus = Object.keys(synergyDatabase).length > 0 ? '✅' : '⚠️';
                 const counterStatus = Object.keys(counterDatabase).length > 0 ? '✅' : '⚠️';
+                const csvStatus = traitsDB.length > 0 ? '✅' : '⚠️';
                 
                 statusDiv.innerHTML = `
                     ✅ ${characters.length} персонажей<br>
+                    ${csvStatus} CSV базы (${traitsDB.length} traits)<br>
                     ${synergyStatus} Синергии | ${counterStatus} Контры<br>
                     <small>Источник: ${dataSource}</small>
                 `;
@@ -748,8 +761,8 @@
                         traits: c.traits || '',
                         icon: c.images?.heroIcon || c.images?.heroArt || '',
                         faction: c.faction || 'Unknown',
-                        activeAbility: c.activeAbility?.name || 'N/A',
-                        passiveAbility: c.passiveAbility?.name || 'N/A'
+                        activeAbility: c.activeAbility || {},
+                        passiveAbility: c.passiveAbility || {}
                     }));
                     
                     buildMatchupMatrix();
@@ -837,14 +850,18 @@
 
             const bonuses = getConditionalBonuses(attacker.name);
             bonuses.forEach(bonus => {
-                const conditionMet = defTraits.includes(bonus.condition_value);
+                const conditionMet = bonus.condition_type === 'trait' 
+                    ? defTraits.includes(bonus.condition_value)
+                    : bonus.condition_type === 'faction'
+                    ? defender.faction === bonus.condition_value
+                    : false;
 
                 if (conditionMet) {
                     hasConditionalBonus = true;
 
                     // Применяем бонус
                     let bonusMultiplier = 1.5; // По умолчанию +50%
-                    if (bonus.bonus_value !== 'unknown' && !isNaN(parseFloat(bonus.bonus_value))) {
+                    if (bonus.bonus_value && bonus.bonus_value !== 'unknown' && !isNaN(parseFloat(bonus.bonus_value))) {
                         bonusMultiplier = 1 + parseFloat(bonus.bonus_value) / 100;
                     }
 
@@ -853,8 +870,10 @@
                     conditionalBonusDetails = {
                         name: bonus.ability_name,
                         type: bonus.ability_type,
+                        conditionType: bonus.condition_type,
                         target: bonus.condition_value,
-                        multiplier: bonusMultiplier
+                        multiplier: bonusMultiplier,
+                        confidence: bonus.confidence
                     };
                 }
             });
@@ -1096,6 +1115,9 @@
             const [atkType, atkHits] = extractAttackInfo(atk.ranged)[0] ? extractAttackInfo(atk.ranged) : extractAttackInfo(atk.melee);
             const pierce = PIERCE_RATIOS[atkType] || 20;
             
+            const atkTraits = getCharacterTraits(atk.name);
+            const defTraits = getCharacterTraits(def.name);
+            
             document.getElementById('analysisTab').innerHTML = `
                 <div class="panel-title">ДЕТАЛЬНЫЙ АНАЛИЗ</div>
                 
@@ -1109,7 +1131,7 @@
                     <div class="stat-row"><span class="stat-label">Урон:</span><span>${atk.dmg}</span></div>
                     <div class="stat-row"><span class="stat-label">Ближний:</span><span>${atk.melee}</span></div>
                     <div class="stat-row"><span class="stat-label">Дальний:</span><span>${atk.ranged}</span></div>
-                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.8em;">${atk.traits}</span></div>
+                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.75em;">${atkTraits.join(', ')}</span></div>
                 </div>
                 
                 <div class="vs-divider">⚔️ VS ⚔️</div>
@@ -1124,7 +1146,7 @@
                     <div class="stat-row"><span class="stat-label">Урон:</span><span>${def.dmg}</span></div>
                     <div class="stat-row"><span class="stat-label">Ближний:</span><span>${def.melee}</span></div>
                     <div class="stat-row"><span class="stat-label">Дальний:</span><span>${def.ranged}</span></div>
-                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.8em;">${def.traits}</span></div>
+                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.75em;">${defTraits.join(', ')}</span></div>
                 </div>
                 
                 <div class="metric-box">
@@ -1156,11 +1178,14 @@
                                 ${metrics.conditionalBonus.name}
                                 <span class="bonus-badge">${metrics.conditionalBonus.type}</span>
                             </div>
-                            <div style="font-size: 0.85em; color: #ccc;">
-                                Условие: Цель имеет трейт "${metrics.conditionalBonus.target}" ✅
+                            <div style="font-size: 0.85em; color: #ccc; margin: 5px 0;">
+                                Условие: ${metrics.conditionalBonus.conditionType === 'trait' ? 'Трейт' : 'Фракция'} "${metrics.conditionalBonus.target}" ✅
                             </div>
-                            <div style="font-size: 0.85em; color: #00ff88; margin-top: 5px;">
+                            <div style="font-size: 1.1em; color: #00ff88; margin-top: 8px; font-weight: bold;">
                                 Бонус: +${Math.round((metrics.conditionalBonus.multiplier - 1) * 100)}% урона
+                            </div>
+                            <div style="font-size: 0.75em; color: #888; margin-top: 5px;">
+                                Уверенность: ${metrics.conditionalBonus.confidence}
                             </div>
                         </div>
                     </div>
