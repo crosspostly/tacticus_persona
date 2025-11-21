@@ -6,1612 +6,6 @@
   },
   "characters": [
     {
-      "name": "Corrodius",
-      "faction": "Death Guard",
-      "description": "Corrodius Achebile, Noxious Blightbringer is a character of the Death Guard faction.",
-      "baseStats": {
-        "health": "125",
-        "armour": "25",
-        "damage": "40"
-      },
-      "attacks": {
-        "melee": "Plasma / 1 hit",
-        "ranged": "N/A"
-      },
-      "movement": "2",
-      "traits": [
-        "Contagions of Nurgle",
-        "Resilient"
-      ],
-      "rarity": "Rare",
-      "activeAbility": {
-        "name": "Poxwalkers",
-        "description": "Summons Poxwalkers in X% of free hexes (rounded up) within Corrodius's Contagion aura. Newly summoned Poxwalkers immediately attack in melee, but cannot move this turn. Cursed of the Walking Pox (Passive) Each time this unit kills an enemy non-Mechanical unit, a Poxwalker is summoned in that hex.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value",
-              "Health",
-              "Armour",
-              "Damage"
-            ],
-            [
-              "Common",
-              "8",
-              "15-25%",
-              "75",
-              "0",
-              "87"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "17-30%",
-              "164",
-              "0",
-              "192"
-            ],
-            [
-              "Rare",
-              "26",
-              "18-35%",
-              "405",
-              "0",
-              "472"
-            ],
-            [
-              "Epic",
-              "35",
-              "19-40%",
-              "856",
-              "0",
-              "998"
-            ],
-            [
-              "Legendary",
-              "50",
-              "20-45%",
-              "2992",
-              "0",
-              "3490"
-            ],
-            [
-              "Mythic",
-              "55",
-              "20-45%",
-              "3570",
-              "0",
-              "4166"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Cursed Plague Bell",
-        "description": "Friendly Chaos units starting their turn within Corrodius's Contagion aura gain +1 Movement for this turn. Enemy Psyker units within Corrodius's Contagion aura deal 1x X Psychic Damage to themselves each time one of their attacks deals Psychic damage.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value"
-            ],
-            [
-              "Common",
-              "8",
-              "45"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "98"
-            ],
-            [
-              "Rare",
-              "26",
-              "242"
-            ],
-            [
-              "Epic",
-              "35",
-              "514"
-            ],
-            [
-              "Legendary",
-              "50",
-              "1795"
-            ],
-            [
-              "Mythic",
-              "55",
-              "2142"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Corrodius_Ability_1_Icon.png?799828",
-        "heroIcon": "https://tacticus.wiki.gg/images/Corrodius_Icon_Large.png?f1f5bb"
-      },
-      "rawInfobox": {
-        "Base Health": "125",
-        "Base Armour": "25",
-        "Base Damage": "40",
-        "Melee Attack": "Plasma / 1 hit",
-        "Movement": "2",
-        "Traits": "Contagions of Nurgle, Summon",
-        "Base Rarity": "Rare",
-        "TA Stats": "CorrodiusTA",
-        "Move": "3",
-        "Melee": "Physical / 2 hits"
-      }
-    },
-    {
-      "name": "Wrask",
-      "faction": "Chaos",
-      "description": "Wrask, the Butcher, is a character of the World Eaters faction.",
-      "baseStats": {
-        "health": "95",
-        "armour": "28",
-        "damage": "20"
-      },
-      "attacks": {
-        "melee": "Flame / 4 hits",
-        "ranged": "N/A"
-      },
-      "movement": "2",
-      "traits": [
-        "Blessings of Khorne",
-        "Deep Strike",
-        "Rapid Assault",
-        "Terminator Armour",
-        "Unstoppable"
-      ],
-      "rarity": "Uncommon",
-      "activeAbility": {
-        "name": "Bloody Fury",
-        "description": "Deals 1x X Chain Damage to an adjacent enemy. This attack scores +1 Hit for each time Wrask was attacked in this battle, to a maximum of 8 hits total. Any leftover hits are allocated to remaining adjacent enemies, prioritising kills.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Damage"
-            ],
-            [
-              "Common",
-              "8",
-              "87-105"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "192-230"
-            ],
-            [
-              "Rare",
-              "26",
-              "472-566"
-            ],
-            [
-              "Epic",
-              "35",
-              "998-1197"
-            ],
-            [
-              "Legendary",
-              "50",
-              "3490-4189"
-            ],
-            [
-              "Mythic",
-              "55",
-              "4166-4998"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Wrathful Devotion",
-        "description": "When Wrask arrives from Deep Strike or defeats an enemy in melee, he and adjacent friendly Chaos units gain a Shield with X Health for 1 round.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Shield"
-            ],
-            [
-              "Common",
-              "8",
-              "100"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "218"
-            ],
-            [
-              "Rare",
-              "26",
-              "539"
-            ],
-            [
-              "Epic",
-              "35",
-              "1141"
-            ],
-            [
-              "Legendary",
-              "50",
-              "3989"
-            ],
-            [
-              "Mythic",
-              "55",
-              "4760"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Wrask_Ability_1_Icon.png?38ca32",
-        "heroIcon": "https://tacticus.wiki.gg/images/Wrask_Icon_Large.png?6850db"
-      },
-      "rawInfobox": {
-        "Base Health": "95",
-        "Base Armour": "28",
-        "Base Damage": "20",
-        "Melee Attack": "Flame / 4 hits",
-        "Movement": "2",
-        "Traits": "Blessings of Khorne, Deep Strike, Rapid Assault, Terminator Armour, Unstoppable",
-        "Base Rarity": "Uncommon",
-        "TA Stats": "WraskTA"
-      }
-    },
-    {
-      "name": "Winged Prime",
-      "faction": "Tyranids",
-      "description": "Winged Prime, the Lead Warrior Organism, is a character of the Tyranids faction.",
-      "baseStats": {
-        "health": "100",
-        "armour": "19",
-        "damage": "11"
-      },
-      "attacks": {
-        "melee": "Bio / 6 hits",
-        "ranged": "N/A"
-      },
-      "movement": "4",
-      "traits": [
-        "Final Vengeance",
-        "Flying",
-        "Synapse"
-      ],
-      "rarity": "Rare",
-      "activeAbility": {
-        "name": "Alpha Warrior",
-        "description": "If the Winged Prime has not moved this turn, summons a Tyranid Warrior on a free hex within Synapse range. The Tyranid Warrior cannot move this turn, but can immediately perform a normal attack against an enemy in range. Scything Talons (Active) Attacks an enemy in melee for 3x X Bio Damage and any enemy units adjacent to that target and to the Prime take 2x X Bio Damage. Double hits against Summons. Reinforced Hive Node (Passive) Every second round - starting from the first the Prime is in play - the Prime has +100% Armour and - if it has Block - 100% Block Chance.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Health",
-              "Armour",
-              "Damage",
-              "Scything Talons"
-            ],
-            [
-              "Common",
-              "8",
-              "199",
-              "40",
-              "75",
-              "60-90"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "438",
-              "88",
-              "164",
-              "109-164"
-            ],
-            [
-              "Rare",
-              "26",
-              "1078",
-              "216",
-              "405",
-              "231-347"
-            ],
-            [
-              "Epic",
-              "35",
-              "2282",
-              "456",
-              "856",
-              "428-642"
-            ],
-            [
-              "Legendary",
-              "50",
-              "7976",
-              "1595",
-              "2992",
-              "1330-1994"
-            ],
-            [
-              "Mythic",
-              "55",
-              "9520",
-              "1904",
-              "3570",
-              "2856-4284"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Synaptic Lynchpin",
-        "description": "Whenever the Winged Prime, or another friendly unit with Synapse, performs a normal attack against an enemy and that enemy is not defeated, summon a Hormagaunt adjacent to the target, which immediately attacks the enemy. Cannot have more than X Hormagaunts summoned this way at the same time. Adrenal Glands (Passive) May move with +1 Movement if that move ends in a hex adjacent to an enemy. Hungering Swarm (Passive) Whenever this unit performs a melee attack, it deals +1 Hit for any friendly Hormagaunt or Ripper Swarm adjacent to the target.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Health",
-              "Armour",
-              "Damage",
-              "Max Summons"
-            ],
-            [
-              "Common",
-              "8",
-              "75",
-              "15",
-              "55",
-              "2"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "164",
-              "32",
-              "120",
-              "2"
-            ],
-            [
-              "Rare",
-              "26",
-              "405",
-              "81",
-              "297",
-              "3"
-            ],
-            [
-              "Epic",
-              "35",
-              "856",
-              "171",
-              "627",
-              "3"
-            ],
-            [
-              "Legendary",
-              "50",
-              "2992",
-              "599",
-              "2194",
-              "4"
-            ],
-            [
-              "Mythic",
-              "55",
-              "3570",
-              "714",
-              "2618",
-              "4"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Winged_Prime_Ability_1_Icon.png?47392e",
-        "heroIcon": "https://tacticus.wiki.gg/images/Winged_Prime_Icon_Large.png?8a94f9"
-      },
-      "rawInfobox": {
-        "Base Health": "100",
-        "Base Armour": "19",
-        "Base Damage": "11",
-        "Melee Attack": "Bio / 6 hits",
-        "Movement": "4",
-        "Traits": "Battle Fatigue, Instinctive Behaviour, Summon",
-        "Base Rarity": "Rare",
-        "TA Stats": "Winged PrimeTA",
-        "Move": "3",
-        "Melee": "Physical / 2 hits",
-        "Ranged": "Bio / 3 hits / Range 2"
-      }
-    },
-    {
-      "name": "Thaumachus",
-      "faction": "Chaos",
-      "description": "Kairatar Thaumachus, Exalted Sorcerer, is a character of the Thousand Sons faction.",
-      "baseStats": {
-        "health": "75",
-        "armour": "18",
-        "damage": "27"
-      },
-      "attacks": {
-        "melee": "Flame / 1 hit",
-        "ranged": "Psychic / 1 hit / Range 2"
-      },
-      "movement": "3",
-      "traits": [
-        "Flying",
-        "Psyker",
-        "Weaver of Fates"
-      ],
-      "rarity": "Epic",
-      "activeAbility": {
-        "name": "Attempted Possession",
-        "description": "Target an enemy within 2 hexes. The target and any Summons it has summoned become possessed and immediately perform a normal attack against the closest enemy unit, preferring unpossessed targets. Possessed units deal X% of their own Damage to a maximum of Y Damage per hit. Possessed Summons will move before attacking. (How does Attempted Possession Work?)",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Percent Damage",
-              "Max Damage"
-            ],
-            [
-              "Common",
-              "8",
-              "80%",
-              "137"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "85%",
-              "301"
-            ],
-            [
-              "Rare",
-              "26",
-              "90%",
-              "742"
-            ],
-            [
-              "Epic",
-              "35",
-              "95%",
-              "1568"
-            ],
-            [
-              "Legendary",
-              "50",
-              "100%",
-              "5483"
-            ],
-            [
-              "Mythic",
-              "55",
-              "100%",
-              "6546"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Arcane Shield",
-        "description": "After moving, Thaumachus applies a Shield to the closest friendly unit within 2 hexes, preferring Thousand Sons units, then other Chaos units, then other friendly units, and lastly casting it on himself if there is no other valid target. The shield has X Health and lasts one round. If Thaumachus does not move, then this ability triggers at the end of his turn.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Health"
-            ],
-            [
-              "Common",
-              "8",
-              "137"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "301"
-            ],
-            [
-              "Rare",
-              "26",
-              "742"
-            ],
-            [
-              "Epic",
-              "35",
-              "1568"
-            ],
-            [
-              "Legendary",
-              "50",
-              "5483"
-            ],
-            [
-              "Mythic",
-              "55",
-              "6546"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Thaumachus_Ability_1_Icon.png?ac3978",
-        "heroIcon": "https://tacticus.wiki.gg/images/Thaumachus_Icon_Large.png?8806c6"
-      },
-      "rawInfobox": {
-        "Base Health": "75",
-        "Base Armour": "18",
-        "Base Damage": "27",
-        "Melee Attack": "Flame / 1 hit",
-        "Ranged Attack": "Psychic / 1 hit / Range 2",
-        "Movement": "3",
-        "Traits": "Flying, Psyker, Weaver of Fates",
-        "Base Rarity": "Epic",
-        "TA Stats": "ThaumachusTA"
-      }
-    },
-    {
-      "name": "Shiron",
-      "faction": "Emperor's Children",
-      "description": "Shiron Capersi the Idolator, Noise Marine, is a character of the Emperor's Children faction.",
-      "baseStats": {
-        "health": "85",
-        "armour": "20",
-        "damage": "6"
-      },
-      "attacks": {
-        "melee": "Eviscerating / 3 hits",
-        "ranged": "Eviscerating / 6 hits / Range 3"
-      },
-      "movement": "3",
-      "traits": [
-        "Heavy Weapon",
-        "Suppressive Fire",
-        "Thrill Seekers"
-      ],
-      "rarity": "Uncommon",
-      "activeAbility": {
-        "name": "Excrutiating Frequencies",
-        "description": "Affects 3 hexes in a straight line in one of 6 directions. This attack has +X% Crit Chance for each unit on affected hexes and deals 1x X Blast Damage to each enemy on affected hexes. Enemies hit are also Suppressed.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Bonus Crit Chance",
-              "1x Blast"
-            ],
-            [
-              "Common",
-              "8",
-              "20%",
-              "120-149"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "20%",
-              "263-639"
-            ],
-            [
-              "Rare",
-              "26",
-              "25%",
-              "647-809"
-            ],
-            [
-              "Epic",
-              "35",
-              "25%",
-              "1368-1710"
-            ],
-            [
-              "Legendary",
-              "50",
-              "30%",
-              "4786-5983"
-            ],
-            [
-              "Mythic",
-              "55",
-              "30%",
-              "5712-7140"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Terrifying Crescendo",
-        "description": "Shiron's ranged attacks deal +X Damage for each time he Overkilled or would have Suppressed an enemy unit, up to a maximum of 6 times.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Bonus Damage"
-            ],
-            [
-              "Common",
-              "8",
-              "10"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "23"
-            ],
-            [
-              "Rare",
-              "26",
-              "41"
-            ],
-            [
-              "Epic",
-              "35",
-              "85"
-            ],
-            [
-              "Legendary",
-              "50",
-              "299"
-            ],
-            [
-              "Mythic",
-              "55",
-              "358"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": null,
-        "heroIcon": "https://tacticus.wiki.gg/images/Shiron_Icon_Large.png?c3a8aa"
-      },
-      "rawInfobox": {
-        "Base Health": "85",
-        "Base Armour": "20",
-        "Base Damage": "6",
-        "Melee Attack": "Eviscerating / 3 hits",
-        "Ranged Attack": "Eviscerating / 6 hits / Range 3",
-        "Movement": "3",
-        "Traits": "Heavy Weapon, Suppressive Fire, Thrill Seekers",
-        "Base Rarity": "Uncommon",
-        "TA Stats": "ShironTA"
-      }
-    },
-    {
-      "name": "Atlacoya",
-      "faction": "Imperial",
-      "description": "Atlacoya, Vigilator, is a character of the Adeptus Custodes faction.",
-      "baseStats": {
-        "health": "80",
-        "armour": "19",
-        "damage": "30"
-      },
-      "attacks": {
-        "melee": "Power / 3 hits",
-        "ranged": "N/A"
-      },
-      "movement": "3",
-      "traits": [
-        "Parry",
-        "Terrifying"
-      ],
-      "rarity": "Rare",
-      "activeAbility": {
-        "name": "Talons of the Emperor",
-        "description": "Deals 1x X Power Damage to an adjacent enemy unit. This attack deals +Y Damage for each time a friendly Character has used an active ability this battle. If the target is a Psyker or Atlacoya is adjacent to a friendly Adeptus Custodes, this attack deals Direct Damage instead.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "1x Power/Direct Damage",
-              "Bonus Damage"
-            ],
-            [
-              "Common",
-              "8",
-              "120-149",
-              "25"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "263-329",
-              "55"
-            ],
-            [
-              "Rare",
-              "26",
-              "647-809",
-              "134"
-            ],
-            [
-              "Epic",
-              "35",
-              "1368-1710",
-              "285"
-            ],
-            [
-              "Legendary",
-              "50",
-              "4786-5983",
-              "997"
-            ],
-            [
-              "Mythic",
-              "55",
-              "5714-7140",
-              "1190"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Daughter of the Abyss",
-        "description": "Atlacoya takes -X Psychic Damage. Psychic Damage dealt to other friendly units within 2 hexes of Atlacoya is reduced by Y%. Enemy Psykers within 2 hexes receive +Z% Damage.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "-X Psychic Damage",
-              "Psychic Reduction",
-              "Psyker Increase"
-            ],
-            [
-              "Common",
-              "8",
-              "-65",
-              "25%",
-              "15%"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "-143",
-              "27%",
-              "16%"
-            ],
-            [
-              "Rare",
-              "26",
-              "-350",
-              "29%",
-              "17%"
-            ],
-            [
-              "Epic",
-              "35",
-              "-741",
-              "31%",
-              "18%"
-            ],
-            [
-              "Legendary",
-              "50",
-              "-2592",
-              "33%",
-              "20%"
-            ],
-            [
-              "Mythic",
-              "55",
-              "-3094",
-              "33%",
-              "20%"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Atlacoya_Ability_1_Icon.png?cc45c4",
-        "heroIcon": "https://tacticus.wiki.gg/images/Atlacoya_Icon_Large.png?c2f73c"
-      },
-      "rawInfobox": {
-        "Base Health": "80",
-        "Base Armour": "19",
-        "Base Damage": "30",
-        "Melee Attack": "Power / 3 hits",
-        "Movement": "3",
-        "Traits": "Parry, Terrifying",
-        "Base Rarity": "Rare",
-        "TA Stats": "AtlacoyaTA"
-      }
-    },
-    {
-      "name": "Brother Burchard",
-      "faction": "Black Templars",
-      "description": "Brother Raimund Burchard is a character of the Black Templars faction.",
-      "baseStats": {
-        "health": "120",
-        "armour": "22",
-        "damage": "18"
-      },
-      "attacks": {
-        "melee": "Power / 3 hits",
-        "ranged": "Bolter / 3 hits / Range 2"
-      },
-      "movement": "2",
-      "traits": [
-        "Crushing Strike",
-        "Mk X Gravis",
-        "Suppressive Fire"
-      ],
-      "rarity": "Uncommon",
-      "activeAbility": {
-        "name": "Fragstorm Grenade Launcher",
-        "description": "Deals up to 6x X Blast Damage to a target within 2 hexes. Any leftover Hits are allocated to enemy units within 2 hexes, prioritising kills.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value"
-            ],
-            [
-              "Common",
-              "8",
-              "60-75"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "131-164"
-            ],
-            [
-              "Rare",
-              "26",
-              "323-405"
-            ],
-            [
-              "Epic",
-              "35",
-              "685-856"
-            ],
-            [
-              "Legendary",
-              "50",
-              "2392-2994"
-            ],
-            [
-              "Mythic",
-              "55",
-              "2856-3570"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Boltstorm",
-        "description": "Normal ranged attacks deal an additional 3x X Bolter Damage to the target and to each enemy adjacent to the target that is also within range of Brother Burchard. Enemies hit are Suppressed for 1 round.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value"
-            ],
-            [
-              "Common",
-              "8",
-              "37-55"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "82-120"
-            ],
-            [
-              "Rare",
-              "26",
-              "202-297"
-            ],
-            [
-              "Epic",
-              "35",
-              "427-627"
-            ],
-            [
-              "Legendary",
-              "50",
-              "1496-2194"
-            ],
-            [
-              "Mythic",
-              "55",
-              "1786-2618"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Brother_Burchard_Ability_1_Icon.png?2a3639",
-        "heroIcon": "https://tacticus.wiki.gg/images/Brother_Burchard_Icon_Large.png?9a8742"
-      },
-      "rawInfobox": {
-        "Base Health": "120",
-        "Base Armour": "22",
-        "Base Damage": "18",
-        "Melee Attack": "Power / 3 hits",
-        "Ranged Attack": "Bolter / 3 hits / Range 2",
-        "Movement": "2",
-        "Traits": "Crushing Strike, Mk X Gravis, Suppressive Fire",
-        "Base Rarity": "Uncommon",
-        "TA Stats": "Brother BurchardTA"
-      }
-    },
-    {
-      "name": "Nauseous Rotbone",
-      "faction": "Death Guard",
-      "description": "Plague Surgeon Nauseous Rotbone is a character of the Death Guard faction.",
-      "baseStats": {
-        "health": "120",
-        "armour": "27",
-        "damage": "14"
-      },
-      "attacks": {
-        "melee": "Power / 4 hits",
-        "ranged": "N/A"
-      },
-      "movement": "2",
-      "traits": [
-        "Contagions of Nurgle",
-        "Healer",
-        "Resilient"
-      ],
-      "rarity": "Epic",
-      "activeAbility": {
-        "name": "Revitalising Malignancy",
-        "description": "Heals himself and all adjacent friendly units X Health, +X Health if Chaos. No effect if Imperial.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value"
-            ],
-            [
-              "Common",
-              "8",
-              "87"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "192"
-            ],
-            [
-              "Rare",
-              "26",
-              "472"
-            ],
-            [
-              "Epic",
-              "35",
-              "998"
-            ],
-            [
-              "Legendary",
-              "50",
-              "3490"
-            ],
-            [
-              "Mythic",
-              "55",
-              "4166"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Tainted Narthecium",
-        "description": "An adjacent friendly Chaos unit that takes lethal damage has a 75% chance to be revived with X Health, even if Overkilled. Can only be triggered once per turn.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value"
-            ],
-            [
-              "Common",
-              "8",
-              "122"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "268"
-            ],
-            [
-              "Rare",
-              "26",
-              "661"
-            ],
-            [
-              "Epic",
-              "35",
-              "1397"
-            ],
-            [
-              "Legendary",
-              "50",
-              "4887"
-            ],
-            [
-              "Mythic",
-              "55",
-              "5832"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Nauseous_Rotbone_Ability_1_Icon.png?39e7ae",
-        "heroIcon": "https://tacticus.wiki.gg/images/Nauseous_Rotbone_Icon_Large.png?cdc75a"
-      },
-      "rawInfobox": {
-        "Base Health": "120",
-        "Base Armour": "27",
-        "Base Damage": "14",
-        "Melee Attack": "Power / 4 hits",
-        "Movement": "2",
-        "Traits": "Contagions of Nurgle, Healer, Resilient",
-        "Base Rarity": "Epic",
-        "TA Stats": "Nauseous RotboneTA"
-      }
-    },
-    {
-      "name": "Kut Skoden",
-      "faction": "Astra Militarum",
-      "description": "Kut Skoden is a character of the Astra Militarum faction.",
-      "baseStats": {
-        "health": "95",
-        "armour": "35",
-        "damage": "30"
-      },
-      "attacks": {
-        "melee": "Physical / 4 hits",
-        "ranged": "N/A"
-      },
-      "movement": "3",
-      "traits": [
-        "Big Target"
-      ],
-      "rarity": "Uncommon",
-      "activeAbility": {
-        "name": "Frag Bomb",
-        "description": "Deals 6x X Blast Damage to an adjacent target and 3x X Blast Damage to ALL units adjacent to the target hex, except Kut Skoden himself.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value"
-            ],
-            [
-              "Common",
-              "8",
-              "25-37"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "55-82"
-            ],
-            [
-              "Rare",
-              "26",
-              "134-202"
-            ],
-            [
-              "Epic",
-              "35",
-              "285-427"
-            ],
-            [
-              "Legendary",
-              "50",
-              "997-1496"
-            ],
-            [
-              "Mythic",
-              "55",
-              "1190-1786"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Avalanche of Muscle",
-        "description": "Deals +X Damage when charging.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value"
-            ],
-            [
-              "Common",
-              "8",
-              "15"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "32"
-            ],
-            [
-              "Rare",
-              "26",
-              "81"
-            ],
-            [
-              "Epic",
-              "35",
-              "171"
-            ],
-            [
-              "Legendary",
-              "50",
-              "599"
-            ],
-            [
-              "Mythic",
-              "55",
-              "714"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Kut_Skoden_Ability_1_Icon.png?a5d5ad",
-        "heroIcon": "https://tacticus.wiki.gg/images/Kut_Skoden_Icon_Large.png?5c0b8a"
-      },
-      "rawInfobox": {
-        "Base Health": "95",
-        "Base Armour": "35",
-        "Base Damage": "30",
-        "Melee Attack": "Physical / 4 hits",
-        "Movement": "3",
-        "Traits": "Big Target",
-        "Base Rarity": "Uncommon",
-        "TA Stats": "Kut SkodenTA"
-      }
-    },
-    {
-      "name": "Lucien",
-      "faction": "Imperial",
-      "description": "Lucien, Death Company Intercessor, is a character of the Blood Angels faction.",
-      "baseStats": {
-        "health": "90",
-        "armour": "21",
-        "damage": "30"
-      },
-      "attacks": {
-        "melee": "Physical / 4 hits",
-        "ranged": "Blast / 3 hits / Range 2"
-      },
-      "movement": "3",
-      "traits": [
-        "Rapid Assault",
-        "Resilient",
-        "Unstoppable"
-      ],
-      "rarity": "Uncommon",
-      "activeAbility": {
-        "name": "Black Rage",
-        "description": "If Lucien has not moved, he is set to X% Health. He then immediately charges a targeted enemy in movement range and performs a normal melee attack against it. For this attack and until the end of the battle, Lucien has +1 Movement and deals +Y Damage when Charging. Additionally, Lucien can no longer be controlled for the rest of the battle, and moves and attacks automatically at the beginning of his turn instead.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Percent Health",
-              "Bonus Damage"
-            ],
-            [
-              "Common",
-              "8",
-              "30%",
-              "25"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "35%",
-              "55"
-            ],
-            [
-              "Rare",
-              "26",
-              "40%",
-              "134"
-            ],
-            [
-              "Epic",
-              "35",
-              "45%",
-              "285"
-            ],
-            [
-              "Legendary",
-              "50",
-              "50%",
-              "997"
-            ],
-            [
-              "Mythic",
-              "55",
-              "50%",
-              "1190"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Visions of Heresy",
-        "description": "After performing a normal attack, Lucien performs a second attack targeting an enemy within range 2, dealing 2x X Bolter Damage. If Lucien is at or below 50% Health, all of his attacks have +Y% pierce ratio.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "2x Bolter",
-              "Pierce Ratio"
-            ],
-            [
-              "Common",
-              "8",
-              "45-90",
-              "10%"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "137-197",
-              "12%"
-            ],
-            [
-              "Rare",
-              "26",
-              "337-486",
-              "15%"
-            ],
-            [
-              "Epic",
-              "35",
-              "714-1027",
-              "17%"
-            ],
-            [
-              "Legendary",
-              "50",
-              "2493-3589",
-              "20%"
-            ],
-            [
-              "Mythic",
-              "55",
-              "2976-4284",
-              "20%"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Lucien_Ability_1_Icon.png?c11305",
-        "heroIcon": "https://tacticus.wiki.gg/images/Lucien_Icon_Large.png?100977"
-      },
-      "rawInfobox": {
-        "Base Health": "90",
-        "Base Armour": "21",
-        "Base Damage": "30",
-        "Melee Attack": "Physical / 4 hits",
-        "Ranged Attack": "Blast / 3 hits / Range 2",
-        "Movement": "3",
-        "Traits": "Rapid Assault, Resilient, Unstoppable",
-        "Base Rarity": "Uncommon",
-        "TA Stats": "LucienTA"
-      }
-    },
-    {
-      "name": "Incisus",
-      "faction": "Ultramarines",
-      "description": "Apothecary Andreas Incisus is a character of the Ultramarines faction.",
-      "baseStats": {
-        "health": "100",
-        "armour": "22",
-        "damage": "46"
-      },
-      "attacks": {
-        "melee": "Piercing / 1 hit",
-        "ranged": "N/A"
-      },
-      "movement": "3",
-      "traits": [
-        "Healer"
-      ],
-      "rarity": "Common",
-      "activeAbility": {
-        "name": "Combat Restoratives",
-        "description": "Heals himself and all adjacent friendly units by X Health, Y Health if Imperial.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value",
-              "Imperial Value"
-            ],
-            [
-              "Common",
-              "8",
-              "149",
-              "187"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "329",
-              "410"
-            ],
-            [
-              "Rare",
-              "26",
-              "809",
-              "1011"
-            ],
-            [
-              "Epic",
-              "35",
-              "1710",
-              "2139"
-            ],
-            [
-              "Legendary",
-              "50",
-              "5983",
-              "7477"
-            ],
-            [
-              "Mythic",
-              "55",
-              "7140",
-              "8926"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Narthecium",
-        "description": "When an adjacent friendly non-Mechanical unit is defeated, it is immediately revived with X Health, unless Overkilled. Can only be triggered once per turn.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Value"
-            ],
-            [
-              "Common",
-              "8",
-              "149"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "329"
-            ],
-            [
-              "Rare",
-              "26",
-              "809"
-            ],
-            [
-              "Epic",
-              "35",
-              "1710"
-            ],
-            [
-              "Legendary",
-              "50",
-              "5983"
-            ],
-            [
-              "Mythic",
-              "55",
-              "7140"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Incisus_Ability_1_Icon.png?65b4a2",
-        "heroIcon": "https://tacticus.wiki.gg/images/Incisus_Icon_Large.png?884f4b"
-      },
-      "rawInfobox": {
-        "Base Health": "100",
-        "Base Armour": "22",
-        "Base Damage": "46",
-        "Melee Attack": "Piercing / 1 hit",
-        "Movement": "3",
-        "Traits": "Healer",
-        "Base Rarity": "Common",
-        "TA Stats": "IncisusTA"
-      }
-    },
-    {
-      "name": "Isaak",
-      "faction": "Xenos",
-      "description": "Isaak Starn, Primus, is a character of the Genestealer Cults faction.",
-      "baseStats": {
-        "health": "70",
-        "armour": "14",
-        "damage": "30"
-      },
-      "attacks": {
-        "melee": "Bio / 3 hits",
-        "ranged": "Bio / 1 hit / Range 2"
-      },
-      "movement": "3",
-      "traits": [
-        "Ambush"
-      ],
-      "rarity": "Rare",
-      "activeAbility": {
-        "name": "Cult Demagogue",
-        "description": "Targets an enemy unit within 2 hexes and places Decoys on up to Y random free hexes within 2 hexes around the target. Then summons Neophyte Hybrids on half of all the friendly Decoys in that area and all Neophyte Hybrids in that area immediately take a turn.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "Decoys",
-              "Health",
-              "Damage",
-              "Armour"
-            ],
-            [
-              "Common",
-              "8",
-              "4",
-              "75",
-              "60",
-              "15"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "5",
-              "164",
-              "131",
-              "32"
-            ],
-            [
-              "Rare",
-              "26",
-              "6",
-              "405",
-              "323",
-              "81"
-            ],
-            [
-              "Epic",
-              "35",
-              "7",
-              "856",
-              "685",
-              "171"
-            ],
-            [
-              "Legendary",
-              "50",
-              "8",
-              "2992",
-              "2394",
-              "599"
-            ],
-            [
-              "Mythic",
-              "55",
-              "8",
-              "3570",
-              "2856",
-              "714"
-            ]
-          ]
-        ]
-      },
-      "passiveAbility": {
-        "name": "Decoys and Misdirection",
-        "description": "When an enemy moves onto a friendly Decoy, it takes 1x X Blast Damage. When a friendly unit resurrects onto or moves onto a friendly Decoy, it deals +Y Damage until the end of its turn, and if it is a Genestealer Cults unit, it also places a new Decoy in a free adjacent hex.",
-        "tables": [
-          [
-            [
-              "Rarity",
-              "Level",
-              "1x Blast",
-              "Bonus Damage"
-            ],
-            [
-              "Common",
-              "8",
-              "50-60",
-              "20"
-            ],
-            [
-              "Uncommon",
-              "17",
-              "109-131",
-              "43"
-            ],
-            [
-              "Rare",
-              "26",
-              "270-323",
-              "108"
-            ],
-            [
-              "Epic",
-              "35",
-              "570-685",
-              "229"
-            ],
-            [
-              "Legendary",
-              "50",
-              "1996-2394",
-              "797"
-            ],
-            [
-              "Mythic",
-              "55",
-              "2380-2856",
-              "952"
-            ]
-          ]
-        ]
-      },
-      "images": {
-        "heroArt": "https://tacticus.wiki.gg/images/Isaak_Ability_1_Icon.png?552c53",
-        "heroIcon": "https://tacticus.wiki.gg/images/Isaak_Icon_Large.png?86d31c"
-      },
-      "rawInfobox": {
-        "Base Health": "70",
-        "Base Armour": "14",
-        "Base Damage": "30",
-        "Melee Attack": "Bio / 3 hits",
-        "Ranged Attack": "Bio / 1 hit / Range 2",
-        "Movement": "3",
-        "Traits": "Ambush, Battle Fatigue, Summon",
-        "Base Rarity": "Rare",
-        "TA Stats": "IsaakTA",
-        "Move": "3",
-        "Melee": "Physical / 1 hit",
-        "Ranged": "Projectile / 2 hits / Range 2"
-      }
-    },
-    {
       "name": "Abaddon The Despoiler",
       "faction": "Black Legion",
       "description": "Abaddon the Despoiler, Warmaster of Chaos is a character of the Black Legion faction.",
@@ -3561,6 +1955,147 @@
       }
     },
     {
+      "name": "Atlacoya",
+      "faction": "Imperial",
+      "description": "Atlacoya, Vigilator, is a character of the Adeptus Custodes faction.",
+      "baseStats": {
+        "health": "80",
+        "armour": "19",
+        "damage": "30"
+      },
+      "attacks": {
+        "melee": "Power / 3 hits",
+        "ranged": "N/A"
+      },
+      "movement": "3",
+      "traits": [
+        "Parry",
+        "Terrifying"
+      ],
+      "rarity": "Rare",
+      "activeAbility": {
+        "name": "Talons of the Emperor",
+        "description": "Deals 1x X Power Damage to an adjacent enemy unit. This attack deals +Y Damage for each time a friendly Character has used an active ability this battle. If the target is a Psyker or Atlacoya is adjacent to a friendly Adeptus Custodes, this attack deals Direct Damage instead.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "1x Power/Direct Damage",
+              "Bonus Damage"
+            ],
+            [
+              "Common",
+              "8",
+              "120-149",
+              "25"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "263-329",
+              "55"
+            ],
+            [
+              "Rare",
+              "26",
+              "647-809",
+              "134"
+            ],
+            [
+              "Epic",
+              "35",
+              "1368-1710",
+              "285"
+            ],
+            [
+              "Legendary",
+              "50",
+              "4786-5983",
+              "997"
+            ],
+            [
+              "Mythic",
+              "55",
+              "5714-7140",
+              "1190"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Daughter of the Abyss",
+        "description": "Atlacoya takes -X Psychic Damage. Psychic Damage dealt to other friendly units within 2 hexes of Atlacoya is reduced by Y%. Enemy Psykers within 2 hexes receive +Z% Damage.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "-X Psychic Damage",
+              "Psychic Reduction",
+              "Psyker Increase"
+            ],
+            [
+              "Common",
+              "8",
+              "-65",
+              "25%",
+              "15%"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "-143",
+              "27%",
+              "16%"
+            ],
+            [
+              "Rare",
+              "26",
+              "-350",
+              "29%",
+              "17%"
+            ],
+            [
+              "Epic",
+              "35",
+              "-741",
+              "31%",
+              "18%"
+            ],
+            [
+              "Legendary",
+              "50",
+              "-2592",
+              "33%",
+              "20%"
+            ],
+            [
+              "Mythic",
+              "55",
+              "-3094",
+              "33%",
+              "20%"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Atlacoya_Ability_1_Icon.png?cc45c4",
+        "heroIcon": "https://tacticus.wiki.gg/images/Atlacoya_Icon_Large.png?c2f73c"
+      },
+      "rawInfobox": {
+        "Base Health": "80",
+        "Base Armour": "19",
+        "Base Damage": "30",
+        "Melee Attack": "Power / 3 hits",
+        "Movement": "3",
+        "Traits": "Parry, Terrifying",
+        "Base Rarity": "Rare",
+        "TA Stats": "AtlacoyaTA"
+      }
+    },
+    {
       "name": "Aun'Shi",
       "faction": "Tau Empire",
       "description": "Ethereal Aun'Shi is a character of the Tau Empire faction.",
@@ -4382,6 +2917,128 @@
       }
     },
     {
+      "name": "Brother Burchard",
+      "faction": "Black Templars",
+      "description": "Brother Raimund Burchard is a character of the Black Templars faction.",
+      "baseStats": {
+        "health": "120",
+        "armour": "22",
+        "damage": "18"
+      },
+      "attacks": {
+        "melee": "Power / 3 hits",
+        "ranged": "Bolter / 3 hits / Range 2"
+      },
+      "movement": "2",
+      "traits": [
+        "Crushing Strike",
+        "Mk X Gravis",
+        "Suppressive Fire"
+      ],
+      "rarity": "Uncommon",
+      "activeAbility": {
+        "name": "Fragstorm Grenade Launcher",
+        "description": "Deals up to 6x X Blast Damage to a target within 2 hexes. Any leftover Hits are allocated to enemy units within 2 hexes, prioritising kills.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value"
+            ],
+            [
+              "Common",
+              "8",
+              "60-75"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "131-164"
+            ],
+            [
+              "Rare",
+              "26",
+              "323-405"
+            ],
+            [
+              "Epic",
+              "35",
+              "685-856"
+            ],
+            [
+              "Legendary",
+              "50",
+              "2392-2994"
+            ],
+            [
+              "Mythic",
+              "55",
+              "2856-3570"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Boltstorm",
+        "description": "Normal ranged attacks deal an additional 3x X Bolter Damage to the target and to each enemy adjacent to the target that is also within range of Brother Burchard. Enemies hit are Suppressed for 1 round.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value"
+            ],
+            [
+              "Common",
+              "8",
+              "37-55"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "82-120"
+            ],
+            [
+              "Rare",
+              "26",
+              "202-297"
+            ],
+            [
+              "Epic",
+              "35",
+              "427-627"
+            ],
+            [
+              "Legendary",
+              "50",
+              "1496-2194"
+            ],
+            [
+              "Mythic",
+              "55",
+              "1786-2618"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Brother_Burchard_Ability_1_Icon.png?2a3639",
+        "heroIcon": "https://tacticus.wiki.gg/images/Brother_Burchard_Icon_Large.png?9a8742"
+      },
+      "rawInfobox": {
+        "Base Health": "120",
+        "Base Armour": "22",
+        "Base Damage": "18",
+        "Melee Attack": "Power / 3 hits",
+        "Ranged Attack": "Bolter / 3 hits / Range 2",
+        "Movement": "2",
+        "Traits": "Crushing Strike, Mk X Gravis, Suppressive Fire",
+        "Base Rarity": "Uncommon",
+        "TA Stats": "Brother BurchardTA"
+      }
+    },
+    {
       "name": "Brother Jaeger",
       "faction": "Black Templars",
       "description": "Brother Kenric Jaeger, the Emperor's Champion is a character of the Black Templars faction.",
@@ -5187,6 +3844,149 @@
         "Move": "3",
         "Melee": "Physical / 1 hit",
         "Ranged": "Las / 2 hits / Range 2"
+      }
+    },
+    {
+      "name": "Corrodius",
+      "faction": "Death Guard",
+      "description": "Corrodius Achebile, Noxious Blightbringer is a character of the Death Guard faction.",
+      "baseStats": {
+        "health": "125",
+        "armour": "25",
+        "damage": "40"
+      },
+      "attacks": {
+        "melee": "Plasma / 1 hit",
+        "ranged": "N/A"
+      },
+      "movement": "2",
+      "traits": [
+        "Contagions of Nurgle",
+        "Resilient"
+      ],
+      "rarity": "Rare",
+      "activeAbility": {
+        "name": "Poxwalkers",
+        "description": "Summons Poxwalkers in X% of free hexes (rounded up) within Corrodius's Contagion aura. Newly summoned Poxwalkers immediately attack in melee, but cannot move this turn. Cursed of the Walking Pox (Passive) Each time this unit kills an enemy non-Mechanical unit, a Poxwalker is summoned in that hex.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value",
+              "Health",
+              "Armour",
+              "Damage"
+            ],
+            [
+              "Common",
+              "8",
+              "15-25%",
+              "75",
+              "0",
+              "87"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "17-30%",
+              "164",
+              "0",
+              "192"
+            ],
+            [
+              "Rare",
+              "26",
+              "18-35%",
+              "405",
+              "0",
+              "472"
+            ],
+            [
+              "Epic",
+              "35",
+              "19-40%",
+              "856",
+              "0",
+              "998"
+            ],
+            [
+              "Legendary",
+              "50",
+              "20-45%",
+              "2992",
+              "0",
+              "3490"
+            ],
+            [
+              "Mythic",
+              "55",
+              "20-45%",
+              "3570",
+              "0",
+              "4166"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Cursed Plague Bell",
+        "description": "Friendly Chaos units starting their turn within Corrodius's Contagion aura gain +1 Movement for this turn. Enemy Psyker units within Corrodius's Contagion aura deal 1x X Psychic Damage to themselves each time one of their attacks deals Psychic damage.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value"
+            ],
+            [
+              "Common",
+              "8",
+              "45"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "98"
+            ],
+            [
+              "Rare",
+              "26",
+              "242"
+            ],
+            [
+              "Epic",
+              "35",
+              "514"
+            ],
+            [
+              "Legendary",
+              "50",
+              "1795"
+            ],
+            [
+              "Mythic",
+              "55",
+              "2142"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Corrodius_Ability_1_Icon.png?799828",
+        "heroIcon": "https://tacticus.wiki.gg/images/Corrodius_Icon_Large.png?f1f5bb"
+      },
+      "rawInfobox": {
+        "Base Health": "125",
+        "Base Armour": "25",
+        "Base Damage": "40",
+        "Melee Attack": "Plasma / 1 hit",
+        "Movement": "2",
+        "Traits": "Contagions of Nurgle, Summon",
+        "Base Rarity": "Rare",
+        "TA Stats": "CorrodiusTA",
+        "Move": "3",
+        "Melee": "Physical / 2 hits"
       }
     },
     {
@@ -6625,6 +5425,283 @@
       }
     },
     {
+      "name": "Incisus",
+      "faction": "Ultramarines",
+      "description": "Apothecary Andreas Incisus is a character of the Ultramarines faction.",
+      "baseStats": {
+        "health": "100",
+        "armour": "22",
+        "damage": "46"
+      },
+      "attacks": {
+        "melee": "Piercing / 1 hit",
+        "ranged": "N/A"
+      },
+      "movement": "3",
+      "traits": [
+        "Healer"
+      ],
+      "rarity": "Common",
+      "activeAbility": {
+        "name": "Combat Restoratives",
+        "description": "Heals himself and all adjacent friendly units by X Health, Y Health if Imperial.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value",
+              "Imperial Value"
+            ],
+            [
+              "Common",
+              "8",
+              "149",
+              "187"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "329",
+              "410"
+            ],
+            [
+              "Rare",
+              "26",
+              "809",
+              "1011"
+            ],
+            [
+              "Epic",
+              "35",
+              "1710",
+              "2139"
+            ],
+            [
+              "Legendary",
+              "50",
+              "5983",
+              "7477"
+            ],
+            [
+              "Mythic",
+              "55",
+              "7140",
+              "8926"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Narthecium",
+        "description": "When an adjacent friendly non-Mechanical unit is defeated, it is immediately revived with X Health, unless Overkilled. Can only be triggered once per turn.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value"
+            ],
+            [
+              "Common",
+              "8",
+              "149"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "329"
+            ],
+            [
+              "Rare",
+              "26",
+              "809"
+            ],
+            [
+              "Epic",
+              "35",
+              "1710"
+            ],
+            [
+              "Legendary",
+              "50",
+              "5983"
+            ],
+            [
+              "Mythic",
+              "55",
+              "7140"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Incisus_Ability_1_Icon.png?65b4a2",
+        "heroIcon": "https://tacticus.wiki.gg/images/Incisus_Icon_Large.png?884f4b"
+      },
+      "rawInfobox": {
+        "Base Health": "100",
+        "Base Armour": "22",
+        "Base Damage": "46",
+        "Melee Attack": "Piercing / 1 hit",
+        "Movement": "3",
+        "Traits": "Healer",
+        "Base Rarity": "Common",
+        "TA Stats": "IncisusTA"
+      }
+    },
+    {
+      "name": "Isaak",
+      "faction": "Xenos",
+      "description": "Isaak Starn, Primus, is a character of the Genestealer Cults faction.",
+      "baseStats": {
+        "health": "70",
+        "armour": "14",
+        "damage": "30"
+      },
+      "attacks": {
+        "melee": "Bio / 3 hits",
+        "ranged": "Bio / 1 hit / Range 2"
+      },
+      "movement": "3",
+      "traits": [
+        "Ambush"
+      ],
+      "rarity": "Rare",
+      "activeAbility": {
+        "name": "Cult Demagogue",
+        "description": "Targets an enemy unit within 2 hexes and places Decoys on up to Y random free hexes within 2 hexes around the target. Then summons Neophyte Hybrids on half of all the friendly Decoys in that area and all Neophyte Hybrids in that area immediately take a turn.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Decoys",
+              "Health",
+              "Damage",
+              "Armour"
+            ],
+            [
+              "Common",
+              "8",
+              "4",
+              "75",
+              "60",
+              "15"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "5",
+              "164",
+              "131",
+              "32"
+            ],
+            [
+              "Rare",
+              "26",
+              "6",
+              "405",
+              "323",
+              "81"
+            ],
+            [
+              "Epic",
+              "35",
+              "7",
+              "856",
+              "685",
+              "171"
+            ],
+            [
+              "Legendary",
+              "50",
+              "8",
+              "2992",
+              "2394",
+              "599"
+            ],
+            [
+              "Mythic",
+              "55",
+              "8",
+              "3570",
+              "2856",
+              "714"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Decoys and Misdirection",
+        "description": "When an enemy moves onto a friendly Decoy, it takes 1x X Blast Damage. When a friendly unit resurrects onto or moves onto a friendly Decoy, it deals +Y Damage until the end of its turn, and if it is a Genestealer Cults unit, it also places a new Decoy in a free adjacent hex.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "1x Blast",
+              "Bonus Damage"
+            ],
+            [
+              "Common",
+              "8",
+              "50-60",
+              "20"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "109-131",
+              "43"
+            ],
+            [
+              "Rare",
+              "26",
+              "270-323",
+              "108"
+            ],
+            [
+              "Epic",
+              "35",
+              "570-685",
+              "229"
+            ],
+            [
+              "Legendary",
+              "50",
+              "1996-2394",
+              "797"
+            ],
+            [
+              "Mythic",
+              "55",
+              "2380-2856",
+              "952"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Isaak_Ability_1_Icon.png?552c53",
+        "heroIcon": "https://tacticus.wiki.gg/images/Isaak_Icon_Large.png?86d31c"
+      },
+      "rawInfobox": {
+        "Base Health": "70",
+        "Base Armour": "14",
+        "Base Damage": "30",
+        "Melee Attack": "Bio / 3 hits",
+        "Ranged Attack": "Bio / 1 hit / Range 2",
+        "Movement": "3",
+        "Traits": "Ambush, Battle Fatigue, Summon",
+        "Base Rarity": "Rare",
+        "TA Stats": "IsaakTA",
+        "Move": "3",
+        "Melee": "Physical / 1 hit",
+        "Ranged": "Projectile / 2 hits / Range 2"
+      }
+    },
+    {
       "name": "Isabella",
       "faction": "Imperial",
       "description": "Isabella Mariken is a character of the Adepta Sororitas faction.",
@@ -7275,6 +6352,261 @@
         "Traits": "Blessings of Khorne, Final Vengeance, Rapid Assault",
         "Base Rarity": "Legendary",
         "TA Stats": "KharnTA"
+      }
+    },
+    {
+      "name": "Kut Skoden",
+      "faction": "Astra Militarum",
+      "description": "Kut Skoden is a character of the Astra Militarum faction.",
+      "baseStats": {
+        "health": "95",
+        "armour": "35",
+        "damage": "30"
+      },
+      "attacks": {
+        "melee": "Physical / 4 hits",
+        "ranged": "N/A"
+      },
+      "movement": "3",
+      "traits": [
+        "Big Target"
+      ],
+      "rarity": "Uncommon",
+      "activeAbility": {
+        "name": "Frag Bomb",
+        "description": "Deals 6x X Blast Damage to an adjacent target and 3x X Blast Damage to ALL units adjacent to the target hex, except Kut Skoden himself.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value"
+            ],
+            [
+              "Common",
+              "8",
+              "25-37"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "55-82"
+            ],
+            [
+              "Rare",
+              "26",
+              "134-202"
+            ],
+            [
+              "Epic",
+              "35",
+              "285-427"
+            ],
+            [
+              "Legendary",
+              "50",
+              "997-1496"
+            ],
+            [
+              "Mythic",
+              "55",
+              "1190-1786"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Avalanche of Muscle",
+        "description": "Deals +X Damage when charging.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value"
+            ],
+            [
+              "Common",
+              "8",
+              "15"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "32"
+            ],
+            [
+              "Rare",
+              "26",
+              "81"
+            ],
+            [
+              "Epic",
+              "35",
+              "171"
+            ],
+            [
+              "Legendary",
+              "50",
+              "599"
+            ],
+            [
+              "Mythic",
+              "55",
+              "714"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Kut_Skoden_Ability_1_Icon.png?a5d5ad",
+        "heroIcon": "https://tacticus.wiki.gg/images/Kut_Skoden_Icon_Large.png?5c0b8a"
+      },
+      "rawInfobox": {
+        "Base Health": "95",
+        "Base Armour": "35",
+        "Base Damage": "30",
+        "Melee Attack": "Physical / 4 hits",
+        "Movement": "3",
+        "Traits": "Big Target",
+        "Base Rarity": "Uncommon",
+        "TA Stats": "Kut SkodenTA"
+      }
+    },
+    {
+      "name": "Lucien",
+      "faction": "Imperial",
+      "description": "Lucien, Death Company Intercessor, is a character of the Blood Angels faction.",
+      "baseStats": {
+        "health": "90",
+        "armour": "21",
+        "damage": "30"
+      },
+      "attacks": {
+        "melee": "Physical / 4 hits",
+        "ranged": "Blast / 3 hits / Range 2"
+      },
+      "movement": "3",
+      "traits": [
+        "Rapid Assault",
+        "Resilient",
+        "Unstoppable"
+      ],
+      "rarity": "Uncommon",
+      "activeAbility": {
+        "name": "Black Rage",
+        "description": "If Lucien has not moved, he is set to X% Health. He then immediately charges a targeted enemy in movement range and performs a normal melee attack against it. For this attack and until the end of the battle, Lucien has +1 Movement and deals +Y Damage when Charging. Additionally, Lucien can no longer be controlled for the rest of the battle, and moves and attacks automatically at the beginning of his turn instead.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Percent Health",
+              "Bonus Damage"
+            ],
+            [
+              "Common",
+              "8",
+              "30%",
+              "25"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "35%",
+              "55"
+            ],
+            [
+              "Rare",
+              "26",
+              "40%",
+              "134"
+            ],
+            [
+              "Epic",
+              "35",
+              "45%",
+              "285"
+            ],
+            [
+              "Legendary",
+              "50",
+              "50%",
+              "997"
+            ],
+            [
+              "Mythic",
+              "55",
+              "50%",
+              "1190"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Visions of Heresy",
+        "description": "After performing a normal attack, Lucien performs a second attack targeting an enemy within range 2, dealing 2x X Bolter Damage. If Lucien is at or below 50% Health, all of his attacks have +Y% pierce ratio.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "2x Bolter",
+              "Pierce Ratio"
+            ],
+            [
+              "Common",
+              "8",
+              "45-90",
+              "10%"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "137-197",
+              "12%"
+            ],
+            [
+              "Rare",
+              "26",
+              "337-486",
+              "15%"
+            ],
+            [
+              "Epic",
+              "35",
+              "714-1027",
+              "17%"
+            ],
+            [
+              "Legendary",
+              "50",
+              "2493-3589",
+              "20%"
+            ],
+            [
+              "Mythic",
+              "55",
+              "2976-4284",
+              "20%"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Lucien_Ability_1_Icon.png?c11305",
+        "heroIcon": "https://tacticus.wiki.gg/images/Lucien_Icon_Large.png?100977"
+      },
+      "rawInfobox": {
+        "Base Health": "90",
+        "Base Armour": "21",
+        "Base Damage": "30",
+        "Melee Attack": "Physical / 4 hits",
+        "Ranged Attack": "Blast / 3 hits / Range 2",
+        "Movement": "3",
+        "Traits": "Rapid Assault, Resilient, Unstoppable",
+        "Base Rarity": "Uncommon",
+        "TA Stats": "LucienTA"
       }
     },
     {
@@ -8593,6 +7925,127 @@
         "Traits": "Act of Faith, Big Target, Explodes, Mechanical",
         "Base Rarity": "Legendary",
         "TA Stats": "Morvenn VahlTA"
+      }
+    },
+    {
+      "name": "Nauseous Rotbone",
+      "faction": "Death Guard",
+      "description": "Plague Surgeon Nauseous Rotbone is a character of the Death Guard faction.",
+      "baseStats": {
+        "health": "120",
+        "armour": "27",
+        "damage": "14"
+      },
+      "attacks": {
+        "melee": "Power / 4 hits",
+        "ranged": "N/A"
+      },
+      "movement": "2",
+      "traits": [
+        "Contagions of Nurgle",
+        "Healer",
+        "Resilient"
+      ],
+      "rarity": "Epic",
+      "activeAbility": {
+        "name": "Revitalising Malignancy",
+        "description": "Heals himself and all adjacent friendly units X Health, +X Health if Chaos. No effect if Imperial.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value"
+            ],
+            [
+              "Common",
+              "8",
+              "87"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "192"
+            ],
+            [
+              "Rare",
+              "26",
+              "472"
+            ],
+            [
+              "Epic",
+              "35",
+              "998"
+            ],
+            [
+              "Legendary",
+              "50",
+              "3490"
+            ],
+            [
+              "Mythic",
+              "55",
+              "4166"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Tainted Narthecium",
+        "description": "An adjacent friendly Chaos unit that takes lethal damage has a 75% chance to be revived with X Health, even if Overkilled. Can only be triggered once per turn.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Value"
+            ],
+            [
+              "Common",
+              "8",
+              "122"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "268"
+            ],
+            [
+              "Rare",
+              "26",
+              "661"
+            ],
+            [
+              "Epic",
+              "35",
+              "1397"
+            ],
+            [
+              "Legendary",
+              "50",
+              "4887"
+            ],
+            [
+              "Mythic",
+              "55",
+              "5832"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Nauseous_Rotbone_Ability_1_Icon.png?39e7ae",
+        "heroIcon": "https://tacticus.wiki.gg/images/Nauseous_Rotbone_Icon_Large.png?cdc75a"
+      },
+      "rawInfobox": {
+        "Base Health": "120",
+        "Base Armour": "27",
+        "Base Damage": "14",
+        "Melee Attack": "Power / 4 hits",
+        "Movement": "2",
+        "Traits": "Contagions of Nurgle, Healer, Resilient",
+        "Base Rarity": "Epic",
+        "TA Stats": "Nauseous RotboneTA"
       }
     },
     {
@@ -9965,6 +9418,135 @@
       }
     },
     {
+      "name": "Shiron",
+      "faction": "Emperor's Children",
+      "description": "Shiron Capersi the Idolator, Noise Marine, is a character of the Emperor's Children faction.",
+      "baseStats": {
+        "health": "85",
+        "armour": "20",
+        "damage": "6"
+      },
+      "attacks": {
+        "melee": "Eviscerating / 3 hits",
+        "ranged": "Eviscerating / 6 hits / Range 3"
+      },
+      "movement": "3",
+      "traits": [
+        "Heavy Weapon",
+        "Suppressive Fire",
+        "Thrill Seekers"
+      ],
+      "rarity": "Uncommon",
+      "activeAbility": {
+        "name": "Excrutiating Frequencies",
+        "description": "Affects 3 hexes in a straight line in one of 6 directions. This attack has +X% Crit Chance for each unit on affected hexes and deals 1x X Blast Damage to each enemy on affected hexes. Enemies hit are also Suppressed.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Bonus Crit Chance",
+              "1x Blast"
+            ],
+            [
+              "Common",
+              "8",
+              "20%",
+              "120-149"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "20%",
+              "263-639"
+            ],
+            [
+              "Rare",
+              "26",
+              "25%",
+              "647-809"
+            ],
+            [
+              "Epic",
+              "35",
+              "25%",
+              "1368-1710"
+            ],
+            [
+              "Legendary",
+              "50",
+              "30%",
+              "4786-5983"
+            ],
+            [
+              "Mythic",
+              "55",
+              "30%",
+              "5712-7140"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Terrifying Crescendo",
+        "description": "Shiron's ranged attacks deal +X Damage for each time he Overkilled or would have Suppressed an enemy unit, up to a maximum of 6 times.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Bonus Damage"
+            ],
+            [
+              "Common",
+              "8",
+              "10"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "23"
+            ],
+            [
+              "Rare",
+              "26",
+              "41"
+            ],
+            [
+              "Epic",
+              "35",
+              "85"
+            ],
+            [
+              "Legendary",
+              "50",
+              "299"
+            ],
+            [
+              "Mythic",
+              "55",
+              "358"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": null,
+        "heroIcon": "https://tacticus.wiki.gg/images/Shiron_Icon_Large.png?c3a8aa"
+      },
+      "rawInfobox": {
+        "Base Health": "85",
+        "Base Armour": "20",
+        "Base Damage": "6",
+        "Melee Attack": "Eviscerating / 3 hits",
+        "Ranged Attack": "Eviscerating / 6 hits / Range 3",
+        "Movement": "3",
+        "Traits": "Heavy Weapon, Suppressive Fire, Thrill Seekers",
+        "Base Rarity": "Uncommon",
+        "TA Stats": "ShironTA"
+      }
+    },
+    {
       "name": "Sho'syl",
       "faction": "Tau Empire",
       "description": "Shas'ui Vior'la Sho'syl is a character of the Tau Empire faction.",
@@ -11283,6 +10865,135 @@
         "Traits": "Indirect Fire, Suppressive Fire",
         "Base Rarity": "Rare",
         "TA Stats": "Thaddeus NobleTA"
+      }
+    },
+    {
+      "name": "Thaumachus",
+      "faction": "Chaos",
+      "description": "Kairatar Thaumachus, Exalted Sorcerer, is a character of the Thousand Sons faction.",
+      "baseStats": {
+        "health": "75",
+        "armour": "18",
+        "damage": "27"
+      },
+      "attacks": {
+        "melee": "Flame / 1 hit",
+        "ranged": "Psychic / 1 hit / Range 2"
+      },
+      "movement": "3",
+      "traits": [
+        "Flying",
+        "Psyker",
+        "Weaver of Fates"
+      ],
+      "rarity": "Epic",
+      "activeAbility": {
+        "name": "Attempted Possession",
+        "description": "Target an enemy within 2 hexes. The target and any Summons it has summoned become possessed and immediately perform a normal attack against the closest enemy unit, preferring unpossessed targets. Possessed units deal X% of their own Damage to a maximum of Y Damage per hit. Possessed Summons will move before attacking. (How does Attempted Possession Work?)",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Percent Damage",
+              "Max Damage"
+            ],
+            [
+              "Common",
+              "8",
+              "80%",
+              "137"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "85%",
+              "301"
+            ],
+            [
+              "Rare",
+              "26",
+              "90%",
+              "742"
+            ],
+            [
+              "Epic",
+              "35",
+              "95%",
+              "1568"
+            ],
+            [
+              "Legendary",
+              "50",
+              "100%",
+              "5483"
+            ],
+            [
+              "Mythic",
+              "55",
+              "100%",
+              "6546"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Arcane Shield",
+        "description": "After moving, Thaumachus applies a Shield to the closest friendly unit within 2 hexes, preferring Thousand Sons units, then other Chaos units, then other friendly units, and lastly casting it on himself if there is no other valid target. The shield has X Health and lasts one round. If Thaumachus does not move, then this ability triggers at the end of his turn.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Health"
+            ],
+            [
+              "Common",
+              "8",
+              "137"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "301"
+            ],
+            [
+              "Rare",
+              "26",
+              "742"
+            ],
+            [
+              "Epic",
+              "35",
+              "1568"
+            ],
+            [
+              "Legendary",
+              "50",
+              "5483"
+            ],
+            [
+              "Mythic",
+              "55",
+              "6546"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Thaumachus_Ability_1_Icon.png?ac3978",
+        "heroIcon": "https://tacticus.wiki.gg/images/Thaumachus_Icon_Large.png?8806c6"
+      },
+      "rawInfobox": {
+        "Base Health": "75",
+        "Base Armour": "18",
+        "Base Damage": "27",
+        "Melee Attack": "Flame / 1 hit",
+        "Ranged Attack": "Psychic / 1 hit / Range 2",
+        "Movement": "3",
+        "Traits": "Flying, Psyker, Weaver of Fates",
+        "Base Rarity": "Epic",
+        "TA Stats": "ThaumachusTA"
       }
     },
     {
@@ -13105,6 +12816,295 @@
         "Traits": "Big Target, Daemon, Let the Galaxy Burn, Suppressive Fire",
         "Base Rarity": "Rare",
         "TA Stats": "VolkTA"
+      }
+    },
+    {
+      "name": "Winged Prime",
+      "faction": "Tyranids",
+      "description": "Winged Prime, the Lead Warrior Organism, is a character of the Tyranids faction.",
+      "baseStats": {
+        "health": "100",
+        "armour": "19",
+        "damage": "11"
+      },
+      "attacks": {
+        "melee": "Bio / 6 hits",
+        "ranged": "N/A"
+      },
+      "movement": "4",
+      "traits": [
+        "Final Vengeance",
+        "Flying",
+        "Synapse"
+      ],
+      "rarity": "Rare",
+      "activeAbility": {
+        "name": "Alpha Warrior",
+        "description": "If the Winged Prime has not moved this turn, summons a Tyranid Warrior on a free hex within Synapse range. The Tyranid Warrior cannot move this turn, but can immediately perform a normal attack against an enemy in range. Scything Talons (Active) Attacks an enemy in melee for 3x X Bio Damage and any enemy units adjacent to that target and to the Prime take 2x X Bio Damage. Double hits against Summons. Reinforced Hive Node (Passive) Every second round - starting from the first the Prime is in play - the Prime has +100% Armour and - if it has Block - 100% Block Chance.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Health",
+              "Armour",
+              "Damage",
+              "Scything Talons"
+            ],
+            [
+              "Common",
+              "8",
+              "199",
+              "40",
+              "75",
+              "60-90"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "438",
+              "88",
+              "164",
+              "109-164"
+            ],
+            [
+              "Rare",
+              "26",
+              "1078",
+              "216",
+              "405",
+              "231-347"
+            ],
+            [
+              "Epic",
+              "35",
+              "2282",
+              "456",
+              "856",
+              "428-642"
+            ],
+            [
+              "Legendary",
+              "50",
+              "7976",
+              "1595",
+              "2992",
+              "1330-1994"
+            ],
+            [
+              "Mythic",
+              "55",
+              "9520",
+              "1904",
+              "3570",
+              "2856-4284"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Synaptic Lynchpin",
+        "description": "Whenever the Winged Prime, or another friendly unit with Synapse, performs a normal attack against an enemy and that enemy is not defeated, summon a Hormagaunt adjacent to the target, which immediately attacks the enemy. Cannot have more than X Hormagaunts summoned this way at the same time. Adrenal Glands (Passive) May move with +1 Movement if that move ends in a hex adjacent to an enemy. Hungering Swarm (Passive) Whenever this unit performs a melee attack, it deals +1 Hit for any friendly Hormagaunt or Ripper Swarm adjacent to the target.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Health",
+              "Armour",
+              "Damage",
+              "Max Summons"
+            ],
+            [
+              "Common",
+              "8",
+              "75",
+              "15",
+              "55",
+              "2"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "164",
+              "32",
+              "120",
+              "2"
+            ],
+            [
+              "Rare",
+              "26",
+              "405",
+              "81",
+              "297",
+              "3"
+            ],
+            [
+              "Epic",
+              "35",
+              "856",
+              "171",
+              "627",
+              "3"
+            ],
+            [
+              "Legendary",
+              "50",
+              "2992",
+              "599",
+              "2194",
+              "4"
+            ],
+            [
+              "Mythic",
+              "55",
+              "3570",
+              "714",
+              "2618",
+              "4"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Winged_Prime_Ability_1_Icon.png?47392e",
+        "heroIcon": "https://tacticus.wiki.gg/images/Winged_Prime_Icon_Large.png?8a94f9"
+      },
+      "rawInfobox": {
+        "Base Health": "100",
+        "Base Armour": "19",
+        "Base Damage": "11",
+        "Melee Attack": "Bio / 6 hits",
+        "Movement": "4",
+        "Traits": "Battle Fatigue, Instinctive Behaviour, Summon",
+        "Base Rarity": "Rare",
+        "TA Stats": "Winged PrimeTA",
+        "Move": "3",
+        "Melee": "Physical / 2 hits",
+        "Ranged": "Bio / 3 hits / Range 2"
+      }
+    },
+    {
+      "name": "Wrask",
+      "faction": "Chaos",
+      "description": "Wrask, the Butcher, is a character of the World Eaters faction.",
+      "baseStats": {
+        "health": "95",
+        "armour": "28",
+        "damage": "20"
+      },
+      "attacks": {
+        "melee": "Flame / 4 hits",
+        "ranged": "N/A"
+      },
+      "movement": "2",
+      "traits": [
+        "Blessings of Khorne",
+        "Deep Strike",
+        "Rapid Assault",
+        "Terminator Armour",
+        "Unstoppable"
+      ],
+      "rarity": "Uncommon",
+      "activeAbility": {
+        "name": "Bloody Fury",
+        "description": "Deals 1x X Chain Damage to an adjacent enemy. This attack scores +1 Hit for each time Wrask was attacked in this battle, to a maximum of 8 hits total. Any leftover hits are allocated to remaining adjacent enemies, prioritising kills.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Damage"
+            ],
+            [
+              "Common",
+              "8",
+              "87-105"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "192-230"
+            ],
+            [
+              "Rare",
+              "26",
+              "472-566"
+            ],
+            [
+              "Epic",
+              "35",
+              "998-1197"
+            ],
+            [
+              "Legendary",
+              "50",
+              "3490-4189"
+            ],
+            [
+              "Mythic",
+              "55",
+              "4166-4998"
+            ]
+          ]
+        ]
+      },
+      "passiveAbility": {
+        "name": "Wrathful Devotion",
+        "description": "When Wrask arrives from Deep Strike or defeats an enemy in melee, he and adjacent friendly Chaos units gain a Shield with X Health for 1 round.",
+        "tables": [
+          [
+            [
+              "Rarity",
+              "Level",
+              "Shield"
+            ],
+            [
+              "Common",
+              "8",
+              "100"
+            ],
+            [
+              "Uncommon",
+              "17",
+              "218"
+            ],
+            [
+              "Rare",
+              "26",
+              "539"
+            ],
+            [
+              "Epic",
+              "35",
+              "1141"
+            ],
+            [
+              "Legendary",
+              "50",
+              "3989"
+            ],
+            [
+              "Mythic",
+              "55",
+              "4760"
+            ]
+          ]
+        ]
+      },
+      "images": {
+        "heroArt": "https://tacticus.wiki.gg/images/Wrask_Ability_1_Icon.png?38ca32",
+        "heroIcon": "https://tacticus.wiki.gg/images/Wrask_Icon_Large.png?6850db"
+      },
+      "rawInfobox": {
+        "Base Health": "95",
+        "Base Armour": "28",
+        "Base Damage": "20",
+        "Melee Attack": "Flame / 4 hits",
+        "Movement": "2",
+        "Traits": "Blessings of Khorne, Deep Strike, Rapid Assault, Terminator Armour, Unstoppable",
+        "Base Rarity": "Uncommon",
+        "TA Stats": "WraskTA"
       }
     },
     {
