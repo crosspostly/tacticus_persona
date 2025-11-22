@@ -1,0 +1,1293 @@
+        const PIERCE_RATIOS = {
+            'Psychic': 100, 'Direct': 100, 'Piercing': 80, 'Melta': 75,
+            'Plasma': 65, 'Eviscerating': 50, 'Power': 40, 'Flame': 30,
+            'Energy': 30, 'Bolter': 20, 'Chain': 20, 'Pulse': 20,
+            'Blast': 15, 'Heavy Round': 15, 'Bio': 15, 'Molecular': 15,
+            'Particle': 15, 'Toxic': 15, 'Las': 10, 'Projectile': 5,
+            'Physical': 1
+        };
+        
+        const MACHINES_OF_WAR = [
+            'Biovore', 'Exorcist', 'Forgefiend', 'Galatian',
+            'Malleus Rocket Launcher', 'Plagueburst Crawler',
+            'Rukkatrukk', "Tson'ji"
+        ];
+
+        let traitsDB = [];
+        let characterTraitsDB = [];
+        let conditionalBonusesDB = [];
+        let characterFactionsDB = [];
+        let characterAttackTypesDB = [];
+        let passiveAbilitiesDB = [];
+        let characters = [];
+        let matchupMatrix = {};
+        let synergyDatabase = {};
+        let counterDatabase = {};
+        let currentLimit = 50;
+        let currentAttacker = null;
+        let currentDefender = null;
+
+        // Глобальное запоминание позиций ползунков
+        let atkRarityValue = 0;   // Редкость атакующего (0-5)
+        let atkLevelValue = 1;    // Уровень атакующего (1-55)
+        let defRarityValue = 0;   // Редкость защитника (0-5)
+        let defLevelValue = 1;    // Уровень защитника (1-55)
+
+        window.addEventListener('load', function() {
+            syncAllData();
+        });
+
+        async function syncAllData() {
+            const syncIcon = document.getElementById('syncIcon');
+            const syncTooltip = document.getElementById('syncTooltip');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            
+            syncIcon.classList.add('loading');
+            syncTooltip.textContent = '🔄 Синхронизация...';
+            syncTooltip.classList.add('show');
+            loadingOverlay.classList.remove('hidden');
+            
+            try {
+                let mainData = null;
+                let dataSource = '';
+                
+                try {
+                    const txtResponse = await fetch('data.json');
+                    if (txtResponse.ok) {
+                        const txtContent = await txtResponse.text();
+                        mainData = JSON.parse(txtContent);
+                        dataSource = 'data.json';
+                    }
+                } catch (e) {
+                    console.log('data.json not found, trying data.json...');
+                }
+                
+                if (!mainData) {
+                    const jsonResponse = await fetch('data.json');
+                    if (!jsonResponse.ok) throw new Error('Файлы данных не найдены');
+                    mainData = await jsonResponse.json();
+                    dataSource = 'data.json';
+                }
+                
+                let dataArray = mainData;
+                if (mainData.characters && Array.isArray(mainData.characters)) {
+                    dataArray = mainData.characters;
+                } else if (!Array.isArray(mainData)) {
+                    throw new Error('Неизвестный формат данных');
+                }
+                
+                const [synergyResponse, counterResponse, enhancedSynergyResponse, enhancedCounterResponse] = await Promise.all([
+                    fetch('synergy_database.json').catch(() => null),
+                    fetch('counter_database.json').catch(() => null),
+                    fetch('enhanced_synergy_database.json').catch(() => null),
+                    fetch('enhanced_counter_database.json').catch(() => null)
+                ]);
+                
+                if (synergyResponse?.ok) {
+                    synergyDatabase = await synergyResponse.json();
+                }
+                
+                if (enhancedSynergyResponse?.ok) {
+                    const enhancedData = await enhancedSynergyResponse.json();
+                    synergyDatabase = {...synergyDatabase, ...enhancedData};
+                }
+                
+                if (counterResponse?.ok) {
+                    counterDatabase = await counterResponse.json();
+                }
+                
+                if (enhancedCounterResponse?.ok) {
+                    const enhancedData = await enhancedCounterResponse.json();
+                    counterDatabase = {...counterDatabase, ...enhancedData};
+                }
+                
+                await loadConditionalDatabases();
+                
+                const filtered = dataArray.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
+                
+                characters = filtered.map((c, i) => {
+                    // Extract rarity data from activeAbility tables if available
+                    const rarities = {};
+                    if (c.activeAbility && c.activeAbility.tables) {
+                        const tables = c.activeAbility.tables;
+                        if (tables && tables.length >= 2) {
+                            const headers = tables[0];
+                            const statsTable = tables[1];
+                            if (headers && headers[0] && statsTable) {
+                                const rarityIndex = headers[0].indexOf('Rarity');
+                                const healthIndex = headers[0].indexOf('Health');
+                                const armorIndex = headers[0].indexOf('Armour');
+                                const damageIndex = headers[0].indexOf('Damage');
+                                
+                                if (rarityIndex !== -1 && statsTable) {
+                                    statsTable.forEach(row => {
+                                        if (row[rarityIndex]) {
+                                            rarities[row[rarityIndex]] = {
+                                                health: parseInt(row[healthIndex]) || c.baseStats?.health || 100,
+                                                armour: parseInt(row[armorIndex]) || c.baseStats?.armour || 20,
+                                                damage: parseInt(row[damageIndex]) || c.baseStats?.damage || 15
+                                            };
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    
+                    return {
+                        id: i + 1,
+                        name: c.name,
+                        hp: parseInt(c.baseStats?.health || c.baseHealth || 100),
+                        armor: parseInt(c.baseStats?.armour || c.baseArmour || 20),
+                        dmg: parseInt(c.baseStats?.damage || c.baseDamage || 15),
+                        melee: c.attacks?.melee || c.meleeAttack || 'N/A',
+                        ranged: c.attacks?.ranged || c.rangedAttack || 'N/A',
+                        traits: c.traits || '',
+                        icon: c.images?.heroIcon || c.images?.heroArt || '',
+                        faction: c.faction || 'Unknown',
+                        activeAbility: c.activeAbility || {},
+                        passiveAbility: c.passiveAbility || {},
+                        rarities: rarities
+                    };
+                });
+                
+                characters.sort((a, b) => a.name.localeCompare(b.name));
+                
+                buildMatchupMatrix();
+                populateFilters();
+                renderTable();
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('matchupTable').style.display = 'table';
+                loadingOverlay.classList.add('hidden');
+                
+                syncIcon.classList.remove('loading');
+                syncIcon.classList.add('success');
+                
+                const synergyCount = Object.keys(synergyDatabase).length;
+                const counterCount = Object.keys(counterDatabase).length;
+                
+                syncTooltip.innerHTML = `
+                    ✅ ${characters.length} персонажей<br>
+                    ✅ Синергии: ${synergyCount}<br>
+                    ✅ Контры: ${counterCount}<br>
+                    <small>Источник: ${dataSource}</small>
+                `;
+                
+                setTimeout(() => {
+                    syncTooltip.classList.remove('show');
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Sync error:', error);
+                loadingOverlay.classList.add('hidden');
+                syncIcon.classList.remove('loading');
+                syncIcon.classList.add('error');
+                syncIcon.textContent = '❌';
+                syncTooltip.innerHTML = `❌ Ошибка: ${error.message}`;
+                syncTooltip.classList.add('show');
+            }
+        }
+
+        async function loadConditionalDatabases() {
+            try {
+                const parseCSV = (text) => {
+                    const lines = text.trim().split('\n');
+                    const headers = lines[0].split(',').map(h => h.trim());
+                    return lines.slice(1).map(line => {
+                        const values = [];
+                        let current = '';
+                        let inQuotes = false;
+
+                        for (let char of line) {
+                            if (char === '"') {
+                                inQuotes = !inQuotes;
+                            } else if (char === ',' && !inQuotes) {
+                                values.push(current.trim());
+                                current = '';
+                            } else {
+                                current += char;
+                            }
+                        }
+                        values.push(current.trim());
+
+                        return headers.reduce((obj, header, i) => {
+                            obj[header] = values[i]?.replace(/^\"|\"$/g, '') || '';
+                            return obj;
+                        }, {});
+                    });
+                };
+
+                const [traitsText, charTraitsText, bonusesText, factionsText, attacksText, passivesText] = await Promise.all([
+                    fetch('traits_database.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('character_traits.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('conditional_bonuses.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('character_factions.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('character_attack_types.csv').then(r => r.ok ? r.text() : null).catch(() => null),
+                    fetch('passive_abilities.csv').then(r => r.ok ? r.text() : null).catch(() => null)
+                ]);
+
+                if (traitsText) traitsDB = parseCSV(traitsText);
+                if (charTraitsText) characterTraitsDB = parseCSV(charTraitsText);
+                if (bonusesText) conditionalBonusesDB = parseCSV(bonusesText);
+                if (factionsText) characterFactionsDB = parseCSV(factionsText);
+                if (attacksText) characterAttackTypesDB = parseCSV(attacksText);
+                if (passivesText) passiveAbilitiesDB = parseCSV(passivesText);
+
+                return true;
+            } catch (error) {
+                console.warn('⚠️ Could not load CSV databases:', error);
+                return false;
+            }
+        }
+
+        function getCharacterTraits(characterName) {
+            if (characterTraitsDB.length === 0) {
+                const char = characters.find(c => c.name === characterName);
+                if (!char || !char.traits) return [];
+                return typeof char.traits === 'string' 
+                    ? char.traits.split(', ').map(t => t.trim()).filter(t => t)
+                    : char.traits;
+            }
+            return characterTraitsDB
+                .filter(row => row.character === characterName)
+                .map(row => row.trait);
+        }
+
+        function getTraitData(traitName) {
+            return traitsDB.find(row => row.trait_name === traitName);
+        }
+
+        function getConditionalBonuses(characterName) {
+            return conditionalBonusesDB.filter(row => row.character === characterName);
+        }
+
+        function getPassiveAbility(characterName) {
+            const passive = passiveAbilitiesDB.find(row => row.character === characterName);
+            if (!passive) return null;
+            
+            return {
+                name: passive.passive_name,
+                type: passive.effect_type,
+                damageMult: parseFloat(passive.damage_multiplier) || 1.0,
+                defenseMult: parseFloat(passive.defense_multiplier) || 1.0,
+                additionalDmg: parseFloat(passive.additional_damage) || 0,
+                condition: passive.condition,
+                notes: passive.notes
+            };
+        }
+
+        function isCharacter(entry) {
+            return entry.baseStats &&
+                   entry.attacks &&
+                   (!entry.rawInfobox?.Type ||
+                    (entry.rawInfobox?.Type && !entry.rawInfobox.Type.includes("Badge") &&
+                     !entry.rawInfobox.Type.includes("Component") &&
+                     !entry.rawInfobox.Type.includes("Mythic")));
+        }
+
+        function extractAttackInfo(attackStr) {
+            if (!attackStr || attackStr === 'N/A') return [null, 0];
+            const parts = attackStr.split('/').map(p => p.trim());
+            const damageType = parts[0] || 'Physical';
+            let hits = 1;
+            for (const part of parts) {
+                if (part.toLowerCase().includes('hit')) {
+                    const match = part.match(/\d+/);
+                    if (match) hits = parseInt(match[0]);
+                }
+            }
+            return [damageType, hits];
+        }
+
+        function calculateMatchup(attacker, defender) {
+            const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
+            const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
+
+            const rangedValue = rangedHits * (PIERCE_RATIOS[rangedType] || 0);
+            const meleeValue = meleeHits * (PIERCE_RATIOS[meleeType] || 0);
+
+            const [atkType, atkHits] = (rangedValue > meleeValue && rangedHits > 0)
+                ? [rangedType, rangedHits]
+                : [meleeType, meleeHits];
+
+            const pierce = PIERCE_RATIOS[atkType] || 20;
+            const atkTraits = getCharacterTraits(attacker.name);
+            const defTraits = getCharacterTraits(defender.name);
+
+            let dmg = attacker.dmg;
+            let armor = defender.armor;
+
+            atkTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.effect_type === 'damage_multiplier' && trait.implemented === 'yes') {
+                    dmg *= parseFloat(trait.effect_value);
+                }
+            });
+            if (traitsDB.length === 0) {
+                if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
+                if (atkTraits.includes('Let the Galaxy Burn')) dmg *= 1.15;
+            }
+
+            defTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.effect_type === 'armor_multiplier' && trait.implemented === 'yes') {
+                    armor *= parseFloat(trait.effect_value);
+                }
+            });
+            if (traitsDB.length === 0) {
+                if (defTraits.includes('Terminator Armour')) armor *= 1.4;
+                if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
+            }
+
+            let hasConditionalBonus = false;
+            let conditionalBonusDetails = null;
+            const bonuses = getConditionalBonuses(attacker.name);
+            bonuses.forEach(bonus => {
+                const conditionMet = bonus.condition_type === 'trait' 
+                    ? defTraits.includes(bonus.condition_value)
+                    : bonus.condition_type === 'faction'
+                    ? defender.faction === bonus.condition_value
+                    : false;
+
+                if (conditionMet) {
+                    hasConditionalBonus = true;
+                    let bonusMultiplier = 1.5;
+                    if (bonus.bonus_value && bonus.bonus_value !== 'unknown' && !isNaN(parseFloat(bonus.bonus_value))) {
+                        bonusMultiplier = 1 + parseFloat(bonus.bonus_value) / 100;
+                    }
+                    dmg *= bonusMultiplier;
+                    conditionalBonusDetails = {
+                        name: bonus.ability_name,
+                        type: bonus.ability_type,
+                        conditionType: bonus.condition_type,
+                        target: bonus.condition_value,
+                        multiplier: bonusMultiplier,
+                        confidence: bonus.confidence
+                    };
+                }
+            });
+
+            let incomingMult = 1.0;
+            defTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.implemented === 'yes') {
+                    if (trait.effect_type === 'damage_reduction') {
+                        incomingMult *= parseFloat(trait.effect_value);
+                    }
+                    if (trait.effect_type === 'damage_taken_multiplier') {
+                        incomingMult *= parseFloat(trait.effect_value);
+                    }
+                }
+            });
+            if (traitsDB.length === 0) {
+                if (defTraits.includes('Resilient')) incomingMult *= 0.8;
+                if (defTraits.includes('Big Target')) incomingMult *= 1.3;
+            }
+            
+            if (document.getElementById('modTerrain')?.checked) {
+                dmg *= 1.5;
+            }
+            if (document.getElementById('modHighGround')?.checked) {
+                dmg *= 1.5;
+            }
+            if (document.getElementById('modCrit')?.checked) {
+                dmg *= 1.1;
+            }
+            if (document.getElementById('modRazor')?.checked) {
+                incomingMult *= 1.5;
+            }
+
+            const atkPassive = getPassiveAbility(attacker.name);
+            if (atkPassive) {
+                if (atkPassive.type === 'direct_damage') {
+                    dmg *= atkPassive.damageMult;
+                }
+                
+                if (atkPassive.type === 'conditional_damage' || atkPassive.type === 'scaling') {
+                    dmg *= atkPassive.damageMult;
+                }
+                
+                if (atkPassive.additionalDmg > 0) {
+                    dmg += atkPassive.additionalDmg;
+                }
+            }
+
+            const defPassive = getPassiveAbility(defender.name);
+            if (defPassive) {
+                if (defPassive.type === 'direct_defense') {
+                    incomingMult *= defPassive.defenseMult;
+                }
+                
+                if (defPassive.type === 'conditional_defense') {
+                    incomingMult *= defPassive.defenseMult;
+                }
+            }
+
+            const dmgAfterArmor = Math.max(1, dmg - armor);
+            const dmgWithPierce = Math.max(1, dmg * (pierce / 100));
+            let dmgPerHit = Math.max(dmgAfterArmor, dmgWithPierce);
+            
+            if (defTraits.includes('Mk X Gravis')) {
+                const secondPassArmor = Math.max(1, dmgPerHit - armor);
+                const secondPassPierce = Math.max(1, dmgPerHit * (pierce / 100));
+                dmgPerHit = Math.max(secondPassArmor, secondPassPierce);
+            }
+            
+            dmgPerHit *= incomingMult;
+            const totalDmg = dmgPerHit * atkHits;
+
+            const attackEff = Math.min(150, (totalDmg / defender.hp) * 100);
+            const roundsToKill = defender.hp / Math.max(1, totalDmg);
+            const defenseEff = Math.min(100, Math.max(5, roundsToKill * 20));
+
+            const [defRangedType, defRangedHits] = extractAttackInfo(defender.ranged);
+            const [defMeleeType, defMeleeHits] = extractAttackInfo(defender.melee);
+
+            const defRangedValue = defRangedHits * (PIERCE_RATIOS[defRangedType] || 0);
+            const defMeleeValue = defMeleeHits * (PIERCE_RATIOS[defMeleeType] || 0);
+
+            const [defAtkType, defAtkHits] = (defRangedValue > defMeleeValue && defRangedHits > 0)
+                ? [defRangedType, defRangedHits]
+                : [defMeleeType, defMeleeHits];
+
+            const defPierce = PIERCE_RATIOS[defAtkType] || 20;
+            let defDmg = defender.dmg;
+            let myArmor = attacker.armor;
+
+            defTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.effect_type === 'damage_multiplier' && trait.implemented === 'yes') {
+                    defDmg *= parseFloat(trait.effect_value);
+                }
+            });
+
+            atkTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.effect_type === 'armor_multiplier' && trait.implemented === 'yes') {
+                    myArmor *= parseFloat(trait.effect_value);
+                }
+            });
+
+            let myIncomingMult = 1.0;
+            atkTraits.forEach(traitName => {
+                const trait = getTraitData(traitName);
+                if (trait && trait.implemented === 'yes') {
+                    if (trait.effect_type === 'damage_reduction') {
+                        myIncomingMult *= parseFloat(trait.effect_value);
+                    }
+                    if (trait.effect_type === 'damage_taken_multiplier') {
+                        myIncomingMult *= parseFloat(trait.effect_value);
+                    }
+                }
+            });
+
+            const defDmgAfterArmor = Math.max(1, defDmg - myArmor);
+            const defDmgWithPierce = Math.max(1, defDmg * (defPierce / 100));
+            let defDmgPerHit = Math.max(defDmgAfterArmor, defDmgWithPierce);
+
+            if (atkTraits.includes('Mk X Gravis')) {
+                const secondPass = Math.max(defDmgAfterArmor, defDmgWithPierce);
+                defDmgPerHit = secondPass;
+            }
+
+            defDmgPerHit *= myIncomingMult;
+            const defTotalDmg = defDmgPerHit * defAtkHits;
+            const roundsToKillMe = attacker.hp / Math.max(1, defTotalDmg);
+
+            return {
+                attack: Math.round(attackEff * 10) / 10,
+                defense: Math.round(defenseEff * 10) / 10,
+                roundsToKill: Math.round(roundsToKill * 10) / 10,
+                roundsToKillMe: Math.round(roundsToKillMe * 10) / 10,
+                dmgPerHit: Math.round(dmgPerHit),
+                totalDmgPerTurn: Math.round(totalDmg),
+                hasConditionalBonus: hasConditionalBonus,
+                conditionalBonus: conditionalBonusDetails
+            };
+        }
+
+        function buildMatchupMatrix() {
+            matchupMatrix = {};
+            characters.forEach(attacker => {
+                matchupMatrix[attacker.name] = {};
+                characters.forEach(defender => {
+                    matchupMatrix[attacker.name][defender.name] = null;
+                });
+            });
+        }
+        
+        function recalculateAll() {
+            buildMatchupMatrix();
+            renderTable();
+        }
+
+        function getMatchup(attacker, defender) {
+            if (matchupMatrix[attacker.name][defender.name] === null) {
+                matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
+            }
+            return matchupMatrix[attacker.name][defender.name];
+        }
+
+        function populateFilters() {
+            const atkFilter = document.getElementById('attackerFilter');
+            const defFilter = document.getElementById('defenderFilter');
+            const factionFilter = document.getElementById('factionFilter');
+            const traitFilter = document.getElementById('traitFilter');
+            
+            atkFilter.innerHTML = '<option value="">Все персонажи</option>';
+            defFilter.innerHTML = '<option value="">Все персонажи</option>';
+            
+            const factions = [...new Set(characters.map(c => c.faction))].sort();
+            factionFilter.innerHTML = '<option value="">Все фракции</option>';
+            factions.forEach(faction => {
+                if (faction && faction !== 'Unknown') {
+                    const opt = document.createElement('option');
+                    opt.value = faction;
+                    opt.textContent = faction;
+                    factionFilter.appendChild(opt);
+                }
+            });
+            
+            const allTraits = new Set();
+            characters.forEach(char => {
+                const traits = getCharacterTraits(char.name);
+                traits.forEach(t => allTraits.add(t));
+            });
+            
+            const sortedTraits = [...allTraits].sort();
+            traitFilter.innerHTML = '<option value="">Все трейты</option>';
+            sortedTraits.forEach(trait => {
+                if (trait) {
+                    const opt = document.createElement('option');
+                    opt.value = trait;
+                    opt.textContent = trait;
+                    traitFilter.appendChild(opt);
+                }
+            });
+            
+            characters.forEach(char => {
+                const opt1 = document.createElement('option');
+                opt1.value = char.name;
+                opt1.textContent = char.name;
+                atkFilter.appendChild(opt1);
+                
+                const opt2 = document.createElement('option');
+                opt2.value = char.name;
+                opt2.textContent = char.name;
+                defFilter.appendChild(opt2);
+            });
+        }
+
+        function getTradeClass(myRounds, theirRounds) {
+            const ratio = myRounds / theirRounds;
+            if (ratio <= 0.5) return 'cell-dominate';
+            if (ratio <= 0.67) return 'cell-advantage';
+            if (ratio <= 1.3) return 'cell-balanced';
+            if (ratio <= 2.0) return 'cell-disadvantage';
+            return 'cell-dominated';
+        }
+
+        function renderTable() {
+            const atkFilter = document.getElementById('attackerFilter').value;
+            const defFilter = document.getElementById('defenderFilter').value;
+            const factionFilter = document.getElementById('factionFilter').value;
+            const traitFilter = document.getElementById('traitFilter').value;
+            const damageTypeFilter = document.getElementById('damageTypeFilter').value;
+            const sortOrder = document.getElementById('sortOrder').value;
+            const limit = parseInt(document.getElementById('limitSelect').value);
+            
+            let filteredChars = characters.filter(c => {
+                if (factionFilter && c.faction !== factionFilter) return false;
+                if (traitFilter && !getCharacterTraits(c.name).includes(traitFilter)) return false;
+                if (damageTypeFilter) {
+                    const hasMelee = c.melee && c.melee !== 'N/A';
+                    const hasRanged = c.ranged && c.ranged !== 'N/A';
+                    if (damageTypeFilter === 'melee' && !hasMelee) return false;
+                    if (damageTypeFilter === 'ranged' && !hasRanged) return false;
+                    if (damageTypeFilter === 'both' && (!hasMelee || !hasRanged)) return false;
+                }
+                return true;
+            });
+            
+            if (sortOrder === 'alpha') {
+                filteredChars.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortOrder === 'hp') {
+                filteredChars.sort((a, b) => b.hp - a.hp);
+            } else if (sortOrder === 'armor') {
+                filteredChars.sort((a, b) => b.armor - a.armor);
+            } else if (sortOrder === 'damage') {
+                filteredChars.sort((a, b) => b.dmg - a.dmg);
+            }
+            
+            let displayedAtk = filteredChars.slice(0, limit);
+            if (atkFilter) {
+                displayedAtk = filteredChars.filter(c => c.name === atkFilter);
+            }
+            
+            let displayedDef = filteredChars.slice(0, limit);
+            if (defFilter) {
+                displayedDef = filteredChars.filter(c => c.name === defFilter);
+            }
+            
+            const thead = document.getElementById('tableHead');
+            const tbody = document.getElementById('tableBody');
+            
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+            
+            const headerRow = document.createElement('tr');
+            const corner = document.createElement('th');
+            corner.textContent = 'АТАКУЮЩИЙ ↓ / ЗАЩИЩАЮЩИЙСЯ →';
+            corner.colSpan = 1;
+            headerRow.appendChild(corner);
+            
+            displayedDef.forEach((def, index) => {
+                const nameTh = document.createElement('th');
+                nameTh.innerHTML = `${index + 1}. ${def.name}`;
+                nameTh.onmouseenter = (e) => showTooltip(e, def);
+                nameTh.onmouseleave = hideTooltip;
+                headerRow.appendChild(nameTh);
+            });
+            thead.appendChild(headerRow);
+            
+            displayedAtk.forEach((atk, atkIndex) => {
+                const row = document.createElement('tr');
+                
+                const nameCell = document.createElement('td');
+                nameCell.innerHTML = `${atkIndex + 1}. ${atk.name}`;
+                nameCell.onmouseenter = (e) => showTooltip(e, atk);
+                nameCell.onmouseleave = hideTooltip;
+                row.appendChild(nameCell);
+                
+                displayedDef.forEach(def => {
+                    const metrics = getMatchup(atk, def);
+                    const cell = document.createElement('td');
+                    cell.innerHTML = `
+                        <div style="font-size: 0.85em; font-weight: 600; position: relative;">
+                            ⚔️ ${metrics.attack}%
+                            ${metrics.hasConditionalBonus ? '<span class="bonus-icon">⚡</span>' : ''}
+                        </div>
+                        <div style="font-size: 0.85em; font-weight: 600; margin-top: 2px;">
+                            🛡️ ${metrics.defense}%
+                        </div>
+                    `;
+                    cell.className = getTradeClass(metrics.roundsToKill, metrics.roundsToKillMe);
+                    cell.onclick = () => showDetail(atk, def, metrics);
+                    row.appendChild(cell);
+                });
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        function showTooltip(event, char) {
+            const tooltip = document.getElementById('tooltip');
+            const hasImage = char.icon && char.icon.trim() !== '';
+            
+            tooltip.innerHTML = `
+                ${hasImage ? 
+                    `<img src="${char.icon}" alt="${char.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                     <div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:none;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>` : 
+                    '<div style="width:80px;height:80px;background:#16213e;border-radius:50%;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:#888;font-size:2em;">👤</div>'
+                }
+                <div class="char-name">${char.name}</div>
+                <div class="char-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">HP:</span>
+                        <span class="stat-value">${char.hp}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">ARM:</span>
+                        <span class="stat-value">${char.armor}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">DMG:</span>
+                        <span class="stat-value">${char.dmg}</span>
+                    </div>
+                    <div style="margin-top:5px;color:#888;font-size:0.9em;">
+                        <div>⚔️ ${char.melee}</div>
+                        <div>🏹 ${char.ranged}</div>
+                    </div>
+                </div>
+            `;
+            
+            let left = event.pageX + 15;
+            let top = event.pageY + 15;
+            const tooltipWidth = 320;
+            const tooltipHeight = 220;
+            
+            if (left + tooltipWidth > window.innerWidth) {
+                left = event.pageX - tooltipWidth - 15;
+            }
+            if (top + tooltipHeight > window.innerHeight) {
+                top = event.pageY - tooltipHeight - 15;
+            }
+            
+            left = Math.max(10, Math.min(left, window.innerWidth - tooltipWidth - 10));
+            top = Math.max(10, Math.min(top, window.innerHeight - tooltipHeight - 10));
+            
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+            tooltip.classList.add('active');
+        }
+
+        function hideTooltip() {
+            document.getElementById('tooltip').classList.remove('active');
+        }
+
+        function showDetail(attacker, defender, metrics) {
+            currentAttacker = attacker;
+            currentDefender = defender;
+            
+            const calculatedMetrics = metrics || getMatchup(attacker, defender);
+            
+            renderAnalysisTab(attacker, defender, calculatedMetrics);
+            renderSynergyTab(attacker);
+            renderCountersTab(defender);
+            
+            document.getElementById('detailPanel').classList.add('active');
+        }
+
+        function closeDetail() {
+            document.getElementById('detailPanel').classList.remove('active');
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Tab').classList.add('active');
+        }
+
+        function renderAnalysisTab(atk, def, metrics) {
+            const [atkType, atkHits] = extractAttackInfo(atk.ranged)[0] ? extractAttackInfo(atk.ranged) : extractAttackInfo(atk.melee);
+            const pierce = PIERCE_RATIOS[atkType] || 20;
+            
+            const atkTraits = getCharacterTraits(atk.name);
+            const defTraits = getCharacterTraits(def.name);
+            
+            const ratio = metrics.roundsToKill / metrics.roundsToKillMe;
+            let tradeResult = '';
+            let tradeClass = '';
+            
+            if (ratio <= 0.5) {
+                tradeResult = `🟢 ${atk.name} ДОМИНИРУЕТ (+${(metrics.roundsToKillMe - metrics.roundsToKill).toFixed(1)} раунда преимущества)`;
+                tradeClass = 'dominate';
+            } else if (ratio <= 0.67) {
+                tradeResult = `🟢 ${atk.name} имеет преимущество (+${(metrics.roundsToKillMe - metrics.roundsToKill).toFixed(1)} раунда)`;
+                tradeClass = 'advantage';
+            } else if (ratio <= 1.3) {
+                tradeResult = `🟡 СБАЛАНСИРОВАННЫЙ РАЗМЕН (разница ${Math.abs(metrics.roundsToKillMe - metrics.roundsToKill).toFixed(1)} раунда)`;
+                tradeClass = 'balanced';
+            } else if (ratio <= 2.0) {
+                tradeResult = `🔴 ${def.name} имеет преимущество (+${(metrics.roundsToKill - metrics.roundsToKillMe).toFixed(1)} раунда)`;
+                tradeClass = 'disadvantage';
+            } else {
+                tradeResult = `🔴 ${def.name} ДОМИНИРУЕТ (+${(metrics.roundsToKill - metrics.roundsToKillMe).toFixed(1)} раунда преимущества)`;
+                tradeClass = 'dominated';
+            }
+            
+            document.getElementById('analysisTab').innerHTML = `
+                <div class="panel-title">ДЕТАЛЬНЫЙ АНАЛИЗ</div>
+                
+                <div class="char-card">
+                    <h3>
+                        ${atk.icon ? `<img src="${atk.icon}" class="char-icon">` : ''}
+                        ⚔️ ${atk.name}
+                    </h3>
+                    <div class="stat-row"><span class="stat-label">HP:</span><span>${atk.hp}</span></div>
+                    <div class="stat-row"><span class="stat-label">Броня:</span><span>${atk.armor}</span></div>
+                    <div class="stat-row"><span class="stat-label">Урон:</span><span>${atk.dmg}</span></div>
+                    <div class="stat-row"><span class="stat-label">Ближний:</span><span>${atk.melee}</span></div>
+                    <div class="stat-row"><span class="stat-label">Дальний:</span><span>${atk.ranged}</span></div>
+                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.75em;">${atkTraits.join(', ')}</span></div>
+                </div>
+                
+                <div class="vs-divider">⚔️ VS ⚔️</div>
+                
+                <div class="char-card">
+                    <h3>
+                        ${def.icon ? `<img src="${def.icon}" class="char-icon">` : ''}
+                        🛡️ ${def.name}
+                    </h3>
+                    <div class="stat-row"><span class="stat-label">HP:</span><span>${def.hp}</span></div>
+                    <div class="stat-row"><span class="stat-label">Броня:</span><span>${def.armor}</span></div>
+                    <div class="stat-row"><span class="stat-label">Урон:</span><span>${def.dmg}</span></div>
+                    <div class="stat-row"><span class="stat-label">Ближний:</span><span>${def.melee}</span></div>
+                    <div class="stat-row"><span class="stat-label">Дальний:</span><span>${def.ranged}</span></div>
+                    <div class="stat-row"><span class="stat-label">Traits:</span><span style="font-size: 0.75em;">${defTraits.join(', ')}</span></div>
+                </div>
+                
+                <div class="metric-box" style="border-left-color: #00d4ff;">
+                    <h4>⚙️ НАСТРОЙКИ РЕДКОСТИ И УРОВНЯ</h4>
+                    
+                    <div style="margin: 15px 0;">
+                        <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>🔵 ${atk.name} (Редкость):</span>
+                            <span id="atkRarityLabel" style="color: #00ff88; font-weight: bold;">Common</span>
+                        </label>
+                        <input type="range" 
+                               id="atkRaritySlider" 
+                               min="0" max="5" value="${atkRarityValue}" 
+                               step="1"
+                               style="width: 100%; cursor: pointer;"
+                               onchange="updateRarityCalculation()">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
+                            <span>Com</span>
+                            <span>Unc</span>
+                            <span>Rare</span>
+                            <span>Epic</span>
+                            <span>Leg</span>
+                            <span>Myth</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 15px 0; padding-top: 10px; border-top: 1px solid #0f1a2e;">
+                        <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>🔵 ${atk.name} (Уровень):</span>
+                            <span id="atkLevelLabel" style="color: #00d4ff; font-weight: bold;">1</span>
+                        </label>
+                        <input type="range" 
+                               id="atkLevelSlider" 
+                               min="1" max="55" value="${atkLevelValue}" 
+                               step="1"
+                               style="width: 100%; cursor: pointer;"
+                               onchange="updateRarityCalculation()">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
+                            <span>Lvl 1</span>
+                            <span>Lvl 28</span>
+                            <span>Lvl 55 (MAX)</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 15px 0; padding-top: 10px; border-top: 1px solid #0f1a2e;">
+                        <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>🔴 ${def.name} (Редкость):</span>
+                            <span id="defRarityLabel" style="color: #00ff88; font-weight: bold;">Common</span>
+                        </label>
+                        <input type="range" 
+                               id="defRaritySlider" 
+                               min="0" max="5" value="${defRarityValue}" 
+                               step="1"
+                               style="width: 100%; cursor: pointer;"
+                               onchange="updateRarityCalculation()">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
+                            <span>Com</span>
+                            <span>Unc</span>
+                            <span>Rare</span>
+                            <span>Epic</span>
+                            <span>Leg</span>
+                            <span>Myth</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 15px 0; padding-top: 10px; border-top: 1px solid #0f1a2e;">
+                        <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>🔴 ${def.name} (Уровень):</span>
+                            <span id="defLevelLabel" style="color: #00d4ff; font-weight: bold;">1</span>
+                        </label>
+                        <input type="range" 
+                               id="defLevelSlider" 
+                               min="1" max="55" value="${defLevelValue}" 
+                               step="1"
+                               style="width: 100%; cursor: pointer;"
+                               onchange="updateRarityCalculation()">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
+                            <span>Lvl 1</span>
+                            <span>Lvl 28</span>
+                            <span>Lvl 55 (MAX)</span>
+                        </div>
+                    </div>
+                    
+                    <div id="rarityStatsDisplay" style="background: #0f1a2e; padding: 12px; border-radius: 5px; margin-top: 15px; font-size: 0.9em;">
+                        <div style="text-align: center; color: #00d4ff; font-weight: bold; margin-bottom: 10px;">
+                            📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(0, 212, 255, 0.1); border-radius: 3px;">
+                            <span style="font-weight: 600;">${atk.name}:</span>
+                            <span style="color: #00ff88; font-family: monospace;">
+                                HP: <strong>${atk.hp}</strong> | 
+                                ARM: <strong>${atk.armor}</strong> | 
+                                DMG: <strong>${atk.dmg}</strong>
+                            </span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(239, 68, 68, 0.1); border-radius: 3px;">
+                            <span style="font-weight: 600;">${def.name}:</span>
+                            <span style="color: #ff6b6b; font-family: monospace;">
+                                HP: <strong>${def.hp}</strong> | 
+                                ARM: <strong>${def.armor}</strong> | 
+                                DMG: <strong>${def.dmg}</strong>
+                            </span>
+                        </div>
+                        <div style="margin-top: 10px; padding: 8px; background: rgba(255, 204, 0, 0.1); border-left: 3px solid #ffcc00; border-radius: 5px; font-size: 0.85em;">
+                            <div style="color: #ffcc00; font-weight: bold; margin-bottom: 5px;">💡 ПРИМЕЧАНИЕ</div>
+                            <div style="color: #ccc;">
+                                Характеристики растут с редкостью и уровнем. 
+                                Пассивные способности активируются с определённой редкости (обычно Rare).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-box">
+                    <h4>⚔️ ЭФФЕКТИВНОСТЬ АТАКИ</h4>
+                    <div class="metric-value" style="background: #${getColorForPct(metrics.attack)}">${metrics.attack}%</div>
+                    <p style="font-size: 0.85em; margin-top: 5px; color: #888;">
+                        └─ Я убиваю ${def.name} за <strong style="color: #fff;">${metrics.roundsToKill} раунда</strong><br>
+                        └─ Урон за ход: ${metrics.totalDmgPerTurn} (${metrics.dmgPerHit} × ${atkHits} hits)<br>
+                        └─ Тип: ${atkType} (${pierce}% pierce)
+                    </p>
+                </div>
+                
+                <div class="metric-box">
+                    <h4>🛡️ ЭФФЕКТИВНОСТЬ ЗАЩИТЫ</h4>
+                    <div class="metric-value" style="background: #${getColorForPct(metrics.defense)}">${metrics.defense}%</div>
+                    <p style="font-size: 0.85em; margin-top: 5px; color: #888;">
+                        └─ ${def.name} убивает меня за <strong style="color: #fff;">${metrics.roundsToKillMe} раунда</strong><br>
+                        └─ Моя живучесть: ${atk.hp} HP / ${atk.armor} armor
+                    </p>
+                </div>
+                
+                <div class="trade-indicator ${tradeClass}">
+                    ⚖️ ИТОГ РАЗМЕНА<br>
+                    <div style="font-size: 0.9em; margin-top: 8px;">
+                        ${tradeResult}
+                    </div>
+                </div>
+                
+                ${metrics.hasConditionalBonus && metrics.conditionalBonus ? `
+                    <div class="metric-box" style="border-left-color: #ffcc00;">
+                        <h4>⚡ УСЛОВНЫЙ БОНУС</h4>
+                        <div class="conditional-bonus-item">
+                            <div style="font-weight: bold; color: #ffcc00; margin-bottom: 5px;">
+                                ${metrics.conditionalBonus.name}
+                                <span class="bonus-badge">${metrics.conditionalBonus.type}</span>
+                            </div>
+                            <div style="font-size: 0.85em; color: #ccc; margin: 5px 0;">
+                                Условие: ${metrics.conditionalBonus.conditionType === 'trait' ? 'Трейт' : 'Фракция'} "${metrics.conditionalBonus.target}" ✅
+                            </div>
+                            <div style="font-size: 1.1em; color: #00ff88; margin-top: 8px; font-weight: bold;">
+                                Бонус: +${Math.round((metrics.conditionalBonus.multiplier - 1) * 100)}% урона
+                            </div>
+                        </div>
+                    </div>
+                ` : ''}
+                
+                ${(() => {
+                    const atkPassive = getPassiveAbility(atk.name);
+                    const defPassive = getPassiveAbility(def.name);
+                    
+                    let passiveHTML = '';
+                    
+                    if (atkPassive && atkPassive.type !== 'utility' && atkPassive.type !== 'utility_summon' && atkPassive.type !== 'none' && atkPassive.type !== 'unknown') {
+                        passiveHTML += `
+                            <div class="metric-box" style="border-left-color: #ffcc00;">
+                                <h4>⚡ ПАССИВКА АТАКУЮЩЕГО</h4>
+                                <div style="background: #0f1a2e; padding: 12px; border-radius: 5px;">
+                                    <div style="font-weight: bold; color: #ffcc00; margin-bottom: 8px;">
+                                        ${atkPassive.name}
+                                    </div>
+                                    <div style="font-size: 0.85em; color: #ccc; margin-bottom: 8px;">
+                                        ${atkPassive.notes}
+                                    </div>
+                                    ${atkPassive.damageMult > 1.0 ? `
+                                        <div style="color: #00ff88; font-weight: bold;">
+                                            ✅ +${Math.round((atkPassive.damageMult - 1) * 100)}% урона (учтено)
+                                        </div>
+                                    ` : ''}
+                                    ${atkPassive.additionalDmg > 0 ? `
+                                        <div style="color: #00ff88; font-weight: bold;">
+                                            ✅ +${Math.round(atkPassive.additionalDmg)} доп. урона (учтено)
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    if (defPassive && defPassive.type !== 'utility' && defPassive.type !== 'utility_summon' && defPassive.type !== 'none' && defPassive.type !== 'unknown') {
+                        passiveHTML += `
+                            <div class="metric-box" style="border-left-color: #00d4ff;">
+                                <h4>🛡️ ПАССИВКА ЗАЩИТНИКА</h4>
+                                <div style="background: #0f1a2e; padding: 12px; border-radius: 5px;">
+                                    <div style="font-weight: bold; color: #00d4ff; margin-bottom: 8px;">
+                                        ${defPassive.name}
+                                    </div>
+                                    <div style="font-size: 0.85em; color: #ccc; margin-bottom: 8px;">
+                                        ${defPassive.notes}
+                                    </div>
+                                    ${defPassive.defenseMult < 1.0 ? `
+                                        <div style="color: #00ff88; font-weight: bold;">
+                                            ✅ ${Math.round((1 - defPassive.defenseMult) * 100)}% меньше урона (учтено)
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    return passiveHTML;
+                })()}
+            `;
+            
+            // После вставки HTML подвешиваем обработчики для запоминания
+            setTimeout(() => {
+                document.getElementById('atkRaritySlider').addEventListener('input', e => {
+                    atkRarityValue = Number(e.target.value);
+                    updateRarityCalculation();
+                });
+                document.getElementById('atkLevelSlider').addEventListener('input', e => {
+                    atkLevelValue = Number(e.target.value);
+                    updateRarityCalculation();
+                });
+                document.getElementById('defRaritySlider').addEventListener('input', e => {
+                    defRarityValue = Number(e.target.value);
+                    updateRarityCalculation();
+                });
+                document.getElementById('defLevelSlider').addEventListener('input', e => {
+                    defLevelValue = Number(e.target.value);
+                    updateRarityCalculation();
+                });
+            }, 10);
+        }
+
+        function renderSynergyTab(attacker) {
+            const synergies = synergyDatabase[attacker.name] || [];
+            
+            if (synergies.length === 0) {
+                document.getElementById('synergyTab').innerHTML = `
+                    <div class="panel-title">🤝 СИНЕРГИЯ</div>
+                    <div style="background: #0f1a2e; padding: 15px; border-radius: 8px; text-align: center;">
+                        <p style="color: #888;">Нет данных о синергиях для ${attacker.name}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `<div class="panel-title">🤝 СИНЕРГИЯ</div>`;
+            
+            synergies.forEach((syn, idx) => {
+                const partners = syn.partners || [];
+                const partnersList = Array.isArray(partners) 
+                    ? partners.map(p => `<span class="partner-badge">${p}</span>`).join('')
+                    : '';
+                
+                const shortDesc = syn.effect || syn.best_with || 'Нет описания';
+                const fullDesc = `
+                    <strong>Как работает:</strong> ${syn.effect || 'Нет данных'}<br>
+                    <strong>Лучше всего с:</strong> ${syn.best_with || 'Нет данных'}<br>
+                    ${syn.positioning ? `<strong>Позиционирование:</strong> ${syn.positioning}<br>` : ''}
+                    ${syn.notes ? `<strong>Примечания:</strong> ${syn.notes}<br>` : ''}
+                    ${syn.passive_buffs ? `<strong>Пассивные баффы:</strong> ${syn.passive_buffs}<br>` : ''}
+                    ${syn.strategy ? `<strong>Стратегия:</strong> ${syn.strategy}<br>` : ''}
+                    ${syn.active ? `<strong>Активная:</strong> ${syn.active}<br>` : ''}
+                    <small style="color: #666;">Источник: ${syn.source || 'unknown'}</small>
+                `;
+                
+                html += `
+                    <div class="synergy-item">
+                        <div style="font-weight: bold; color: #00ff88; margin-bottom: 5px;">
+                            ${getTypeIcon(syn.type)} ${formatType(syn.type)}
+                        </div>
+                        <div style="font-size: 0.9em; margin-bottom: 5px;">${shortDesc}</div>
+                        ${partnersList ? `<div style="margin-top: 8px;">${partnersList}</div>` : ''}
+                        <button class="expand-btn" onclick="toggleDetail('syn${idx}')">📖 Подробнее</button>
+                        <div class="detail-text" id="syn${idx}">${fullDesc}</div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('synergyTab').innerHTML = html;
+        }
+
+        function renderCountersTab(defender) {
+            const counters = counterDatabase[defender.name] || [];
+            
+            if (counters.length === 0) {
+                document.getElementById('countersTab').innerHTML = `
+                    <div class="panel-title">⚠️ КОНТРЫ</div>
+                    <div style="background: #0f1a2e; padding: 15px; border-radius: 8px;">
+                        <div class="synergy-item" style="border-left-color: #00ff88;">
+                            ✅ Нет явных слабостей у ${defender.name}
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `<div class="panel-title">⚠️ КОНТРЫ</div>`;
+            
+            counters.forEach((counter, idx) => {
+                const counterTypes = counter.counter_types || [];
+                const typesList = counterTypes.map(t => `<span class="partner-badge" style="border-color: #fbbf24;">${t}</span>`).join('');
+                
+                const shortDesc = counter.weakness || 'Нет описания';
+                const fullDesc = `
+                    <strong>Слабость:</strong> ${counter.weakness || 'Нет данных'}<br>
+                    <strong>Типы контров:</strong> ${counterTypes.join(', ') || 'Нет данных'}<br>
+                    ${counter.counter_trait ? `<strong>Контрящий трейт:</strong> ${counter.counter_trait}<br>` : ''}
+                    ${counter.reason ? `<strong>Причина:</strong> ${counter.reason}<br>` : ''}
+                    <strong>Как контрить:</strong> ${getCounterStrategy(counter)}<br>
+                    <small style="color: #666;">Источник: ${counter.source || 'unknown'} | Уверенность: ${counter.confidence || 'medium'}</small>
+                `;
+                
+                html += `
+                    <div class="synergy-item" style="border-left-color: #fbbf24;">
+                        <div style="font-weight: bold; color: #fbbf24; margin-bottom: 5px;">
+                            ${getReasonIcon(counter.reason)} ${formatReason(counter.reason)}
+                        </div>
+                        <div style="font-size: 0.9em; margin-bottom: 5px;">${shortDesc}</div>
+                        ${typesList ? `<div style="margin-top: 8px;">${typesList}</div>` : ''}
+                        <button class="expand-btn" onclick="toggleDetail('cnt${idx}')">📖 Подробнее</button>
+                        <div class="detail-text" id="cnt${idx}">${fullDesc}</div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('countersTab').innerHTML = html;
+        }
+        
+        function toggleDetail(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('expanded');
+        }
+        
+        function getTypeIcon(type) {
+            const icons = {
+                'faction_buff': '🏛️',
+                'damage_amplifier': '💥',
+                'multi_hit_team': '⚔️⚔️',
+                'multi_hit_damage': '🗡️',
+                'suppress_counter': '🚫',
+                'ranged_multi_hit': '🏹',
+                'summon_warrior': '👻',
+                'necron_synergy': '💀',
+                'mech_healer': '🔧',
+                'admech_core': '⚙️',
+                'reactivate_ability': '🔄',
+                'markerlight': '🎯',
+                'psychic_master': '🧠',
+                'multi_hit_buffer': '💪',
+                'multi_hit_core': '⚔️',
+                'multi_hit_meta': '👑',
+                'damage_stat_buffer': '📈',
+                'guardsmen_summoner': '🪖',
+                'resurrect_tank': '♻️',
+                'passive_healer': '💚',
+                'admech_reactivator': '🤖'
+            };
+            return icons[type] || '🤝';
+        }
+        
+        function formatType(type) {
+            return type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
+        
+        function getReasonIcon(reason) {
+            const icons = {
+                'slow_ramp': '🐌',
+                'positioning_dependent': '📍',
+                'low_defense': '❤️',
+                'niche_utility': '🎯',
+                'positioning_squishy': '💔',
+                'overwatch_counterable': '👁️',
+                'mech_only': '⚙️',
+                'tau_dependent': '🔵',
+                'positioning_difficult': '📐',
+                'psychic_resistance': '🧠',
+                'delayed_summon': '⏱️',
+                'setup_dependent': '🔧',
+                'can_be_surrounded': '⭕',
+                'passive_only_non_lethal': '💔',
+                'anti_summon': '🚫👻',
+                'anti_tank_weapons': '🔫',
+                'anti_nurgle': '☠️'
+            };
+            return icons[reason] || '⚠️';
+        }
+        
+        function formatReason(reason) {
+            return reason.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
+        
+        function getCounterStrategy(counter) {
+            if (counter.counter_types) {
+                return `Используй ${counter.counter_types.join(' или ')} против этого персонажа`;
+            }
+            return 'Атакуй слабые места, используй позиционирование';
+        }
+
+        function getColorForPct(pct) {
+            if (pct >= 90) return '00ff00';
+            if (pct >= 70) return '4ade80';
+            if (pct >= 50) return 'fbbf24';
+            if (pct >= 30) return 'fb923c';
+            return 'ef4444';
+        }
+
+        const RARITY_NAMES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic'];
+
+        function updateRarityCalculation() {
+            // Сохраняем текущие значения из DOM
+            atkRarityValue = Number(document.getElementById('atkRaritySlider').value);
+            atkLevelValue = Number(document.getElementById('atkLevelSlider').value);
+            defRarityValue = Number(document.getElementById('defRaritySlider').value);
+            defLevelValue = Number(document.getElementById('defLevelSlider').value);
+            
+            const atkRarityIndex = parseInt(document.getElementById('atkRaritySlider').value);
+            const defRarityIndex = parseInt(document.getElementById('defRaritySlider').value);
+            const atkLevel = parseInt(document.getElementById('atkLevelSlider').value);
+            const defLevel = parseInt(document.getElementById('defLevelSlider').value);
+            
+            const atkRarityName = RARITY_NAMES[atkRarityIndex];
+            const defRarityName = RARITY_NAMES[defRarityIndex];
+            
+            document.getElementById('atkRarityLabel').textContent = atkRarityName;
+            document.getElementById('defRarityLabel').textContent = defRarityName;
+            document.getElementById('atkLevelLabel').textContent = atkLevel;
+            document.getElementById('defLevelLabel').textContent = defLevel;
+            
+            const atkBaseStats = currentAttacker.rarities?.[atkRarityName] || {
+                health: currentAttacker.hp,
+                armour: currentAttacker.armor,
+                damage: currentAttacker.dmg
+            };
+            
+            const defBaseStats = currentDefender.rarities?.[defRarityName] || {
+                health: currentDefender.hp,
+                armour: currentDefender.armor,
+                damage: currentDefender.dmg
+            };
+            
+            const levelScaling = (baseStat, level) => {
+                return Math.round(baseStat * (1 + 0.02 * (level - 1)));
+            };
+            
+            const tempAttacker = {
+                ...currentAttacker,
+                hp: levelScaling(parseInt(atkBaseStats.health), atkLevel),
+                armor: levelScaling(parseInt(atkBaseStats.armour), atkLevel),
+                dmg: levelScaling(parseInt(atkBaseStats.damage), atkLevel)
+            };
+            
+            const tempDefender = {
+                ...currentDefender,
+                hp: levelScaling(parseInt(defBaseStats.health), defLevel),
+                armor: levelScaling(parseInt(defBaseStats.armour), defLevel),
+                dmg: levelScaling(parseInt(defBaseStats.damage), defLevel)
+            };
+            
+            const newMetrics = calculateMatchup(tempAttacker, tempDefender);
+            
+            document.getElementById('rarityStatsDisplay').innerHTML = `
+                <div style="text-align: center; color: #00d4ff; font-weight: bold; margin-bottom: 10px;">
+                    📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ
+                </div>
+                <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(0, 212, 255, 0.1); border-radius: 3px;">
+                    <span style="font-weight: 600;">${tempAttacker.name} (${atkRarityName} Lvl ${atkLevel}):</span>
+                    <span style="color: #00ff88; font-family: monospace;">
+                        HP: <strong>${tempAttacker.hp}</strong> | 
+                        ARM: <strong>${tempAttacker.armor}</strong> | 
+                        DMG: <strong>${tempAttacker.dmg}</strong>
