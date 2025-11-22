@@ -977,23 +977,52 @@
                 incomingMult *= 1.5; // +50% получаемого урона
             }
 
-            // ✅ ПРАВИЛЬНАЯ ФОРМУЛА ИЗ WIKI & REDDIT
-            // Damage = MAX(dmg - armor, dmg * pierce%) × hits × modifiers
-            // МИНИМУМ ВСЕГДА 1 DMG
-            const dmgAfterArmor = Math.max(1, dmg - armor);
-            const dmgPierce = Math.max(1, dmg * (pierce / 100));
-            const dmgPerHit = Math.max(dmgAfterArmor, dmgPierce);
-            const totalDmg = dmgPerHit * atkHits * incomingMult;
+            // ✅ АКТУАЛИЗИРОВАННАЯ ФОРМУЛА (2025-11-22)
+            // Источники: 
+            // - https://www.reddit.com/r/WH40KTacticus/comments/1hu1kqd/how_damage_really_works/
+            // - https://tacticus.fandom.com/wiki/Damage_Types_and_Pierce_Ratio
+            // Формула: Damage = MAX[(Damage - Armor), (Damage * Pierce%)] × Hits × Modifiers
+            
+            // 1. Добавляем variance ±10% (более мягкий вариант, чтобы сохранить стабильность)
+            const variance = 0.95 + (Math.random() * 0.1); // от 0.95 до 1.05
+            const effectiveDmg = dmg * variance;
+            
+            // 2. ДВА расчёта урона - выбираем МАКСИМУМ (официальная механика)
+            const dmgAfterArmor = Math.max(1, effectiveDmg - armor);
+            const dmgWithPierce = Math.max(1, effectiveDmg * (pierce / 100));
+            let dmgPerHit = Math.max(dmgAfterArmor, dmgWithPierce);
+            
+            // 3. ✅ GRAVIS ARMOR: если есть Mk X Gravis - расчёт проходит ДВАЖДЫ
+            // Это официальная механика из Tacticus Wiki
+            if (defTraits.includes('Mk X Gravis')) {
+                // Повторяем расчёт с результатом первого прохода
+                const secondPassArmor = Math.max(1, dmgPerHit - armor);
+                const secondPassPierce = Math.max(1, dmgPerHit * (pierce / 100));
+                dmgPerHit = Math.max(secondPassArmor, secondPassPierce);
+            }
+            
+            // 4. Применяем incoming damage modifiers (Resilient, Big Target, Razor Wire, etc)
+            dmgPerHit *= incomingMult;
+            
+            // 5. Итоговый урон за ход
+            const totalDmg = dmgPerHit * atkHits;
 
-            // Эффективность атаки: % HP за один удар
-            const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
-
-            // ✅ ПРАВИЛЬНАЯ ОЦЕНКА ЗАЩИТЫ: СКОЛЬКО РАУНДОВ ВЫДЕРЖИТ
+            // ✅ РЕАЛИСТИЧНАЯ ЭФФЕКТИВНОСТЬ АТАКИ
+            // Процент HP который снимаем за один ход (может быть >100% для one-shot)
+            const attackEff = Math.min(150, (totalDmg / defender.hp) * 100);
+            
+            // ✅ УЛУЧШЕННЫЙ РАСЧЁТ ЗАЩИТЫ (логарифмическая шкала)
+            // Сколько раундов выдержит защитник
             const roundsToKill = defender.hp / Math.max(1, totalDmg);
             
-            // Переводим в проценты (1 раунд = 20%, 5 раундов = 100%)
-            // Максимум 85% (невозможно бесконечно выживать)
-            const defenseEff = Math.min(85, Math.max(5, roundsToKill * 20));
+            // Логарифмическая шкала для более реалистичной оценки живучести:
+            // 0.5 раунда = очень плохо (~10%)
+            // 1 раунд = плохо (~24%)
+            // 2 раунда = средне (~40%)
+            // 3 раунда = хорошо (~52%)
+            // 5 раундов = очень хорошо (~68%)
+            // 10+ раундов = отлично (~85%)
+            const defenseEff = Math.min(90, Math.max(5, Math.log(roundsToKill + 1) * 35));
 
             const average = (attackEff + defenseEff) / 2;
 
