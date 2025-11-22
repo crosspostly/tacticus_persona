@@ -879,7 +879,7 @@
                     fetch('conditional_bonuses.csv').then(r => r.ok ? r.text() : null).catch(() => null),
                     fetch('character_factions.csv').then(r => r.ok ? r.text() : null).catch(() => null),
                     fetch('character_attack_types.csv').then(r => r.ok ? r.text() : null).catch(() => null),
-                    fetch('passive_abilities.csv').then(r => r.ok ? r.text() : null).catch(() => null)  // НОВОЕ
+                    fetch('passive_abilities.csv').then(r => r.ok ? r.text() : null).catch(() => null)
                 ]);
 
                 if (traitsText) traitsDB = parseCSV(traitsText);
@@ -887,7 +887,7 @@
                 if (bonusesText) conditionalBonusesDB = parseCSV(bonusesText);
                 if (factionsText) characterFactionsDB = parseCSV(factionsText);
                 if (attacksText) characterAttackTypesDB = parseCSV(attacksText);
-                if (passivesText) passiveAbilitiesDB = parseCSV(passivesText);  // НОВОЕ
+                if (passivesText) passiveAbilitiesDB = parseCSV(passivesText);
 
                 return true;
             } catch (error) {
@@ -959,11 +959,9 @@
             const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
             const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
 
-            // Оцениваем эффективность обеих атак
             const rangedValue = rangedHits * (PIERCE_RATIOS[rangedType] || 0);
             const meleeValue = meleeHits * (PIERCE_RATIOS[meleeType] || 0);
 
-            // Выбираем атаку с большим значением (pierce × hits)
             const [atkType, atkHits] = (rangedValue > meleeValue && rangedHits > 0)
                 ? [rangedType, rangedHits]
                 : [meleeType, meleeHits];
@@ -1055,35 +1053,27 @@
                 incomingMult *= 1.5;
             }
 
-            // ✨ НОВОЕ: Применяем пассивные способности атакующего
             const atkPassive = getPassiveAbility(attacker.name);
             if (atkPassive) {
-                // Direct damage boost
                 if (atkPassive.type === 'direct_damage') {
                     dmg *= atkPassive.damageMult;
                 }
                 
-                // Conditional damage boost (упрощённая проверка)
                 if (atkPassive.type === 'conditional_damage' || atkPassive.type === 'scaling') {
-                    // Для начала применяем всегда (потом добавим проверку условий)
                     dmg *= atkPassive.damageMult;
                 }
                 
-                // Additional damage
                 if (atkPassive.additionalDmg > 0) {
                     dmg += atkPassive.additionalDmg;
                 }
             }
 
-            // ✨ НОВОЕ: Применяем пассивные способности защитника
             const defPassive = getPassiveAbility(defender.name);
             if (defPassive) {
-                // Direct defense boost
                 if (defPassive.type === 'direct_defense') {
                     incomingMult *= defPassive.defenseMult;
                 }
                 
-                // Conditional defense boost
                 if (defPassive.type === 'conditional_defense') {
                     incomingMult *= defPassive.defenseMult;
                 }
@@ -1106,15 +1096,12 @@
             const roundsToKill = defender.hp / Math.max(1, totalDmg);
             const defenseEff = Math.min(100, Math.max(5, roundsToKill * 20));
 
-            // 🎯 РАСЧЁТ ОБРАТНОГО НАПРАВЛЕНИЯ (defender -> attacker)
             const [defRangedType, defRangedHits] = extractAttackInfo(defender.ranged);
             const [defMeleeType, defMeleeHits] = extractAttackInfo(defender.melee);
 
-            // Оцениваем эффективность обеих атак для защитника
             const defRangedValue = defRangedHits * (PIERCE_RATIOS[defRangedType] || 0);
             const defMeleeValue = defMeleeHits * (PIERCE_RATIOS[defMeleeType] || 0);
 
-            // Выбираем атаку с большим значением (pierce × hits)
             const [defAtkType, defAtkHits] = (defRangedValue > defMeleeValue && defRangedHits > 0)
                 ? [defRangedType, defRangedHits]
                 : [defMeleeType, defMeleeHits];
@@ -1249,11 +1236,11 @@
 
         function getTradeClass(myRounds, theirRounds) {
             const ratio = myRounds / theirRounds;
-            if (ratio <= 0.5) return 'cell-dominate'; // Я убиваю в 2+ раза быстрее
-            if (ratio <= 0.67) return 'cell-advantage'; // Я убиваю в 1.5x быстрее
-            if (ratio <= 1.3) return 'cell-balanced'; // Примерно равно (±30%)
-            if (ratio <= 2.0) return 'cell-disadvantage'; // Меня убивают в 1.5x быстрее
-            return 'cell-dominated'; // Меня убивают в 2+ раза быстрее
+            if (ratio <= 0.5) return 'cell-dominate';
+            if (ratio <= 0.67) return 'cell-advantage';
+            if (ratio <= 1.3) return 'cell-balanced';
+            if (ratio <= 2.0) return 'cell-disadvantage';
+            return 'cell-dominated';
         }
 
         function renderTable() {
@@ -1436,7 +1423,6 @@
             const atkTraits = getCharacterTraits(atk.name);
             const defTraits = getCharacterTraits(def.name);
             
-            // 🎯 ОПРЕДЕЛЯЕМ ИТОГ РАЗМЕНА
             const ratio = metrics.roundsToKill / metrics.roundsToKillMe;
             let tradeResult = '';
             let tradeClass = '';
@@ -1499,16 +1485,17 @@
                         </label>
                         <input type="range" 
                                id="atkRaritySlider" 
-                               min="0" max="4" value="0" 
+                               min="0" max="5" value="0" 
                                step="1"
                                style="width: 100%; cursor: pointer;"
                                onchange="updateRarityCalculation()">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75em; color: #888; margin-top: 5px;">
-                            <span>Common</span>
-                            <span>Uncommon</span>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
+                            <span>Com</span>
+                            <span>Unc</span>
                             <span>Rare</span>
                             <span>Epic</span>
-                            <span>Legendary</span>
+                            <span>Leg</span>
+                            <span>Myth</span>
                         </div>
                     </div>
                     
@@ -1519,14 +1506,14 @@
                         </label>
                         <input type="range" 
                                id="atkLevelSlider" 
-                               min="1" max="50" value="1" 
+                               min="1" max="55" value="1" 
                                step="1"
                                style="width: 100%; cursor: pointer;"
                                onchange="updateRarityCalculation()">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75em; color: #888; margin-top: 5px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Lvl 1</span>
-                            <span>Lvl 25</span>
-                            <span>Lvl 50 (MAX)</span>
+                            <span>Lvl 28</span>
+                            <span>Lvl 55 (MAX)</span>
                         </div>
                     </div>
                     
@@ -1537,16 +1524,17 @@
                         </label>
                         <input type="range" 
                                id="defRaritySlider" 
-                               min="0" max="4" value="0" 
+                               min="0" max="5" value="0" 
                                step="1"
                                style="width: 100%; cursor: pointer;"
                                onchange="updateRarityCalculation()">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75em; color: #888; margin-top: 5px;">
-                            <span>Common</span>
-                            <span>Uncommon</span>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
+                            <span>Com</span>
+                            <span>Unc</span>
                             <span>Rare</span>
                             <span>Epic</span>
-                            <span>Legendary</span>
+                            <span>Leg</span>
+                            <span>Myth</span>
                         </div>
                     </div>
                     
@@ -1557,14 +1545,14 @@
                         </label>
                         <input type="range" 
                                id="defLevelSlider" 
-                               min="1" max="50" value="1" 
+                               min="1" max="55" value="1" 
                                step="1"
                                style="width: 100%; cursor: pointer;"
                                onchange="updateRarityCalculation()">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75em; color: #888; margin-top: 5px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Lvl 1</span>
-                            <span>Lvl 25</span>
-                            <span>Lvl 50 (MAX)</span>
+                            <span>Lvl 28</span>
+                            <span>Lvl 55 (MAX)</span>
                         </div>
                     </div>
                     
@@ -1874,7 +1862,7 @@
             return 'ef4444';
         }
 
-        const RARITY_NAMES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'];
+        const RARITY_NAMES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic'];
 
         function updateRarityCalculation() {
             const atkRarityIndex = parseInt(document.getElementById('atkRaritySlider').value);
@@ -1885,13 +1873,11 @@
             const atkRarityName = RARITY_NAMES[atkRarityIndex];
             const defRarityName = RARITY_NAMES[defRarityIndex];
             
-            // Обновляем labels
             document.getElementById('atkRarityLabel').textContent = atkRarityName;
             document.getElementById('defRarityLabel').textContent = defRarityName;
             document.getElementById('atkLevelLabel').textContent = atkLevel;
             document.getElementById('defLevelLabel').textContent = defLevel;
             
-            // Получаем базовые характеристики для выбранной редкости
             const atkBaseStats = currentAttacker.rarities?.[atkRarityName] || {
                 health: currentAttacker.hp,
                 armour: currentAttacker.armor,
@@ -1904,14 +1890,10 @@
                 damage: currentDefender.dmg
             };
             
-            // Применяем масштабирование по уровню
-            // Формула: base_stat + (base_stat * 0.02 * (level - 1))
-            // Это даёт +2% за уровень, т.е. на 50 уровне = +98% = почти x2
             const levelScaling = (baseStat, level) => {
                 return Math.round(baseStat * (1 + 0.02 * (level - 1)));
             };
             
-            // Создаём временные объекты с новыми характеристиками
             const tempAttacker = {
                 ...currentAttacker,
                 hp: levelScaling(parseInt(atkBaseStats.health), atkLevel),
@@ -1926,10 +1908,8 @@
                 dmg: levelScaling(parseInt(defBaseStats.damage), defLevel)
             };
             
-            // Пересчитываем матчап
             const newMetrics = calculateMatchup(tempAttacker, tempDefender);
             
-            // Обновляем отображение характеристик
             document.getElementById('rarityStatsDisplay').innerHTML = `
                 <div style="text-align: center; color: #00d4ff; font-weight: bold; margin-bottom: 10px;">
                     📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ
@@ -1956,7 +1936,6 @@
                 </div>
             `;
             
-            // Обновляем все метрики на странице
             renderAnalysisTab(tempAttacker, tempDefender, newMetrics);
         }
 
