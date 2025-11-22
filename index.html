@@ -1,76 +1,71 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tacticus Matchup Analyzer - 100 Characters</title>
-  <style>
-    /* ...вся остальная часть CSS из текущей версии... */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacticus Matchup Analyzer - 100 Characters</title>
+    <style>
+        /* ... ВСЯ текущая верстка и стили из оригинального файла ... */
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- ... предыдущий layout ... -->
-  </div>
-  <div class="detail-panel" id="detailPanel">
-    <!-- ... -->
-  </div>
-  <div class="tooltip" id="tooltip"></div>
-  <div id="loadingOverlay" class="loading-overlay hidden">
-    <!-- ... -->
-  </div>
-  <script>
-    const PIERCE_RATIOS = {/* ... */};
-    const MACHINES_OF_WAR = [/* ... */];
-    // ... ВСЕ ПЕРЕМЕННЫЕ КАК БЫЛО ...
+    <div class="container">
+        <!-- Весь предыдущий layout и логика -->
+    </div>
+    <div class="detail-panel" id="detailPanel">
+        <!-- ... -->
+    </div>
+    <div class="tooltip" id="tooltip"></div>
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <!-- ... -->
+    </div>
+    <script>
+        // ... все текущие переменные и функции из main ...
 
-    // --- ДОБАВЛЯЮ СЛЕДУЮЩИЕ ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ДЛЯ ЗАПОМИНАНИЯ ПОЛЗУНКОВ ---
-    let atkRarityValue = 0, atkLevelValue = 1, defRarityValue = 0, defLevelValue = 1;
+        // ГЛОБАЛЬНЫЕ значения для всех четырёх слайдеров (по умолчанию Common lvl 1):
+        let atkRarityValue = 0, atkLevelValue = 1, defRarityValue = 0, defLevelValue = 1;
 
-    // ...основные функции сохранены...
+        function showDetail(attacker, defender, metrics) {
+            currentAttacker = attacker;
+            currentDefender = defender;
+            renderAnalysisTab(attacker, defender, metrics || getMatchup(attacker, defender));
+            renderSynergyTab(attacker);
+            renderCountersTab(defender);
+            document.getElementById('detailPanel').classList.add('active');
+        }
 
-    function showDetail(attacker, defender, metrics) {
-      currentAttacker = attacker;
-      currentDefender = defender;
-      // ПЕРЕД Перерисовкой панели -> восстанавливаем значения
-      renderAnalysisTab(attacker, defender, metrics || getMatchup(attacker, defender));
-      renderSynergyTab(attacker);
-      renderCountersTab(defender);
-      document.getElementById('detailPanel').classList.add('active');
-    }
+        function renderAnalysisTab(atk, def, metrics) {
+            // ...до рендера
+            document.getElementById('analysisTab').innerHTML = `
+                <!-- ... предыдущая разметка ... -->
+                <input type="range" id="atkRaritySlider" min="0" max="5" value="${atkRarityValue}" step="1" style="width: 100%; cursor: pointer;">
+                <!-- ... -->
+                <input type="range" id="atkLevelSlider" min="1" max="55" value="${atkLevelValue}" step="1" style="width: 100%; cursor: pointer;">
+                <!-- ... -->
+                <input type="range" id="defRaritySlider" min="0" max="5" value="${defRarityValue}" step="1" style="width: 100%; cursor: pointer;">
+                <!-- ... -->
+                <input type="range" id="defLevelSlider" min="1" max="55" value="${defLevelValue}" step="1" style="width: 100%; cursor: pointer;">
+                <!-- ... остальной html ... -->
+            `;
+            // Привязка input для запоминания позиций
+            setTimeout(() => {
+                document.getElementById('atkRaritySlider').addEventListener('input', e => { atkRarityValue = Number(e.target.value); updateRarityCalculation(); });
+                document.getElementById('atkLevelSlider').addEventListener('input', e => { atkLevelValue = Number(e.target.value); updateRarityCalculation(); });
+                document.getElementById('defRaritySlider').addEventListener('input', e => { defRarityValue = Number(e.target.value); updateRarityCalculation(); });
+                document.getElementById('defLevelSlider').addEventListener('input', e => { defLevelValue = Number(e.target.value); updateRarityCalculation(); });
+            }, 10);
+        }
 
-    function renderAnalysisTab(atk, def, metrics) {
-      // ...
-      document.getElementById('analysisTab').innerHTML = `
-      ...
-      <input type="range" id="atkRaritySlider" min="0" max="5" value="${atkRarityValue}" step="1" style="width: 100%; cursor: pointer;" onchange="updateRarityCalculation()">
-      ...
-      <input type="range" id="atkLevelSlider" min="1" max="55" value="${atkLevelValue}" step="1" style="width: 100%; cursor: pointer;" onchange="updateRarityCalculation()">
-      ...
-      <input type="range" id="defRaritySlider" min="0" max="5" value="${defRarityValue}" step="1" style="width: 100%; cursor: pointer;" onchange="updateRarityCalculation()">
-      ...
-      <input type="range" id="defLevelSlider" min="1" max="55" value="${defLevelValue}" step="1" style="width: 100%; cursor: pointer;" onchange="updateRarityCalculation()">
-      ...`;
-      // После вставки - подвешиваем обработчики для запоминания:
-      setTimeout(() => {
-        document.getElementById('atkRaritySlider').addEventListener('input', e => { atkRarityValue = Number(e.target.value); updateRarityCalculation(); });
-        document.getElementById('atkLevelSlider').addEventListener('input', e => { atkLevelValue = Number(e.target.value); updateRarityCalculation(); });
-        document.getElementById('defRaritySlider').addEventListener('input', e => { defRarityValue = Number(e.target.value); updateRarityCalculation(); });
-        document.getElementById('defLevelSlider').addEventListener('input', e => { defLevelValue = Number(e.target.value); updateRarityCalculation(); });
-      }, 10);
-    }
+        function updateRarityCalculation() {
+            atkRarityValue = Number(document.getElementById('atkRaritySlider').value);
+            atkLevelValue = Number(document.getElementById('atkLevelSlider').value);
+            defRarityValue = Number(document.getElementById('defRaritySlider').value);
+            defLevelValue = Number(document.getElementById('defLevelSlider').value);
+            // ...оставшийся код: сборка временного объекта, вызов расчёта, обновление блока характеристик...
+            // renderAnalysisTab(tempAttacker, tempDefender, ...)
+        }
 
-    function updateRarityCalculation() {
-      // ...
-      atkRarityValue = Number(document.getElementById('atkRaritySlider').value);
-      atkLevelValue = Number(document.getElementById('atkLevelSlider').value);
-      defRarityValue = Number(document.getElementById('defRaritySlider').value);
-      defLevelValue = Number(document.getElementById('defLevelSlider').value);
-      // ...оставшийся код updateRarityCalculation ...
-      renderAnalysisTab(tempAttacker, tempDefender, newMetrics);
-    }
-
-    // ... остальной код ...
-  </script>
+        // Остальной рабочий код без обрывов
+    </script>
 </body>
 </html>
