@@ -1,0 +1,438 @@
+НЕОПОЗНАННЫЕ ПАССИВКИ (87 шт.):
+================================================================================
+
+Character: Abaddon The Despoiler
+Passive: First Among Traitors
+Description: Other friendly Chaos units within 2 hexes deal +X Damage. This value is increased by +Y Damage for each attack Abaddon has performed in this battle, u
+--------------------------------------------------------------------------------
+
+Character: Abraxas
+Passive: Infernal Pacts
+Description: Friendly Chaos units adjacent to Abraxas deal an additional 1x X Psychic Damage with their normal ranged attacks. Affected Daemons also gain the bonus
+--------------------------------------------------------------------------------
+
+Character: Actus
+Passive: Galvanic Field
+Description: Whenever Actus repairs another unit, that unit immediately attacks a target in range, dealing X% of its own Damage to a maximum of Y Damage per hit. A
+--------------------------------------------------------------------------------
+
+Character: Adamatar
+Passive: Obsessive Annunciation
+Description: All enemy units adjacent to Adamatar take +X Damage from ranged attacks. If an enemy was Overkilled this turn, enemies adjacent to Adamatar take +X Cr
+--------------------------------------------------------------------------------
+
+Character: Aesoth
+Passive: Stand Vigil
+Description: Friendly surrounding units have +X Armour and deal +Y% Damage with attacks that are not normal attacks. If a friendly Adeptus Custodes uses an Active 
+--------------------------------------------------------------------------------
+
+Character: Aethana
+Passive: Path of Command
+Description: Other friendly units within 2 hexes gain +X Damage. Their Crit chance - if they have one - is increased by +Y%. Affected Aeldari units gain an additio
+--------------------------------------------------------------------------------
+
+Character: Ahriman
+Passive: Psychic Stalk
+Description: Attacks that deal Flame Damage and Psychic Damage to enemies that are on hexes with Fire deal +X% Damage. Affected attacks from friendly Chaos units d
+--------------------------------------------------------------------------------
+
+Character: Aleph-Null
+Passive: Fabricator Claw Array
+Description: After moving, repairs one random adjacent friendly Mechanical unit for X Health. If Aleph-Null does not move, then this ability triggers at the end of
+--------------------------------------------------------------------------------
+
+Character: Ancient Thoread
+Passive: Astartes Banner
+Description: Other friendly units within 2 hexes score an additional hit with their melee attacks. This additional hit can deal a maximum of X Damage. Note: The bo
+--------------------------------------------------------------------------------
+
+Character: Angrax
+Passive: Hateful Assault
+Description: Attacks any enemy that moves from a hex adjacent to him, dealing 2x X Power Damage.
+--------------------------------------------------------------------------------
+
+Character: Anuphet
+Passive: Martial Apotheosis
+Description: At the start of its turn, Anuphet deals 2x X Energy Damage to a random adjacent enemy.
+--------------------------------------------------------------------------------
+
+Character: Arjac
+Passive: Anvil Shield
+Description: Arjac blocks an additional X Damage and when he Blocks he covers the attacker's Hex in Ice. If Arjac is below 35% Health, or if his attacker is on a H
+--------------------------------------------------------------------------------
+
+Character: Asmodai
+Passive: Feared Interrogator
+Description: Deals +X Damage against enemies that are Suppressed, Stunned, or that are adjacent to another friendly Dark Angel. Scores +Y hits, if the enemy is als
+--------------------------------------------------------------------------------
+
+Character: Atlacoya
+Passive: Daughter of the Abyss
+Description: Atlacoya takes -X Psychic Damage. Psychic Damage dealt to other friendly units within 2 hexes of Atlacoya is reduced by Y%. Enemy Psykers within 2 hex
+--------------------------------------------------------------------------------
+
+Character: Aun'Shi
+Passive: Serene Unifier
+Description: Aun'Shi grants himself, and adjacent friendly units a bonus based on the current round at the beginning of his turn. Friendly Tau Empire units within 
+--------------------------------------------------------------------------------
+
+Character: Azkor
+Passive: Beacon of Rage
+Description: For each time he was attacked in battle, up to a maximum of 8 times, Azkor deals +X Damage. If Azkor has defeated an enemy in this battle, 50% of the 
+--------------------------------------------------------------------------------
+
+Character: Azrael
+Passive: Lion Helm
+Description: Friendly units within 2 Hexes block an additional X Damage when they Block and deal +Y Damage while firing Overwatch. Other friendly Dark Angels withi
+--------------------------------------------------------------------------------
+
+Character: Baraqiel
+Passive: Deathwing
+Description: Each time Baraqiel blocks damage during an attack, all further incoming damage is reduced by X and the damage Baraqiel deals with melee or Plasma Cann
+--------------------------------------------------------------------------------
+
+Character: Bellator
+Passive: Shock Assault
+Description: Whenever Bellator attacks, any Inceptor adjacent to him also attacks eligible targets, dealing +X Damage for this attack.
+--------------------------------------------------------------------------------
+
+Character: Boss Gulgortz
+Passive: Light 'Im Up
+Description: After performing a Normal Attack, Boss Gulgortz performs a second attack against the same enemy, dealing 3x X Projectile Damage. If the target is defe
+--------------------------------------------------------------------------------
+
+Character: Brother Burchard
+Passive: Boltstorm
+Description: Normal ranged attacks deal an additional 3x X Bolter Damage to the target and to each enemy adjacent to the target that is also within range of Brothe
+--------------------------------------------------------------------------------
+
+Character: Brother Jaeger
+Passive: Martial Superiority
+Description: If Brother Jaeger gets targeted with a melee attack from an adjacent enemy during the enemy's turn, he deals 2x X Power Damage to the attacker before 
+--------------------------------------------------------------------------------
+
+Character: Calandis
+Passive: Wireweave Net
+Description: The first time Calandis is targeted by a normal melee attack during the enemy's turn, the attacker immediately takes 2x X Piercing Damage. If the atta
+--------------------------------------------------------------------------------
+
+Character: Castellan Creed
+Passive: Sworn Protector
+Description: When Lord Castellan Creed is first targeted in battle, Colour Sergeant Kell appears in a free adjacent hex. Any time Creed is attacked, Kell switches 
+--------------------------------------------------------------------------------
+
+Character: Certus
+Passive: Camo Cloak
+Description: Whenever an incoming ranged attack has its number of hits reduced for any reason, it deals -X damage per hit to this unit.
+--------------------------------------------------------------------------------
+
+Character: Commissar Yarrick
+Passive: Summary Execution
+Description: Friendly units with Battle Fatigue gain +X Damage. The first time a friendly unit would flee due to Battle Fatigue, it is executed instead and all oth
+--------------------------------------------------------------------------------
+
+Character: Corrodius
+Passive: Cursed Plague Bell
+Description: Friendly Chaos units starting their turn within Corrodius's Contagion aura gain +1 Movement for this turn. Enemy Psyker units within Corrodius's Conta
+--------------------------------------------------------------------------------
+
+Character: Darkstrider
+Passive: Structural Analyser
+Description: Units hit by ranged attacks from Darkstrider receive a Markerlight for one round. Friendly units adjacent to Darkstrider deal +X Damage with ranged at
+--------------------------------------------------------------------------------
+
+Character: Deathleaper
+Passive: Feeder Tendrils
+Description: When charging, the Deathleaper deals +X Damage, heals for Y Health, and Suppresses the target for 1 round.
+--------------------------------------------------------------------------------
+
+Character: Eldryon
+Passive: Doom
+Description: All enemy units exactly 2 hexes away from Eldryon take +X Damage from other friendly unit's normal attacks. Other friendly Aeldari units deal +Y Damag
+--------------------------------------------------------------------------------
+
+Character: Exitor-Rho
+Passive: Optimised Gait
+Description: Whenever an enemy adjacent to Exitor-Rho is attacked by another friendly Mechanical unit, deal 2x X Energy Damage to that enemy. If an enemy adjacent 
+--------------------------------------------------------------------------------
+
+Character: Forcas
+Passive: Enmity for the Unworthy
+Description: Forcas deals +X% Damage for each adjacent unit and additional +Y Damage for each adjacent friendly Dark Angel.
+--------------------------------------------------------------------------------
+
+Character: Gibbascrapz
+Passive: Kustom Force Field
+Description: All friendly adjacent units have an additional +X Armour.
+--------------------------------------------------------------------------------
+
+Character: High Marshal Helbrecht
+Passive: Destroy The Witch
+Description: Gains +1 Movement when there's an enemy Psyker on the battlefield. This unit and friendly adjacent units deal +X Damage with melee attacks against Psy
+--------------------------------------------------------------------------------
+
+Character: Hollan
+Passive: Twisted Science
+Description: Units Healed by Hollan, other than himself, are affected by Twisted Science until they are defeated. Hollan can heal other unaffected units even if th
+--------------------------------------------------------------------------------
+
+Character: Imospekh
+Passive: Inescapable Death
+Description: Imospekh's ranged attacks each deal +X damage per hit when triggered by Overwatch. When defeating a unit with an attack triggered by Overwatch, Imospe
+--------------------------------------------------------------------------------
+
+Character: Incisus
+Passive: Narthecium
+Description: When an adjacent friendly non-Mechanical unit is defeated, it is immediately revived with X Health, unless Overkilled. Can only be triggered once per 
+--------------------------------------------------------------------------------
+
+Character: Isaak
+Passive: Decoys and Misdirection
+Description: When an enemy moves onto a friendly Decoy, it takes 1x X Blast Damage. When a friendly unit resurrects onto or moves onto a friendly Decoy, it deals +
+--------------------------------------------------------------------------------
+
+Character: Isabella
+Passive: Medicus Ministorum
+Description: Any friendly adjacent non-Mechanical unit that takes damage Regenerates X Health afterwards, unless it is defeated. Note: Medicus Ministorum triggers 
+--------------------------------------------------------------------------------
+
+Character: Jain Zar
+Passive: Terror's Lament
+Description: Adjacent enemy units deal -X Damage and have -1 Hits with melee attacks, to a minimum of 1.
+--------------------------------------------------------------------------------
+
+Character: Judh
+Passive: Hypersensory Abilities
+Description: The first time each enemy turn that Judh is attacked, she cannot fall below X% of her current Health. After the attack, she moves to a free adjacent h
+--------------------------------------------------------------------------------
+
+Character: Kariyan
+Passive: Legacy of Combat
+Description: After performing his first attack each turn, Kariyan performs an additional attack. If he is adjacent to an enemy Big Target, this attack deals 1x X P
+--------------------------------------------------------------------------------
+
+Character: Kharn
+Passive: The Betrayer
+Description: After performing a normal attack, Khârn performs a second attack targeting an adjacent enemy, dealing 4x X Eviscerating Damage. If Khârn has defeated 
+--------------------------------------------------------------------------------
+
+Character: Kut Skoden
+Passive: Avalanche of Muscle
+Description: Deals +X Damage when charging.
+--------------------------------------------------------------------------------
+
+Character: Lucien
+Passive: Visions of Heresy
+Description: After performing a normal attack, Lucien performs a second attack targeting an enemy within range 2, dealing 2x X Bolter Damage. If Lucien is at or be
+--------------------------------------------------------------------------------
+
+Character: Lucius
+Passive: Armour of Shrieking Souls
+Description: If Lucius is defeated by an enemy unit, that enemy becomes Elated. At the beginning of each of its turns, the affected unit loses X Health and when it
+--------------------------------------------------------------------------------
+
+Character: Macer
+Passive: Skullsmasher
+Description: Macer deals +X Damage for each 10% of his maximum Health he is currently missing. In addition, if Macer has defeated an enemy this battle, all enemies
+--------------------------------------------------------------------------------
+
+Character: Makhotep
+Passive: Relentless March
+Description: Gives +1 Movement to all friendly units that start their turn in an adjacent hex. Also repairs affected Mechanical units for X Health.
+--------------------------------------------------------------------------------
+
+Character: Maladus
+Passive: Haze of Corruption
+Description: Anytime Maladus Phlegmore defeats its target, any leftover Damage and an additional 1x X Toxic Damage is dealt to a random enemy unit adjacent to both
+--------------------------------------------------------------------------------
+
+Character: Marneus Calgar
+Passive: Rites of Battle
+Description: Adjacent friendly units gain +X Damage. Imperial units gain +Y Damage instead.
+--------------------------------------------------------------------------------
+
+Character: Marshal Dreir
+Passive: Tough to Kill
+Description: At the beginning of his turn, Dreir regenerates X Health. All attacks against Dreir have -Y% Crit Chance and deal -Z Crit Damage.
+--------------------------------------------------------------------------------
+
+Character: Maugan Ra
+Passive: Inescapable Accuracy
+Description: If Maugan Ra has not moved then his ranged attacks ignore hit reductions from both hex effects and unit effects, and they also have +X% Crit Chance an
+--------------------------------------------------------------------------------
+
+Character: Mephiston
+Passive: Fury of the Ancients
+Description: After moving, deals 2x X Psychic Damage to an adjacent enemy and an additional enemy adjacent to the initial one. For 2 rounds, affected units cannot 
+--------------------------------------------------------------------------------
+
+Character: Morvenn Vahl
+Passive: Righteous Repugnance
+Description: Normal melee attacks deal an additional 3x X Power Damage to the target and to all enemy units adjacent to both the target and to Morvenn Vahl. When M
+--------------------------------------------------------------------------------
+
+Character: Nauseous Rotbone
+Passive: Tainted Narthecium
+Description: An adjacent friendly Chaos unit that takes lethal damage has a 75% chance to be revived with X Health, even if Overkilled. Can only be triggered once 
+--------------------------------------------------------------------------------
+
+Character: Neurothrope
+Passive: Neuroparasite
+Description: Each enemy that is dealt Psychic Damage by the Neurothrope is infected by a Neuroparasite until either the unit is healed or the Neurothrope is defeat
+--------------------------------------------------------------------------------
+
+Character: Nicodemus
+Passive: Sanguinary Priest
+Description: After moving, all adjacent friendly non-Mechanical units Regenerate X Health. If Nicodemus does not move, this ability triggers at the end of his turn
+--------------------------------------------------------------------------------
+
+Character: Njal
+Passive: Lord of Tempests
+Description: Njal's normal attacks deal +X Damage for each hex surrounding him that is covered in Ice. The hex of each enemy that is hit by Njal's normal attacks i
+--------------------------------------------------------------------------------
+
+Character: Pestillian
+Passive: Explosive Maladies
+Description: Friendly units adjacent to Pestillian deal an additional 1x X Blast Damage with their normal ranged attacks. Friendly Chaos units adjacent to Pestilli
+--------------------------------------------------------------------------------
+
+Character: Ragnar
+Passive: Saga of the Warrior Born
+Description: When charging, Ragnar scores X additional Hits and his critical hits deal an additional +Y Crit Damage. If Ragnar has defeated one or more enemy Chara
+--------------------------------------------------------------------------------
+
+Character: Re'vas
+Passive: Cyclic Ion Blaster
+Description: All attacks deal an additional 3x X Particle Damage. If the target has a Markerlight or the Mechanical trait these hits deal +Y Damage.
+--------------------------------------------------------------------------------
+
+Character: Roswitha
+Passive: Condemnor Stake
+Description: Deals +X Damage against Psykers.
+--------------------------------------------------------------------------------
+
+Character: Sarquael
+Passive: Grim Retribution
+Description: During each enemy turn, if there is no enemy adjacent to Sarquael, he shoots back at the first enemy within range that attacked him or a friendly adja
+--------------------------------------------------------------------------------
+
+Character: Shadowsun
+Passive: Defender of the Greater Good
+Description: Friendly units adjacent to Shadowsun or her Command-Link Drone deal +X Damage with ranged attacks, except attacks that deal Psychic Damage. Affected a
+--------------------------------------------------------------------------------
+
+Character: Shiron
+Passive: Terrifying Crescendo
+Description: Shiron's ranged attacks deal +X Damage for each time he Overkilled or would have Suppressed an enemy unit, up to a maximum of 6 times.
+--------------------------------------------------------------------------------
+
+Character: Sibyll Devine
+Passive: Nightshroud
+Description: All friendly units starting their turn adjacent to Sibyll Devine gain Infiltrate for that turn and take -X damage from each hit in their and the next 
+--------------------------------------------------------------------------------
+
+Character: Sword Brother Godswyl
+Passive: Champion of the Feast
+Description: After moving, deals 1x X Power Damage to an adjacent enemy and reduces this enemy's Armour by Y Armour for the rest of the battle. If Sword Brother Go
+--------------------------------------------------------------------------------
+
+Character: Sy-Gex
+Passive: Heavy Grav-Cannon
+Description: Ranged attacks against Mk X Gravis, Terminator Armour, or Mechanical units deal +X Damage and have +Y% pierce ratio.
+--------------------------------------------------------------------------------
+
+Character: Tanksmasha
+Passive: Smasha 'Ead
+Description: When he traverses 2 or more hexes during his turn, then Tanksmasha gains +X Damage for normal attacks and takes -Y% Damage until the start of his next
+--------------------------------------------------------------------------------
+
+Character: Tarvakh
+Passive: Trophy Taker
+Description: Tarvakh's attacks against units that are at or below 50% of their maximum Health deal +X Damage and additional +X Crit Damage. His Crit Chance is incr
+--------------------------------------------------------------------------------
+
+Character: Thaddeus Noble
+Passive: Spotter
+Description: Friendly units within 2 hexes with the trait Heavy Weapon gain +X Damage.
+--------------------------------------------------------------------------------
+
+Character: Thaumachus
+Passive: Arcane Shield
+Description: After moving, Thaumachus applies a Shield to the closest friendly unit within 2 hexes, preferring Thousand Sons units, then other Chaos units, then ot
+--------------------------------------------------------------------------------
+
+Character: The Patermine
+Passive: Cosmic Horror
+Description: Whenever the Patermine defeats an enemy, it places a Decoy on the hex of that enemy. Other enemies surrounding the defeated unit have a X% chance to b
+--------------------------------------------------------------------------------
+
+Character: Thutmose
+Passive: Living Lightning
+Description: After moving, deals 1x X Direct Damage to one random adjacent enemy. If Thutmose does not move, then this ability triggers at the end of his turn. Thi
+--------------------------------------------------------------------------------
+
+Character: Titus
+Passive: Fuelled by Fury
+Description: Deals +X Damage with all attacks for each time a friendly Character has used an active ability this battle. The first time each turn that Titus is def
+--------------------------------------------------------------------------------
+
+Character: Tjark
+Passive: Hunters Beyond Death
+Description: Deals +X Damage against Psykers, and Enemy Psykers within 2 Hexes deal -X Damage. Unless they are Immune, Enemy Psykers within 2 Hexes will not hit an
+--------------------------------------------------------------------------------
+
+Character: Toth
+Passive: Time Flux
+Description: At the beginning of his turn, Toth regenerates X Health plus an additional amount equal to the Damage of the last hit he received in the last enemy tu
+--------------------------------------------------------------------------------
+
+Character: Trajann
+Passive: Legendary Commander
+Description: Enemies receive +X Damage if they are adjacent to any friendly unit that has used an active ability this turn. If the affected enemies are also adjace
+--------------------------------------------------------------------------------
+
+Character: Typhus
+Passive: Destroyer Hive
+Description: Deals 1x X Direct Damage to one random adjacent enemy at the start of his turn.
+--------------------------------------------------------------------------------
+
+Character: Tyrant Guard
+Passive: Guardian Organism
+Description: If the Tyrant Guard is within Synapse range or did not move during its previous turn, it and friendly units affected by its Big Target trait take -X% 
+--------------------------------------------------------------------------------
+
+Character: Tyrith
+Passive: Unwavering Sentinel
+Description: During each enemy turn, after Tyrith is attacked and the attacker is within range 2, she deals 2x X Bolter Damage to the attacker. If there is an enem
+--------------------------------------------------------------------------------
+
+Character: Varro Tigurius
+Passive: Psychic Fortress
+Description: All friendly surrounding units have an added Block with 50% chance to block X damage. Also reduces incoming Psychic Damage by Y.
+--------------------------------------------------------------------------------
+
+Character: Vindicta
+Passive: Fire of Absolution
+Description: When performing a ranged attack, also deals 3x X Flame Damage to all units adjacent to the target. Has a 30% chance of setting each adjacent hex on Fi
+--------------------------------------------------------------------------------
+
+Character: Vitruvius
+Passive: Master Annihilator
+Description: When Vitruvius performs a Normal Attack against an enemy, that enemy is affected by Master Annihilator until Vitruvius is defeated of performs a norma
+--------------------------------------------------------------------------------
+
+Character: Volk
+Passive: Fleshmetal Guns
+Description: Volk has a 30% chance of adding +X Heavy Round Damage and +20% Pierce ratio to all hits when performing a ranged attack. Does not apply to hits from F
+--------------------------------------------------------------------------------
+
+Character: Wrask
+Passive: Wrathful Devotion
+Description: When Wrask arrives from Deep Strike or defeats an enemy in melee, he and adjacent friendly Chaos units gain a Shield with X Health for 1 round.
+--------------------------------------------------------------------------------
+
+Character: Yazaghor
+Passive: Reality Unbound
+Description: For each different enemy unit that was dealt Psychic Damage this turn Yazaghor deals +X Maximum Damage with his normal ranged attacks. If three or mor
+--------------------------------------------------------------------------------
+
