@@ -965,64 +965,46 @@
             
             // 🎚️ ПРИМЕНЯЕМ МОДИФИКАТОРЫ ИЗ UI
             if (document.getElementById('modTerrain')?.checked) {
-                dmg *= 1.5; // +50% урона от terrain
+                dmg *= 1.5;
             }
             if (document.getElementById('modHighGround')?.checked) {
-                dmg *= 1.5; // +50% от high ground
+                dmg *= 1.5;
             }
             if (document.getElementById('modCrit')?.checked) {
-                dmg *= 1.1; // средний эффект от крита ~10%
+                dmg *= 1.1;
             }
             if (document.getElementById('modRazor')?.checked) {
-                incomingMult *= 1.5; // +50% получаемого урона
+                incomingMult *= 1.5;
             }
 
-            // ✅ АКТУАЛИЗИРОВАННАЯ ФОРМУЛА (2025-11-22)
-            // Источники: 
-            // - https://www.reddit.com/r/WH40KTacticus/comments/1hu1kqd/how_damage_really_works/
-            // - https://tacticus.fandom.com/wiki/Damage_Types_and_Pierce_Ratio
+            // ✅ ФИНАЛЬНАЯ ФОРМУЛА (2025-11-22) - БЕЗ VARIANCE
+            // Источники: Reddit + Tacticus Wiki
             // Формула: Damage = MAX[(Damage - Armor), (Damage * Pierce%)] × Hits × Modifiers
             
-            // 1. Добавляем variance ±10% (более мягкий вариант, чтобы сохранить стабильность)
-            const variance = 0.95 + (Math.random() * 0.1); // от 0.95 до 1.05
-            const effectiveDmg = dmg * variance;
-            
-            // 2. ДВА расчёта урона - выбираем МАКСИМУМ (официальная механика)
-            const dmgAfterArmor = Math.max(1, effectiveDmg - armor);
-            const dmgWithPierce = Math.max(1, effectiveDmg * (pierce / 100));
+            // 1. ДВА расчёта урона - выбираем МАКСИМУМ
+            const dmgAfterArmor = Math.max(1, dmg - armor);
+            const dmgWithPierce = Math.max(1, dmg * (pierce / 100));
             let dmgPerHit = Math.max(dmgAfterArmor, dmgWithPierce);
             
-            // 3. ✅ GRAVIS ARMOR: если есть Mk X Gravis - расчёт проходит ДВАЖДЫ
-            // Это официальная механика из Tacticus Wiki
+            // 2. ✅ GRAVIS ARMOR: если есть Mk X Gravis - расчёт проходит ДВАЖДЫ
             if (defTraits.includes('Mk X Gravis')) {
-                // Повторяем расчёт с результатом первого прохода
                 const secondPassArmor = Math.max(1, dmgPerHit - armor);
                 const secondPassPierce = Math.max(1, dmgPerHit * (pierce / 100));
                 dmgPerHit = Math.max(secondPassArmor, secondPassPierce);
             }
             
-            // 4. Применяем incoming damage modifiers (Resilient, Big Target, Razor Wire, etc)
+            // 3. Применяем incoming damage modifiers
             dmgPerHit *= incomingMult;
             
-            // 5. Итоговый урон за ход
+            // 4. Итоговый урон за ход
             const totalDmg = dmgPerHit * atkHits;
 
             // ✅ РЕАЛИСТИЧНАЯ ЭФФЕКТИВНОСТЬ АТАКИ
-            // Процент HP который снимаем за один ход (может быть >100% для one-shot)
             const attackEff = Math.min(150, (totalDmg / defender.hp) * 100);
             
-            // ✅ УЛУЧШЕННЫЙ РАСЧЁТ ЗАЩИТЫ (логарифмическая шкала)
-            // Сколько раундов выдержит защитник
+            // ✅ ЛИНЕЙНАЯ ШКАЛА DEFENSE (как на форуме)
             const roundsToKill = defender.hp / Math.max(1, totalDmg);
-            
-            // Логарифмическая шкала для более реалистичной оценки живучести:
-            // 0.5 раунда = очень плохо (~10%)
-            // 1 раунд = плохо (~24%)
-            // 2 раунда = средне (~40%)
-            // 3 раунда = хорошо (~52%)
-            // 5 раундов = очень хорошо (~68%)
-            // 10+ раундов = отлично (~85%)
-            const defenseEff = Math.min(90, Math.max(5, Math.log(roundsToKill + 1) * 35));
+            const defenseEff = Math.min(100, Math.max(5, roundsToKill * 20));
 
             const average = (attackEff + defenseEff) / 2;
 
@@ -1340,7 +1322,7 @@
                     <div class="metric-value" style="background: #${getColorForPct(metrics.defense)}">${metrics.defense}%</div>
                     <p style="font-size: 0.85em; margin-top: 5px; color: #888;">
                         Выдержит <strong style="color: #fff;">${metrics.roundsToKill} раундов</strong><br>
-                        <small>Формула: HP ÷ (урон за удар × хиты)</small>
+                        <small>Линейная шкала: 1 round = 20%, 5 rounds = 100%</small>
                     </p>
                 </div>
                 
