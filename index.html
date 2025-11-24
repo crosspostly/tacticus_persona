@@ -1124,12 +1124,6 @@
                 });
             });
         }
-        
-        // ✅ УДАЛИТЬ RECALCULATEALL() — ДАННЫЕ УЖЕ ЕСТЬ!
-        // function recalculateAll() {
-        //     buildMatchupMatrix();
-        //     renderTable();
-        // }
 
         // ✅ НОВЫЕ ФУНКЦИИ ОПТИМИЗАЦИИ
         let currentModifiers = {
@@ -1418,6 +1412,9 @@
         }
 
         function renderAnalysisTab(atk, def, metrics) {
+            currentAttacker = atk;
+            currentDefender = def;
+            
             const [atkType, atkHits] = extractAttackInfo(atk.ranged)[0] ? extractAttackInfo(atk.ranged) : extractAttackInfo(atk.melee);
             const pierce = PIERCE_RATIOS[atkType] || 20;
             
@@ -1444,54 +1441,6 @@
                 tradeResult = `🔴 ${def.name} ДОМИНИРУЕТ (+${(metrics.roundsToKill - metrics.roundsToKillMe).toFixed(1)} раунда преимущества)`;
                 tradeClass = 'dominated';
             }
-            
-            // Получаем реальную редкость персонажей из data.json
-            const atkCharacter = characters.find(c => c.name === atk.name);
-            const defCharacter = characters.find(c => c.name === def.name);
-            
-            const atkRealRarity = atkCharacter?.rarity || 'Common';
-            const defRealRarity = defCharacter?.rarity || 'Common';
-            
-            const atkRarityIndex = RARITY_NAMES.indexOf(atkRealRarity);
-            const defRarityIndex = RARITY_NAMES.indexOf(defRealRarity);
-            
-            // Устанавливаем значения ползунков в соответствии с реальной редкостью персонажей
-            if (atkRarityIndex >= 0) atkRarityValue = atkRarityIndex;
-            if (defRarityIndex >= 0) defRarityValue = defRarityIndex;
-            
-            // Устанавливаем уровни в соответствии с таблицами
-            const atkStats = getCharacterStatsFromData(atk.name, RARITY_NAMES[atkRarityValue], 50);
-            const defStats = getCharacterStatsFromData(def.name, RARITY_NAMES[defRarityValue], 50);
-            
-            let atkRealLevel = 1;
-            let defRealLevel = 1;
-            
-            if (atkCharacter?.activeAbility?.tables?.[0]) {
-                const table = atkCharacter.activeAbility.tables[0];
-                const rarityIdx = table[0].indexOf('Rarity');
-                const levelIdx = table[0].indexOf('Level');
-                for (let i = 1; i < table.length; i++) {
-                    if (table[i][rarityIdx] === RARITY_NAMES[atkRarityValue]) {
-                        atkRealLevel = parseInt(table[i][levelIdx]);
-                        break;
-                    }
-                }
-            }
-            
-            if (defCharacter?.activeAbility?.tables?.[0]) {
-                const table = defCharacter.activeAbility.tables[0];
-                const rarityIdx = table[0].indexOf('Rarity');
-                const levelIdx = table[0].indexOf('Level');
-                for (let i = 1; i < table.length; i++) {
-                    if (table[i][rarityIdx] === RARITY_NAMES[defRarityValue]) {
-                        defRealLevel = parseInt(table[i][levelIdx]);
-                        break;
-                    }
-                }
-            }
-            
-            atkLevelValue = atkRealLevel;
-            defLevelValue = defRealLevel;
             
             const atkRarityName = RARITY_NAMES[atkRarityValue] || 'Common';
             const defRarityName = RARITY_NAMES[defRarityValue] || 'Common';
@@ -1605,31 +1554,8 @@
                     </div>
                     
                     <div id="rarityStatsDisplay" style="background: #0f1a2e; padding: 12px; border-radius: 5px; margin-top: 15px; font-size: 0.9em;">
-                        <div style="text-align: center; color: #00d4ff; font-weight: bold; margin-bottom: 10px;">
-                            📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(0, 212, 255, 0.1); border-radius: 3px;">
-                            <span style="font-weight: 600;">${atk.name}:</span>
-                            <span style="color: #00ff88; font-family: monospace;">
-                                HP: <strong>${atk.hp}</strong> | 
-                                ARM: <strong>${atk.armor}</strong> | 
-                                DMG: <strong>${atk.dmg}</strong>
-                            </span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(239, 68, 68, 0.1); border-radius: 3px;">
-                            <span style="font-weight: 600;">${def.name}:</span>
-                            <span style="color: #ff6b6b; font-family: monospace;">
-                                HP: <strong>${def.hp}</strong> | 
-                                ARM: <strong>${def.armor}</strong> | 
-                                DMG: <strong>${def.dmg}</strong>
-                            </span>
-                        </div>
-                        <div style="margin-top: 10px; padding: 8px; background: rgba(255, 204, 0, 0.1); border-left: 3px solid #ffcc00; border-radius: 5px; font-size: 0.85em;">
-                            <div style="color: #ffcc00; font-weight: bold; margin-bottom: 5px;">💡 ПРИМЕЧАНИЕ</div>
-                            <div style="color: #ccc;">
-                                Характеристики растут с редкостью и уровнем. 
-                                Пассивные способности активируются с определённой редкости (обычно Rare).
-                            </div>
+                        <div style="text-align: center; color: #888; padding: 20px;">
+                            Загрузка характеристик...
                         </div>
                     </div>
                 </div>
@@ -1733,12 +1659,6 @@
                     
                     return passiveHTML;
                 })()}
-                
-                <div id="rarityStatsDisplay" style="margin-top: 20px;">
-                    <div style="text-align: center; color: #888; padding: 20px;">
-                        Загрузка характеристик...
-                    </div>
-                </div>
             `;
             
             // После вставки HTML сразу подвешиваем обработчики для запоминания
@@ -1750,33 +1670,95 @@
             if (atkRaritySlider) {
                 atkRaritySlider.addEventListener('input', e => {
                     atkRarityValue = Number(e.target.value);
-                    updateRarityCalculation();
+                    updateMetricsOnly(); // ✅ ИЗМЕНЕНО: БЕЗ РЕКУРСИИ
                 });
             }
             
             if (atkLevelSlider) {
                 atkLevelSlider.addEventListener('input', e => {
                     atkLevelValue = Number(e.target.value);
-                    updateRarityCalculation();
+                    updateMetricsOnly(); // ✅ ИЗМЕНЕНО: БЕЗ РЕКУРСИИ
                 });
             }
             
             if (defRaritySlider) {
                 defRaritySlider.addEventListener('input', e => {
                     defRarityValue = Number(e.target.value);
-                    updateRarityCalculation();
+                    updateMetricsOnly(); // ✅ ИЗМЕНЕНО: БЕЗ РЕКУРСИИ
                 });
             }
             
             if (defLevelSlider) {
                 defLevelSlider.addEventListener('input', e => {
                     defLevelValue = Number(e.target.value);
-                    updateRarityCalculation();
+                    updateMetricsOnly(); // ✅ ИЗМЕНЕНО: БЕЗ РЕКУРСИИ
                 });
             }
             
-            // Вызываем обновление расчета после инициализации ползунков
-            updateRarityCalculation();
+            // ✅ ИЗМЕНЕНО: ВЫЗЫВАЕМ updateMetricsOnly ВМЕСТО updateRarityCalculation
+            updateMetricsOnly();
+        }
+
+        // ✅ НОВАЯ ФУНКЦИЯ БЕЗ РЕКУРСИИ
+        function updateMetricsOnly() {
+            const atkRarityName = RARITY_NAMES[atkRarityValue];
+            const defRarityName = RARITY_NAMES[defRarityValue];
+            
+            document.getElementById('atkRarityLabel').textContent = atkRarityName;
+            document.getElementById('defRarityLabel').textContent = defRarityName;
+            document.getElementById('atkLevelLabel').textContent = atkLevelValue;
+            document.getElementById('defLevelLabel').textContent = defLevelValue;
+            
+            const atkStats = getCharacterStatsFromData(currentAttacker.name, atkRarityName, atkLevelValue);
+            const defStats = getCharacterStatsFromData(currentDefender.name, defRarityName, defLevelValue);
+            
+            if (!atkStats || !defStats) {
+                console.error('❌ Ошибка получения характеристик');
+                return;
+            }
+            
+            const tempAttacker = {
+                ...currentAttacker,
+                hp: atkStats.hp,
+                armor: atkStats.armor,
+                dmg: atkStats.dmg
+            };
+            
+            const tempDefender = {
+                ...currentDefender,
+                hp: defStats.hp,
+                armor: defStats.armor,
+                dmg: defStats.dmg
+            };
+            
+            const newMetrics = calculateMatchup(tempAttacker, tempDefender);
+            
+            // ❗ ОБНОВЛЯЕМ ТОЛЬКО HTML БЛОК, БЕЗ renderAnalysisTab
+            document.getElementById('rarityStatsDisplay').innerHTML = `
+                <div style="text-align: center; color: #00d4ff; font-weight: bold; margin-bottom: 10px;">
+                    📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ
+                </div>
+                <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(0, 212, 255, 0.1); border-radius: 3px;">
+                    <span style="font-weight: 600;">${tempAttacker.name} (${atkRarityName} Lvl ${atkLevelValue}):</span>
+                    <span style="color: #00ff88; font-family: monospace;">
+                        HP: <strong>${tempAttacker.hp}</strong> | 
+                        ARM: <strong>${tempAttacker.armor}</strong> | 
+                        DMG: <strong>${tempAttacker.dmg}</strong>
+                    </span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(239, 68, 68, 0.1); border-radius: 3px;">
+                    <span style="font-weight: 600;">${tempDefender.name} (${defRarityName} Lvl ${defLevelValue}):</span>
+                    <span style="color: #ff6b6b; font-family: monospace;">
+                        HP: <strong>${tempDefender.hp}</strong> | 
+                        ARM: <strong>${tempDefender.armor}</strong> | 
+                        DMG: <strong>${tempDefender.dmg}</strong>
+                    </span>
+                </div>
+                <div style="margin-top: 10px; padding: 8px; background: rgba(0, 255, 136, 0.1); border-radius: 3px; text-align: center; font-size: 0.85em;">
+                    ⚔️ УРОН ЗА ХОД: ${newMetrics.totalDmgPerTurn} | 
+                    🛡️ РАУНДОВ ДО ПОБЕДЫ: ${newMetrics.roundsToKill}
+                </div>
+            `;
         }
 
         function renderSynergyTab(attacker) {
@@ -1957,11 +1939,8 @@
 
         // Функция для извлечения реальных характеристик из data.json
         function getCharacterStatsFromData(characterName, rarityName, level) {
-            console.log(`🔍 Поиск характеристик для ${characterName} ${rarityName} Level ${level}`);
-            
             const character = characters.find(c => c.name === characterName);
             if (!character) {
-                console.log(`❌ Персонаж ${characterName} не найден`);
                 return null;
             }
 
@@ -1971,16 +1950,12 @@
                 armor: parseInt(character.baseStats?.armour || character.armor || 10),
                 dmg: parseInt(character.baseStats?.damage || character.dmg || 15)
             };
-            
-            console.log(`📊 Базовые статы: HP=${baseStats.hp}, ARM=${baseStats.armor}, DMG=${baseStats.dmg}`);
 
             // Собираем все таблицы из активных и пассивных способностей
             const allTables = [
                 ...(character.activeAbility?.tables || []),
                 ...(character.passiveAbility?.tables || [])
             ];
-            
-            console.log(`📋 Найдено таблиц: ${allTables.length}`);
 
             // Если нет таблиц способностей, используем базовые статы БЕЗ множителей
             if (allTables.length === 0) {
@@ -1996,18 +1971,14 @@
                 const hasArmour = headers.some(h => h.includes('Armour') || h.includes('Armor'));
                 const hasDamage = headers.some(h => h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x'));
                 
-                console.log(`📋 Таблица ${i}: headers=[${headers.join(', ')}], hasHealth=${hasHealth}, hasArmour=${hasArmour}, hasDamage=${hasDamage}`);
-                
                 if (hasHealth || hasArmour || hasDamage) {
                     targetTable = table;
-                    console.log(`✅ Выбрана таблица ${i}`);
                     break;
                 }
             }
 
             // Если не нашли подходящую таблицу, используем базовые статы
             if (!targetTable) {
-                console.log(`❌ Подходящая таблица не найдена, используем базовые статы`);
                 return baseStats;
             }
 
@@ -2139,82 +2110,7 @@
                 }
             }
             
-            console.log(`🎯 Итоговые статы для ${characterName}: HP=${hp}, ARM=${armor}, DMG=${dmg}`);
             return { hp, armor, dmg };
-        }
-
-        function updateRarityCalculation() {
-            // Сохраняем текущие значения из DOM
-            atkRarityValue = Number(document.getElementById('atkRaritySlider').value);
-            atkLevelValue = Number(document.getElementById('atkLevelSlider').value);
-            defRarityValue = Number(document.getElementById('defRaritySlider').value);
-            defLevelValue = Number(document.getElementById('defLevelSlider').value);
-            
-            const atkRarityIndex = parseInt(document.getElementById('atkRaritySlider').value);
-            const defRarityIndex = parseInt(document.getElementById('defRaritySlider').value);
-            const atkLevel = parseInt(document.getElementById('atkLevelSlider').value);
-            const defLevel = parseInt(document.getElementById('defLevelSlider').value);
-            
-            const atkRarityName = RARITY_NAMES[atkRarityIndex];
-            const defRarityName = RARITY_NAMES[defRarityIndex];
-            
-            document.getElementById('atkRarityLabel').textContent = atkRarityName;
-            document.getElementById('defRarityLabel').textContent = defRarityName;
-            document.getElementById('atkLevelLabel').textContent = atkLevel;
-            document.getElementById('defLevelLabel').textContent = defLevel;
-            
-            // Получаем реальные характеристики из data.json
-            const atkStats = getCharacterStatsFromData(currentAttacker.name, atkRarityName, atkLevel);
-            const defStats = getCharacterStatsFromData(currentDefender.name, defRarityName, defLevel);
-            
-            if (!atkStats || !defStats) {
-                console.error('❌ Ошибка получения характеристик:', { atkStats, defStats });
-                return;
-            }
-            
-            const tempAttacker = {
-                ...currentAttacker,
-                hp: atkStats.hp,
-                armor: atkStats.armor,
-                dmg: atkStats.dmg
-            };
-            
-            const tempDefender = {
-                ...currentDefender,
-                hp: defStats.hp,
-                armor: defStats.armor,
-                dmg: defStats.dmg
-            };
-            
-            const newMetrics = calculateMatchup(tempAttacker, tempDefender);
-            
-            document.getElementById('rarityStatsDisplay').innerHTML = `
-                <div style="text-align: center; color: #00d4ff; font-weight: bold; margin-bottom: 10px;">
-                    📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ (из data.json)
-                </div>
-                <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(0, 212, 255, 0.1); border-radius: 3px;">
-                    <span style="font-weight: 600;">${tempAttacker.name} (${atkRarityName} Lvl ${atkLevel}):</span>
-                    <span style="color: #00ff88; font-family: monospace;">
-                        HP: <strong>${tempAttacker.hp}</strong> | 
-                        ARM: <strong>${tempAttacker.armor}</strong> | 
-                        DMG: <strong>${tempAttacker.dmg}</strong>
-                    </span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(239, 68, 68, 0.1); border-radius: 3px;">
-                    <span style="font-weight: 600;">${tempDefender.name} (${defRarityName} Lvl ${defLevel}):</span>
-                    <span style="color: #ff6b6b; font-family: monospace;">
-                        HP: <strong>${tempDefender.hp}</strong> | 
-                        ARM: <strong>${tempDefender.armor}</strong> | 
-                        DMG: <strong>${tempDefender.dmg}</strong>
-                    </span>
-                </div>
-                <div style="margin-top: 10px; padding: 8px; background: rgba(0, 255, 136, 0.1); border-radius: 3px; text-align: center; font-size: 0.85em;">
-                    <span style="color: #00ff88;">Разница HP: ${Math.abs(tempAttacker.hp - tempDefender.hp)}</span> | 
-                    <span style="color: #00d4ff;">Разница DMG: ${Math.abs(tempAttacker.dmg - tempDefender.dmg)}</span>
-                </div>
-            `;
-            
-            renderAnalysisTab(tempAttacker, tempDefender, newMetrics);
         }
 
         document.getElementById('attackerFilter').addEventListener('change', renderTable);
