@@ -1595,7 +1595,6 @@
                     return passiveHTML;
                 })()}
             `;
-            
             // После вставки HTML подвешиваем обработчики для запоминания
             setTimeout(() => {
                 document.getElementById('atkRaritySlider').addEventListener('input', e => {
@@ -1614,6 +1613,9 @@
                     defLevelValue = Number(e.target.value);
                     updateMetricsOnly();
                 });
+
+                // Ensure metrics match the sliders initially
+                updateMetricsOnly();
             }, 10);
         }
 
