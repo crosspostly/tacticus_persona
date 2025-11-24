@@ -1330,8 +1330,6 @@
             const atkStats = getCharacterStatsFromData(atk.name, RARITY_NAMES[atkRarityValue], 50);
             const defStats = getCharacterStatsFromData(def.name, RARITY_NAMES[defRarityValue], 50);
             
-            // Извлекаем реальные уровни из таблиц
-            const atkCharacter = characters.find(c => c.name === atk.name);
             const defCharacter = characters.find(c => c.name === def.name);
             
             let atkRealLevel = 1;
