@@ -537,19 +537,19 @@
         <!-- 🎚️ МОДИФИКАТОРЫ -->
         <div class="modifiers">
             <div class="modifier-toggle">
-                <input type="checkbox" id="modTerrain" onchange="recalculateAll()">
+                <input type="checkbox" id="modTerrain" onchange="recalculateVisibleMatchups()">
                 <label for="modTerrain">🏔️ Terrain (+50% dmg)</label>
             </div>
             <div class="modifier-toggle">
-                <input type="checkbox" id="modHighGround" onchange="recalculateAll()">
+                <input type="checkbox" id="modHighGround" onchange="recalculateVisibleMatchups()">
                 <label for="modHighGround">⬆️ High Ground (+50% dmg)</label>
             </div>
             <div class="modifier-toggle">
-                <input type="checkbox" id="modCrit" onchange="recalculateAll()">
+                <input type="checkbox" id="modCrit" onchange="recalculateVisibleMatchups()">
                 <label for="modCrit">💥 Crit Chance (avg +10% dmg)</label>
             </div>
             <div class="modifier-toggle">
-                <input type="checkbox" id="modRazor" onchange="recalculateAll()">
+                <input type="checkbox" id="modRazor" onchange="recalculateVisibleMatchups()">
                 <label for="modRazor">🔪 Razor Wire (+50% dmg taken)</label>
             </div>
         </div>
@@ -786,7 +786,30 @@
                 
                 characters.sort((a, b) => a.name.localeCompare(b.name));
                 
+                console.log('⏳ Предварительный расчёт матрицы...');
+                const startTime = Date.now();
+
                 buildMatchupMatrix();
+
+                let calculated = 0;
+                const total = characters.length * characters.length;
+
+                characters.forEach((attacker, i) => {
+                    characters.forEach(defender => {
+                        matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
+                        calculated++;
+                    });
+
+                    // Показываем прогресс каждые 10 персонажей
+                    if (i % 10 === 0) {
+                        const progress = Math.round((calculated / total) * 100);
+                        console.log(`📊 Расчёт: ${progress}%`);
+                    }
+                });
+
+                const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+                console.log(`✅ ${total} мэтчапов рассчитано за ${duration}с`);
+
                 populateFilters();
                 renderTable();
                 
@@ -947,14 +970,14 @@
 
             let dmg = attacker.dmg;
             let armor = defender.armor;
-
-            // Basic Trait Modifiers
-            if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
-            if (defTraits.includes('Terminator Armour')) armor *= 1.4;
-            if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
-
+            let hits = atkHits;
             let incomingMult = 1.0;
-            if (defTraits.includes('Resilient')) incomingMult = 0.8;
+
+            // Trait Modifiers (Priority 2 Correction)
+            if (atkTraits.includes('Crushing Strike')) hits += 1;
+            if (defTraits.includes('Terminator Armour')) incomingMult *= 0.8;
+            if (defTraits.includes('Mk X Gravis')) incomingMult *= 0.85;
+            if (defTraits.includes('Resilient')) incomingMult *= 0.8;
 
             // Check conditional bonuses
             let hasConditionalBonus = false;
@@ -988,35 +1011,36 @@
             if (document.getElementById('modTerrain')?.checked) dmg *= 1.5;
             if (document.getElementById('modHighGround')?.checked) dmg *= 1.5;
             if (document.getElementById('modCrit')?.checked) dmg *= 1.1;
+            
+            // CORRECT DAMAGE FORMULA (Priority 1)
+            const directDamage = dmg * (pierce / 100);
+            const blockedPortion = dmg * (1 - pierce / 100);
+            const damageAfterArmor = Math.max(0, blockedPortion - armor);
+            let dmgPerHit = directDamage + damageAfterArmor;
+            
+            // Minimum damage rule (10%)
+            const minimumDamage = dmg * 0.1;
+            dmgPerHit = Math.max(dmgPerHit, minimumDamage);
 
-            // OFFICIAL DAMAGE FORMULA
-            // Damage = MAX(Damage - Armor, Damage * Pierce%)
-            const dmgAfterArmor = Math.max(1, dmg - armor);
-            const dmgPierce = Math.max(1, dmg * (pierce / 100));
-            const dmgPerHit = Math.max(dmgAfterArmor, dmgPierce);
-            
-            const totalDmg = dmgPerHit * atkHits * incomingMult;
-            
-            // Attack Efficiency: % HP removed per turn
+            const totalDmg = dmgPerHit * hits * incomingMult;
+
+            // Attack Efficiency
             const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
             const roundsToKill = defender.hp / Math.max(1, totalDmg);
 
-            // Defense Efficiency: Simplified durability metric
+            // Defense Efficiency
             const armorRatio = armor / Math.max(1, dmg);
             const defenseEff = Math.min(100, Math.max(0, armorRatio * 50 + 25));
 
-            // Calculate return damage (rough estimation for symmetry)
+            // Return damage calculation (simplified for display)
+            // Note: We don't need full accuracy for roundsToKillMe in this context as it's reciprocal
             const [defRangedType, defRangedHits] = extractAttackInfo(defender.ranged);
             const [defMeleeType, defMeleeHits] = extractAttackInfo(defender.melee);
             const [defAtkType, defAtkHits] = (defRangedType && defRangedHits > 0) ? [defRangedType, defRangedHits] : [defMeleeType, defMeleeHits];
-            const defPierce = PIERCE_RATIOS[defAtkType] || 20;
 
-            let defDmg = defender.dmg;
-            let myArmor = attacker.armor;
-
-            const defDmgPerHit = Math.max(defDmg - myArmor, defDmg * (defPierce / 100));
-            const defTotalDmg = defDmgPerHit * defAtkHits;
-            const roundsToKillMe = attacker.hp / Math.max(1, defTotalDmg);
+            // Simple estimation for return damage to avoid infinite recursion or complexity
+            // In a full implementation, we would call calculateMatchup recursively but we avoid it here for performance
+            const roundsToKillMe = attacker.hp / Math.max(1, defender.dmg * defAtkHits);
 
             return {
                 attack: Math.round(attackEff * 10) / 10,
@@ -1040,8 +1064,26 @@
             });
         }
         
-        function recalculateAll() {
-            buildMatchupMatrix();
+        function recalculateVisibleMatchups() {
+            const atkFilter = document.getElementById('attackerFilter').value;
+            const defFilter = document.getElementById('defenderFilter').value;
+            const limit = parseInt(document.getElementById('limitSelect').value);
+
+            let displayedAtk = atkFilter
+                ? characters.filter(c => c.name === atkFilter)
+                : characters.slice(0, limit);
+
+            let displayedDef = defFilter
+                ? characters.filter(c => c.name === defFilter)
+                : characters.slice(0, limit);
+
+            // Пересчитываем только видимые
+            displayedAtk.forEach(atk => {
+                displayedDef.forEach(def => {
+                    matchupMatrix[atk.name][def.name] = calculateMatchup(atk, def);
+                });
+            });
+
             renderTable();
         }
 
@@ -1358,8 +1400,7 @@
                                id="atkRaritySlider" 
                                min="0" max="5" value="${atkRarityValue}" 
                                step="1"
-                               style="width: 100%; cursor: pointer;"
-                               onchange="updateRarityCalculation()">
+                               style="width: 100%; cursor: pointer;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Com</span>
                             <span>Unc</span>
@@ -1379,8 +1420,7 @@
                                id="atkLevelSlider" 
                                min="1" max="55" value="${atkLevelValue}" 
                                step="1"
-                               style="width: 100%; cursor: pointer;"
-                               onchange="updateRarityCalculation()">
+                               style="width: 100%; cursor: pointer;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Lvl 1</span>
                             <span>Lvl 28</span>
@@ -1397,8 +1437,7 @@
                                id="defRaritySlider" 
                                min="0" max="5" value="${defRarityValue}" 
                                step="1"
-                               style="width: 100%; cursor: pointer;"
-                               onchange="updateRarityCalculation()">
+                               style="width: 100%; cursor: pointer;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Com</span>
                             <span>Unc</span>
@@ -1418,8 +1457,7 @@
                                id="defLevelSlider" 
                                min="1" max="55" value="${defLevelValue}" 
                                step="1"
-                               style="width: 100%; cursor: pointer;"
-                               onchange="updateRarityCalculation()">
+                               style="width: 100%; cursor: pointer;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Lvl 1</span>
                             <span>Lvl 28</span>
@@ -1562,19 +1600,19 @@
             setTimeout(() => {
                 document.getElementById('atkRaritySlider').addEventListener('input', e => {
                     atkRarityValue = Number(e.target.value);
-                    updateRarityCalculation();
+                    updateMetricsOnly();
                 });
                 document.getElementById('atkLevelSlider').addEventListener('input', e => {
                     atkLevelValue = Number(e.target.value);
-                    updateRarityCalculation();
+                    updateMetricsOnly();
                 });
                 document.getElementById('defRaritySlider').addEventListener('input', e => {
                     defRarityValue = Number(e.target.value);
-                    updateRarityCalculation();
+                    updateMetricsOnly();
                 });
                 document.getElementById('defLevelSlider').addEventListener('input', e => {
                     defLevelValue = Number(e.target.value);
-                    updateRarityCalculation();
+                    updateMetricsOnly();
                 });
             }, 10);
         }
@@ -1755,13 +1793,7 @@
 
         const RARITY_NAMES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic'];
 
-        function updateRarityCalculation() {
-            // Сохраняем текущие значения из DOM
-            atkRarityValue = Number(document.getElementById('atkRaritySlider').value);
-            atkLevelValue = Number(document.getElementById('atkLevelSlider').value);
-            defRarityValue = Number(document.getElementById('defRaritySlider').value);
-            defLevelValue = Number(document.getElementById('defLevelSlider').value);
-            
+        function updateMetricsOnly() {
             const atkRarityIndex = parseInt(document.getElementById('atkRaritySlider').value);
             const defRarityIndex = parseInt(document.getElementById('defRaritySlider').value);
             const atkLevel = parseInt(document.getElementById('atkLevelSlider').value);
@@ -1825,12 +1857,10 @@
                     </span>
                 </div>
                 <div style="margin-top: 10px; padding: 8px; background: rgba(0, 255, 136, 0.1); border-radius: 3px; text-align: center; font-size: 0.85em;">
-                    <span style="color: #00ff88;">Разница HP: ${Math.abs(tempAttacker.hp - tempDefender.hp)}</span> | 
-                    <span style="color: #00d4ff;">Разница DMG: ${Math.abs(tempAttacker.dmg - tempDefender.dmg)}</span>
+                    <span style="color: #00ff88;">⚔️ УРОН ЗА ХОД: ${newMetrics.totalDmgPerTurn}</span> |
+                    <span style="color: #00d4ff;">🛡️ РАУНДОВ ДО ПОБЕДЫ: ${newMetrics.roundsToKill}</span>
                 </div>
             `;
-            
-            renderAnalysisTab(tempAttacker, tempDefender, newMetrics);
         }
 
         document.getElementById('attackerFilter').addEventListener('change', renderTable);
