@@ -537,19 +537,19 @@
         <!-- 🎚️ МОДИФИКАТОРЫ -->
         <div class="modifiers">
             <div class="modifier-toggle">
-                <input type="checkbox" id="modTerrain" onchange="recalculateAll()">
+                <input type="checkbox" id="modTerrain" onchange="onModifierChange()">
                 <label for="modTerrain">🏔️ Terrain (+50% dmg)</label>
             </div>
             <div class="modifier-toggle">
-                <input type="checkbox" id="modHighGround" onchange="recalculateAll()">
+                <input type="checkbox" id="modHighGround" onchange="onModifierChange()">
                 <label for="modHighGround">⬆️ High Ground (+50% dmg)</label>
             </div>
             <div class="modifier-toggle">
-                <input type="checkbox" id="modCrit" onchange="recalculateAll()">
+                <input type="checkbox" id="modCrit" onchange="onModifierChange()">
                 <label for="modCrit">💥 Crit Chance (avg +10% dmg)</label>
             </div>
             <div class="modifier-toggle">
-                <input type="checkbox" id="modRazor" onchange="recalculateAll()">
+                <input type="checkbox" id="modRazor" onchange="onModifierChange()">
                 <label for="modRazor">🔪 Razor Wire (+50% dmg taken)</label>
             </div>
         </div>
@@ -786,7 +786,33 @@
                 
                 characters.sort((a, b) => a.name.localeCompare(b.name));
                 
+                // ✅ РАССЧИТЫВАЕМ ВСЁ 1 РАЗ
+                console.log('⏳ Предварительный расчёт матрицы...');
+                const startTime = Date.now();
+                
                 buildMatchupMatrix();
+                
+                let calculated = 0;
+                const total = characters.length * characters.length;
+                
+                characters.forEach((attacker, i) => {
+                    characters.forEach(defender => {
+                        matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
+                        calculated++;
+                    });
+                    
+                    if (i % 10 === 0) {
+                        const progress = Math.round((calculated / total) * 100);
+                        const loadingDiv = loadingOverlay.querySelector('div div');
+                        if (loadingDiv) {
+                            loadingDiv.textContent = `⚔️ Расчёт мэтчапов: ${progress}%`;
+                        }
+                    }
+                });
+                
+                const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+                console.log(`✅ ${total} мэтчапов рассчитано за ${duration}с`);
+                
                 populateFilters();
                 renderTable();
                 
@@ -967,14 +993,17 @@
 
             let dmg = attacker.dmg;
             let armor = defender.armor;
+            let hits = atkHits;
 
-            // Basic Trait Modifiers
-            if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
-            if (defTraits.includes('Terminator Armour')) armor *= 1.4;
-            if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
+            // ✅ TRAIT MODIFIERS (ИСПРАВЛЕНО)
+            if (atkTraits.includes('Crushing Strike')) {
+                hits += 1; // ❗ +1 хит, НЕ урон!
+            }
 
             let incomingMult = 1.0;
-            if (defTraits.includes('Resilient')) incomingMult = 0.8;
+            if (defTraits.includes('Resilient')) incomingMult *= 0.8;
+            if (defTraits.includes('Terminator Armour')) incomingMult *= 0.8;
+            if (defTraits.includes('Mk X Gravis')) incomingMult *= 0.85;
 
             // Check conditional bonuses
             let hasConditionalBonus = false;
@@ -1008,14 +1037,25 @@
             if (document.getElementById('modTerrain')?.checked) dmg *= 1.5;
             if (document.getElementById('modHighGround')?.checked) dmg *= 1.5;
             if (document.getElementById('modCrit')?.checked) dmg *= 1.1;
+            if (document.getElementById('modRazor')?.checked) incomingMult *= 1.5; // Razor Wire увеличивает входящий урон
 
-            // OFFICIAL DAMAGE FORMULA
-            // Damage = MAX(Damage - Armor, Damage * Pierce%)
-            const dmgAfterArmor = Math.max(1, dmg - armor);
-            const dmgPierce = Math.max(1, dmg * (pierce / 100));
-            const dmgPerHit = Math.max(dmgAfterArmor, dmgPierce);
-            
-            const totalDmg = dmgPerHit * atkHits * incomingMult;
+            // ✅ DAMAGE FORMULA (ИСПРАВЛЕНО)
+            // Pierce Ratio показывает, КАКАЯ ЧАСТЬ урона игнорирует броню
+            const directDamage = dmg * (pierce / 100); // Эта часть идёт напрямую
+            const blockedPortion = dmg * (1 - pierce / 100); // Эта часть блокируется бронёй
+            const damageAfterArmor = Math.max(0, blockedPortion - armor);
+
+            // Итоговый урон = прямой + пробившийся через броню
+            let totalDamage = directDamage + damageAfterArmor;
+
+            // Гарантированный минимум 10% от базового урона
+            const minimumDamage = dmg * 0.1;
+            totalDamage = Math.max(totalDamage, minimumDamage);
+
+            totalDamage *= incomingMult;
+
+            const dmgPerHit = Math.round(totalDamage);
+            const totalDmg = dmgPerHit * hits;
             
             // Attack Efficiency: % HP removed per turn
             const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
@@ -1055,8 +1095,12 @@
             let defDmg = defender.dmg;
             let myArmor = attacker.armor;
 
-            const defDmgPerHit = Math.max(defDmg - myArmor, defDmg * (defPierce / 100));
-            const defTotalDmg = defDmgPerHit * defAtkHits;
+            // ✅ ПРАВИЛЬНАЯ ФОРМУЛА ДЛЯ ОТВЕТНОГО УРОНА
+            const defDirectDamage = defDmg * (defPierce / 100);
+            const defBlockedPortion = defDmg * (1 - defPierce / 100);
+            const defDamageAfterArmor = Math.max(0, defBlockedPortion - myArmor);
+            const defTotalDamage = Math.max(defDirectDamage + defDamageAfterArmor, defDmg * 0.1);
+            const defTotalDmg = defTotalDamage * defAtkHits;
             const roundsToKillMe = attacker.hp / Math.max(1, defTotalDmg);
 
             return {
@@ -1081,15 +1125,63 @@
             });
         }
         
-        function recalculateAll() {
-            buildMatchupMatrix();
+        // ✅ УДАЛИТЬ RECALCULATEALL() — ДАННЫЕ УЖЕ ЕСТЬ!
+        // function recalculateAll() {
+        //     buildMatchupMatrix();
+        //     renderTable();
+        // }
+
+        // ✅ НОВЫЕ ФУНКЦИИ ОПТИМИЗАЦИИ
+        let currentModifiers = {
+            terrain: false,
+            highGround: false,
+            crit: false,
+            razor: false
+        };
+
+        function onModifierChange() {
+            const newMods = {
+                terrain: document.getElementById('modTerrain')?.checked || false,
+                highGround: document.getElementById('modHighGround')?.checked || false,
+                crit: document.getElementById('modCrit')?.checked || false,
+                razor: document.getElementById('modRazor')?.checked || false
+            };
+            
+            // Только если реально изменилось
+            if (JSON.stringify(newMods) !== JSON.stringify(currentModifiers)) {
+                currentModifiers = newMods;
+                
+                // Пересчитываем ТОЛЬКО видимую часть таблицы
+                console.log('🔄 Пересчёт с новыми модификаторами...');
+                recalculateVisibleMatchups();
+            }
+        }
+
+        function recalculateVisibleMatchups() {
+            const atkFilter = document.getElementById('attackerFilter').value;
+            const defFilter = document.getElementById('defenderFilter').value;
+            const limit = parseInt(document.getElementById('limitSelect').value);
+            
+            let displayedAtk = atkFilter 
+                ? characters.filter(c => c.name === atkFilter)
+                : characters.slice(0, limit);
+            
+            let displayedDef = defFilter
+                ? characters.filter(c => c.name === defFilter)
+                : characters.slice(0, limit);
+            
+            // Пересчитываем только видимые (50×50 вместо 100×100)
+            displayedAtk.forEach(atk => {
+                displayedDef.forEach(def => {
+                    matchupMatrix[atk.name][def.name] = calculateMatchup(atk, def);
+                });
+            });
+            
             renderTable();
         }
 
         function getMatchup(attacker, defender) {
-            if (matchupMatrix[attacker.name][defender.name] === null) {
-                matchupMatrix[attacker.name][defender.name] = calculateMatchup(attacker, defender);
-            }
+            // ✅ ДАННЫЕ УЖЕ РАССЧИТАНЫ - просто возвращаем
             return matchupMatrix[attacker.name][defender.name];
         }
 
