@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+</head>
+<body>
+    <h1>Debug Console</h1>
+    <div id="output"></div>
+    
+    <script>
+        // Загрузка данных
+        let characters = [];
+        
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                characters = data.characters.filter(isCharacter);
+                console.log('Loaded', characters.length, 'characters');
+                
+                // Тестируем Arjac
+                const arjac = characters.find(c => c.name === 'Arjac');
+                const abaddon = characters.find(c => c.name === 'Abaddon The Despoiler');
+                
+                console.log('Arjac:', arjac);
+                console.log('Abaddon:', abaddon);
+                
+                // Тестируем функцию поиска характеристик
+                const arjacStats = getCharacterStatsFromData('Arjac', 'Common', 8);
+                const abaddonStats = getCharacterStatsFromData('Abaddon The Despoiler', 'Common', 8);
+                
+                console.log('Arjac stats:', arjacStats);
+                console.log('Abaddon stats:', abaddonStats);
+                
+            })
+            .catch(error => console.error('Error:', error));
+            
+        function isCharacter(entry) {
+            return entry.baseStats &&
+                   entry.attacks &&
+                   (!entry.rawInfobox?.Type ||
+                    (entry.rawInfobox?.Type && !entry.rawInfobox.Type.includes("Badge") &&
+                     !entry.rawInfobox.Type.includes("Component") &&
+                     !entry.rawInfobox.Type.includes("Mythic")));
+        }
+        
+        function getCharacterStatsFromData(characterName, rarityName, level) {
+            console.log(`🔍 Поиск характеристик для ${characterName} ${rarityName} Level ${level}`);
+            
+            const character = characters.find(c => c.name === characterName);
+            if (!character) {
+                console.log(`❌ Персонаж ${characterName} не найден`);
+                return null;
+            }
+
+            // Базовые характеристики из baseStats (fallback если нет таблиц)
+            const baseStats = {
+                hp: parseInt(character.baseStats?.health || character.hp || 100),
+                armor: parseInt(character.baseStats?.armour || character.armor || 10),
+                dmg: parseInt(character.baseStats?.damage || character.dmg || 15)
+            };
+            
+            console.log(`📊 Базовые статы: HP=${baseStats.hp}, ARM=${baseStats.armor}, DMG=${baseStats.dmg}`);
+
+            // Собираем все таблицы из активных и пассивных способностей
+            const allTables = [
+                ...(character.activeAbility?.tables || []),
+                ...(character.passiveAbility?.tables || [])
+            ];
+            
+            console.log(`📋 Найдено таблиц: ${allTables.length}`);
+
+            // Если нет таблиц способностей, используем базовые статы БЕЗ множителей
+            if (allTables.length === 0) {
+                return baseStats;
+            }
+
+            // Ищем таблицу с хотя бы одной колонкой характеристик (Health, Armour, Damage)
+            let targetTable = null;
+            for (let i = 0; i < allTables.length; i++) {
+                const table = allTables[i];
+                const headers = table[0];
+                const hasHealth = headers.some(h => h.includes('Health') || h.includes('HP'));
+                const hasArmour = headers.some(h => h.includes('Armour') || h.includes('Armor'));
+                const hasDamage = headers.some(h => h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x'));
+                
+                console.log(`📋 Таблица ${i}: headers=[${headers.join(', ')}], hasHealth=${hasHealth}, hasArmour=${hasArmour}, hasDamage=${hasDamage}`);
+                
+                if (hasHealth || hasArmour || hasDamage) {
+                    targetTable = table;
+                    console.log(`✅ Выбрана таблица ${i}`);
+                    break;
+                }
+            }
+
+            // Если не нашли подходящую таблицу, используем базовые статы
+            if (!targetTable) {
+                console.log(`❌ Подходящая таблица не найдена, используем базовые статы`);
+                return baseStats;
+            }
+
+            const tableHeaders = targetTable[0];
+            console.log(`📋 Заголовки таблицы: [${tableHeaders.join(', ')}]`);
+            
+            // Находим индексы нужных колонок
+            const rarityIndex = tableHeaders.indexOf('Rarity');
+            const levelIndex = tableHeaders.indexOf('Level');
+            const healthIndex = tableHeaders.findIndex(h => h.includes('Health') || h.includes('HP'));
+            const armourIndex = tableHeaders.findIndex(h => h.includes('Armour') || h.includes('Armor'));
+            const damageIndex = tableHeaders.findIndex(h => h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x'));
+            
+            console.log(`📊 Индексы: rarity=${rarityIndex}, level=${levelIndex}, health=${healthIndex}, armour=${armourIndex}, damage=${damageIndex}`);
+
+            // Ищем строку с нужной редкостью и уровнем
+            let targetRow = null;
+            let nextRow = null;
+            let tableLevel = null;
+
+            for (let i = 1; i < targetTable.length; i++) {
+                const row = targetTable[i];
+                if (row[rarityIndex] === rarityName) {
+                    const rowLevel = parseInt(row[levelIndex]);
+                    if (rowLevel <= level) {
+                        if (!targetRow || rowLevel > tableLevel) {
+                            targetRow = row;
+                            tableLevel = rowLevel;
+                            
+                            // Ищем следующую строку для интерполяции
+                            if (i + 1 < targetTable.length && targetTable[i + 1][rarityIndex] === rarityName) {
+                                nextRow = targetTable[i + 1];
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (!targetRow) {
+                console.log(`❌ Строка для ${rarityName} Level ${level} не найдена`);
+                return baseStats;
+            }
+
+            console.log(`📋 Найделена строка Level ${tableLevel}: [${targetRow.join(', ')}]`);
+
+            // Извлекаем характеристики из таблицы или используем базовые
+            let hp = baseStats.hp;
+            let armor = baseStats.armor;
+            let dmg = baseStats.dmg;
+            
+            // Извлекаем Health из таблицы
+            if (healthIndex !== -1) {
+                const hpValue = targetRow[healthIndex];
+                if (hpValue && typeof hpValue === 'string' && hpValue.includes('-')) {
+                    const [min, max] = hpValue.split('-').map(v => parseInt(v.trim()));
+                    hp = Math.round((min + max) / 2);
+                } else if (hpValue && !isNaN(parseInt(hpValue))) {
+                    hp = parseInt(hpValue);
+                }
+            }
+            
+            // Извлекаем Armour из таблицы
+            if (armourIndex !== -1) {
+                const armorValue = targetRow[armourIndex];
+                if (armorValue && typeof armorValue === 'string' && armorValue.includes('-')) {
+                    const [min, max] = armorValue.split('-').map(v => parseInt(v.trim()));
+                    armor = Math.round((min + max) / 2);
+                } else if (armorValue && !isNaN(parseInt(armorValue))) {
+                    armor = parseInt(armorValue);
+                }
+            }
+            
+            // Извлекаем Damage из таблицы
+            if (damageIndex !== -1) {
+                const dmgValue = targetRow[damageIndex];
+                if (dmgValue && typeof dmgValue === 'string' && dmgValue.includes('-')) {
+                    const [min, max] = dmgValue.split('-').map(v => parseInt(v.trim()));
+                    dmg = Math.round((min + max) / 2);
+                } else if (dmgValue && !isNaN(parseInt(dmgValue))) {
+                    dmg = parseInt(dmgValue);
+                }
+            }
+            
+            console.log(`🎯 Итоговые статы для ${characterName}: HP=${hp}, ARM=${armor}, DMG=${dmg}`);
+            return { hp, armor, dmg };
+        }
+    </script>
+</body>
+</html>

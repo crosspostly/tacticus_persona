@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Test with Data</title>
+</head>
+<body>
+    <h1>Full Test with Data</h1>
+    <div id="output"></div>
+    
+    <script>
+        let characters = [];
+        
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                characters = data.characters.filter(isCharacter);
+                
+                const PIERCE_RATIOS = {
+                    'Physical': 0, 'Power': 40, 'Piercing': 100, 'Rending': 80, 'Lethal': 100,
+                    'Bolter': 20, 'Flamer': 20, 'Melta': 60, 'Plasma': 40, 'Grav': 30,
+                    'Lascannon': 100, 'Missile': 20, 'Sniper': 60, 'Artillery': 30
+                };
+                
+                function extractAttackInfo(attackStr) {
+                    if (!attackStr || attackStr === 'N/A') return [null, 0];
+                    const parts = attackStr.split('/').map(p => p.trim());
+                    const damageType = parts[0] || 'Physical';
+                    let hits = 1;
+                    for (const part of parts) {
+                        if (part.toLowerCase().includes('hit')) {
+                            const match = part.match(/\d+/);
+                            if (match) hits = parseInt(match[0]);
+                        }
+                    }
+                    return [damageType, hits];
+                }
+                
+                function getCharacterTraits(characterName) {
+                    const character = characters.find(c => c.name === characterName);
+                    return character ? character.traits : [];
+                }
+                
+                function calculateMatchup(attacker, defender) {
+                    const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
+                    const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
+                    
+                    // Выбираем атаку с максимальным потенциальным уроном
+                    let atkType, atkHits;
+                    
+                    if (rangedType && rangedHits > 0 && meleeType && meleeHits > 0) {
+                        const rangedPierce = PIERCE_RATIOS[rangedType] || 20;
+                        const meleePierce = PIERCE_RATIOS[meleeType] || 20;
+                        
+                        const rangedPotentialDmg = attacker.dmg * Math.max(rangedPierce / 100, 0.1) * rangedHits;
+                        const meleePotentialDmg = attacker.dmg * Math.max(meleePierce / 100, 0.1) * meleeHits;
+                        
+                        if (rangedPotentialDmg >= meleePotentialDmg) {
+                            [atkType, atkHits] = [rangedType, rangedHits];
+                        } else {
+                            [atkType, atkHits] = [meleeType, meleeHits];
+                        }
+                    } else if (rangedType && rangedHits > 0) {
+                        [atkType, atkHits] = [rangedType, rangedHits];
+                    } else {
+                        [atkType, atkHits] = [meleeType, meleeHits];
+                    }
+
+                    const pierce = PIERCE_RATIOS[atkType] || 20;
+
+                    const atkTraits = getCharacterTraits(attacker.name);
+                    const defTraits = getCharacterTraits(defender.name);
+
+                    let dmg = attacker.dmg;
+                    let armor = defender.armor;
+
+                    // Basic Trait Modifiers
+                    if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
+                    if (defTraits.includes('Terminator Armour')) armor *= 1.4;
+                    if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
+
+                    let incomingMult = 1.0;
+                    if (defTraits.includes('Resilient')) incomingMult = 0.8;
+
+                    // OFFICIAL DAMAGE FORMULA
+                    const dmgAfterArmor = Math.max(1, dmg - armor);
+                    const dmgPierce = Math.max(1, dmg * (pierce / 100));
+                    const dmgPerHit = Math.max(dmgAfterArmor, dmgPierce);
+                    
+                    const totalDmg = dmgPerHit * atkHits * incomingMult;
+                    const roundsToKill = defender.hp / Math.max(1, totalDmg);
+
+                    return {
+                        roundsToKill: Math.round(roundsToKill * 10) / 10,
+                        dmgPerHit: Math.round(dmgPerHit),
+                        totalDmgPerTurn: Math.round(totalDmg),
+                        attackType: atkType,
+                        hits: atkHits
+                    };
+                }
+                
+                // Получаем характеристики из data.json
+                const arjac = characters.find(c => c.name === 'Arjac');
+                const abaddon = characters.find(c => c.name === 'Abaddon The Despoiler');
+                
+                // Получаем статы для Common Level 8
+                const arjacStats = getCharacterStatsFromData('Arjac', 'Common', 8);
+                const abaddonStats = getCharacterStatsFromData('Abaddon The Despoiler', 'Common', 8);
+                
+                console.log('Arjac базовые:', { hp: arjac.baseStats.health, armor: arjac.baseStats.armour, dmg: arjac.baseStats.damage });
+                console.log('Arjac из таблицы:', arjacStats);
+                console.log('Abaddon базовые:', { hp: abaddon.baseStats.health, armor: abaddon.baseStats.armour, dmg: abaddon.baseStats.damage });
+                console.log('Abaddon из таблицы:', abaddonStats);
+                
+                // Создаем персонажей с правильными статами
+                const arjacWithStats = {
+                    name: arjac.name,
+                    hp: arjacStats.hp,
+                    armor: arjacStats.armor,
+                    dmg: arjacStats.dmg,
+                    ranged: arjac.attacks.ranged,
+                    melee: arjac.attacks.melee
+                };
+                
+                const abaddonWithStats = {
+                    name: abaddon.name,
+                    hp: abaddonStats.hp,
+                    armor: abaddonStats.armor,
+                    dmg: abaddonStats.dmg,
+                    ranged: abaddon.attacks.ranged,
+                    melee: abaddon.attacks.melee
+                };
+                
+                // Считаем matchup
+                const arjacVsAbaddon = calculateMatchup(arjacWithStats, abaddonWithStats);
+                const abaddonVsArjac = calculateMatchup(abaddonWithStats, arjacWithStats);
+                
+                document.getElementById('output').innerHTML = `
+                    <h2>🎯 РЕЗУЛЬТАТЫ РАСЧЕТА</h2>
+                    <div style="background: #f0f8ff; padding: 15px; margin: 10px 0; border-radius: 5px;">
+                        <h3>⚔️ Arjac (${arjacWithStats.hp} HP, ${arjacWithStats.armor} ARM, ${arjacWithStats.dmg} DMG)</h3>
+                        <p>Атакует: ${arjacVsAbaddon.attackType} ${arjacVsAbaddon.hits}hits</p>
+                        <p>Урон за ход: ${arjacVsAbaddon.totalDmgPerTurn} (${arjacVsAbaddon.dmgPerHit} × ${arjacVsAbaddon.hits})</p>
+                        <p><strong>Убьет Abaddon за ${arjacVsAbaddon.roundsToKill} раундов</strong></p>
+                    </div>
+                    
+                    <div style="background: #fff0f0; padding: 15px; margin: 10px 0; border-radius: 5px;">
+                        <h3>⚔️ Abaddon (${abaddonWithStats.hp} HP, ${abaddonWithStats.armor} ARM, ${abaddonWithStats.dmg} DMG)</h3>
+                        <p>Атакует: ${abaddonVsArjac.attackType} ${abaddonVsArjac.hits}hits</p>
+                        <p>Урон за ход: ${abaddonVsArjac.totalDmgPerTurn} (${abaddonVsArjac.dmgPerHit} × ${abaddonVsArjac.hits})</p>
+                        <p><strong>Убьет Arjac за ${abaddonVsArjac.roundsToKill} раундов</strong></p>
+                    </div>
+                    
+                    <div style="background: #f0fff0; padding: 15px; margin: 10px 0; border-radius: 5px; text-align: center;">
+                        <h2>🏆 ПОБЕДИТЕЛЬ: ${arjacVsAbaddon.roundsToKill < abaddonVsArjac.roundsToKill ? 'Arjac' : 'Abaddon'}</h2>
+                    </div>
+                `;
+            })
+            .catch(error => console.error('Error:', error));
+            
+        function isCharacter(entry) {
+            return entry.baseStats && entry.attacks;
+        }
+        
+        function getCharacterStatsFromData(characterName, rarityName, level) {
+            const character = characters.find(c => c.name === characterName);
+            if (!character) return null;
+
+            const baseStats = {
+                hp: parseInt(character.baseStats?.health || character.hp || 100),
+                armor: parseInt(character.baseStats?.armour || character.armor || 10),
+                dmg: parseInt(character.baseStats?.damage || character.dmg || 15)
+            };
+
+            const allTables = [
+                ...(character.activeAbility?.tables || []),
+                ...(character.passiveAbility?.tables || [])
+            ];
+            
+            if (allTables.length === 0) {
+                return baseStats;
+            }
+
+            let targetTable = null;
+            for (let i = 0; i < allTables.length; i++) {
+                const table = allTables[i];
+                const headers = table[0];
+                const hasHealth = headers.some(h => h.includes('Health') || h.includes('HP'));
+                const hasArmour = headers.some(h => h.includes('Armour') || h.includes('Armor'));
+                const hasDamage = headers.some(h => h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x'));
+                
+                if (hasHealth || hasArmour || hasDamage) {
+                    targetTable = table;
+                    break;
+                }
+            }
+
+            if (!targetTable) {
+                return baseStats;
+            }
+
+            const tableHeaders = targetTable[0];
+            const rarityIndex = tableHeaders.indexOf('Rarity');
+            const levelIndex = tableHeaders.indexOf('Level');
+            const healthIndex = tableHeaders.findIndex(h => h.includes('Health') || h.includes('HP'));
+            const armourIndex = tableHeaders.findIndex(h => h.includes('Armour') || h.includes('Armor'));
+            const damageIndex = tableHeaders.findIndex(h => h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x'));
+
+            let targetRow = null;
+            let tableLevel = null;
+
+            for (let i = 1; i < targetTable.length; i++) {
+                const row = targetTable[i];
+                if (row[rarityIndex] === rarityName) {
+                    const rowLevel = parseInt(row[levelIndex]);
+                    if (rowLevel <= level) {
+                        if (!targetRow || rowLevel > tableLevel) {
+                            targetRow = row;
+                            tableLevel = rowLevel;
+                        }
+                    }
+                }
+            }
+
+            if (!targetRow) {
+                return baseStats;
+            }
+
+            let hp = baseStats.hp;
+            let armor = baseStats.armor;
+            let dmg = baseStats.dmg;
+            
+            if (healthIndex !== -1) {
+                const hpValue = targetRow[healthIndex];
+                if (hpValue && typeof hpValue === 'string' && hpValue.includes('-')) {
+                    const [min, max] = hpValue.split('-').map(v => parseInt(v.trim()));
+                    hp = Math.round((min + max) / 2);
+                } else if (hpValue && !isNaN(parseInt(hpValue))) {
+                    hp = parseInt(hpValue);
+                }
+            }
+            
+            if (armourIndex !== -1) {
+                const armorValue = targetRow[armourIndex];
+                if (armorValue && typeof armorValue === 'string' && armorValue.includes('-')) {
+                    const [min, max] = armorValue.split('-').map(v => parseInt(v.trim()));
+                    armor = Math.round((min + max) / 2);
+                } else if (armorValue && !isNaN(parseInt(armorValue))) {
+                    armor = parseInt(armorValue);
+                }
+            }
+            
+            if (damageIndex !== -1) {
+                const dmgValue = targetRow[damageIndex];
+                if (dmgValue && typeof dmgValue === 'string' && dmgValue.includes('-')) {
+                    const [min, max] = dmgValue.split('-').map(v => parseInt(v.trim()));
+                    dmg = Math.round((min + max) / 2);
+                } else if (dmgValue && !isNaN(parseInt(dmgValue))) {
+                    dmg = parseInt(dmgValue);
+                }
+            }
+            
+            return { hp, armor, dmg };
+        }
+    </script>
+</body>
+</html>
