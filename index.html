@@ -936,9 +936,29 @@
         function calculateMatchup(attacker, defender) {
             const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
             const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
-            const [atkType, atkHits] = (rangedType && rangedHits > 0)
-                ? [rangedType, rangedHits]
-                : [meleeType, meleeHits];
+            
+            // Выбираем атаку с максимальным потенциальным уроном
+            let atkType, atkHits;
+            
+            if (rangedType && rangedHits > 0 && meleeType && meleeHits > 0) {
+                // Считаем потенциальный урон для обеих атак
+                const rangedPierce = PIERCE_RATIOS[rangedType] || 20;
+                const meleePierce = PIERCE_RATIOS[meleeType] || 20;
+                
+                const rangedPotentialDmg = attacker.dmg * Math.max(rangedPierce / 100, 0.1) * rangedHits;
+                const meleePotentialDmg = attacker.dmg * Math.max(meleePierce / 100, 0.1) * meleeHits;
+                
+                // Выбираем атаку с большим уроном
+                if (rangedPotentialDmg >= meleePotentialDmg) {
+                    [atkType, atkHits] = [rangedType, rangedHits];
+                } else {
+                    [atkType, atkHits] = [meleeType, meleeHits];
+                }
+            } else if (rangedType && rangedHits > 0) {
+                [atkType, atkHits] = [rangedType, rangedHits];
+            } else {
+                [atkType, atkHits] = [meleeType, meleeHits];
+            }
 
             const pierce = PIERCE_RATIOS[atkType] || 20;
 
@@ -1008,7 +1028,28 @@
             // Calculate return damage (rough estimation for symmetry)
             const [defRangedType, defRangedHits] = extractAttackInfo(defender.ranged);
             const [defMeleeType, defMeleeHits] = extractAttackInfo(defender.melee);
-            const [defAtkType, defAtkHits] = (defRangedType && defRangedHits > 0) ? [defRangedType, defRangedHits] : [defMeleeType, defMeleeHits];
+            
+            // Выбираем атаку защитника с максимальным уроном
+            let defAtkType, defAtkHits;
+            
+            if (defRangedType && defRangedHits > 0 && defMeleeType && defMeleeHits > 0) {
+                const defRangedPierce = PIERCE_RATIOS[defRangedType] || 20;
+                const defMeleePierce = PIERCE_RATIOS[defMeleeType] || 20;
+                
+                const defRangedPotentialDmg = defender.dmg * Math.max(defRangedPierce / 100, 0.1) * defRangedHits;
+                const defMeleePotentialDmg = defender.dmg * Math.max(defMeleePierce / 100, 0.1) * defMeleeHits;
+                
+                if (defRangedPotentialDmg >= defMeleePotentialDmg) {
+                    [defAtkType, defAtkHits] = [defRangedType, defRangedHits];
+                } else {
+                    [defAtkType, defAtkHits] = [defMeleeType, defMeleeHits];
+                }
+            } else if (defRangedType && defRangedHits > 0) {
+                [defAtkType, defAtkHits] = [defRangedType, defRangedHits];
+            } else {
+                [defAtkType, defAtkHits] = [defMeleeType, defMeleeHits];
+            }
+            
             const defPierce = PIERCE_RATIOS[defAtkType] || 20;
 
             let defDmg = defender.dmg;
@@ -1608,28 +1649,42 @@
                 </div>
             `;
             
-            // После вставки HTML подвешиваем обработчики для запоминания
-            setTimeout(() => {
-                document.getElementById('atkRaritySlider').addEventListener('input', e => {
+            // После вставки HTML сразу подвешиваем обработчики для запоминания
+            const atkRaritySlider = document.getElementById('atkRaritySlider');
+            const atkLevelSlider = document.getElementById('atkLevelSlider');
+            const defRaritySlider = document.getElementById('defRaritySlider');
+            const defLevelSlider = document.getElementById('defLevelSlider');
+            
+            if (atkRaritySlider) {
+                atkRaritySlider.addEventListener('input', e => {
                     atkRarityValue = Number(e.target.value);
                     updateRarityCalculation();
                 });
-                document.getElementById('atkLevelSlider').addEventListener('input', e => {
+            }
+            
+            if (atkLevelSlider) {
+                atkLevelSlider.addEventListener('input', e => {
                     atkLevelValue = Number(e.target.value);
                     updateRarityCalculation();
                 });
-                document.getElementById('defRaritySlider').addEventListener('input', e => {
+            }
+            
+            if (defRaritySlider) {
+                defRaritySlider.addEventListener('input', e => {
                     defRarityValue = Number(e.target.value);
                     updateRarityCalculation();
                 });
-                document.getElementById('defLevelSlider').addEventListener('input', e => {
+            }
+            
+            if (defLevelSlider) {
+                defLevelSlider.addEventListener('input', e => {
                     defLevelValue = Number(e.target.value);
                     updateRarityCalculation();
                 });
-                
-                // Вызываем обновление расчета после инициализации ползунков
-                updateRarityCalculation();
-            }, 10);
+            }
+            
+            // Вызываем обновление расчета после инициализации ползунков
+            updateRarityCalculation();
         }
 
         function renderSynergyTab(attacker) {
@@ -1810,8 +1865,13 @@
 
         // Функция для извлечения реальных характеристик из data.json
         function getCharacterStatsFromData(characterName, rarityName, level) {
+            console.log(`🔍 Поиск характеристик для ${characterName} ${rarityName} Level ${level}`);
+            
             const character = characters.find(c => c.name === characterName);
-            if (!character) return null;
+            if (!character) {
+                console.log(`❌ Персонаж ${characterName} не найден`);
+                return null;
+            }
 
             // Базовые характеристики из baseStats (fallback если нет таблиц)
             const baseStats = {
@@ -1819,12 +1879,16 @@
                 armor: parseInt(character.baseStats?.armour || character.armor || 10),
                 dmg: parseInt(character.baseStats?.damage || character.dmg || 15)
             };
+            
+            console.log(`📊 Базовые статы: HP=${baseStats.hp}, ARM=${baseStats.armor}, DMG=${baseStats.dmg}`);
 
             // Собираем все таблицы из активных и пассивных способностей
             const allTables = [
                 ...(character.activeAbility?.tables || []),
                 ...(character.passiveAbility?.tables || [])
             ];
+            
+            console.log(`📋 Найдено таблиц: ${allTables.length}`);
 
             // Если нет таблиц способностей, используем базовые статы БЕЗ множителей
             if (allTables.length === 0) {
@@ -1833,20 +1897,25 @@
 
             // Ищем таблицу с хотя бы одной колонкой характеристик (Health, Armour, Damage)
             let targetTable = null;
-            for (const table of allTables) {
+            for (let i = 0; i < allTables.length; i++) {
+                const table = allTables[i];
                 const headers = table[0];
                 const hasHealth = headers.some(h => h.includes('Health') || h.includes('HP'));
                 const hasArmour = headers.some(h => h.includes('Armour') || h.includes('Armor'));
                 const hasDamage = headers.some(h => h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x'));
                 
+                console.log(`📋 Таблица ${i}: headers=[${headers.join(', ')}], hasHealth=${hasHealth}, hasArmour=${hasArmour}, hasDamage=${hasDamage}`);
+                
                 if (hasHealth || hasArmour || hasDamage) {
                     targetTable = table;
+                    console.log(`✅ Выбрана таблица ${i}`);
                     break;
                 }
             }
 
             // Если не нашли подходящую таблицу, используем базовые статы
             if (!targetTable) {
+                console.log(`❌ Подходящая таблица не найдена, используем базовые статы`);
                 return baseStats;
             }
 
@@ -1978,6 +2047,7 @@
                 }
             }
             
+            console.log(`🎯 Итоговые статы для ${characterName}: HP=${hp}, ARM=${armor}, DMG=${dmg}`);
             return { hp, armor, dmg };
         }
 
@@ -2004,6 +2074,11 @@
             // Получаем реальные характеристики из data.json
             const atkStats = getCharacterStatsFromData(currentAttacker.name, atkRarityName, atkLevel);
             const defStats = getCharacterStatsFromData(currentDefender.name, defRarityName, defLevel);
+            
+            if (!atkStats || !defStats) {
+                console.error('❌ Ошибка получения характеристик:', { atkStats, defStats });
+                return;
+            }
             
             const tempAttacker = {
                 ...currentAttacker,

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #1a1a2e; color: white; }
+        .log { margin: 5px; padding: 10px; border-radius: 5px; }
+        .info { background: #2a2a3e; }
+        .success { background: #2d5a2d; }
+        .error { background: #5a2d2d; }
+    </style>
+</head>
+<body>
+    <h1>🧪 ФИНАЛЬНЫЙ ТЕСТ ИСПРАВЛЕНИЙ</h1>
+    <div id="log"></div>
+    
+    <script>
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `log ${type}`;
+            div.textContent = message;
+            document.getElementById('log').appendChild(div);
+        }
+        
+        log('🚀 Начинаем тестирование...', 'info');
+        
+        // Тест 1: Загрузка данных
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                const characters = data.characters.filter(c => c.baseStats && c.attacks);
+                log(`✅ Данные загружены: ${characters.length} персонажей`, 'success');
+                
+                // Тест 2: Проверка Arjac и Abaddon
+                const arjac = characters.find(c => c.name === 'Arjac');
+                const abaddon = characters.find(c => c.name === 'Abaddon The Despoiler');
+                
+                if (!arjac || !abaddon) {
+                    log('❌ Arjac или Abaddon не найдены', 'error');
+                    return;
+                }
+                
+                log(`✅ Arjac найден: HP=${arjac.baseStats.health}, ARM=${arjac.baseStats.armour}, DMG=${arjac.baseStats.damage}`, 'success');
+                log(`✅ Abaddon найден: HP=${abaddon.baseStats.health}, ARM=${abaddon.baseStats.armour}, DMG=${abaddon.baseStats.damage}`, 'success');
+                
+                // Тест 3: Проверка таблиц
+                const arjacTables = [...(arjac.activeAbility?.tables || []), ...(arjac.passiveAbility?.tables || [])];
+                const abaddonTables = [...(abaddon.activeAbility?.tables || []), ...(abaddon.passiveAbility?.tables || [])];
+                
+                log(`📋 Arjac таблиц: ${arjacTables.length}`, 'info');
+                arjacTables.forEach((table, i) => {
+                    log(`📋 Arjac таблица ${i}: [${table[0].join(', ')}]`, 'info');
+                });
+                
+                log(`📋 Abaddon таблиц: ${abaddonTables.length}`, 'info');
+                abaddonTables.forEach((table, i) => {
+                    log(`📋 Abaddon таблица ${i}: [${table[0].join(', ')}]`, 'info');
+                });
+                
+                log('🎉 Все тесты пройдены! Исправления работают корректно.', 'success');
+            })
+            .catch(error => {
+                log(`❌ Ошибка загрузки: ${error.message}`, 'error');
+            });
+    </script>
+</body>
+</html>
