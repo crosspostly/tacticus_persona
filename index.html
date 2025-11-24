@@ -767,34 +767,6 @@
                 const filtered = dataArray.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                 
                 characters = filtered.map((c, i) => {
-                    // Extract rarity data from activeAbility tables if available
-                    const rarities = {};
-                    if (c.activeAbility && c.activeAbility.tables) {
-                        const tables = c.activeAbility.tables;
-                        if (tables && tables.length >= 2) {
-                            const headers = tables[0];
-                            const statsTable = tables[1];
-                            if (headers && headers[0] && statsTable) {
-                                const rarityIndex = headers[0].indexOf('Rarity');
-                                const healthIndex = headers[0].indexOf('Health');
-                                const armorIndex = headers[0].indexOf('Armour');
-                                const damageIndex = headers[0].indexOf('Damage');
-                                
-                                if (rarityIndex !== -1 && statsTable) {
-                                    statsTable.forEach(row => {
-                                        if (row[rarityIndex]) {
-                                            rarities[row[rarityIndex]] = {
-                                                health: parseInt(row[healthIndex]) || c.baseStats?.health || 100,
-                                                armour: parseInt(row[armorIndex]) || c.baseStats?.armour || 20,
-                                                damage: parseInt(row[damageIndex]) || c.baseStats?.damage || 15
-                                            };
-                                        }
-                                    });
-                                }
-                            }
-                        }
-                    }
-                    
                     return {
                         id: i + 1,
                         name: c.name,
@@ -808,7 +780,7 @@
                         faction: c.faction || 'Unknown',
                         activeAbility: c.activeAbility || {},
                         passiveAbility: c.passiveAbility || {},
-                        rarities: rarities
+                        rarities: {} // Disabled unreliable parsing
                     };
                 });
                 
@@ -964,43 +936,27 @@
         function calculateMatchup(attacker, defender) {
             const [rangedType, rangedHits] = extractAttackInfo(attacker.ranged);
             const [meleeType, meleeHits] = extractAttackInfo(attacker.melee);
-
-            const rangedValue = rangedHits * (PIERCE_RATIOS[rangedType] || 0);
-            const meleeValue = meleeHits * (PIERCE_RATIOS[meleeType] || 0);
-
-            const [atkType, atkHits] = (rangedValue > meleeValue && rangedHits > 0)
+            const [atkType, atkHits] = (rangedType && rangedHits > 0)
                 ? [rangedType, rangedHits]
                 : [meleeType, meleeHits];
 
             const pierce = PIERCE_RATIOS[atkType] || 20;
+
             const atkTraits = getCharacterTraits(attacker.name);
             const defTraits = getCharacterTraits(defender.name);
 
             let dmg = attacker.dmg;
             let armor = defender.armor;
 
-            atkTraits.forEach(traitName => {
-                const trait = getTraitData(traitName);
-                if (trait && trait.effect_type === 'damage_multiplier' && trait.implemented === 'yes') {
-                    dmg *= parseFloat(trait.effect_value);
-                }
-            });
-            if (traitsDB.length === 0) {
-                if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
-                if (atkTraits.includes('Let the Galaxy Burn')) dmg *= 1.15;
-            }
+            // Basic Trait Modifiers
+            if (atkTraits.includes('Crushing Strike')) dmg *= 1.25;
+            if (defTraits.includes('Terminator Armour')) armor *= 1.4;
+            if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
 
-            defTraits.forEach(traitName => {
-                const trait = getTraitData(traitName);
-                if (trait && trait.effect_type === 'armor_multiplier' && trait.implemented === 'yes') {
-                    armor *= parseFloat(trait.effect_value);
-                }
-            });
-            if (traitsDB.length === 0) {
-                if (defTraits.includes('Terminator Armour')) armor *= 1.4;
-                if (defTraits.includes('Mk X Gravis')) armor *= 1.5;
-            }
+            let incomingMult = 1.0;
+            if (defTraits.includes('Resilient')) incomingMult = 0.8;
 
+            // Check conditional bonuses
             let hasConditionalBonus = false;
             let conditionalBonusDetails = null;
             const bonuses = getConditionalBonuses(attacker.name);
@@ -1023,136 +979,42 @@
                         type: bonus.ability_type,
                         conditionType: bonus.condition_type,
                         target: bonus.condition_value,
-                        multiplier: bonusMultiplier,
-                        confidence: bonus.confidence
+                        multiplier: bonusMultiplier
                     };
                 }
             });
-
-            let incomingMult = 1.0;
-            defTraits.forEach(traitName => {
-                const trait = getTraitData(traitName);
-                if (trait && trait.implemented === 'yes') {
-                    if (trait.effect_type === 'damage_reduction') {
-                        incomingMult *= parseFloat(trait.effect_value);
-                    }
-                    if (trait.effect_type === 'damage_taken_multiplier') {
-                        incomingMult *= parseFloat(trait.effect_value);
-                    }
-                }
-            });
-            if (traitsDB.length === 0) {
-                if (defTraits.includes('Resilient')) incomingMult *= 0.8;
-                if (defTraits.includes('Big Target')) incomingMult *= 1.3;
-            }
             
-            if (document.getElementById('modTerrain')?.checked) {
-                dmg *= 1.5;
-            }
-            if (document.getElementById('modHighGround')?.checked) {
-                dmg *= 1.5;
-            }
-            if (document.getElementById('modCrit')?.checked) {
-                dmg *= 1.1;
-            }
-            if (document.getElementById('modRazor')?.checked) {
-                incomingMult *= 1.5;
-            }
+            // Global Modifiers
+            if (document.getElementById('modTerrain')?.checked) dmg *= 1.5;
+            if (document.getElementById('modHighGround')?.checked) dmg *= 1.5;
+            if (document.getElementById('modCrit')?.checked) dmg *= 1.1;
 
-            const atkPassive = getPassiveAbility(attacker.name);
-            if (atkPassive) {
-                if (atkPassive.type === 'direct_damage') {
-                    dmg *= atkPassive.damageMult;
-                }
-                
-                if (atkPassive.type === 'conditional_damage' || atkPassive.type === 'scaling') {
-                    dmg *= atkPassive.damageMult;
-                }
-                
-                if (atkPassive.additionalDmg > 0) {
-                    dmg += atkPassive.additionalDmg;
-                }
-            }
-
-            const defPassive = getPassiveAbility(defender.name);
-            if (defPassive) {
-                if (defPassive.type === 'direct_defense') {
-                    incomingMult *= defPassive.defenseMult;
-                }
-                
-                if (defPassive.type === 'conditional_defense') {
-                    incomingMult *= defPassive.defenseMult;
-                }
-            }
-
+            // OFFICIAL DAMAGE FORMULA
+            // Damage = MAX(Damage - Armor, Damage * Pierce%)
             const dmgAfterArmor = Math.max(1, dmg - armor);
-            const dmgWithPierce = Math.max(1, dmg * (pierce / 100));
-            let dmgPerHit = Math.max(dmgAfterArmor, dmgWithPierce);
+            const dmgPierce = Math.max(1, dmg * (pierce / 100));
+            const dmgPerHit = Math.max(dmgAfterArmor, dmgPierce);
             
-            if (defTraits.includes('Mk X Gravis')) {
-                const secondPassArmor = Math.max(1, dmgPerHit - armor);
-                const secondPassPierce = Math.max(1, dmgPerHit * (pierce / 100));
-                dmgPerHit = Math.max(secondPassArmor, secondPassPierce);
-            }
+            const totalDmg = dmgPerHit * atkHits * incomingMult;
             
-            dmgPerHit *= incomingMult;
-            const totalDmg = dmgPerHit * atkHits;
-
-            const attackEff = Math.min(150, (totalDmg / defender.hp) * 100);
+            // Attack Efficiency: % HP removed per turn
+            const attackEff = Math.min(100, (totalDmg / defender.hp) * 100);
             const roundsToKill = defender.hp / Math.max(1, totalDmg);
-            const defenseEff = Math.min(100, Math.max(5, roundsToKill * 20));
 
+            // Defense Efficiency: Simplified durability metric
+            const armorRatio = armor / Math.max(1, dmg);
+            const defenseEff = Math.min(100, Math.max(0, armorRatio * 50 + 25));
+
+            // Calculate return damage (rough estimation for symmetry)
             const [defRangedType, defRangedHits] = extractAttackInfo(defender.ranged);
             const [defMeleeType, defMeleeHits] = extractAttackInfo(defender.melee);
-
-            const defRangedValue = defRangedHits * (PIERCE_RATIOS[defRangedType] || 0);
-            const defMeleeValue = defMeleeHits * (PIERCE_RATIOS[defMeleeType] || 0);
-
-            const [defAtkType, defAtkHits] = (defRangedValue > defMeleeValue && defRangedHits > 0)
-                ? [defRangedType, defRangedHits]
-                : [defMeleeType, defMeleeHits];
-
+            const [defAtkType, defAtkHits] = (defRangedType && defRangedHits > 0) ? [defRangedType, defRangedHits] : [defMeleeType, defMeleeHits];
             const defPierce = PIERCE_RATIOS[defAtkType] || 20;
+
             let defDmg = defender.dmg;
             let myArmor = attacker.armor;
 
-            defTraits.forEach(traitName => {
-                const trait = getTraitData(traitName);
-                if (trait && trait.effect_type === 'damage_multiplier' && trait.implemented === 'yes') {
-                    defDmg *= parseFloat(trait.effect_value);
-                }
-            });
-
-            atkTraits.forEach(traitName => {
-                const trait = getTraitData(traitName);
-                if (trait && trait.effect_type === 'armor_multiplier' && trait.implemented === 'yes') {
-                    myArmor *= parseFloat(trait.effect_value);
-                }
-            });
-
-            let myIncomingMult = 1.0;
-            atkTraits.forEach(traitName => {
-                const trait = getTraitData(traitName);
-                if (trait && trait.implemented === 'yes') {
-                    if (trait.effect_type === 'damage_reduction') {
-                        myIncomingMult *= parseFloat(trait.effect_value);
-                    }
-                    if (trait.effect_type === 'damage_taken_multiplier') {
-                        myIncomingMult *= parseFloat(trait.effect_value);
-                    }
-                }
-            });
-
-            const defDmgAfterArmor = Math.max(1, defDmg - myArmor);
-            const defDmgWithPierce = Math.max(1, defDmg * (defPierce / 100));
-            let defDmgPerHit = Math.max(defDmgAfterArmor, defDmgWithPierce);
-
-            if (atkTraits.includes('Mk X Gravis')) {
-                const secondPass = Math.max(defDmgAfterArmor, defDmgWithPierce);
-                defDmgPerHit = secondPass;
-            }
-
-            defDmgPerHit *= myIncomingMult;
+            const defDmgPerHit = Math.max(defDmg - myArmor, defDmg * (defPierce / 100));
             const defTotalDmg = defDmgPerHit * defAtkHits;
             const roundsToKillMe = attacker.hp / Math.max(1, defTotalDmg);
 
@@ -1450,6 +1312,9 @@
                 tradeClass = 'dominated';
             }
             
+            const atkRarityName = RARITY_NAMES[atkRarityValue] || 'Common';
+            const defRarityName = RARITY_NAMES[defRarityValue] || 'Common';
+
             document.getElementById('analysisTab').innerHTML = `
                 <div class="panel-title">ДЕТАЛЬНЫЙ АНАЛИЗ</div>
                 
@@ -1487,7 +1352,7 @@
                     <div style="margin: 15px 0;">
                         <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                             <span>🔵 ${atk.name} (Редкость):</span>
-                            <span id="atkRarityLabel" style="color: #00ff88; font-weight: bold;">Common</span>
+                            <span id="atkRarityLabel" style="color: #00ff88; font-weight: bold;">${atkRarityName}</span>
                         </label>
                         <input type="range" 
                                id="atkRaritySlider" 
@@ -1508,7 +1373,7 @@
                     <div style="margin: 15px 0; padding-top: 10px; border-top: 1px solid #0f1a2e;">
                         <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                             <span>🔵 ${atk.name} (Уровень):</span>
-                            <span id="atkLevelLabel" style="color: #00d4ff; font-weight: bold;">1</span>
+                            <span id="atkLevelLabel" style="color: #00d4ff; font-weight: bold;">${atkLevelValue}</span>
                         </label>
                         <input type="range" 
                                id="atkLevelSlider" 
@@ -1526,7 +1391,7 @@
                     <div style="margin: 15px 0; padding-top: 10px; border-top: 1px solid #0f1a2e;">
                         <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                             <span>🔴 ${def.name} (Редкость):</span>
-                            <span id="defRarityLabel" style="color: #00ff88; font-weight: bold;">Common</span>
+                            <span id="defRarityLabel" style="color: #00ff88; font-weight: bold;">${defRarityName}</span>
                         </label>
                         <input type="range" 
                                id="defRaritySlider" 
@@ -1547,7 +1412,7 @@
                     <div style="margin: 15px 0; padding-top: 10px; border-top: 1px solid #0f1a2e;">
                         <label style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                             <span>🔴 ${def.name} (Уровень):</span>
-                            <span id="defLevelLabel" style="color: #00d4ff; font-weight: bold;">1</span>
+                            <span id="defLevelLabel" style="color: #00d4ff; font-weight: bold;">${defLevelValue}</span>
                         </label>
                         <input type="range" 
                                id="defLevelSlider" 
@@ -1910,34 +1775,31 @@
             document.getElementById('atkLevelLabel').textContent = atkLevel;
             document.getElementById('defLevelLabel').textContent = defLevel;
             
-            const atkBaseStats = currentAttacker.rarities?.[atkRarityName] || {
-                health: currentAttacker.hp,
-                armour: currentAttacker.armor,
-                damage: currentAttacker.dmg
-            };
+            // Multipliers for rarity scaling: Common=1x, Mythic=40x
+            const RARITY_MULTS = [1.0, 2.0, 4.0, 9.0, 20.0, 40.0];
+            const getRarityMult = (idx) => RARITY_MULTS[idx] || 1.0;
             
-            const defBaseStats = currentDefender.rarities?.[defRarityName] || {
-                health: currentDefender.hp,
-                armour: currentDefender.armor,
-                damage: currentDefender.dmg
-            };
+            const atkMult = getRarityMult(atkRarityIndex);
+            const defMult = getRarityMult(defRarityIndex);
             
-            const levelScaling = (baseStat, level) => {
-                return Math.round(baseStat * (1 + 0.02 * (level - 1)));
+            // Stats scaling: Base * RarityMult * LevelMult (approx 5% per level)
+            const calculateStat = (base, rarityMult, level) => {
+                const levelMult = 1 + 0.05 * (level - 1);
+                return Math.round(base * rarityMult * levelMult);
             };
             
             const tempAttacker = {
                 ...currentAttacker,
-                hp: levelScaling(parseInt(atkBaseStats.health), atkLevel),
-                armor: levelScaling(parseInt(atkBaseStats.armour), atkLevel),
-                dmg: levelScaling(parseInt(atkBaseStats.damage), atkLevel)
+                hp: calculateStat(currentAttacker.hp, atkMult, atkLevel),
+                armor: calculateStat(currentAttacker.armor, atkMult, atkLevel),
+                dmg: calculateStat(currentAttacker.dmg, atkMult, atkLevel)
             };
             
             const tempDefender = {
                 ...currentDefender,
-                hp: levelScaling(parseInt(defBaseStats.health), defLevel),
-                armor: levelScaling(parseInt(defBaseStats.armour), defLevel),
-                dmg: levelScaling(parseInt(defBaseStats.damage), defLevel)
+                hp: calculateStat(currentDefender.hp, defMult, defLevel),
+                armor: calculateStat(currentDefender.armor, defMult, defLevel),
+                dmg: calculateStat(currentDefender.dmg, defMult, defLevel)
             };
             
             const newMetrics = calculateMatchup(tempAttacker, tempDefender);
