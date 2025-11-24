@@ -1312,6 +1312,58 @@
                 tradeClass = 'dominated';
             }
             
+            // Получаем реальную редкость персонажей из data.json
+            const atkCharacter = characters.find(c => c.name === atk.name);
+            const defCharacter = characters.find(c => c.name === def.name);
+            
+            const atkRealRarity = atkCharacter?.rarity || 'Common';
+            const defRealRarity = defCharacter?.rarity || 'Common';
+            
+            const atkRarityIndex = RARITY_NAMES.indexOf(atkRealRarity);
+            const defRarityIndex = RARITY_NAMES.indexOf(defRealRarity);
+            
+            // Устанавливаем значения ползунков в соответствии с реальной редкостью персонажей
+            if (atkRarityIndex >= 0) atkRarityValue = atkRarityIndex;
+            if (defRarityIndex >= 0) defRarityValue = defRarityIndex;
+            
+            // Устанавливаем уровни в соответствии с таблицами
+            const atkStats = getCharacterStatsFromData(atk.name, RARITY_NAMES[atkRarityValue], 50);
+            const defStats = getCharacterStatsFromData(def.name, RARITY_NAMES[defRarityValue], 50);
+            
+            // Извлекаем реальные уровни из таблиц
+            const atkCharacter = characters.find(c => c.name === atk.name);
+            const defCharacter = characters.find(c => c.name === def.name);
+            
+            let atkRealLevel = 1;
+            let defRealLevel = 1;
+            
+            if (atkCharacter?.activeAbility?.tables?.[0]) {
+                const table = atkCharacter.activeAbility.tables[0];
+                const rarityIdx = table[0].indexOf('Rarity');
+                const levelIdx = table[0].indexOf('Level');
+                for (let i = 1; i < table.length; i++) {
+                    if (table[i][rarityIdx] === RARITY_NAMES[atkRarityValue]) {
+                        atkRealLevel = parseInt(table[i][levelIdx]);
+                        break;
+                    }
+                }
+            }
+            
+            if (defCharacter?.activeAbility?.tables?.[0]) {
+                const table = defCharacter.activeAbility.tables[0];
+                const rarityIdx = table[0].indexOf('Rarity');
+                const levelIdx = table[0].indexOf('Level');
+                for (let i = 1; i < table.length; i++) {
+                    if (table[i][rarityIdx] === RARITY_NAMES[defRarityValue]) {
+                        defRealLevel = parseInt(table[i][levelIdx]);
+                        break;
+                    }
+                }
+            }
+            
+            atkLevelValue = atkRealLevel;
+            defLevelValue = defRealLevel;
+            
             const atkRarityName = RARITY_NAMES[atkRarityValue] || 'Common';
             const defRarityName = RARITY_NAMES[defRarityValue] || 'Common';
 
@@ -1556,6 +1608,12 @@
                     
                     return passiveHTML;
                 })()}
+                
+                <div id="rarityStatsDisplay" style="margin-top: 20px;">
+                    <div style="text-align: center; color: #888; padding: 20px;">
+                        Загрузка характеристик...
+                    </div>
+                </div>
             `;
             
             // После вставки HTML подвешиваем обработчики для запоминания
@@ -1576,6 +1634,9 @@
                     defLevelValue = Number(e.target.value);
                     updateRarityCalculation();
                 });
+                
+                // Вызываем обновление расчета после инициализации ползунков
+                updateRarityCalculation();
             }, 10);
         }
 
@@ -1755,6 +1816,160 @@
 
         const RARITY_NAMES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic'];
 
+        // Функция для извлечения реальных характеристик из data.json
+        function getCharacterStatsFromData(characterName, rarityName, level) {
+            const character = characters.find(c => c.name === characterName);
+            if (!character) return null;
+
+            // Базовые характеристики из baseStats
+            const baseStats = {
+                hp: parseInt(character.baseStats?.health || character.hp || 100),
+                armor: parseInt(character.baseStats?.armour || character.armor || 10),
+                dmg: parseInt(character.baseStats?.damage || character.dmg || 15)
+            };
+
+            // Если нет таблиц способностей, используем базовые статы с множителями
+            if (!character.activeAbility?.tables?.[0]) {
+                // Fallback к старой системе с более реалистичными множителями
+                const rarityIndex = RARITY_NAMES.indexOf(rarityName);
+                const RARITY_MULTS = [1.0, 1.5, 2.2, 3.5, 6.0, 10.0];
+                const rarityMult = RARITY_MULTS[rarityIndex] || 1.0;
+                const levelMult = 1 + 0.03 * (level - 1); // 3% за уровень вместо 5%
+                
+                return {
+                    hp: Math.round(baseStats.hp * rarityMult * levelMult),
+                    armor: Math.round(baseStats.armor * rarityMult * levelMult),
+                    dmg: Math.round(baseStats.dmg * rarityMult * levelMult)
+                };
+            }
+
+            // Извлекаем данные из таблиц активных способностей
+            const activeTable = character.activeAbility.tables[0];
+            const tableHeaders = activeTable[0];
+            
+            // Находим индексы нужных колонок
+            const rarityIndex = tableHeaders.indexOf('Rarity');
+            const levelIndex = tableHeaders.indexOf('Level');
+            const healthIndex = tableHeaders.findIndex(h => h.includes('Health') || h.includes('HP'));
+            const damageIndex = tableHeaders.findIndex(h => 
+                h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x')
+            );
+            const valueIndex = tableHeaders.findIndex(h => h === 'Value');
+            
+            // Ищем строку с нужной редкостью
+            let targetRow = null;
+            let nextRow = null;
+            
+            for (let i = 1; i < activeTable.length; i++) {
+                const row = activeTable[i];
+                if (row[rarityIndex] === rarityName) {
+                    targetRow = row;
+                    // Сохраняем следующую строку для интерполяции
+                    if (i + 1 < activeTable.length) {
+                        nextRow = activeTable[i + 1];
+                    }
+                    break;
+                }
+            }
+
+            if (!targetRow) {
+                // Если не нашли точную редкость, используем базовые статы с множителями
+                const rarityIdx = RARITY_NAMES.indexOf(rarityName);
+                const RARITY_MULTS = [1.0, 1.5, 2.2, 3.5, 6.0, 10.0];
+                const rarityMult = RARITY_MULTS[rarityIdx] || 1.0;
+                const levelMult = 1 + 0.03 * (level - 1);
+                
+                return {
+                    hp: Math.round(baseStats.hp * rarityMult * levelMult),
+                    armor: Math.round(baseStats.armor * rarityMult * levelMult),
+                    dmg: Math.round(baseStats.dmg * rarityMult * levelMult)
+                };
+            }
+
+            // Извлекаем значения из таблицы
+            const tableLevel = parseInt(targetRow[levelIndex]);
+            let hp = baseStats.hp;
+            let dmg = baseStats.dmg;
+            
+            // Пытаемся извлечь HP из таблицы
+            if (healthIndex !== -1) {
+                const hpValue = targetRow[healthIndex];
+                if (hpValue && typeof hpValue === 'string' && hpValue.includes('-')) {
+                    // Если диапазон (например "30-37"), берем среднее
+                    const [min, max] = hpValue.split('-').map(v => parseInt(v.trim()));
+                    hp = Math.round((min + max) / 2);
+                } else if (hpValue && !isNaN(parseInt(hpValue))) {
+                    hp = parseInt(hpValue);
+                }
+            }
+            
+            // Пытаемся извлечь урон из таблицы
+            if (damageIndex !== -1) {
+                const dmgValue = targetRow[damageIndex];
+                if (dmgValue && typeof dmgValue === 'string' && dmgValue.includes('-')) {
+                    // Если диапазон, берем среднее
+                    const [min, max] = dmgValue.split('-').map(v => parseInt(v.trim()));
+                    dmg = Math.round((min + max) / 2);
+                } else if (dmgValue && !isNaN(parseInt(dmgValue))) {
+                    dmg = parseInt(dmgValue);
+                }
+            } else if (valueIndex !== -1) {
+                // Если нет колонки Damage, пробуем колонку Value
+                const dmgValue = targetRow[valueIndex];
+                if (dmgValue && typeof dmgValue === 'string' && dmgValue.includes('-')) {
+                    const [min, max] = dmgValue.split('-').map(v => parseInt(v.trim()));
+                    dmg = Math.round((min + max) / 2);
+                } else if (dmgValue && !isNaN(parseInt(dmgValue))) {
+                    dmg = parseInt(dmgValue);
+                }
+            }
+            
+            // Интерполяция между уровнями, если нужно
+            if (level !== tableLevel && nextRow) {
+                const nextLevel = parseInt(nextRow[levelIndex]);
+                
+                // Интерполяция для HP
+                if (healthIndex !== -1) {
+                    const nextHpValue = nextRow[healthIndex];
+                    let nextHp = hp;
+                    if (nextHpValue && typeof nextHpValue === 'string' && nextHpValue.includes('-')) {
+                        const [min, max] = nextHpValue.split('-').map(v => parseInt(v.trim()));
+                        nextHp = Math.round((min + max) / 2);
+                    } else if (nextHpValue && !isNaN(parseInt(nextHpValue))) {
+                        nextHp = parseInt(nextHpValue);
+                    }
+                    
+                    if (level > tableLevel && level <= nextLevel) {
+                        const progress = (level - tableLevel) / (nextLevel - tableLevel);
+                        hp = Math.round(hp + (nextHp - hp) * progress);
+                    }
+                }
+                
+                // Интерполяция для урона
+                const dmgColIndex = damageIndex !== -1 ? damageIndex : valueIndex;
+                if (dmgColIndex !== -1) {
+                    const nextDmgValue = nextRow[dmgColIndex];
+                    let nextDmg = dmg;
+                    if (nextDmgValue && typeof nextDmgValue === 'string' && nextDmgValue.includes('-')) {
+                        const [min, max] = nextDmgValue.split('-').map(v => parseInt(v.trim()));
+                        nextDmg = Math.round((min + max) / 2);
+                    } else if (nextDmgValue && !isNaN(parseInt(nextDmgValue))) {
+                        nextDmg = parseInt(nextDmgValue);
+                    }
+                    
+                    if (level > tableLevel && level <= nextLevel) {
+                        const progress = (level - tableLevel) / (nextLevel - tableLevel);
+                        dmg = Math.round(dmg + (nextDmg - dmg) * progress);
+                    }
+                }
+            }
+            
+            // Броня обычно не в таблицах, рассчитываем её пропорционально HP
+            const armor = Math.round(baseStats.armor * (hp / baseStats.hp));
+            
+            return { hp, armor, dmg };
+        }
+
         function updateRarityCalculation() {
             // Сохраняем текущие значения из DOM
             atkRarityValue = Number(document.getElementById('atkRaritySlider').value);
@@ -1775,38 +1990,29 @@
             document.getElementById('atkLevelLabel').textContent = atkLevel;
             document.getElementById('defLevelLabel').textContent = defLevel;
             
-            // Multipliers for rarity scaling: Common=1x, Mythic=40x
-            const RARITY_MULTS = [1.0, 2.0, 4.0, 9.0, 20.0, 40.0];
-            const getRarityMult = (idx) => RARITY_MULTS[idx] || 1.0;
-            
-            const atkMult = getRarityMult(atkRarityIndex);
-            const defMult = getRarityMult(defRarityIndex);
-            
-            // Stats scaling: Base * RarityMult * LevelMult (approx 5% per level)
-            const calculateStat = (base, rarityMult, level) => {
-                const levelMult = 1 + 0.05 * (level - 1);
-                return Math.round(base * rarityMult * levelMult);
-            };
+            // Получаем реальные характеристики из data.json
+            const atkStats = getCharacterStatsFromData(currentAttacker.name, atkRarityName, atkLevel);
+            const defStats = getCharacterStatsFromData(currentDefender.name, defRarityName, defLevel);
             
             const tempAttacker = {
                 ...currentAttacker,
-                hp: calculateStat(currentAttacker.hp, atkMult, atkLevel),
-                armor: calculateStat(currentAttacker.armor, atkMult, atkLevel),
-                dmg: calculateStat(currentAttacker.dmg, atkMult, atkLevel)
+                hp: atkStats.hp,
+                armor: atkStats.armor,
+                dmg: atkStats.dmg
             };
             
             const tempDefender = {
                 ...currentDefender,
-                hp: calculateStat(currentDefender.hp, defMult, defLevel),
-                armor: calculateStat(currentDefender.armor, defMult, defLevel),
-                dmg: calculateStat(currentDefender.dmg, defMult, defLevel)
+                hp: defStats.hp,
+                armor: defStats.armor,
+                dmg: defStats.dmg
             };
             
             const newMetrics = calculateMatchup(tempAttacker, tempDefender);
             
             document.getElementById('rarityStatsDisplay').innerHTML = `
                 <div style="text-align: center; color: #00d4ff; font-weight: bold; margin-bottom: 10px;">
-                    📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ
+                    📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ (из data.json)
                 </div>
                 <div style="display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: rgba(0, 212, 255, 0.1); border-radius: 3px;">
                     <span style="font-weight: 600;">${tempAttacker.name} (${atkRarityName} Lvl ${atkLevel}):</span>
