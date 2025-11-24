@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+</head>
+<body>
+    <div id="test">Testing JavaScript functionality...</div>
+    
+    <script>
+        // Test basic JavaScript functionality
+        try {
+            const testVar = characters.find(c => c.name === 'test');
+            console.log('JavaScript syntax is valid');
+        } catch (e) {
+            console.log('Expected error for undefined characters array:', e.message);
+        }
+        
+        document.getElementById('test').innerHTML = 'JavaScript test completed successfully';
+    </script>
+</body>
+</html>

@@ -1330,8 +1330,6 @@
             const atkStats = getCharacterStatsFromData(atk.name, RARITY_NAMES[atkRarityValue], 50);
             const defStats = getCharacterStatsFromData(def.name, RARITY_NAMES[defRarityValue], 50);
             
-            const defCharacter = characters.find(c => c.name === def.name);
-            
             let atkRealLevel = 1;
             let defRealLevel = 1;
             
@@ -1408,8 +1406,7 @@
                                id="atkRaritySlider" 
                                min="0" max="5" value="${atkRarityValue}" 
                                step="1"
-                               style="width: 100%; cursor: pointer;"
-                               onchange="updateRarityCalculation()">
+                               style="width: 100%; cursor: pointer;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Com</span>
                             <span>Unc</span>
@@ -1429,8 +1426,7 @@
                                id="atkLevelSlider" 
                                min="1" max="55" value="${atkLevelValue}" 
                                step="1"
-                               style="width: 100%; cursor: pointer;"
-                               onchange="updateRarityCalculation()">
+                               style="width: 100%; cursor: pointer;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Lvl 1</span>
                             <span>Lvl 28</span>
@@ -1447,8 +1443,7 @@
                                id="defRaritySlider" 
                                min="0" max="5" value="${defRarityValue}" 
                                step="1"
-                               style="width: 100%; cursor: pointer;"
-                               onchange="updateRarityCalculation()">
+                               style="width: 100%; cursor: pointer;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Com</span>
                             <span>Unc</span>
@@ -1468,8 +1463,7 @@
                                id="defLevelSlider" 
                                min="1" max="55" value="${defLevelValue}" 
                                step="1"
-                               style="width: 100%; cursor: pointer;"
-                               onchange="updateRarityCalculation()">
+                               style="width: 100%; cursor: pointer;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.7em; color: #888; margin-top: 5px;">
                             <span>Lvl 1</span>
                             <span>Lvl 28</span>
