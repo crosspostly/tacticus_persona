@@ -1813,77 +1813,82 @@
             const character = characters.find(c => c.name === characterName);
             if (!character) return null;
 
-            // Базовые характеристики из baseStats
+            // Базовые характеристики из baseStats (fallback если нет таблиц)
             const baseStats = {
                 hp: parseInt(character.baseStats?.health || character.hp || 100),
                 armor: parseInt(character.baseStats?.armour || character.armor || 10),
                 dmg: parseInt(character.baseStats?.damage || character.dmg || 15)
             };
 
-            // Если нет таблиц способностей, используем базовые статы с множителями
-            if (!character.activeAbility?.tables?.[0]) {
-                // Fallback к старой системе с более реалистичными множителями
-                const rarityIndex = RARITY_NAMES.indexOf(rarityName);
-                const RARITY_MULTS = [1.0, 1.5, 2.2, 3.5, 6.0, 10.0];
-                const rarityMult = RARITY_MULTS[rarityIndex] || 1.0;
-                const levelMult = 1 + 0.03 * (level - 1); // 3% за уровень вместо 5%
-                
-                return {
-                    hp: Math.round(baseStats.hp * rarityMult * levelMult),
-                    armor: Math.round(baseStats.armor * rarityMult * levelMult),
-                    dmg: Math.round(baseStats.dmg * rarityMult * levelMult)
-                };
+            // Собираем все таблицы из активных и пассивных способностей
+            const allTables = [
+                ...(character.activeAbility?.tables || []),
+                ...(character.passiveAbility?.tables || [])
+            ];
+
+            // Если нет таблиц способностей, используем базовые статы БЕЗ множителей
+            if (allTables.length === 0) {
+                return baseStats;
             }
 
-            // Извлекаем данные из таблиц активных способностей
-            const activeTable = character.activeAbility.tables[0];
-            const tableHeaders = activeTable[0];
+            // Ищем таблицу с хотя бы одной колонкой характеристик (Health, Armour, Damage)
+            let targetTable = null;
+            for (const table of allTables) {
+                const headers = table[0];
+                const hasHealth = headers.some(h => h.includes('Health') || h.includes('HP'));
+                const hasArmour = headers.some(h => h.includes('Armour') || h.includes('Armor'));
+                const hasDamage = headers.some(h => h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x'));
+                
+                if (hasHealth || hasArmour || hasDamage) {
+                    targetTable = table;
+                    break;
+                }
+            }
+
+            // Если не нашли подходящую таблицу, используем базовые статы
+            if (!targetTable) {
+                return baseStats;
+            }
+
+            const tableHeaders = targetTable[0];
             
             // Находим индексы нужных колонок
             const rarityIndex = tableHeaders.indexOf('Rarity');
             const levelIndex = tableHeaders.indexOf('Level');
             const healthIndex = tableHeaders.findIndex(h => h.includes('Health') || h.includes('HP'));
+            const armourIndex = tableHeaders.findIndex(h => h.includes('Armour') || h.includes('Armor'));
             const damageIndex = tableHeaders.findIndex(h => 
                 h.includes('Damage') && !h.includes('Piercing') && !h.includes('3x')
             );
-            const valueIndex = tableHeaders.findIndex(h => h === 'Value');
             
             // Ищем строку с нужной редкостью
             let targetRow = null;
             let nextRow = null;
             
-            for (let i = 1; i < activeTable.length; i++) {
-                const row = activeTable[i];
+            for (let i = 1; i < targetTable.length; i++) {
+                const row = targetTable[i];
                 if (row[rarityIndex] === rarityName) {
                     targetRow = row;
                     // Сохраняем следующую строку для интерполяции
-                    if (i + 1 < activeTable.length) {
-                        nextRow = activeTable[i + 1];
+                    if (i + 1 < targetTable.length) {
+                        nextRow = targetTable[i + 1];
                     }
                     break;
                 }
             }
 
+            // Если не нашли точную редкость, используем базовые статы
             if (!targetRow) {
-                // Если не нашли точную редкость, используем базовые статы с множителями
-                const rarityIdx = RARITY_NAMES.indexOf(rarityName);
-                const RARITY_MULTS = [1.0, 1.5, 2.2, 3.5, 6.0, 10.0];
-                const rarityMult = RARITY_MULTS[rarityIdx] || 1.0;
-                const levelMult = 1 + 0.03 * (level - 1);
-                
-                return {
-                    hp: Math.round(baseStats.hp * rarityMult * levelMult),
-                    armor: Math.round(baseStats.armor * rarityMult * levelMult),
-                    dmg: Math.round(baseStats.dmg * rarityMult * levelMult)
-                };
+                return baseStats;
             }
 
             // Извлекаем значения из таблицы
             const tableLevel = parseInt(targetRow[levelIndex]);
             let hp = baseStats.hp;
+            let armor = baseStats.armor;
             let dmg = baseStats.dmg;
             
-            // Пытаемся извлечь HP из таблицы
+            // Извлекаем HP из таблицы
             if (healthIndex !== -1) {
                 const hpValue = targetRow[healthIndex];
                 if (hpValue && typeof hpValue === 'string' && hpValue.includes('-')) {
@@ -1895,19 +1900,20 @@
                 }
             }
             
-            // Пытаемся извлечь урон из таблицы
+            // Извлекаем Armour из таблицы
+            if (armourIndex !== -1) {
+                const armorValue = targetRow[armourIndex];
+                if (armorValue && typeof armorValue === 'string' && armorValue.includes('-')) {
+                    const [min, max] = armorValue.split('-').map(v => parseInt(v.trim()));
+                    armor = Math.round((min + max) / 2);
+                } else if (armorValue && !isNaN(parseInt(armorValue))) {
+                    armor = parseInt(armorValue);
+                }
+            }
+            
+            // Извлекаем Damage из таблицы
             if (damageIndex !== -1) {
                 const dmgValue = targetRow[damageIndex];
-                if (dmgValue && typeof dmgValue === 'string' && dmgValue.includes('-')) {
-                    // Если диапазон, берем среднее
-                    const [min, max] = dmgValue.split('-').map(v => parseInt(v.trim()));
-                    dmg = Math.round((min + max) / 2);
-                } else if (dmgValue && !isNaN(parseInt(dmgValue))) {
-                    dmg = parseInt(dmgValue);
-                }
-            } else if (valueIndex !== -1) {
-                // Если нет колонки Damage, пробуем колонку Value
-                const dmgValue = targetRow[valueIndex];
                 if (dmgValue && typeof dmgValue === 'string' && dmgValue.includes('-')) {
                     const [min, max] = dmgValue.split('-').map(v => parseInt(v.trim()));
                     dmg = Math.round((min + max) / 2);
@@ -1937,10 +1943,26 @@
                     }
                 }
                 
-                // Интерполяция для урона
-                const dmgColIndex = damageIndex !== -1 ? damageIndex : valueIndex;
-                if (dmgColIndex !== -1) {
-                    const nextDmgValue = nextRow[dmgColIndex];
+                // Интерполяция для Armour
+                if (armourIndex !== -1) {
+                    const nextArmorValue = nextRow[armourIndex];
+                    let nextArmor = armor;
+                    if (nextArmorValue && typeof nextArmorValue === 'string' && nextArmorValue.includes('-')) {
+                        const [min, max] = nextArmorValue.split('-').map(v => parseInt(v.trim()));
+                        nextArmor = Math.round((min + max) / 2);
+                    } else if (nextArmorValue && !isNaN(parseInt(nextArmorValue))) {
+                        nextArmor = parseInt(nextArmorValue);
+                    }
+                    
+                    if (level > tableLevel && level <= nextLevel) {
+                        const progress = (level - tableLevel) / (nextLevel - tableLevel);
+                        armor = Math.round(armor + (nextArmor - armor) * progress);
+                    }
+                }
+                
+                // Интерполяция для Damage
+                if (damageIndex !== -1) {
+                    const nextDmgValue = nextRow[damageIndex];
                     let nextDmg = dmg;
                     if (nextDmgValue && typeof nextDmgValue === 'string' && nextDmgValue.includes('-')) {
                         const [min, max] = nextDmgValue.split('-').map(v => parseInt(v.trim()));
@@ -1955,9 +1977,6 @@
                     }
                 }
             }
-            
-            // Броня обычно не в таблицах, рассчитываем её пропорционально HP
-            const armor = Math.round(baseStats.armor * (hp / baseStats.hp));
             
             return { hp, armor, dmg };
         }
