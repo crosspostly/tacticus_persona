@@ -1,0 +1,2852 @@
+{
+  "Abhorrent Plating": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Adamantine Mantle": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Adamantine Thread Cloak": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Adamantium Bar": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Adamantium Blades": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Adamantium Lump": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Adamantium Ore": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Adamantium Plates": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 660.0,
+    "crafted": true
+  },
+  "Adamantium Sheet": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Adaptive Adrenal Glands": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Adaptive Chitin Carapace": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Adaptive Toxin Sacs": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Adorned Bolt Feeder": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Adrenal Glands": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Advanced Bionics": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Advanced Combat Stimms": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Advanced Drone Controller": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Advanced Exospine": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 380.0,
+    "crafted": true
+  },
+  "Advanced Filaments": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Advanced Mesh Weave Garment": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Advanced Rebreather": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Advanced Sensor Suite": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Advanced Stimm Injector": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Amplified Senses": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Ancient Inscription": {
+    "rarity": "Mythic",
+    "stat": "Health",
+    "value": 291.67,
+    "crafted": false
+  },
+  "Ancient Power Cell": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Ancient Power Source": {
+    "rarity": "Mythic",
+    "stat": "Damage",
+    "value": 3005.0,
+    "crafted": true
+  },
+  "Ancient Runes": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Ancient Tasset Plate": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Ancient Weapon Augmentation": {
+    "rarity": "Mythic",
+    "stat": "Damage",
+    "value": 3005.0,
+    "crafted": true
+  },
+  "Angelic Plating": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Anointed Auxiliary Core": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Anointed Micro-Generator": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Arbiter's Gaze": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Arcane Genetic Alchemy": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Arcane Substances": {
+    "rarity": "Mythic",
+    "stat": "Damage",
+    "value": 3005.0,
+    "crafted": true
+  },
+  "Archangel's Shard": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Archeotech Bionics": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Archeotech Remnant": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Ard Plate": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Armor Trim": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Artificer Cogwheel Crest": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Artificer Flak Plates": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Artificer Tasset Plate": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Artificial Vertebrae": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Artisan of War Plating": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Artisan Plating": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Athenaean Scroll": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Attack Vector Data-Slate": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Auramite Wing": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Auramite Wing Adornment": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Auramite Wing Embellishment": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Auspex": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Auto-Reactive Stimm Injector": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Autoloader": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 755.0,
+    "crafted": true
+  },
+  "Bad Moon Teef": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Ballistics Data": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Barrel of Promethium": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Basic Auxiliary Core": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Bastion Honour": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Battle Plan": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Battle Scar": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Beast Hide": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Bell of Despair": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Belt of Frag Grenades": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Belt of Krak Grenades": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Biomorph Adaption": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Bionic Enhancement": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Bionic Eye": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Bionic Neural Pathways": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Black Rune": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Bladesman's Honour": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Blasphemous Armor Trim": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Blessed Bolts": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Blessed Brazen Jaws": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Blessed Cadaere Renissum": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Blessed Ceramite": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Blessed Chainaxe Teeth": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Blessed Cogitator": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Blessed Corset Armor": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Blessed Promethium Canister": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Blessed Promethium Tank": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 755.0,
+    "crafted": true
+  },
+  "Blessed Purity Seal": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Blessed Tabard": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Blessed Tasset Plate": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Blessed Weapon Oils": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Blood Shard Bolt": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Blood Vial": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Bloodstone Icon": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Bloodstone Pendant": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Bloodstone Tear": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Bolts of Furious Vengeance": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Bolts of Judgement": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Bones of the Paragons": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Boon of Khorne": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Boon of Nurgle": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Boon of Slaanesh": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Boon of the Dark Gods": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Boon of Tzeentch": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Boonstone": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1770.0,
+    "crafted": true
+  },
+  "Bosspole": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Box of Ammo": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Box of Rations": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Box of Salvage": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Brazen Jaws": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Brutal Iron Jaw": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Butcher's Nails": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Cabalistic Implements": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Cadaere Renissum": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Calibanite Hood": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Can of Promethium": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Candelabrum of Burning Wrath": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Canister of Chemicals": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Ceramite Bar": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Ceramite Lump": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Ceramite Plates": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 660.0,
+    "crafted": true
+  },
+  "Ceramite Sheet": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Chain of Righteous Zeal": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Chain of Zeal": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Chain of Zealous Wrath": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Chainaxe Teeth": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Chapter Pendant": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Chip Damage": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Classified Data-Slate": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Cloak": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Cloud of Flies": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Codex Astartes": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Codex Astartes Page": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Cogwheel Crest": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Collar of Khorne": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Combat Stimms": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Crate of Salvage": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Crusader's Tabard": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Cybork Body Parts": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Daemon Shells": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Daemonic Armor Trim": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Dark Hood": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Death Bell": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Death Shroud": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Decimator Bolts": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Decorated Cloak": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Ded 'Ard Plate": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Ded Brutal Iron Jaw": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Ded Shiny 'Ard Plate": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Defensor Refractor Generator": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Digital Weapons": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 320.0,
+    "crafted": true
+  },
+  "Divinator Class Auspex": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Divine Cloak": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 540.0,
+    "crafted": true
+  },
+  "Drone Controller": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Duplicate Organ": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Elaborate Hilt": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Electromantic Cable Bundle": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Embellished Bolt Feeder": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Engram Neurochip": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Engrammatic Entangler": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Enhanced Cogwheel Crest": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Enhanced Motive Force Capacitator": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Enriched Rations": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Ensorcelled Infusion": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Entrenching Tool": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Epaulettes": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Epaulettes of Renown": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Exalted Brazen Jaws": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Exalted Cadaere Renissum": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Exalted Chainaxe Teeth": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Exospine": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Exquisite Medical Supplies": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Eye of Horus": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Field Ration": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Filaments": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Filigrane Psytronome": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Filigrane Wraithbone Plate": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Fine Auxiliary Core": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Fine Cloak": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Fine Micro-Generator": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Fine Purity Seal": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "First Aid Kit": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Flak Plates": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Flawless Gem Adornment": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Flawless Gem Embellishment": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Flawless Terran Gem": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Frag Grenade": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Frostblade": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1770.0,
+    "crafted": true
+  },
+  "Gene-Sire's Reliquant": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Gene-Twisted Muscle": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Gifts of the Star Children": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Golden Ornamental Skull": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Grand Helmet Trophy": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Grand Purity Seal": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Grand Skull Trophy": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Grand Strategy": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 460.0,
+    "crafted": true
+  },
+  "Grand Tasset Plate": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 540.0,
+    "crafted": true
+  },
+  "Grandiloquent Litanical": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Grandiose Skull Ornament": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 540.0,
+    "crafted": true
+  },
+  "Great Cult Implements": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Greater Reliquary of Protection": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Greater Reliquary of Vengeance": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Healing Ointment": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Heirloom Entrenching Tool": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Hellfury Bolts": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Helmet Trophy": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "High-Capacity Power Pack": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "High-Grade Flak Plates": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Holster and Pockets": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Holy Chaplet": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Holy Corset Armor": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Honourifica Imperialis": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Hymn of Martyrs": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Hymn of Sacrifice": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Hymn of the Divine": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Hyper-Adaptive Adrenal Glands": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Hyper-Adaptive Chitin Carapace": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Hyper-Adaptive Toxin Sacs": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Hypermaterial Shifter": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Hypermetabolic Acceleration": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Hyperstim": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 755.0,
+    "crafted": true
+  },
+  "Ice Troll Hide": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Ice Wyrm Hide": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Icon of Daemonic Vengeance": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Icon of Infernal Vengeance": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Icon of the Angel": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Icon of Vengeance": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Immaterial Shroud": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Imperial Aquila": {
+    "rarity": "Mythic",
+    "stat": "Health",
+    "value": 291.67,
+    "crafted": false
+  },
+  "Implant Attack": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Imposing Horns": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 320.0,
+    "crafted": true
+  },
+  "Impressive Armor Trim": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Industrial Carapace": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Industrial Padding": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Industrial Protection Suit": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Infernal Armor Trim": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Infernal Eye of Horus": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Inferno Bolts": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Inner Circle Hood": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Integrated Bolt Feeder": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Iridium Plating": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Iron Jaw": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Kataphron Armour": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1510.0,
+    "crafted": true
+  },
+  "Key of Achrabael": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Key of Ignorance": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Key of Knowledge": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Kill Count": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Krak Grenade": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Kraken Tooth Necklace": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Kustom Gubbinz": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Lavish Helmet Crest": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Lavish Helmet Plume": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Lavish Helmet Spike": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Lesser Reliquary of Protection": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Lesser Reliquary of Vengeance": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Lights of Purgation": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Locator Beacon": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Magazine": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Magnificient Garment": {
+    "rarity": "Mythic",
+    "stat": "Armour",
+    "value": 2740.0,
+    "crafted": true
+  },
+  "Malefic Scroll": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Mark of Chaos Undivided": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Mark of Khorne": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Mark of Nurgle": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Mark of Slaanesh": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Mark of Tzeentch": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Marksman's Honour": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Master-Crafted Ammo": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Mechadendrite Hive": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Medallion Resolute": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Medical Supply Crate": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Mesh Weave": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Mesh Weave Garment": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Metal Decorative Skull": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Metal Joints": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Minor Bionic Enhancement": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Mission Assignment": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Mission Objective": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Mjod": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Molecular Vaporiser": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Monstrous Constitution": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Monstrous Defences": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Monstrous Strength": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Motive Force Capacitator": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Multi-Spectrum Sensor Suite": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Murderous Spikes": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Mutant Form": {
+    "rarity": "Mythic",
+    "stat": "Health",
+    "value": 291.67,
+    "crafted": false
+  },
+  "Mutation: Impenetrable Skin": {
+    "rarity": "Mythic",
+    "stat": "Armour",
+    "value": 2740.0,
+    "crafted": true
+  },
+  "Mutation: Impervious Skin": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 540.0,
+    "crafted": true
+  },
+  "Mutation: Metallic Skin": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Mutation: Otherworldly Power": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 420.0,
+    "crafted": true
+  },
+  "Mutation: Regenerative Blood": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Mutation: Scaly Skin": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Mutation: Tough Skin": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Mutation: Warped Heart": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Mutation: Warped Lungs": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Mutation: Warped Muscles": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Mutation: Warped Skin": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Mysterious Device": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 540.0,
+    "crafted": true
+  },
+  "Nano Swarm": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Nasty Spikes": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Necrodermis Nano Scarab Swarm": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Nob Teef": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Oath Seal": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Octarian Crusade Seal": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Ominous Xenos Glyphs": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Optimal Auxiliary Core": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 520.0,
+    "crafted": true
+  },
+  "Optimal Bionic Enhancement": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 340.0,
+    "crafted": true
+  },
+  "Optimal Micro-Generator": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 520.0,
+    "crafted": true
+  },
+  "Optimal Motive Force Capacitator": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Otherworldly Energy": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Otherworldly Energy Reservoir": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Otherworldly Nano Swarm": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Outrageous Adornment": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Outrageous Grimace": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Outrageous Padding": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Overcapacitator": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 320.0,
+    "crafted": true
+  },
+  "Panoptispex": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Perfidious Relic of the Unforgiven": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Personal Saga": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Phylacterine Hive": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Pile of Salvage": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Plague Bell": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Plasma Cell": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Plasma Cell Bundle": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Plasma Cell Crate": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Plasma Coil": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 520.0,
+    "crafted": true
+  },
+  "Portentous Xenos Glyphs": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 340.0,
+    "crafted": true
+  },
+  "Power Pack Bundle": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Powered Blade": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 755.0,
+    "crafted": true
+  },
+  "Powerful Auxiliary Core": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Powerful Micro-Generator": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Prehensile Dataspike": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Preternatural Constitution": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Preternatural Defences": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Preternatural Strength": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Prey-Sight": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Proclamation Caster": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Proclamation Hailer": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Proclamation Receiver": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Protocol of the Eternal Guardian": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Purifier": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Psychic Focus": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 785.0,
+    "crafted": true
+  },
+  "Psychic Force Conduit": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Psyk-Conductive Material": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Psytronome": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Purity Seal": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Purity Seal of the Primarch": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Quake Bolts": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Ratiocination Targeting": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Razor-sharp Spikes": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Rebreather": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Reconstitution Protocols": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Refined Bionics": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Refined Combat Stimms": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 200.0,
+    "crafted": true
+  },
+  "Regenerating Nano Swarm": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Reinforced Cables": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Reinforced Chitin": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Reinforced Scale-Plates": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Reliquary of Protection": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Reliquary of Vengeance": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Repair Tool": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Resplendent Spirit Stone": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Resurrection Protocols": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Revered Talisman": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Righteous Candle": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Ritual Implements": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Ropes and Chains": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Rose of Martyrs": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Roses of Sacrifice": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Roses of the Divine": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 465.0,
+    "crafted": true
+  },
+  "Round of Ammo": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Runes of Fate": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Runic Talisman": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Runic Tasset Plate": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Sabbat-Pattern Visor": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Sanctified Corset Armor": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Sanctified Reliquary of Protection": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Sanctified Weapon Oils": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Sanctus Canister": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Sash of Honors": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1430.0,
+    "crafted": true
+  },
+  "Satchel": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Scriptures of Battle": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Scriptures of Fate": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Scriptures of Fortune": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Scrolls": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Seal of Indomitability": {
+    "rarity": "Mythic",
+    "stat": "Armour",
+    "value": 2740.0,
+    "crafted": true
+  },
+  "Seal of the Emperor's Protection": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 540.0,
+    "crafted": true
+  },
+  "Secret Agenda": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Sensor Suite": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Sentry AI Drone Controller": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Servo-Arc Claw": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Shiny Boss Teef": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Shroud of Heroes": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Sigil of Decay": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Sigil of Eternal Decay": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Sigil of Inevitable Decay": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Simulacrum Sanctorum": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Single Power Pack": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Siren Amplifier": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Slicing Claws": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Snazzy Dakka": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Sonic Greave Amplifier": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Sophisticated Material": {
+    "rarity": "Common",
+    "stat": "Armour",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Sophisticated Material Bar": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Sophisticated Material Ingot": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Sophisticated Material Plates": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 660.0,
+    "crafted": true
+  },
+  "Sophisticated Material Sheet": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Soul-Bonded Psytronome": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Soul-Bonded Wraithbone Plate": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Special Issue Ammo": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Spirit Stone": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Standard-Issue Tourniquet": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Stimm Injector": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Stone Guardian Fragment": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Sturdy Parts": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Sturdy Pieces": {
+    "rarity": "Uncommon",
+    "stat": "Armour",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Sturdy Plates": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 660.0,
+    "crafted": true
+  },
+  "Sturdy Segments": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 240.0,
+    "crafted": true
+  },
+  "Subdermal Plating": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Sundering Talons": {
+    "rarity": "Mythic",
+    "stat": "Damage",
+    "value": 3005.0,
+    "crafted": true
+  },
+  "Superaugmented Constitution": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Superaugmented Defences": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Superaugmented Strength": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Supernatural Sight": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Symbiotic Carapace": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Synaptic Augmentation": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 150.0,
+    "crafted": false
+  },
+  "Ta'Lissera Bond": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Tabard of Righteous Wrath": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 650.0,
+    "crafted": true
+  },
+  "Tainted Text": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Talisman of Storms": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Tank of Promethium": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Tannhauser's Bones": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Target Lock": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Targeting Link": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Targeting Matrix": {
+    "rarity": "Uncommon",
+    "stat": "Damage",
+    "value": 30.0,
+    "crafted": true
+  },
+  "Technocrafted Constitution": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Technocrafted Defences": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Technocrafted Strength": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 2880.0,
+    "crafted": true
+  },
+  "Terminator Honours": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 60.0,
+    "crafted": false
+  },
+  "The Gold Phoenix": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "The Iron Phoenix": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "The Phoenix Ascendant": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "The Silver Aquila": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "The Silver Eagle with Swords": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "The Silver Scope": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Thick Skin": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Thunderwolf Tooth Necklace": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Tome of Arcane Knowledge": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 540.0,
+    "crafted": true
+  },
+  "Toxin Sacs": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Transdimensional Sanctum": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Unnatural Vapour Dispenser": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Unyielding Rivets": {
+    "rarity": "Epic",
+    "stat": "Armour",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Utilitarian Belt": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 80.0,
+    "crafted": true
+  },
+  "Valuable Fabric": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Venerable Battle Mark": {
+    "rarity": "Mythic",
+    "stat": "Health",
+    "value": 291.67,
+    "crafted": false
+  },
+  "Veteran's Entrenching Tool": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Viridian Energy Tesseract": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Virulent Rounds": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Visage of Death": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Vox Grill Amplifier": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Vox-Caster": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Warforged Safeguard": {
+    "rarity": "Mythic",
+    "stat": "Armour",
+    "value": 2740.0,
+    "crafted": true
+  },
+  "Warp Locus": {
+    "rarity": "Epic",
+    "stat": "Damage",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Warp Touched Eye of Horus": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Warpflame Infusion": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 610.0,
+    "crafted": true
+  },
+  "Warpweave Robe": {
+    "rarity": "Legendary",
+    "stat": "Armour",
+    "value": 1655.0,
+    "crafted": true
+  },
+  "Waystone": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Weapon Anointment Oils": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Weapon Parts": {
+    "rarity": "Common",
+    "stat": "Damage",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Weathering": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 60.0,
+    "crafted": false
+  },
+  "Wires": {
+    "rarity": "Common",
+    "stat": "Health",
+    "value": 5.0,
+    "crafted": false
+  },
+  "Witchseeker Bolts": {
+    "rarity": "Legendary",
+    "stat": "Damage",
+    "value": 1790.0,
+    "crafted": true
+  },
+  "Wolf Tail Talisman": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Wolf Tooth Necklace": {
+    "rarity": "Rare",
+    "stat": "Damage",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Wraithbone Plate": {
+    "rarity": "Rare",
+    "stat": "Armour",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Writings": {
+    "rarity": "Uncommon",
+    "stat": "Health",
+    "value": 10.0,
+    "crafted": false
+  },
+  "Wyrm-Form Banner": {
+    "rarity": "Legendary",
+    "stat": "Health",
+    "value": 690.0,
+    "crafted": true
+  },
+  "Wyrm-Form Icon": {
+    "rarity": "Epic",
+    "stat": "Health",
+    "value": 225.0,
+    "crafted": true
+  },
+  "Wyrm-Form Sigil": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  },
+  "Zeidos Ribbon": {
+    "rarity": "Rare",
+    "stat": "Health",
+    "value": 25.0,
+    "crafted": false
+  }
+}
