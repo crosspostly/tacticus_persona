@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Upgrades Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #1a1a2e;
+            color: #e4e4e4;
+            padding: 20px;
+        }
+        .test-result {
+            background: #16213e;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #00d4ff;
+        }
+        .success { border-left-color: #00ff88; }
+        .error { border-left-color: #ef4444; }
+    </style>
+</head>
+<body>
+    <h1>Equipment Upgrades Test</h1>
+    <div id="results"></div>
+
+    <script>
+        const RARITY_NAMES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic'];
+        let equipmentUpgrades = {};
+
+        async function loadEquipmentUpgrades() {
+            try {
+                const response = await fetch('equipment_upgrades.json');
+                if (!response.ok) {
+                    throw new Error('equipment_upgrades.json not found');
+                }
+                equipmentUpgrades = await response.json();
+                console.log('✅ Equipment upgrades loaded:', Object.keys(equipmentUpgrades));
+                return true;
+            } catch (error) {
+                console.error('❌ Failed to load equipment upgrades:', error);
+                return false;
+            }
+        }
+
+        function getEquipmentTier(rarityName, level) {
+            const rarityMaxTiers = {
+                'Common': 'Iron',
+                'Uncommon': 'Bronze',
+                'Rare': 'Silver',
+                'Epic': 'Gold',
+                'Legendary': 'Diamond',
+                'Mythic': 'Diamond'
+            };
+            
+            let tier, rank;
+            
+            if (level >= 51) {
+                tier = 'Diamond'; rank = 'III';
+            } else if (level >= 46) {
+                tier = 'Diamond'; rank = 'II';
+            } else if (level >= 41) {
+                tier = 'Diamond'; rank = 'I';
+            } else if (level >= 36) {
+                tier = 'Gold'; rank = 'III';
+            } else if (level >= 31) {
+                tier = 'Gold'; rank = 'II';
+            } else if (level >= 26) {
+                tier = 'Gold'; rank = 'I';
+            } else if (level >= 21) {
+                tier = 'Silver'; rank = 'III';
+            } else if (level >= 18) {
+                tier = 'Silver'; rank = 'II';
+            } else if (level >= 16) {
+                tier = 'Silver'; rank = 'I';
+            } else if (level >= 13) {
+                tier = 'Bronze'; rank = 'III';
+            } else if (level >= 11) {
+                tier = 'Bronze'; rank = 'II';
+            } else if (level >= 9) {
+                tier = 'Bronze'; rank = 'I';
+            } else if (level >= 6) {
+                tier = 'Iron'; rank = 'III';
+            } else if (level >= 4) {
+                tier = 'Iron'; rank = 'II';
+            } else if (level >= 2) {
+                tier = 'Iron'; rank = 'I';
+            } else {
+                tier = 'Stone'; rank = 'III';
+            }
+            
+            const maxTier = rarityMaxTiers[rarityName] || 'Stone';
+            const tierOrder = ['Stone', 'Iron', 'Bronze', 'Silver', 'Gold', 'Diamond'];
+            
+            if (tierOrder.indexOf(tier) > tierOrder.indexOf(maxTier)) {
+                tier = maxTier;
+                rank = 'I';
+            }
+            
+            return { tier, rank };
+        }
+
+        function getEquipmentBonuses(rarityName, level) {
+            if (!equipmentUpgrades || Object.keys(equipmentUpgrades).length === 0) {
+                return { hp: 0, armor: 0, damage: 0 };
+            }
+            
+            const { tier, rank } = getEquipmentTier(rarityName, level);
+            
+            let totalBonuses = { hp: 0, armor: 0, damage: 0 };
+            const tierOrder = ['Stone', 'Iron', 'Bronze', 'Silver', 'Gold', 'Diamond'];
+            const rankOrder = ['I', 'II', 'III'];
+            
+            for (const currentTier of tierOrder) {
+                if (!equipmentUpgrades[currentTier]) continue;
+                
+                for (const currentRank of rankOrder) {
+                    if (!equipmentUpgrades[currentTier][currentRank]) continue;
+                    
+                    const bonus = equipmentUpgrades[currentTier][currentRank];
+                    totalBonuses.hp += bonus.hp || 0;
+                    totalBonuses.armor += bonus.armor || 0;
+                    totalBonuses.damage += bonus.damage || 0;
+                    
+                    if (currentTier === tier && currentRank === rank) {
+                        return totalBonuses;
+                    }
+                }
+                
+                if (currentTier === tier) break;
+            }
+            
+            return totalBonuses;
+        }
+
+        async function runTests() {
+            const resultsDiv = document.getElementById('results');
+            
+            const loaded = await loadEquipmentUpgrades();
+            
+            if (!loaded) {
+                resultsDiv.innerHTML = '<div class="test-result error">❌ Failed to load equipment_upgrades.json</div>';
+                return;
+            }
+
+            const tests = [
+                { rarity: 'Epic', level: 28, expectedTier: 'Gold', expectedRank: 'II' },
+                { rarity: 'Legendary', level: 50, expectedTier: 'Diamond', expectedRank: 'II' },
+                { rarity: 'Common', level: 8, expectedTier: 'Iron', expectedRank: 'III' },
+                { rarity: 'Mythic', level: 55, expectedTier: 'Diamond', expectedRank: 'III' },
+            ];
+
+            let html = '';
+
+            tests.forEach(test => {
+                const { tier, rank } = getEquipmentTier(test.rarity, test.level);
+                const bonuses = getEquipmentBonuses(test.rarity, test.level);
+                
+                const tierMatch = tier === test.expectedTier && rank === test.expectedRank;
+                const className = tierMatch ? 'success' : 'error';
+                const icon = tierMatch ? '✅' : '❌';
+                
+                html += `
+                    <div class="test-result ${className}">
+                        ${icon} <strong>${test.rarity} Level ${test.level}</strong><br>
+                        Equipment Tier: ${tier} ${rank} (Expected: ${test.expectedTier} ${test.expectedRank})<br>
+                        Bonuses: HP +${bonuses.hp}, Armor +${bonuses.armor}, Damage +${bonuses.damage}
+                    </div>
+                `;
+            });
+
+            const exampleTest = {
+                rarity: 'Epic',
+                level: 28,
+                baseHP: 1426,
+                baseArmor: 342,
+                baseDmg: 798
+            };
+
+            const bonuses = getEquipmentBonuses(exampleTest.rarity, exampleTest.level);
+            const finalHP = exampleTest.baseHP + bonuses.hp;
+            const finalArmor = exampleTest.baseArmor + bonuses.armor;
+            const finalDmg = exampleTest.baseDmg + bonuses.damage;
+
+            html += `
+                <div class="test-result">
+                    <strong>Example: Marshal Dreir (Epic Lvl 28)</strong><br>
+                    Base Stats: HP ${exampleTest.baseHP}, Armor ${exampleTest.baseArmor}, Dmg ${exampleTest.baseDmg}<br>
+                    Equipment Bonuses: HP +${bonuses.hp}, Armor +${bonuses.armor}, Damage +${bonuses.damage}<br>
+                    <strong>Final Stats: HP ${finalHP}, Armor ${finalArmor}, Dmg ${finalDmg}</strong>
+                </div>
+            `;
+
+            resultsDiv.innerHTML = html;
+        }
+
+        runTests();
+    </script>
+</body>
+</html>
