@@ -680,6 +680,7 @@
         let characterFactionsDB = [];
         let characterAttackTypesDB = [];
         let passiveAbilitiesDB = [];
+        let equipmentUpgrades = {};
         let characters = [];
         let matchupMatrix = {};
         let synergyDatabase = {};
@@ -697,6 +698,20 @@
         window.addEventListener('load', function() {
             syncAllData();
         });
+
+        async function loadEquipmentUpgrades() {
+            try {
+                const response = await fetch('equipment_upgrades.json');
+                if (!response.ok) {
+                    console.warn('⚠️ equipment_upgrades.json not found');
+                    return;
+                }
+                equipmentUpgrades = await response.json();
+                console.log('✅ Equipment upgrades loaded:', Object.keys(equipmentUpgrades));
+            } catch (error) {
+                console.error('❌ Failed to load equipment upgrades:', error);
+            }
+        }
 
         async function syncAllData() {
             const syncIcon = document.getElementById('syncIcon');
@@ -763,6 +778,7 @@
                 }
                 
                 await loadConditionalDatabases();
+                await loadEquipmentUpgrades();
                 
                 const filtered = dataArray.filter(c => isCharacter(c) && !MACHINES_OF_WAR.includes(c.name));
                 
@@ -1733,7 +1749,89 @@
             
             const newMetrics = calculateMatchup(tempAttacker, tempDefender);
             
-            // ❗ ОБНОВЛЯЕМ ТОЛЬКО HTML БЛОК, БЕЗ renderAnalysisTab
+            const [atkType, atkHits] = extractAttackInfo(tempAttacker.ranged)[0] ? extractAttackInfo(tempAttacker.ranged) : extractAttackInfo(tempAttacker.melee);
+            const pierce = PIERCE_RATIOS[atkType] || 20;
+            
+            const ratio = newMetrics.roundsToKill / newMetrics.roundsToKillMe;
+            let tradeResult = '';
+            let tradeClass = '';
+            
+            if (ratio <= 0.5) {
+                tradeResult = `🟢 ${tempAttacker.name} ДОМИНИРУЕТ (+${(newMetrics.roundsToKillMe - newMetrics.roundsToKill).toFixed(1)} раунда преимущества)`;
+                tradeClass = 'dominate';
+            } else if (ratio <= 0.67) {
+                tradeResult = `🟢 ${tempAttacker.name} имеет преимущество (+${(newMetrics.roundsToKillMe - newMetrics.roundsToKill).toFixed(1)} раунда)`;
+                tradeClass = 'advantage';
+            } else if (ratio <= 1.3) {
+                tradeResult = `🟡 СБАЛАНСИРОВАННЫЙ РАЗМЕН (разница ${Math.abs(newMetrics.roundsToKillMe - newMetrics.roundsToKill).toFixed(1)} раунда)`;
+                tradeClass = 'balanced';
+            } else if (ratio <= 2.0) {
+                tradeResult = `🔴 ${tempDefender.name} имеет преимущество (+${(newMetrics.roundsToKill - newMetrics.roundsToKillMe).toFixed(1)} раунда)`;
+                tradeClass = 'disadvantage';
+            } else {
+                tradeResult = `🔴 ${tempDefender.name} ДОМИНИРУЕТ (+${(newMetrics.roundsToKill - newMetrics.roundsToKillMe).toFixed(1)} раунда преимущества)`;
+                tradeClass = 'dominated';
+            }
+            
+            const analysisTab = document.getElementById('analysisTab');
+            
+            const atkCardStats = analysisTab.querySelectorAll('.char-card')[0]?.querySelectorAll('.stat-row');
+            if (atkCardStats && atkCardStats.length >= 3) {
+                atkCardStats[0].querySelector('span:last-child').textContent = tempAttacker.hp;
+                atkCardStats[1].querySelector('span:last-child').textContent = tempAttacker.armor;
+                atkCardStats[2].querySelector('span:last-child').textContent = tempAttacker.dmg;
+            }
+            
+            const defCardStats = analysisTab.querySelectorAll('.char-card')[1]?.querySelectorAll('.stat-row');
+            if (defCardStats && defCardStats.length >= 3) {
+                defCardStats[0].querySelector('span:last-child').textContent = tempDefender.hp;
+                defCardStats[1].querySelector('span:last-child').textContent = tempDefender.armor;
+                defCardStats[2].querySelector('span:last-child').textContent = tempDefender.dmg;
+            }
+            
+            const metricBoxes = analysisTab.querySelectorAll('.metric-box');
+            if (metricBoxes.length >= 2) {
+                const attackMetric = metricBoxes[1];
+                const attackValue = attackMetric.querySelector('.metric-value');
+                if (attackValue) {
+                    attackValue.style.background = `#${getColorForPct(newMetrics.attack)}`;
+                    attackValue.textContent = `${newMetrics.attack}%`;
+                }
+                const attackDesc = attackMetric.querySelector('p');
+                if (attackDesc) {
+                    attackDesc.innerHTML = `
+                        └─ Я убиваю ${tempDefender.name} за <strong style="color: #fff;">${newMetrics.roundsToKill} раунда</strong><br>
+                        └─ Урон за ход: ${newMetrics.totalDmgPerTurn} (${newMetrics.dmgPerHit} × ${atkHits} hits)<br>
+                        └─ Тип: ${atkType} (${pierce}% pierce)
+                    `;
+                }
+                
+                const defenseMetric = metricBoxes[2];
+                const defenseValue = defenseMetric.querySelector('.metric-value');
+                if (defenseValue) {
+                    defenseValue.style.background = `#${getColorForPct(newMetrics.defense)}`;
+                    defenseValue.textContent = `${newMetrics.defense}%`;
+                }
+                const defenseDesc = defenseMetric.querySelector('p');
+                if (defenseDesc) {
+                    defenseDesc.innerHTML = `
+                        └─ ${tempDefender.name} убивает меня за <strong style="color: #fff;">${newMetrics.roundsToKillMe} раунда</strong><br>
+                        └─ Моя живучесть: ${tempAttacker.hp} HP / ${tempAttacker.armor} armor
+                    `;
+                }
+            }
+            
+            const tradeIndicator = analysisTab.querySelector('.trade-indicator');
+            if (tradeIndicator) {
+                tradeIndicator.className = `trade-indicator ${tradeClass}`;
+                tradeIndicator.innerHTML = `
+                    ⚖️ ИТОГ РАЗМЕНА<br>
+                    <div style="font-size: 0.9em; margin-top: 8px;">
+                        ${tradeResult}
+                    </div>
+                `;
+            }
+            
             document.getElementById('rarityStatsDisplay').innerHTML = `
                 <div style="text-align: center; color: #00d4ff; font-weight: bold; margin-bottom: 10px;">
                     📊 ТЕКУЩИЕ ХАРАКТЕРИСТИКИ
@@ -1937,6 +2035,96 @@
 
         const RARITY_NAMES = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythic'];
 
+        function getEquipmentTier(rarityName, level) {
+            const rarityMaxTiers = {
+                'Common': 'Iron',
+                'Uncommon': 'Bronze',
+                'Rare': 'Silver',
+                'Epic': 'Gold',
+                'Legendary': 'Diamond',
+                'Mythic': 'Diamond'
+            };
+            
+            let tier, rank;
+            
+            if (level >= 51) {
+                tier = 'Diamond'; rank = 'III';
+            } else if (level >= 46) {
+                tier = 'Diamond'; rank = 'II';
+            } else if (level >= 41) {
+                tier = 'Diamond'; rank = 'I';
+            } else if (level >= 36) {
+                tier = 'Gold'; rank = 'III';
+            } else if (level >= 31) {
+                tier = 'Gold'; rank = 'II';
+            } else if (level >= 26) {
+                tier = 'Gold'; rank = 'I';
+            } else if (level >= 21) {
+                tier = 'Silver'; rank = 'III';
+            } else if (level >= 18) {
+                tier = 'Silver'; rank = 'II';
+            } else if (level >= 16) {
+                tier = 'Silver'; rank = 'I';
+            } else if (level >= 13) {
+                tier = 'Bronze'; rank = 'III';
+            } else if (level >= 11) {
+                tier = 'Bronze'; rank = 'II';
+            } else if (level >= 9) {
+                tier = 'Bronze'; rank = 'I';
+            } else if (level >= 6) {
+                tier = 'Iron'; rank = 'III';
+            } else if (level >= 4) {
+                tier = 'Iron'; rank = 'II';
+            } else if (level >= 2) {
+                tier = 'Iron'; rank = 'I';
+            } else {
+                tier = 'Stone'; rank = 'III';
+            }
+            
+            const maxTier = rarityMaxTiers[rarityName] || 'Stone';
+            const tierOrder = ['Stone', 'Iron', 'Bronze', 'Silver', 'Gold', 'Diamond'];
+            
+            if (tierOrder.indexOf(tier) > tierOrder.indexOf(maxTier)) {
+                tier = maxTier;
+                rank = 'I';
+            }
+            
+            return { tier, rank };
+        }
+
+        function getEquipmentBonuses(rarityName, level) {
+            if (!equipmentUpgrades || Object.keys(equipmentUpgrades).length === 0) {
+                return { hp: 0, armor: 0, damage: 0 };
+            }
+            
+            const { tier, rank } = getEquipmentTier(rarityName, level);
+            
+            let totalBonuses = { hp: 0, armor: 0, damage: 0 };
+            const tierOrder = ['Stone', 'Iron', 'Bronze', 'Silver', 'Gold', 'Diamond'];
+            const rankOrder = ['I', 'II', 'III'];
+            
+            for (const currentTier of tierOrder) {
+                if (!equipmentUpgrades[currentTier]) continue;
+                
+                for (const currentRank of rankOrder) {
+                    if (!equipmentUpgrades[currentTier][currentRank]) continue;
+                    
+                    const bonus = equipmentUpgrades[currentTier][currentRank];
+                    totalBonuses.hp += bonus.hp || 0;
+                    totalBonuses.armor += bonus.armor || 0;
+                    totalBonuses.damage += bonus.damage || 0;
+                    
+                    if (currentTier === tier && currentRank === rank) {
+                        return totalBonuses;
+                    }
+                }
+                
+                if (currentTier === tier) break;
+            }
+            
+            return totalBonuses;
+        }
+
         // Функция для извлечения реальных характеристик из data.json
         function getCharacterStatsFromData(characterName, rarityName, level) {
             const character = characters.find(c => c.name === characterName);
@@ -2110,7 +2298,13 @@
                 }
             }
             
-            return { hp, armor, dmg };
+            const equipmentBonuses = getEquipmentBonuses(rarityName, level);
+            
+            return {
+                hp: hp + equipmentBonuses.hp,
+                armor: armor + equipmentBonuses.armor,
+                dmg: dmg + equipmentBonuses.damage
+            };
         }
 
         document.getElementById('attackerFilter').addEventListener('change', renderTable);
