@@ -1,50 +1,18 @@
 character,ability_name,ability_type,condition_type,condition_value,bonus_value,confidence
-"Adamatar Xandassus, Mirrorborn",Malefic Maelstrom,active,trait,Summon,30,low
-Aleph-Null,Fabricator Claw Array,passive,trait,Mechanical,30,low
-Archimatos,Daemonic Incursion,active,trait,Psyker,50,low
-Atlacoya,Daughter of the Abyss,passive,trait,Psyker,50,low
-Baraqiel,Deathwing,passive,faction,Chaos,19,low
-Celestine,Geminae Superia,passive,trait,Summon,30,low
-Corrodius,Poxwalkers,active,trait,Mechanical,30,low
-Corrodius,Cursed Plague Bell,passive,trait,Psyker,50,low
-Exitor-Rho,Optimised Gait,passive,trait,Mechanical,30,low
-High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,50,low
-Incisus,Narthecium,passive,trait,Mechanical,30,low
-Isabella,Rites of Restoration,active,trait,Mechanical,30,low
-Isabella,Medicus Ministorum,passive,trait,Mechanical,30,low
-Kariyan,Legacy of Combat,passive,trait,Big Target,19,low
-Makhotep,Relentless March,passive,trait,Mechanical,30,low
-Mataneo,Aggressive Onslaught,passive,trait,Summon,50,high
-Nicodemus,Blood Chalice,active,trait,Mechanical,50,high
-Nicodemus,Sanguinary Priest,passive,trait,Mechanical,30,low
-Njal,Stormcaller,active,trait,Flying,19,low
-Parasite of Mortrex,Barbed Ovipositor,passive,trait,Summon,30,low
-Roswitha,Brazier of Holy Fire,active,trait,Daemon,30,low
-Roswitha,Condemnor Stake,passive,trait,Psyker,50,low
 Arkarzar Abraxas,Malefic Maelstrom,active,trait,Summon,30,low
-Atlacoya,Daughter Of The Abyss,passive,trait,Psyker,50,low
-Baraqiel,Deathwing,passive,faction,Chaos,19,low
-Canoptek Spyder Aleph-Null,Fabricator Claw Array,passive,trait,Mechanical,30,low
 "Celestine, the living Saint",Geminae Superia,passive,trait,Summon,30,low
-Corrodius Achebile,Cursed Plague Bell,passive,trait,Psyker,50,low
-Exitor-Rho-1.15/x,Optimised Gait,passive,trait,Mechanical,30,low
-High Marshal Helbrecht,Destroy The Witch,passive,trait,Psyker,50,low
-Isabella Mariken,Rites of Restoration,active,trait,Mechanical,30,low
 Isabella Mariken,Medicus Ministorum,passive,trait,Mechanical,30,low
 Kariyan Helsates,Legacy Of Combat,passive,trait,Big Target,19,low
+Lord Castellan Ursarkar E. Creed,Sworn Protector,passive,trait,Summon,30,low
 Mataneo,Aggressive Onslaught,passive,trait,Summon,30,low
 Nicodemus,Blood Chalice,active,trait,Mechanical,30,low
 Nicodemus,Sanguinary Priest,passive,trait,Mechanical,30,low
 Njal Stormcaller,Stormcaller,active,trait,Flying,19,low
 Olog Tanksmasha,Unstoppable Momentum,active,trait,Big Target,19,low
 Parasite of Mortrex,Barbed Ovipositor,passive,trait,Summon,30,low
-Roswitha Esther,Brazier of Holy Fire,active,trait,Daemon,30,low
-Roswitha Esther,Condemnor Stake,passive,trait,Psyker,50,low
-Royal Warden Makhotep,Relentless March,passive,trait,Mechanical,30,low
+Sergeant Bellator,Shock Assault,passive,trait,Summon,30,low
 Shas'o Vior'la Shovah Kais Mont'yr,Exemplar of the Mont'ka,active,trait,Big Target,19,low
-Sy-gex-KPH008/15.mk41,Heavy Grav-Cannon,passive,trait,Mechanical,30,low
-Tan Gi'da,Doctrina Imperatives,active,trait,Mechanical,30,low
-Tjark Wyrdslayer,Hunters Beyond Death,passive,trait,Psyker,50,low
+Sy-gex-KPH008/15.mk41,Heavy Grav-Cannon,passive,trait,Mk X Gravis,30,low
 Tyrant Guard,Guardian Organism,passive,trait,Big Target,19,low
 Ulf Frosthowl,Savage Killer,passive,trait,Summon,30,low
 Winged Tyranid Prime,Synaptic Linchpin,passive,trait,Summon,30,low
