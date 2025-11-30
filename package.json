@@ -4,7 +4,9 @@
   "description": "```\r ├── index.html              # Main page\r ├── data.json              # Character data (JSON)\r ├── data.txt               # Character data (TXT) - Priority\r ├── synergy_database.json  # Synergy database (JSON)\r ├── synergy_database.txt   # Synergy database (TXT) - Priority\r ├── counter_database.json  # Counter database (JSON)\r └── counter_database.txt   # Counter database (TXT) - Priority\r ```",
   "main": "damage-calc-fixed.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scrape:tacticustable": "node parse_tacticustable_api.js",
+    "scrape:tacticustable:force": "node parse_tacticustable_api.js --force"
   },
   "keywords": [],
   "author": "",
