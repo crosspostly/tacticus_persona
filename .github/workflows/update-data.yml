@@ -1,0 +1,156 @@
+name: Monthly Data Update
+
+on:
+  # Запуск 1-го числа каждого месяца в 00:00 UTC
+  schedule:
+    - cron: '0 0 1 * *'
+  # Возможность запуска вручную
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Parse TacticusTable API
+        run: |
+          echo "🌐 Fetching data from api.tacticustable.com..."
+          node parse_tacticustable_api.js --force
+          echo "✅ API data parsed successfully"
+      
+      - name: Backup old data.json
+        run: |
+          if [ -f data.json ]; then
+            cp data.json data.json.backup
+            echo "📦 Backup created: data.json.backup"
+          fi
+      
+      - name: Update data.json (merge API data)
+        run: |
+          echo "🔄 Merging tacticustable_heroes_stats.json into data.json..."
+          
+          # Простой скрипт для объединения данных
+          node -e '
+            const fs = require("fs");
+            const oldData = JSON.parse(fs.readFileSync("data.json", "utf8"));
+            const newData = JSON.parse(fs.readFileSync("tacticustable_heroes_stats.json", "utf8"));
+            
+            // Создаем карту старых персонажей по имени
+            const oldCharsMap = new Map();
+            oldData.characters.forEach(char => {
+              oldCharsMap.set(char.name, char);
+            });
+            
+            // Обновляем или добавляем персонажей
+            const updatedChars = newData.characters.map(newChar => {
+              const oldChar = oldCharsMap.get(newChar.name);
+              
+              if (oldChar) {
+                // Если персонаж существует, объединяем данные
+                // API данные имеют приоритет, но сохраняем таблицы из старого data.json
+                return {
+                  ...oldChar,
+                  ...newChar,
+                  activeAbility: {
+                    ...newChar.activeAbility,
+                    tables: oldChar.activeAbility?.tables || []
+                  },
+                  passiveAbility: {
+                    ...newChar.passiveAbility,
+                    tables: oldChar.passiveAbility?.tables || []
+                  }
+                };
+              } else {
+                // Новый персонаж
+                return newChar;
+              }
+            });
+            
+            // Обновляем мета-данные
+            const updatedData = {
+              meta: {
+                total: updatedChars.length,
+                successful: updatedChars.length,
+                failed: 0,
+                lastUpdate: new Date().toISOString(),
+                source: "api.tacticustable.com",
+                apiVersion: newData.meta.apiVersion
+              },
+              characters: updatedChars.sort((a, b) => a.name.localeCompare(b.name))
+            };
+            
+            fs.writeFileSync("data.json", JSON.stringify(updatedData, null, 2));
+            console.log(`✅ Updated data.json with ${updatedChars.length} characters`);
+          '
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --exit-code data.json tacticustable_heroes_stats.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✅ Changes detected"
+          fi
+      
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Удаляем backup и raw кэш
+          git rm -f data.json.backup 2>/dev/null || true
+          git rm -f raw_game_info.json 2>/dev/null || true
+          
+          git add data.json tacticustable_heroes_stats.json
+          
+          git commit -m "🔄 Monthly data update from TacticusTable API
+          
+          - Updated character stats and abilities
+          - Merged with existing ability tables
+          - Source: api.tacticustable.com
+          - Updated at: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+          
+          git push
+          
+          echo "✅ Changes committed and pushed"
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "📊 Update Summary:"
+          echo "===================="
+          
+          if [ "${{ steps.check_changes.outputs.changed }}" == "true" ]; then
+            echo "✅ Data was updated and pushed to repository"
+          else
+            echo "ℹ️ No changes detected, repository is up-to-date"
+          fi
+          
+          # Показываем статистику
+          echo ""
+          echo "📈 Current statistics:"
+          node -e '
+            const data = require("./data.json");
+            console.log(`Total characters: ${data.meta.total}`);
+            console.log(`Last update: ${data.meta.lastUpdate || "N/A"}`);
+            console.log(`API version: ${data.meta.apiVersion || "N/A"}`);
+          '
