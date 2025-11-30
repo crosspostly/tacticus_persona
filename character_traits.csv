@@ -1,255 +1,269 @@
 character,trait
-Abaddon The Despoiler,Let the Galaxy Burn
-Abaddon The Despoiler,Resilient
-Abaddon The Despoiler,Terminator Armour
-Abraxas,Psyker
-Abraxas,Weaver of Fates
-Actus,Mechanic
-Actus,Mechanical
-Actus,Flying
-Adamatar,Thrill Seekers
-Aesoth,Big Target
-Aesoth,Martial Ka'tah
-Aesoth,Resilient
-Aethana,Deep Strike
-Aethana,Flying
-Ahriman,Flying
-Ahriman,Psyker
-Ahriman,Weaver of Fates
-Aleph-Null,Explodes
-Aleph-Null,Flying
-Aleph-Null,Living Metal
-Aleph-Null,Mechanic
-Ancient Thoread,Final Vengeance
-Ancient Thoread,Parry
-Angrax,Deep Strike
-Angrax,Let the Galaxy Burn
-Angrax,Terminator Armour
-Anuphet,Living Metal
-Archimatos,Let the Galaxy Burn
-Archimatos,Psyker
-Arjac,Deep Strike
-Arjac,Resilient
-Arjac,Terminator Armour
-Arjac,Unstoppable
+Abaddon the Despoiler,LetTheGalaxyBurn
+Abaddon the Despoiler,Resilient
+Abaddon the Despoiler,TerminatorArmour
+"Adamatar Xandassus, Mirrorborn",ThrillSeekers
+Aesoth Koumadra,MartialKatah
+Aesoth Koumadra,BigTarget
+Aesoth Koumadra,Resilient
+Aethana Barantharal,Flying
+Aethana Barantharal,TeleportStrike
+Ahzek Ahriman,WeaverOfFate
+Ahzek Ahriman,Flying
+Ahzek Ahriman,Psyker
+Ancient Cantus Thoread,FinalJustice
+Ancient Cantus Thoread,Parry
+Apothecary Incisus,Healer
+Arjac Rockfist,Resilient
+Arjac Rockfist,TeleportStrike
+Arjac Rockfist,TerminatorArmour
+Arjac Rockfist,Unstoppable
+Arkarzar Abraxas,WeaverOfFate
+Arkarzar Abraxas,Psyker
 Asmodai,Terrifying
 Atlacoya,Parry
 Atlacoya,Terrifying
-Aun'Shi,None
-Azkor,Blessings of Khorne
-Azkor,Daemon
-Azkor,Resilient
-Azkor,Terrifying
-Azkor,Unstoppable
-Azrael,Final Vengeance
+"Azkor, the Eightfold",BlessingsOfKhorne
+"Azkor, the Eightfold",Daemon
+"Azkor, the Eightfold",Resilient
+"Azkor, the Eightfold",Terrifying
+"Azkor, the Eightfold",Unstoppable
+Azrael,FinalJustice
 Azrael,Overwatch
-Baraqiel,Crushing Strike
-Baraqiel,Deep Strike
-Baraqiel,Heavy Weapon
-Baraqiel,Terminator Armour
-Bellator,Flying
-Bellator,Mk X Gravis
-Boss Gulgortz,Big Target
-Boss Gulgortz,Crushing Strike
-Boss Gulgortz,Get Stuck In
-Boss Gulgortz,Final Vengeance
-Boss Gulgortz,Mechanical
-Brother Burchard,Crushing Strike
-Brother Burchard,Mk X Gravis
-Brother Burchard,Suppressive Fire
-Brother Jaeger,Final Vengeance
-Brother Jaeger,Parry
-Brother Jaeger,Rapid Assault
-Calandis,Heavy Weapon
-Calandis,Overwatch
-Castellan Creed,None
-Celestine,Act of Faith
-Celestine,Flying
-Certus,Heavy Weapon
-Certus,Infiltrate
-Certus,Overwatch
-Commissar Yarrick,Resilient
-Corrodius,Contagions of Nurgle
-Corrodius,Resilient
-Dante,Deep Strike
-Dante,Final Vengeance
-Dante,Flying
-Dante,Rapid Assault
-Dante,Terrifying
-Darkstrider,Close Combat Weakness
-Darkstrider,Infiltrate
-Darkstrider,Suppressive Fire
+Baraqiel,TeleportStrike
+Baraqiel,CrushingStrike
+Baraqiel,HeavyWeapon
+Baraqiel,TerminatorArmour
+Battle Sister Vindicta,ActOfFaith
+Battle Sister Vindicta,HeavyWeapon
+Brother Kenric Jaeger,FinalJustice
+Brother Kenric Jaeger,Parry
+Brother Kenric Jaeger,RapidAssault
+Brother Raimund Burchard,CrushingStrike
+Brother Raimund Burchard,MkXGravis
+Brother Raimund Burchard,SuppressiveFire
+Calandis Tawaren,HeavyWeapon
+Calandis Tawaren,Overwatch
+Canoptek Spyder Aleph-Null,LivingMetal
+Canoptek Spyder Aleph-Null,Explodes
+Canoptek Spyder Aleph-Null,Mechanical
+Canoptek Spyder Aleph-Null,Flying
+Canoptek Spyder Aleph-Null,Mechanic
+"Celestine, the living Saint",ActOfFaith
+"Celestine, the living Saint",Flying
+Commander Dante,TeleportStrike
+Commander Dante,FinalJustice
+Commander Dante,Flying
+Commander Dante,RapidAssault
+Commander Dante,Terrifying
+Commissar Sebastian Yarrick,Resilient
+Corrodius Achebile,ContagionsOfNurgle
+Corrodius Achebile,Resilient
 Deathleaper,Camouflage
-Deathleaper,Deep Strike
+Deathleaper,TeleportStrike
 Deathleaper,Infiltrate
 Deathleaper,Terrifying
-Eldryon,Psyker
-Exitor-Rho,Camouflage
-Exitor-Rho,Infiltrate
-Exitor-Rho,Mechanical
-Exitor-Rho,Unstoppable
-Forcas,Camouflage
-Forcas,Parry
-Gibbascrapz,Get Stuck In
-Gibbascrapz,Mechanic
+Demetrian Titus,BeastSnagga
+Demetrian Titus,FinalJustice
+Drakfus Angrax,LetTheGalaxyBurn
+Drakfus Angrax,TeleportStrike
+Drakfus Angrax,TerminatorArmour
+Eldryon Ynaduin,Psyker
+Exitor-Rho-1.15/x,Mechanical
+Exitor-Rho-1.15/x,Camouflage
+Exitor-Rho-1.15/x,Infiltrate
+Exitor-Rho-1.15/x,Unstoppable
+Forcas Oathsworn,Camouflage
+Forcas Oathsworn,Parry
+"Gibbascrapz, da Spezulist",GetStuckIn
+"Gibbascrapz, da Spezulist",Mechanic
+Grumbal Snotflogga,GetStuckIn
+Grumbal Snotflogga,BeastSnagga
+Gulgortz Bulldoza,GetStuckIn
+Gulgortz Bulldoza,BigTarget
+Gulgortz Bulldoza,CrushingStrike
+Gulgortz Bulldoza,FinalJustice
+Gulgortz Bulldoza,Mechanical
+Haarken Worldclaimer,LetTheGalaxyBurn
 Haarken Worldclaimer,Flying
-Haarken Worldclaimer,Let the Galaxy Burn
 Haarken Worldclaimer,Terrifying
-High Marshal Helbrecht,Final Vengeance
+Hascule Thorn of the Silken Blade,ThrillSeekers
+Hascule Thorn of the Silken Blade,Parry
+Hexmark Destroyer Imospekh,Overwatch
+Hexmark Destroyer Imospekh,LivingMetal
+Hexmark Destroyer Imospekh,Mechanical
+High Marshal Helbrecht,FinalJustice
 High Marshal Helbrecht,Parry
-Hollan,Ambush
-Hollan,Healer
-Imospekh,Living Metal
-Imospekh,Overwatch
-Incisus,Healer
-Isaak,Ambush
-Isabella,Act of Faith
-Isabella,Healer
+Hollan Baumgart,Ambush
+Hollan Baumgart,Healer
+Isaak Starn,Ambush
+Isabella Mariken,ActOfFaith
+Isabella Mariken,Healer
 Jain Zar,Infiltrate
-Judh,Ambush
-Judh,Beast Slayer
-Kariyan,Beast Slayer
-Kariyan,Martial Ka'tah
-Kariyan,Parry
-Kariyan,Rapid Assault
-Kariyan,Resilient
-Kharn,Blessings of Khorne
-Kharn,Final Vengeance
-Kharn,Rapid Assault
-Kut Skoden,Big Target
-Lucien,Rapid Assault
+Judh Lhaska,Ambush
+Judh Lhaska,BeastSnagga
+Kairatar Thaumachus,WeaverOfFate
+Kairatar Thaumachus,Flying
+Kairatar Thaumachus,Psyker
+Kariyan Helsates,MartialKatah
+Kariyan Helsates,BeastSnagga
+Kariyan Helsates,RapidAssault
+Kariyan Helsates,Parry
+Kariyan Helsates,Resilient
+Khârn the Betrayer,BlessingsOfKhorne
+Khârn the Betrayer,RapidAssault
+Khârn the Betrayer,FinalJustice
+Kut Skoden,BigTarget
+"Laviscus Sentrillion, the Perfect",ThrillSeekers
+"Laviscus Sentrillion, the Perfect",CrushingStrike
+Lord Marshal Varnan Dreir,Resilient
+Lord Marshal Varnan Dreir,Unstoppable
+Lucien,RapidAssault
 Lucien,Resilient
 Lucien,Unstoppable
-Lucius,Thrill Seekers
-Lucius,Parry
-Macer,Blessings of Khorne
-Macer,Resilient
-Makhotep,Living Metal
-Maladus,Contagions of Nurgle
-Maladus,Resilient
-Maladus,Terminator Armour
-Marneus Calgar,Final Vengeance
-Marneus Calgar,Mk X Gravis
-Marshal Dreir,Resilient
-Marshal Dreir,Unstoppable
-Mataneo,Deep Strike
+Lucius the Eternal,ThrillSeekers
+Lucius the Eternal,Parry
+Macer Bloodgrin,BlessingsOfKhorne
+Macer Bloodgrin,Resilient
+Magos Dominus Vitruvius Thannek,Mechanical
+Magos Dominus Vitruvius Thannek,Mechanic
+Maladus Phlegmore,ContagionsOfNurgle
+Maladus Phlegmore,Resilient
+Maladus Phlegmore,TerminatorArmour
+Manipulus Actus Fulgorosus,Mechanical
+Manipulus Actus Fulgorosus,Mechanic
+Manipulus Actus Fulgorosus,Flying
+Marneus Calgar,CrushingStrike
+Marneus Calgar,FinalJustice
+Marneus Calgar,MkXGravis
+Master Archimatos,LetTheGalaxyBurn
+Master Archimatos,Psyker
+Mataneo,TeleportStrike
 Mataneo,Flying
-Mataneo,Rapid Assault
-Maugan Ra,Heavy Weapon
-Maugan Ra,Overwatch
+Mataneo,RapidAssault
 Maugan Ra,Terrifying
-Mephiston,Rapid Assault
+Maugan Ra,HeavyWeapon
+Maugan Ra,Overwatch
 Mephiston,Psyker
+Mephiston,RapidAssault
 Mephiston,Terrifying
-Morvenn Vahl,Act of Faith
-Morvenn Vahl,Big Target
+Morvenn Vahl,ActOfFaith
+Morvenn Vahl,BigTarget
 Morvenn Vahl,Explodes
 Morvenn Vahl,Mechanical
-Nauseous Rotbone,Contagions of Nurgle
-Nauseous Rotbone,Healer
+Nauseous Rotbone,ContagionsOfNurgle
 Nauseous Rotbone,Resilient
-Neurothrope,Close Combat Weakness
+Nauseous Rotbone,Healer
+Neurothrope,CloseCombatWeakness
 Neurothrope,Flying
 Neurothrope,Psyker
-Neurothrope,Shadow in the Warp
+Neurothrope,ShadowInTheWarp
 Neurothrope,Synapse
 Nicodemus,Healer
-Nicodemus,Rapid Assault
-Njal,Psyker
-Njal,Terminator Armour
-Njal,Unstoppable
+Nicodemus,RapidAssault
+Njal Stormcaller,Psyker
+Njal Stormcaller,TerminatorArmour
+Njal Stormcaller,Unstoppable
+Olog Tanksmasha,GetStuckIn
+Olog Tanksmasha,BeastSnagga
+Olog Tanksmasha,Unstoppable
+Overlord Anuphet,LivingMetal
+Overlord Anuphet,Mechanical
 Parasite of Mortrex,Flying
 Parasite of Mortrex,Synapse
-Pestillian,Contagions of Nurgle
-Pestillian,Putrid Explosion
-Pestillian,Resilient
-Ragnar,Beast Slayer
-Ragnar,Final Vengeance
-Ragnar,Rapid Assault
-Re'vas,Big Target
-Re'vas,Close Combat Weakness
-Re'vas,Flying
-Re'vas,Mechanical
-Roswitha,Act of Faith
-Sarquael,Final Vengeance
-Sarquael,Heavy Weapon
+Pestillian Witherpus,ContagionsOfNurgle
+Pestillian Witherpus,Resilient
+Pestillian Witherpus,PutridExplosion
+Plasmancer Thutmose,LivingMetal
+Plasmancer Thutmose,Mechanical
+Plasmancer Thutmose,Flying
+Ragnar Blackmane,BeastSnagga
+Ragnar Blackmane,FinalJustice
+Ragnar Blackmane,RapidAssault
+Roswitha Esther,ActOfFaith
+Royal Warden Makhotep,LivingMetal
+Royal Warden Makhotep,Mechanical
+Sarquael,FinalJustice
 Sarquael,Overwatch
-Shadowsun,Camouflage
-Shadowsun,Close Combat Weakness
-Shadowsun,Flying
-Shadowsun,Infiltrate
-Shiron,Heavy Weapon
-Shiron,Suppressive Fire
-Shiron,Thrill Seekers
-Sho'syl,Camouflage
-Sho'syl,Close Combat Weakness
+Sarquael,HeavyWeapon
+Sergeant Bellator,Flying
+Sergeant Bellator,MkXGravis
+Sergeant Certus,Overwatch
+Sergeant Certus,HeavyWeapon
+Sergeant Certus,Infiltrate
+Shas'el T'au Myamoto,CloseCombatWeakness
+Shas'el T'au Myamoto,Infiltrate
+Shas'el T'au Myamoto,SuppressiveFire
+Shas'o T'au Shaserra,CloseCombatWeakness
+Shas'o T'au Shaserra,Camouflage
+Shas'o T'au Shaserra,Flying
+Shas'o T'au Shaserra,Infiltrate
+Shas'o Vior'la Shovah Kais Mont'yr,BeastSnagga
+Shas'o Vior'la Shovah Kais Mont'yr,BigTarget
+Shas'o Vior'la Shovah Kais Mont'yr,Flying
+Shas'o Vior'la Shovah Kais Mont'yr,Mechanical
+Shas'ui Vior'la Sho'syl,CloseCombatWeakness
+Shas'ui Vior'la Sho'syl,Camouflage
+Shas'vre Vior'la Re'vas,CloseCombatWeakness
+Shas'vre Vior'la Re'vas,BigTarget
+Shas'vre Vior'la Re'vas,Flying
+Shas'vre Vior'la Re'vas,Mechanical
+"Shiron Capersi, the Idolator",ThrillSeekers
+"Shiron Capersi, the Idolator",HeavyWeapon
+"Shiron Capersi, the Idolator",SuppressiveFire
 Sibyll Devine,Psyker
-Snappawrecka,Big Target
+Snappawrecka,GetStuckIn
+Snappawrecka,BigTarget
 Snappawrecka,Explodes
-Snappawrecka,Get Stuck In
 Snappawrecka,Mechanical
-Snotflogga,Beast Slayer
-Snotflogga,Get Stuck In
-Sword Brother Godswyl,Parry
-Sword Brother Godswyl,Rapid Assault
-Sy-Gex,Heavy Weapon
-Sy-Gex,Overwatch
-Sy-Gex,Vehicle
+Sokar Toth,WeaverOfFate
+Sokar Toth,SuppressiveFire
+Sokar Toth,TerminatorArmour
+Sword Brother Fedreus Godswyl,Parry
+Sword Brother Fedreus Godswyl,RapidAssault
+Sy-gex-KPH008/15.mk41,Mechanical
+Sy-gex-KPH008/15.mk41,HeavyWeapon
+Sy-gex-KPH008/15.mk41,Overwatch
+Sy-gex-KPH008/15.mk41,Vehicle
 Tan Gi'da,Mechanical
-Tanksmasha,Beast Slayer
-Tanksmasha,Get Stuck In
-Tanksmasha,Unstoppable
-Tarvakh,Blessings of Khorne
-Tarvakh,Rapid Assault
-Thaddeus Noble,Indirect Fire
-Thaddeus Noble,Suppressive Fire
-Thaumachus,Flying
-Thaumachus,Psyker
-Thaumachus,Weaver of Fates
+"Tarvakh, the Headsman ",BlessingsOfKhorne
+"Tarvakh, the Headsman ",RapidAssault
+Thaddeus Noble,SuppressiveFire
+Thaddeus Noble,IndirectFire
 The Patermine,Infiltrate
 The Patermine,Synapse
 The Patermine,Terrifying
 The Patermine,Unstoppable
-Thutmose,Flying
-Thutmose,Living Metal
-Titus,Beast Slayer
-Titus,Final Vengeance
-Tjark,Infiltrate
-Tjark,Terrifying
-Toth,Suppressive Fire
-Toth,Terminator Armour
-Toth,Weaver of Fates
-Trajann,Crushing Strike
-Trajann,Martial Ka'tah
-Trajann,Resilient
-Typhus,Contagions of Nurgle
-Typhus,Psyker
-Typhus,Resilient
-Typhus,Terminator Armour
-Tyrant Guard,Big Target
-Tyrant Guard,Crushing Strike
-Tyrith,Martial Ka'tah
-Tyrith,Resilient
-Ulf,Final Vengeance
-Ulf,Unstoppable
+Tjark Wyrdslayer,Infiltrate
+Tjark Wyrdslayer,Terrifying
+Trajann Valoris,MartialKatah
+Trajann Valoris,CrushingStrike
+Trajann Valoris,Resilient
+"Typhus, Host of the Destroyer Hive",ContagionsOfNurgle
+"Typhus, Host of the Destroyer Hive",Resilient
+"Typhus, Host of the Destroyer Hive",Psyker
+"Typhus, Host of the Destroyer Hive",TerminatorArmour
+Tyrant Guard,BigTarget
+Tyrant Guard,CrushingStrike
+Tyrith Shiva Kyrus,MartialKatah
+Tyrith Shiva Kyrus,Resilient
+Ulf Frosthowl,FinalJustice
+Ulf Frosthowl,Unstoppable
 Varro Tigurius,Psyker
-Vindicta,Act of Faith
-Vindicta,Heavy Weapon
-Vitruvius,Mechanic
-Vitruvius,Mechanical
-Volk,Big Target
-Volk,Daemon
-Volk,Let the Galaxy Burn
-Volk,Suppressive Fire
-Winged Prime,Final Vengeance
-Winged Prime,Flying
-Winged Prime,Synapse
-Wrask,Blessings of Khorne
-Wrask,Deep Strike
-Wrask,Rapid Assault
-Wrask,Terminator Armour
-Wrask,Unstoppable
-Xybia,Ambush
-Xybia,Psyker
-Yazaghor,Flying
-Yazaghor,Weaver of Fates
+"Volk, Reforged by the Warp",LetTheGalaxyBurn
+"Volk, Reforged by the Warp",BigTarget
+"Volk, Reforged by the Warp",Daemon
+"Volk, Reforged by the Warp",HeavyWeapon
+"Volk, Reforged by the Warp",SuppressiveFire
+Winged Tyranid Prime,Synapse
+Winged Tyranid Prime,Flying
+Winged Tyranid Prime,FinalJustice
+"Wrask, the Butcher",BlessingsOfKhorne
+"Wrask, the Butcher",TeleportStrike
+"Wrask, the Butcher",RapidAssault
+"Wrask, the Butcher",TerminatorArmour
+"Wrask, the Butcher",Unstoppable
+Xybia Kheiser,Ambush
+Xybia Kheiser,Psyker
+Yazaghor Ficklefate,WeaverOfFate
+Yazaghor Ficklefate,Flying

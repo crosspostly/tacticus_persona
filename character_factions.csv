@@ -1,101 +1,104 @@
 character,faction
-Abaddon The Despoiler,Black Legion
-Abraxas,Chaos
-Actus,Adeptus Mechanicus
-Adamatar,Emperor's Children
-Aesoth,Imperial
-Aethana,Aeldari
-Ahriman,Chaos
-Aleph-Null,Necrons
-Ancient Thoread,Black Templars
-Angrax,Black Legion
-Anuphet,Necrons
-Archimatos,Black Legion
-Arjac,Space Wolves
-Asmodai,Imperial
-Atlacoya,Imperial
-Aun'Shi,Tau Empire
-Azkor,Chaos
-Azrael,Dark Angels
-Baraqiel,Dark Angels
-Bellator,Ultramarines
-Boss Gulgortz,Orks
-Brother Burchard,Black Templars
-Brother Jaeger,Black Templars
-Calandis,Aeldari
-Castellan Creed,Astra Militarum
-Celestine,Adepta Sororitas
-Certus,Ultramarines
-Commissar Yarrick,Astra Militarum
-Corrodius,Death Guard
-Dante,Blood Angels
-Darkstrider,Tau Empire
+Abaddon the Despoiler,BlackLegion
+"Adamatar Xandassus, Mirrorborn",EmperorsChildren
+Aesoth Koumadra,Custodes
+Aethana Barantharal,Aeldari
+Ahzek Ahriman,ThousandSons
+Ancient Cantus Thoread,BlackTemplars
+Apothecary Incisus,Ultramarines
+Arjac Rockfist,SpaceWolves
+Arkarzar Abraxas,ThousandSons
+Asmodai,DarkAngels
+Atlacoya,Custodes
+Aun'Shi,Tau
+"Azkor, the Eightfold",WorldEaters
+Azrael,DarkAngels
+Baraqiel,DarkAngels
+Battle Sister Vindicta,Sisterhood
+Brother Kenric Jaeger,BlackTemplars
+Brother Raimund Burchard,BlackTemplars
+Calandis Tawaren,Aeldari
+Canoptek Spyder Aleph-Null,Necrons
+"Celestine, the living Saint",Sisterhood
+Commander Dante,BloodAngels
+Commissar Sebastian Yarrick,AstraMilitarum
+Corrodius Achebile,DeathGuard
 Deathleaper,Tyranids
-Eldryon,Aeldari
-Exitor-Rho,Adeptus Mechanicus
-Forcas,Imperial
-Gibbascrapz,Orks
-Haarken Worldclaimer,Black Legion
-High Marshal Helbrecht,Black Templars
-Hollan,Xenos
-Imospekh,Necrons
-Incisus,Ultramarines
-Isaak,Xenos
-Isabella,Imperial
+Demetrian Titus,Ultramarines
+Drakfus Angrax,BlackLegion
+Eldryon Ynaduin,Aeldari
+Exitor-Rho-1.15/x,AdeptusMechanicus
+Forcas Oathsworn,DarkAngels
+"Gibbascrapz, da Spezulist",Orks
+Grumbal Snotflogga,Orks
+Gulgortz Bulldoza,Orks
+Haarken Worldclaimer,BlackLegion
+Hascule Thorn of the Silken Blade,EmperorsChildren
+Hexmark Destroyer Imospekh,Necrons
+High Marshal Helbrecht,BlackTemplars
+Hollan Baumgart,Genestealers
+Isaak Starn,Genestealers
+Isabella Mariken,Sisterhood
 Jain Zar,Aeldari
-Judh,Xenos
-Kariyan,Imperial
-Kharn,Chaos
-Kut Skoden,Astra Militarum
-Lucien,Imperial
-Lucius,Emperor's Children
-Macer,Chaos
-Makhotep,Necrons
-Maladus,Death Guard
+Judh Lhaska,Genestealers
+Kairatar Thaumachus,ThousandSons
+Kariyan Helsates,Custodes
+Khârn the Betrayer,WorldEaters
+Kut Skoden,AstraMilitarum
+"Laviscus Sentrillion, the Perfect",EmperorsChildren
+Lord Castellan Ursarkar E. Creed,AstraMilitarum
+Lord Marshal Varnan Dreir,AstraMilitarum
+Lucien,BloodAngels
+Lucius the Eternal,EmperorsChildren
+Macer Bloodgrin,WorldEaters
+Magos Dominus Vitruvius Thannek,AdeptusMechanicus
+Maladus Phlegmore,DeathGuard
+Manipulus Actus Fulgorosus,AdeptusMechanicus
 Marneus Calgar,Ultramarines
-Marshal Dreir,Astra Militarum
-Mataneo,Imperial
+Master Archimatos,BlackLegion
+Mataneo,BloodAngels
 Maugan Ra,Aeldari
-Mephiston,Imperial
-Morvenn Vahl,Adepta Sororitas
-Nauseous Rotbone,Death Guard
+Mephiston,BloodAngels
+Morvenn Vahl,Sisterhood
+Nauseous Rotbone,DeathGuard
 Neurothrope,Tyranids
-Nicodemus,Imperial
-Njal,Space Wolves
+Nicodemus,BloodAngels
+Njal Stormcaller,SpaceWolves
+Olog Tanksmasha,Orks
+Overlord Anuphet,Necrons
 Parasite of Mortrex,Tyranids
-Pestillian,Death Guard
-Ragnar,Space Wolves
-Re'vas,Tau Empire
-Roswitha,Adepta Sororitas
-Sarquael,Dark Angels
-Shadowsun,Xenos
-Shiron,Emperor's Children
-Sho'syl,Tau Empire
-Sibyll Devine,Astra Militarum
+Pestillian Witherpus,DeathGuard
+Plasmancer Thutmose,Necrons
+Ragnar Blackmane,SpaceWolves
+Roswitha Esther,Sisterhood
+Royal Warden Makhotep,Necrons
+Sarquael,DarkAngels
+Sergeant Bellator,Ultramarines
+Sergeant Certus,Ultramarines
+Shas'el T'au Myamoto,Tau
+Shas'o T'au Shaserra,Tau
+Shas'o Vior'la Shovah Kais Mont'yr,Tau
+Shas'ui Vior'la Sho'syl,Tau
+Shas'vre Vior'la Re'vas,Tau
+"Shiron Capersi, the Idolator",EmperorsChildren
+Sibyll Devine,AstraMilitarum
 Snappawrecka,Orks
-Snotflogga,Orks
-Sword Brother Godswyl,Black Templars
-Sy-Gex,Adeptus Mechanicus
-Tan Gi'da,Adeptus Mechanicus
-Tanksmasha,Orks
-Tarvakh,World Eaters
-Thaddeus Noble,Astra Militarum
-Thaumachus,Chaos
-The Patermine,Xenos
-Thutmose,Necrons
-Titus,Imperial
-Tjark,Space Wolves
-Toth,Chaos
-Trajann,Imperial
-Typhus,Death Guard
+Sokar Toth,ThousandSons
+Sword Brother Fedreus Godswyl,BlackTemplars
+Sy-gex-KPH008/15.mk41,AdeptusMechanicus
+Tan Gi'da,AdeptusMechanicus
+"Tarvakh, the Headsman ",WorldEaters
+Thaddeus Noble,AstraMilitarum
+The Patermine,Genestealers
+Tjark Wyrdslayer,SpaceWolves
+Trajann Valoris,Custodes
+"Typhus, Host of the Destroyer Hive",DeathGuard
 Tyrant Guard,Tyranids
-Tyrith,Imperial
-Ulf,Space Wolves
+Tyrith Shiva Kyrus,Custodes
+Ulf Frosthowl,SpaceWolves
 Varro Tigurius,Ultramarines
-Vindicta,Adepta Sororitas
-Vitruvius,Adeptus Mechanicus
-Volk,Black Legion
-Winged Prime,Tyranids
-Wrask,Chaos
-Xybia,Xenos
-Yazaghor,Chaos
+"Volk, Reforged by the Warp",BlackLegion
+Winged Tyranid Prime,Tyranids
+"Wrask, the Butcher",WorldEaters
+Xybia Kheiser,Genestealers
+Yazaghor Ficklefate,ThousandSons
