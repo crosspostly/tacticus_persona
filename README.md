@@ -1,92 +1,233 @@
 # Tacticus Matchup Analyzer
 
-## 📦 File Structure
-
-```
-├── index.html              # Main page
-├── data.json              # Character data (JSON)
-├── data.txt               # Character data (TXT) - Priority
-├── synergy_database.json  # Synergy database (JSON)
-├── synergy_database.txt   # Synergy database (TXT) - Priority
-├── counter_database.json  # Counter database (JSON)
-└── counter_database.txt   # Counter database (TXT) - Priority
-```
-
-## 🚀 Quick Start
-
-### 1. Auto-Sync on Load
-**Nothing to do!** When opening `index.html`:
-- Automatically loads from `.txt` files (priority)
-- Falls back to `.json` if `.txt` not found
-- Shows loading status
-
-### 2. Sync Button
-Click "🔄 Sync" in top-right:
-- Refreshes all databases
-- Shows status for each
-- Rebuilds table
-
-### 3. Manual Upload
-Click "📤 Upload TXT":
-- Accepts `.txt` or `.json`
-- Supports both formats
-- For testing local files
-
-## 📝 File Format
-
-All files contain JSON (even .txt files):
-
-```json
-// data.txt / data.json
-[
-  {
-    "name": "Character Name",
-    "baseStats": { "health": "100", "armour": "25", "damage": "15" },
-    "attacks": { "melee": "Power / 5 hits", "ranged": "Bolter / 3 hits" },
-    "traits": "Trait1, Trait2",
-    "faction": "Faction Name"
-  }
-]
-```
-
-## ⚠️ Important
-
-1. **File Priority:**
-   - `.txt` loads first
-   - `.json` as fallback
-   - Both must contain valid JSON
-
-2. **Auto-Excluded:**
-   - War machines automatically ignored
-
-3. **Status Icons:**
-   - ✅ = Data loaded
-   - ⚠️ = Empty/not found
-   - ❌ = Error
-
-## 👨‍💻 Development
-
-### Update Data
-1. Update `.json` files
-2. Copy content to `.txt` (same JSON)
-3. Commit both
-4. GitHub Pages auto-updates
-
-### Test Locally
-```bash
-python -m http.server 8000
-# Open: http://localhost:8000
-```
-
-## 🌟 Features
-
-✅ Auto-sync on load  
-✅ Priority `.txt` files  
-✅ Fallback to `.json`  
-✅ Status logs  
-✅ Manual upload  
-✅ Auto-ignore war machines  
+Интерактивный анализатор персонажей Warhammer 40,000: Tacticus с автоматическим обновлением данных.
 
 ---
 
-🚀 **Ready to use!** Just open `index.html` and click "🔄 Sync"
+## 📊 Автоматическое обновление данных
+
+### 🔄 Monthly Data Update (GitHub Action)
+
+Данные **автоматически обновляются** каждый месяц:
+
+- 📅 **Расписание**: 1-го числа каждого месяца в 00:00 UTC
+- 🌐 **Источник**: [api.tacticustable.com](https://api.tacticustable.com/game-info)
+- 🔄 **Процесс**:
+  1. Загрузка данных из TacticusTable API
+  2. Парсинг в `tacticustable_heroes_stats.json`
+  3. Объединение с существующим `data.json` (сохраняя таблицы способностей)
+  4. Коммит изменений
+
+### 🔧 Ручной запуск
+
+Чтобы обновить данные вне расписания:
+
+1. Откройте: [Actions → Monthly Data Update](https://github.com/crosspostly/tacticus_persona/actions/workflows/update-data.yml)
+2. Нажмите **"Run workflow"** → **"Run workflow"**
+3. Дождитесь завершения (~1-2 минуты)
+
+### 💻 Локальный запуск парсера
+
+```bash
+# Установить зависимости
+npm install
+
+# Запустить парсер (загрузит свежие данные)
+node parse_tacticustable_api.js --force
+
+# Или использовать кэш (raw_game_info.json)
+node parse_tacticustable_api.js
+```
+
+---
+
+## 📚 Формат файлов
+
+### `data.json`
+Главная база персонажей с полными таблицами способностей:
+
+```json
+{
+  "meta": {
+    "total": 100,
+    "successful": 100,
+    "failed": 0,
+    "lastUpdate": "2025-11-30T13:00:00.000Z",
+    "source": "api.tacticustable.com",
+    "apiVersion": "1.34.30.2"
+  },
+  "characters": [
+    {
+      "name": "Abaddon The Despoiler",
+      "faction": "Black Legion",
+      "baseStats": { "health": "100", "armour": "25", "damage": "15" },
+      "attacks": { "melee": "Power / 5 hits", "ranged": "Bolter / 3 hits / Range 2" },
+      "movement": "3",
+      "traits": ["Let the Galaxy Burn", "Resilient"],
+      "rarity": "Legendary",
+      "activeAbility": {
+        "name": "Drach'nyen",
+        "description": "...",
+        "tables": [[["…"]]] // Полные таблицы
+      },
+      "passiveAbility": { /* ... */ }
+    }
+  ]
+}
+```
+
+### `tacticustable_heroes_stats.json`
+Данные напрямую из API (без таблиц):
+
+```json
+{
+  "meta": { "source": "api.tacticustable.com", "apiVersion": "1.34.30.2" },
+  "characters": [
+    {
+      "name": "Abaddon the Despoiler",
+      "faction": "BlackLegion",
+      "baseStats": { "health": "100", "armour": "25", "damage": "15" },
+      "activeAbility": {
+        "name": "Drach'nyen",
+        "description": "Abaddon is set to [hp] Health...", // Плейсхолдеры
+        "tables": [] // Пусто
+      }
+    }
+  ]
+}
+```
+
+### Различия
+
+| Параметр | `data.json` | `tacticustable_heroes_stats.json` |
+|---|---|---|
+| **Таблицы способностей** | ✅ Полные | ❌ Пустые |
+| **Детальность** | ✅ Высокая | ⚠️ Плейсхолдеры |
+| **Использование** | ✅ Главный файл | 🔄 Источник обновлений |
+
+---
+
+## 📦 Структура проекта
+
+```
+├── .github/workflows/
+│   ├── update-data.yml           # 🔄 Ежемесячное обновление
+│   ├── generate-databases.yml   # 📦 Генерация CSV
+│   └── sort-data.yml            # 🗂️ Сортировка
+├── index.html                  # 🌐 Главная страница
+├── data.json                   # 📊 Главная БД (с таблицами)
+├── tacticustable_heroes_stats.json  # 🌐 API данные
+├── parse_tacticustable_api.js  # 🔧 Парсер
+├── generate_databases.py      # 🐍 CSV генератор
+├── synergy_database.json      # 🤝 Синергии
+└── counter_database.json       # ⚔️ Контры
+```
+
+---
+
+## 🚀 Быстрый старт
+
+### 1. 🌐 Использование сайта
+
+Откройте `index.html`:
+- ✅ Автоматическая загрузка данных
+- 🔄 Кнопка "Sync" для обновления
+- 📊 Анализ синергий и контров
+
+### 2. 💻 Разработка
+
+```bash
+# Клонировать репозиторий
+git clone https://github.com/crosspostly/tacticus_persona.git
+cd tacticus_persona
+
+# Установить зависимости
+npm install
+
+# Запустить локальный сервер
+python -m http.server 8000
+# Откройте: http://localhost:8000
+```
+
+### 3. 🔄 Обновление данных
+
+```bash
+# Автоматически (через GitHub Actions)
+# Ничего не нужно делать - обновляется 1-го числа
+
+# Вручную (локально)
+node parse_tacticustable_api.js --force
+```
+
+---
+
+## 🔍 Что обновляется автоматически?
+
+### ✅ Обновляется
+- ✅ Имена персонажей
+- ✅ Базовые характеристики (HP, Armour, Damage)
+- ✅ Атаки (melee/ranged)
+- ✅ Движение
+- ✅ Трейты
+- ✅ Редкость
+- ✅ Описания способностей
+- ✅ Новые персонажи
+
+### 🔒 **Сохраняется**
+- 🔒 Таблицы способностей (`activeAbility.tables`, `passiveAbility.tables`)
+- 🔒 Ручные изменения в `data.json`
+
+---
+
+## ⚙️ GitHub Actions Workflows
+
+### 1. 🔄 **Monthly Data Update**
+
+**Файл**: `.github/workflows/update-data.yml`
+
+**Что делает**:
+1. Загружает данные из `api.tacticustable.com`
+2. Парсит и сохраняет в `tacticustable_heroes_stats.json`
+3. Объединяет с `data.json` (сохраняя таблицы)
+4. Коммитит изменения
+
+**Запуск**:
+- 📅 Автоматически: 1-го числа каждого месяца
+- ✋ Вручную: через Actions → "Run workflow"
+
+### 2. 📦 **Generate Databases**
+
+**Файл**: `.github/workflows/generate-databases.yml`
+
+**Что делает**:
+- Генерирует CSV файлы из `data.json`:
+  - `character_traits.csv`
+  - `character_factions.csv`
+  - `character_attack_types.csv`
+  - `conditional_bonuses.csv`
+
+**Запуск**:
+- ⚙️ При изменении `data.json`
+- ✋ Вручную: через Actions
+
+### 3. 🗂️ **Sort Data**
+
+**Файл**: `.github/workflows/sort-data.yml`
+
+**Что делает**:
+- Сортирует персонажей в `data.json` по алфавиту
+
+---
+
+## 🌟 Функции
+
+✅ Автоматическое обновление данных (раз в месяц)  
+✅ Парсинг из TacticusTable API  
+✅ Сохранение таблиц способностей  
+✅ Анализ синергий и контров  
+✅ GitHub Actions для автоматизации  
+✅ Ручной запуск workflows  
+
+---
+
+🚀 **Готово к использованию!** Откройте `index.html` и данные будут автоматически обновляться каждый месяц! 🎉
