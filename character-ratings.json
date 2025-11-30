@@ -1,0 +1,2909 @@
+{
+  "meta": {
+    "total": 100,
+    "generated": "2025-11-30T13:54:43.410Z",
+    "version": "1.0"
+  },
+  "ratings": [
+    {
+      "name": "Kharn",
+      "faction": "Chaos",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 90,
+        "armour": 20,
+        "damage": 25,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 434.29999999999995,
+        "adpa_ranged": 0,
+        "ehp": 108,
+        "dpt": 434.29999999999995,
+        "survivability": 108,
+        "utility": 0,
+        "overall_rating": 206.12
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 1
+    },
+    {
+      "name": "Titus",
+      "faction": "Imperial",
+      "rarity": "Epic",
+      "stats": {
+        "health": 95,
+        "armour": 23,
+        "damage": 25,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 326.8,
+        "adpa_ranged": 0,
+        "ehp": 116.85,
+        "dpt": 326.8,
+        "survivability": 116.85,
+        "utility": 15,
+        "overall_rating": 170.275
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 2
+    },
+    {
+      "name": "Tanksmasha",
+      "faction": "Orks",
+      "rarity": "Epic",
+      "stats": {
+        "health": 100,
+        "armour": 15,
+        "damage": 24,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 77.39999999999999,
+        "adpa_ranged": 0,
+        "ehp": 114.99999999999999,
+        "dpt": 103.19999999999999,
+        "survivability": 114.99999999999999,
+        "utility": 185,
+        "overall_rating": 131.28
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 3
+    },
+    {
+      "name": "Lucien",
+      "faction": "Imperial",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 90,
+        "armour": 21,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 129,
+        "adpa_ranged": 96.75,
+        "ehp": 108.89999999999999,
+        "dpt": 225.75,
+        "survivability": 87.12,
+        "utility": 15,
+        "overall_rating": 120.936
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 4
+    },
+    {
+      "name": "Snotflogga",
+      "faction": "Orks",
+      "rarity": "Rare",
+      "stats": {
+        "health": 120,
+        "armour": 18,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 96.75,
+        "adpa_ranged": 0,
+        "ehp": 141.6,
+        "dpt": 96.75,
+        "survivability": 141.6,
+        "utility": 130,
+        "overall_rating": 120.18
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 5
+    },
+    {
+      "name": "Commissar Yarrick",
+      "faction": "Astra Militarum",
+      "rarity": "Rare",
+      "stats": {
+        "health": 75,
+        "armour": 17,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 96.75,
+        "adpa_ranged": 64.5,
+        "ehp": 87.75,
+        "dpt": 161.25,
+        "survivability": 70.2,
+        "utility": 100,
+        "overall_rating": 115.56
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 6
+    },
+    {
+      "name": "Asmodai",
+      "faction": "Imperial",
+      "rarity": "Epic",
+      "stats": {
+        "health": 90,
+        "armour": 23,
+        "damage": 20,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 86,
+        "adpa_ranged": 0,
+        "ehp": 110.7,
+        "dpt": 86,
+        "survivability": 110.7,
+        "utility": 150,
+        "overall_rating": 112.61
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 7
+    },
+    {
+      "name": "Anuphet",
+      "faction": "Necrons",
+      "rarity": "Epic",
+      "stats": {
+        "health": 85,
+        "armour": 19,
+        "damage": 17,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 73.1,
+        "adpa_ranged": 54.824999999999996,
+        "ehp": 101.14999999999999,
+        "dpt": 127.92499999999998,
+        "survivability": 101.14999999999999,
+        "utility": 100,
+        "overall_rating": 111.51499999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 8
+    },
+    {
+      "name": "Parasite of Mortrex",
+      "faction": "Tyranids",
+      "rarity": "Epic",
+      "stats": {
+        "health": 90,
+        "armour": 17,
+        "damage": 45,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 48.375,
+        "adpa_ranged": 0,
+        "ehp": 105.3,
+        "dpt": 64.5,
+        "survivability": 105.3,
+        "utility": 170,
+        "overall_rating": 108.39
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 9
+    },
+    {
+      "name": "Sy-Gex",
+      "faction": "Adeptus Mechanicus",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 95,
+        "armour": 17,
+        "damage": 25,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 112.5,
+        "adpa_ranged": 112.5,
+        "ehp": 111.14999999999999,
+        "dpt": 150,
+        "survivability": 111.14999999999999,
+        "utility": 50,
+        "overall_rating": 108.345
+      },
+      "breakdown": {
+        "critChance": 0.25,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 10
+    },
+    {
+      "name": "Re'vas",
+      "faction": "Tau Empire",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 105,
+        "armour": 25,
+        "damage": 10,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 64.5,
+        "adpa_ranged": 64.5,
+        "ehp": 131.25,
+        "dpt": 129,
+        "survivability": 131.25,
+        "utility": 50,
+        "overall_rating": 105.975
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 11
+    },
+    {
+      "name": "The Patermine",
+      "faction": "Xenos",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 100,
+        "armour": 16,
+        "damage": 14,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 75.25,
+        "adpa_ranged": 0,
+        "ehp": 115.99999999999999,
+        "dpt": 100.33333333333333,
+        "survivability": 115.99999999999999,
+        "utility": 100,
+        "overall_rating": 104.93333333333334
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 12
+    },
+    {
+      "name": "Tan Gi'da",
+      "faction": "Adeptus Mechanicus",
+      "rarity": "Rare",
+      "stats": {
+        "health": 85,
+        "armour": 16,
+        "damage": 35,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 75.25,
+        "adpa_ranged": 37.625,
+        "ehp": 98.6,
+        "dpt": 112.875,
+        "survivability": 98.6,
+        "utility": 100,
+        "overall_rating": 104.73
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 13
+    },
+    {
+      "name": "Winged Prime",
+      "faction": "Tyranids",
+      "rarity": "Rare",
+      "stats": {
+        "health": 100,
+        "armour": 19,
+        "damage": 11,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 70.95,
+        "adpa_ranged": 0,
+        "ehp": 119,
+        "dpt": 94.6,
+        "survivability": 119,
+        "utility": 100,
+        "overall_rating": 103.53999999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 14
+    },
+    {
+      "name": "Sword Brother Godswyl",
+      "faction": "Black Templars",
+      "rarity": "Common",
+      "stats": {
+        "health": 95,
+        "armour": 24,
+        "damage": 60,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 64.5,
+        "adpa_ranged": 0,
+        "ehp": 135.47,
+        "dpt": 64.5,
+        "survivability": 135.47,
+        "utility": 120,
+        "overall_rating": 102.441
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0.3,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 15
+    },
+    {
+      "name": "Darkstrider",
+      "faction": "Tau Empire",
+      "rarity": "Rare",
+      "stats": {
+        "health": 75,
+        "armour": 17,
+        "damage": 35,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 112.875,
+        "adpa_ranged": 75.25,
+        "ehp": 87.75,
+        "dpt": 188.125,
+        "survivability": 87.75,
+        "utility": 0,
+        "overall_rating": 101.575
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 16
+    },
+    {
+      "name": "Azrael",
+      "faction": "Dark Angels",
+      "rarity": "Epic",
+      "stats": {
+        "health": 95,
+        "armour": 24,
+        "damage": 28,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 90.3,
+        "adpa_ranged": 30.099999999999998,
+        "ehp": 117.8,
+        "dpt": 120.39999999999999,
+        "survivability": 117.8,
+        "utility": 50,
+        "overall_rating": 98.5
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 17
+    },
+    {
+      "name": "Aleph-Null",
+      "faction": "Necrons",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 75,
+        "armour": 22,
+        "damage": 12,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 64.5,
+        "adpa_ranged": 0,
+        "ehp": 91.5,
+        "dpt": 64.5,
+        "survivability": 91.5,
+        "utility": 150,
+        "overall_rating": 98.25
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 18
+    },
+    {
+      "name": "Thaddeus Noble",
+      "faction": "Astra Militarum",
+      "rarity": "Rare",
+      "stats": {
+        "health": 50,
+        "armour": 18,
+        "damage": 38,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 40.85,
+        "adpa_ranged": 122.55,
+        "ehp": 59,
+        "dpt": 163.4,
+        "survivability": 59,
+        "utility": 50,
+        "overall_rating": 98.06
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 19
+    },
+    {
+      "name": "High Marshal Helbrecht",
+      "faction": "Black Templars",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 95,
+        "armour": 22,
+        "damage": 15,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 96.75,
+        "adpa_ranged": 48.375,
+        "ehp": 133.28499999999997,
+        "dpt": 145.125,
+        "survivability": 133.28499999999997,
+        "utility": 0,
+        "overall_rating": 98.03549999999998
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0.3,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 20
+    },
+    {
+      "name": "Lucius",
+      "faction": "Emperor's Children",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 90,
+        "armour": 20,
+        "damage": 13,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 83.85,
+        "adpa_ranged": 0,
+        "ehp": 124.19999999999999,
+        "dpt": 111.79999999999998,
+        "survivability": 124.19999999999999,
+        "utility": 50,
+        "overall_rating": 96.97999999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0.3,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 21
+    },
+    {
+      "name": "Archimatos",
+      "faction": "Black Legion",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 80,
+        "armour": 18,
+        "damage": 16,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 34.4,
+        "adpa_ranged": 17.2,
+        "ehp": 94.39999999999999,
+        "dpt": 56.76,
+        "survivability": 94.39999999999999,
+        "utility": 150,
+        "overall_rating": 96.024
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1.1
+      },
+      "rank": 22
+    },
+    {
+      "name": "Marshal Dreir",
+      "faction": "Astra Militarum",
+      "rarity": "Epic",
+      "stats": {
+        "health": 100,
+        "armour": 17,
+        "damage": 28,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 90.3,
+        "adpa_ranged": 0,
+        "ehp": 117,
+        "dpt": 120.39999999999999,
+        "survivability": 93.60000000000001,
+        "utility": 65,
+        "overall_rating": 95.74
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 23
+    },
+    {
+      "name": "Castellan Creed",
+      "faction": "Astra Militarum",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 90,
+        "armour": 21,
+        "damage": 38,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 81.7,
+        "adpa_ranged": 0,
+        "ehp": 108.89999999999999,
+        "dpt": 81.7,
+        "survivability": 108.89999999999999,
+        "utility": 100,
+        "overall_rating": 95.35
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 24
+    },
+    {
+      "name": "Roswitha",
+      "faction": "Adepta Sororitas",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 85,
+        "armour": 17,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 96.75,
+        "adpa_ranged": 64.5,
+        "ehp": 99.44999999999999,
+        "dpt": 161.25,
+        "survivability": 99.44999999999999,
+        "utility": 0,
+        "overall_rating": 94.335
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 25
+    },
+    {
+      "name": "Abraxas",
+      "faction": "Chaos",
+      "rarity": "Rare",
+      "stats": {
+        "health": 70,
+        "armour": 20,
+        "damage": 18,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 38.699999999999996,
+        "adpa_ranged": 19.349999999999998,
+        "ehp": 84,
+        "dpt": 58.05,
+        "survivability": 84,
+        "utility": 150,
+        "overall_rating": 93.42
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 26
+    },
+    {
+      "name": "Macer",
+      "faction": "Chaos",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 90,
+        "armour": 10,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 96.75,
+        "adpa_ranged": 0,
+        "ehp": 99.00000000000001,
+        "dpt": 96.75,
+        "survivability": 79.20000000000002,
+        "utility": 100,
+        "overall_rating": 92.46000000000001
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 27
+    },
+    {
+      "name": "Tjark",
+      "faction": "Space Wolves",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 85,
+        "armour": 23,
+        "damage": 32,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 137.6,
+        "adpa_ranged": 0,
+        "ehp": 104.55,
+        "dpt": 137.6,
+        "survivability": 104.55,
+        "utility": 20,
+        "overall_rating": 92.405
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 28
+    },
+    {
+      "name": "Snappawrecka",
+      "faction": "Orks",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 90,
+        "armour": 20,
+        "damage": 23,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 74.175,
+        "adpa_ranged": 74.175,
+        "ehp": 108,
+        "dpt": 148.35,
+        "survivability": 108,
+        "utility": 0,
+        "overall_rating": 91.74000000000001
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 29
+    },
+    {
+      "name": "Boss Gulgortz",
+      "faction": "Orks",
+      "rarity": "Epic",
+      "stats": {
+        "health": 100,
+        "armour": 26,
+        "damage": 26,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 55.9,
+        "adpa_ranged": 27.95,
+        "ehp": 126,
+        "dpt": 83.85,
+        "survivability": 126,
+        "utility": 65,
+        "overall_rating": 90.84
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 30
+    },
+    {
+      "name": "Isaak",
+      "faction": "Xenos",
+      "rarity": "Rare",
+      "stats": {
+        "health": 70,
+        "armour": 14,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 96.75,
+        "adpa_ranged": 32.25,
+        "ehp": 79.80000000000001,
+        "dpt": 129,
+        "survivability": 79.80000000000001,
+        "utility": 50,
+        "overall_rating": 90.54
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 31
+    },
+    {
+      "name": "Shadowsun",
+      "faction": "Xenos",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 80,
+        "armour": 18,
+        "damage": 27,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 58.05,
+        "adpa_ranged": 58.05,
+        "ehp": 94.39999999999999,
+        "dpt": 154.79999999999998,
+        "survivability": 94.39999999999999,
+        "utility": 0,
+        "overall_rating": 90.24
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 32
+    },
+    {
+      "name": "Kut Skoden",
+      "faction": "Astra Militarum",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 95,
+        "armour": 35,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 129,
+        "adpa_ranged": 0,
+        "ehp": 128.25,
+        "dpt": 129,
+        "survivability": 128.25,
+        "utility": 0,
+        "overall_rating": 90.075
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 33
+    },
+    {
+      "name": "Ulf",
+      "faction": "Space Wolves",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 90,
+        "armour": 20,
+        "damage": 33,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 106.425,
+        "adpa_ranged": 0,
+        "ehp": 108,
+        "dpt": 106.425,
+        "survivability": 108,
+        "utility": 50,
+        "overall_rating": 89.97
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 34
+    },
+    {
+      "name": "Brother Burchard",
+      "faction": "Black Templars",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 120,
+        "armour": 22,
+        "damage": 18,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 58.05,
+        "adpa_ranged": 58.05,
+        "ehp": 146.4,
+        "dpt": 77.39999999999999,
+        "survivability": 146.4,
+        "utility": 50,
+        "overall_rating": 89.88
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 35
+    },
+    {
+      "name": "Vitruvius",
+      "faction": "Adeptus Mechanicus",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 90,
+        "armour": 18,
+        "damage": 50,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 53.75,
+        "adpa_ranged": 53.75,
+        "ehp": 106.19999999999999,
+        "dpt": 107.5,
+        "survivability": 106.19999999999999,
+        "utility": 50,
+        "overall_rating": 89.86
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 36
+    },
+    {
+      "name": "Tyrant Guard",
+      "faction": "Tyranids",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 125,
+        "armour": 22,
+        "damage": 16,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 34.4,
+        "adpa_ranged": 0,
+        "ehp": 152.5,
+        "dpt": 34.4,
+        "survivability": 152.5,
+        "utility": 100,
+        "overall_rating": 89.50999999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 37
+    },
+    {
+      "name": "Aesoth",
+      "faction": "Imperial",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 110,
+        "armour": 28,
+        "damage": 58,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 62.349999999999994,
+        "adpa_ranged": 0,
+        "ehp": 140.8,
+        "dpt": 62.349999999999994,
+        "survivability": 112.64000000000001,
+        "utility": 100,
+        "overall_rating": 88.732
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 38
+    },
+    {
+      "name": "Brother Jaeger",
+      "faction": "Black Templars",
+      "rarity": "Epic",
+      "stats": {
+        "health": 110,
+        "armour": 25,
+        "damage": 25,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 80.625,
+        "adpa_ranged": 0,
+        "ehp": 158.125,
+        "dpt": 80.625,
+        "survivability": 158.125,
+        "utility": 30,
+        "overall_rating": 88.6875
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0.3,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 39
+    },
+    {
+      "name": "Morvenn Vahl",
+      "faction": "Adepta Sororitas",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 95,
+        "armour": 24,
+        "damage": 24,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 51.599999999999994,
+        "adpa_ranged": 77.39999999999999,
+        "ehp": 117.8,
+        "dpt": 129,
+        "survivability": 117.8,
+        "utility": 0,
+        "overall_rating": 86.94
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 40
+    },
+    {
+      "name": "Ancient Thoread",
+      "faction": "Black Templars",
+      "rarity": "Rare",
+      "stats": {
+        "health": 100,
+        "armour": 22,
+        "damage": 33,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 70.95,
+        "adpa_ranged": 0,
+        "ehp": 140.29999999999998,
+        "dpt": 70.95,
+        "survivability": 140.29999999999998,
+        "utility": 50,
+        "overall_rating": 85.47
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0.3,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 41
+    },
+    {
+      "name": "Judh",
+      "faction": "Xenos",
+      "rarity": "Epic",
+      "stats": {
+        "health": 60,
+        "armour": 13,
+        "damage": 25,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 80.625,
+        "adpa_ranged": 80.625,
+        "ehp": 67.8,
+        "dpt": 161.25,
+        "survivability": 67.8,
+        "utility": 0,
+        "overall_rating": 84.84
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 42
+    },
+    {
+      "name": "Tyrith",
+      "faction": "Imperial",
+      "rarity": "Rare",
+      "stats": {
+        "health": 95,
+        "armour": 22,
+        "damage": 25,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 80.625,
+        "adpa_ranged": 53.75,
+        "ehp": 115.89999999999999,
+        "dpt": 134.375,
+        "survivability": 92.72,
+        "utility": 0,
+        "overall_rating": 81.566
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 43
+    },
+    {
+      "name": "Abaddon The Despoiler",
+      "faction": "Black Legion",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 100,
+        "armour": 25,
+        "damage": 15,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 80.625,
+        "adpa_ranged": 48.375,
+        "ehp": 125,
+        "dpt": 141.9,
+        "survivability": 81.25,
+        "utility": 0,
+        "overall_rating": 81.135
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.35,
+        "synergyMultiplier": 1.1
+      },
+      "rank": 44
+    },
+    {
+      "name": "Thaumachus",
+      "faction": "Chaos",
+      "rarity": "Epic",
+      "stats": {
+        "health": 75,
+        "armour": 18,
+        "damage": 27,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 29.025,
+        "adpa_ranged": 29.025,
+        "ehp": 88.5,
+        "dpt": 58.05,
+        "survivability": 88.5,
+        "utility": 100,
+        "overall_rating": 79.77
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 45
+    },
+    {
+      "name": "Celestine",
+      "faction": "Adepta Sororitas",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 60,
+        "armour": 20,
+        "damage": 25,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 80.625,
+        "adpa_ranged": 0,
+        "ehp": 72,
+        "dpt": 107.5,
+        "survivability": 72,
+        "utility": 50,
+        "overall_rating": 79.6
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 46
+    },
+    {
+      "name": "Ragnar",
+      "faction": "Space Wolves",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 100,
+        "armour": 24,
+        "damage": 14,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 105.35,
+        "adpa_ranged": 0,
+        "ehp": 124,
+        "dpt": 105.35,
+        "survivability": 124,
+        "utility": 0,
+        "overall_rating": 79.34
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 47
+    },
+    {
+      "name": "Yazaghor",
+      "faction": "Chaos",
+      "rarity": "Common",
+      "stats": {
+        "health": 65,
+        "armour": 14,
+        "damage": 49,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 52.675,
+        "adpa_ranged": 52.675,
+        "ehp": 74.10000000000001,
+        "dpt": 140.46666666666664,
+        "survivability": 74.10000000000001,
+        "utility": 0,
+        "overall_rating": 78.41666666666666
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 48
+    },
+    {
+      "name": "Bellator",
+      "faction": "Ultramarines",
+      "rarity": "Common",
+      "stats": {
+        "health": 85,
+        "armour": 13,
+        "damage": 10,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 64.5,
+        "adpa_ranged": 0,
+        "ehp": 96.05,
+        "dpt": 86,
+        "survivability": 96.05,
+        "utility": 50,
+        "overall_rating": 78.215
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 49
+    },
+    {
+      "name": "Thutmose",
+      "faction": "Necrons",
+      "rarity": "Rare",
+      "stats": {
+        "health": 75,
+        "armour": 16,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 64.5,
+        "adpa_ranged": 64.5,
+        "ehp": 87,
+        "dpt": 129,
+        "survivability": 87,
+        "utility": 0,
+        "overall_rating": 77.7
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 50
+    },
+    {
+      "name": "Actus",
+      "faction": "Adeptus Mechanicus",
+      "rarity": "Rare",
+      "stats": {
+        "health": 95,
+        "armour": 19,
+        "damage": 25,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 53.75,
+        "adpa_ranged": 53.75,
+        "ehp": 113.05,
+        "dpt": 107.5,
+        "survivability": 113.05,
+        "utility": 0,
+        "overall_rating": 76.91499999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 51
+    },
+    {
+      "name": "Arjac",
+      "faction": "Space Wolves",
+      "rarity": "Rare",
+      "stats": {
+        "health": 110,
+        "armour": 26,
+        "damage": 23,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 74.175,
+        "adpa_ranged": 0,
+        "ehp": 138.6,
+        "dpt": 49.449999999999996,
+        "survivability": 90.09,
+        "utility": 100,
+        "overall_rating": 76.807
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.35,
+        "synergyMultiplier": 1
+      },
+      "rank": 52
+    },
+    {
+      "name": "Mataneo",
+      "faction": "Imperial",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 90,
+        "armour": 22,
+        "damage": 40,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 43,
+        "adpa_ranged": 0,
+        "ehp": 109.8,
+        "dpt": 57.33333333333333,
+        "survivability": 109.8,
+        "utility": 65,
+        "overall_rating": 75.37333333333333
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 53
+    },
+    {
+      "name": "Deathleaper",
+      "faction": "Tyranids",
+      "rarity": "Epic",
+      "stats": {
+        "health": 80,
+        "armour": 17,
+        "damage": 24,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 77.39999999999999,
+        "adpa_ranged": 0,
+        "ehp": 93.6,
+        "dpt": 77.39999999999999,
+        "survivability": 93.6,
+        "utility": 50,
+        "overall_rating": 74.03999999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 54
+    },
+    {
+      "name": "Gibbascrapz",
+      "faction": "Orks",
+      "rarity": "Common",
+      "stats": {
+        "health": 75,
+        "armour": 30,
+        "damage": 25,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 107.5,
+        "adpa_ranged": 0,
+        "ehp": 97.5,
+        "dpt": 107.5,
+        "survivability": 97.5,
+        "utility": 0,
+        "overall_rating": 72.25
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 55
+    },
+    {
+      "name": "Atlacoya",
+      "faction": "Imperial",
+      "rarity": "Rare",
+      "stats": {
+        "health": 80,
+        "armour": 19,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 96.75,
+        "adpa_ranged": 0,
+        "ehp": 109.47999999999998,
+        "dpt": 96.75,
+        "survivability": 109.47999999999998,
+        "utility": 0,
+        "overall_rating": 71.544
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0.3,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 56
+    },
+    {
+      "name": "Isabella",
+      "faction": "Imperial",
+      "rarity": "Rare",
+      "stats": {
+        "health": 85,
+        "armour": 18,
+        "damage": 20,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 64.5,
+        "adpa_ranged": 0,
+        "ehp": 100.3,
+        "dpt": 64.5,
+        "survivability": 100.3,
+        "utility": 50,
+        "overall_rating": 70.89
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 57
+    },
+    {
+      "name": "Sarquael",
+      "faction": "Dark Angels",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 70,
+        "armour": 20,
+        "damage": 50,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 56.25,
+        "adpa_ranged": 56.25,
+        "ehp": 84,
+        "dpt": 112.5,
+        "survivability": 84,
+        "utility": 0,
+        "overall_rating": 70.2
+      },
+      "breakdown": {
+        "critChance": 0.25,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 58
+    },
+    {
+      "name": "Maugan Ra",
+      "faction": "Aeldari",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 70,
+        "armour": 22,
+        "damage": 9,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 50.625,
+        "adpa_ranged": 60.75,
+        "ehp": 85.39999999999999,
+        "dpt": 111.375,
+        "survivability": 85.39999999999999,
+        "utility": 0,
+        "overall_rating": 70.17
+      },
+      "breakdown": {
+        "critChance": 0.25,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 59
+    },
+    {
+      "name": "Shiron",
+      "faction": "Emperor's Children",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 85,
+        "armour": 20,
+        "damage": 6,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 20.25,
+        "adpa_ranged": 40.5,
+        "ehp": 102,
+        "dpt": 60.75,
+        "survivability": 102,
+        "utility": 50,
+        "overall_rating": 69.9
+      },
+      "breakdown": {
+        "critChance": 0.25,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 60
+    },
+    {
+      "name": "Forcas",
+      "faction": "Imperial",
+      "rarity": "Rare",
+      "stats": {
+        "health": 90,
+        "armour": 21,
+        "damage": 12,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 77.39999999999999,
+        "adpa_ranged": 0,
+        "ehp": 125.23499999999999,
+        "dpt": 77.39999999999999,
+        "survivability": 125.23499999999999,
+        "utility": 0,
+        "overall_rating": 68.53049999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0.3,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 61
+    },
+    {
+      "name": "Vindicta",
+      "faction": "Adepta Sororitas",
+      "rarity": "Common",
+      "stats": {
+        "health": 70,
+        "armour": 12,
+        "damage": 20,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 22.5,
+        "adpa_ranged": 90,
+        "ehp": 78.4,
+        "dpt": 112.5,
+        "survivability": 78.4,
+        "utility": 0,
+        "overall_rating": 68.52
+      },
+      "breakdown": {
+        "critChance": 0.25,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 62
+    },
+    {
+      "name": "Xybia",
+      "faction": "Xenos",
+      "rarity": "Rare",
+      "stats": {
+        "health": 55,
+        "armour": 11,
+        "damage": 15,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 32.25,
+        "adpa_ranged": 32.25,
+        "ehp": 61.050000000000004,
+        "dpt": 64.5,
+        "survivability": 61.050000000000004,
+        "utility": 80,
+        "overall_rating": 68.11500000000001
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 63
+    },
+    {
+      "name": "Sho'syl",
+      "faction": "Tau Empire",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 65,
+        "armour": 16,
+        "damage": 53,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 56.974999999999994,
+        "adpa_ranged": 56.974999999999994,
+        "ehp": 75.39999999999999,
+        "dpt": 75.96666666666665,
+        "survivability": 75.39999999999999,
+        "utility": 50,
+        "overall_rating": 68.00666666666666
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 64
+    },
+    {
+      "name": "Njal",
+      "faction": "Space Wolves",
+      "rarity": "Epic",
+      "stats": {
+        "health": 80,
+        "armour": 26,
+        "damage": 8,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 25.799999999999997,
+        "adpa_ranged": 17.2,
+        "ehp": 100.8,
+        "dpt": 28.666666666666664,
+        "survivability": 85.67999999999999,
+        "utility": 100,
+        "overall_rating": 67.17066666666666
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.15,
+        "synergyMultiplier": 1
+      },
+      "rank": 65
+    },
+    {
+      "name": "Imospekh",
+      "faction": "Necrons",
+      "rarity": "Common",
+      "stats": {
+        "health": 72,
+        "armour": 15,
+        "damage": 8,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 51.599999999999994,
+        "adpa_ranged": 51.599999999999994,
+        "ehp": 82.8,
+        "dpt": 103.19999999999999,
+        "survivability": 82.8,
+        "utility": 0,
+        "overall_rating": 66.12
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 66
+    },
+    {
+      "name": "Calandis",
+      "faction": "Aeldari",
+      "rarity": "Common",
+      "stats": {
+        "health": 70,
+        "armour": 18,
+        "damage": 45,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 50.625,
+        "adpa_ranged": 50.625,
+        "ehp": 82.6,
+        "dpt": 101.25,
+        "survivability": 82.6,
+        "utility": 0,
+        "overall_rating": 65.28
+      },
+      "breakdown": {
+        "critChance": 0.25,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 67
+    },
+    {
+      "name": "Volk",
+      "faction": "Black Legion",
+      "rarity": "Rare",
+      "stats": {
+        "health": 65,
+        "armour": 10,
+        "damage": 9,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 38.699999999999996,
+        "adpa_ranged": 58.05,
+        "ehp": 71.5,
+        "dpt": 70.95,
+        "survivability": 71.5,
+        "utility": 50,
+        "overall_rating": 64.83
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1.1
+      },
+      "rank": 68
+    },
+    {
+      "name": "Corrodius",
+      "faction": "Death Guard",
+      "rarity": "Rare",
+      "stats": {
+        "health": 125,
+        "armour": 25,
+        "damage": 40,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 43,
+        "adpa_ranged": 0,
+        "ehp": 156.25,
+        "dpt": 28.666666666666664,
+        "survivability": 125,
+        "utility": 50,
+        "overall_rating": 63.96666666666667
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 69
+    },
+    {
+      "name": "Dante",
+      "faction": "Blood Angels",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 90,
+        "armour": 23,
+        "damage": 11,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 47.3,
+        "adpa_ranged": 0,
+        "ehp": 110.7,
+        "dpt": 63.06666666666666,
+        "survivability": 110.7,
+        "utility": 15,
+        "overall_rating": 62.93666666666667
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 70
+    },
+    {
+      "name": "Nicodemus",
+      "faction": "Imperial",
+      "rarity": "Rare",
+      "stats": {
+        "health": 90,
+        "armour": 23,
+        "damage": 23,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 74.175,
+        "adpa_ranged": 0,
+        "ehp": 110.7,
+        "dpt": 74.175,
+        "survivability": 110.7,
+        "utility": 0,
+        "overall_rating": 62.88
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 71
+    },
+    {
+      "name": "Exitor-Rho",
+      "faction": "Adeptus Mechanicus",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 80,
+        "armour": 17,
+        "damage": 30,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 64.5,
+        "adpa_ranged": 0,
+        "ehp": 93.6,
+        "dpt": 86,
+        "survivability": 93.6,
+        "utility": 0,
+        "overall_rating": 62.48
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 72
+    },
+    {
+      "name": "Haarken Worldclaimer",
+      "faction": "Black Legion",
+      "rarity": "Epic",
+      "stats": {
+        "health": 95,
+        "armour": 20,
+        "damage": 11,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 47.3,
+        "adpa_ranged": 0,
+        "ehp": 114,
+        "dpt": 69.37333333333333,
+        "survivability": 114,
+        "utility": 0,
+        "overall_rating": 61.94933333333333
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1.1
+      },
+      "rank": 73
+    },
+    {
+      "name": "Typhus",
+      "faction": "Death Guard",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 120,
+        "armour": 25,
+        "damage": 18,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 60.199999999999996,
+        "adpa_ranged": 60.199999999999996,
+        "ehp": 150,
+        "dpt": 80.26666666666665,
+        "survivability": 97.5,
+        "utility": 0,
+        "overall_rating": 61.35666666666666
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.35,
+        "synergyMultiplier": 1
+      },
+      "rank": 74
+    },
+    {
+      "name": "Angrax",
+      "faction": "Black Legion",
+      "rarity": "Common",
+      "stats": {
+        "health": 110,
+        "armour": 30,
+        "damage": 19,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 81.7,
+        "adpa_ranged": 0,
+        "ehp": 143,
+        "dpt": 59.91333333333334,
+        "survivability": 121.55,
+        "utility": 0,
+        "overall_rating": 60.43033333333334
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.15,
+        "synergyMultiplier": 1.1
+      },
+      "rank": 75
+    },
+    {
+      "name": "Certus",
+      "faction": "Ultramarines",
+      "rarity": "Common",
+      "stats": {
+        "health": 60,
+        "armour": 18,
+        "damage": 55,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 61.875,
+        "adpa_ranged": 61.875,
+        "ehp": 70.8,
+        "dpt": 82.5,
+        "survivability": 70.8,
+        "utility": 20,
+        "overall_rating": 60.239999999999995
+      },
+      "breakdown": {
+        "critChance": 0.25,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 76
+    },
+    {
+      "name": "Kariyan",
+      "faction": "Imperial",
+      "rarity": "Epic",
+      "stats": {
+        "health": 95,
+        "armour": 24,
+        "damage": 21,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 67.725,
+        "adpa_ranged": 0,
+        "ehp": 135.47,
+        "dpt": 67.725,
+        "survivability": 108.376,
+        "utility": 0,
+        "overall_rating": 59.6028
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0.3,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 77
+    },
+    {
+      "name": "Jain Zar",
+      "faction": "Aeldari",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 75,
+        "armour": 18,
+        "damage": 19,
+        "movement": 4
+      },
+      "calculated": {
+        "adpa_melee": 61.275,
+        "adpa_ranged": 0,
+        "ehp": 88.5,
+        "dpt": 81.69999999999999,
+        "survivability": 88.5,
+        "utility": 0,
+        "overall_rating": 59.230000000000004
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 78
+    },
+    {
+      "name": "Neurothrope",
+      "faction": "Tyranids",
+      "rarity": "Rare",
+      "stats": {
+        "health": 85,
+        "armour": 17,
+        "damage": 25,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 26.875,
+        "adpa_ranged": 26.875,
+        "ehp": 99.44999999999999,
+        "dpt": 35.83333333333333,
+        "survivability": 99.44999999999999,
+        "utility": 50,
+        "overall_rating": 59.16833333333332
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 79
+    },
+    {
+      "name": "Adamatar",
+      "faction": "Emperor's Children",
+      "rarity": "Rare",
+      "stats": {
+        "health": 100,
+        "armour": 23,
+        "damage": 17,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 54.824999999999996,
+        "adpa_ranged": 0,
+        "ehp": 123,
+        "dpt": 54.824999999999996,
+        "survivability": 123,
+        "utility": 0,
+        "overall_rating": 58.83
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 80
+    },
+    {
+      "name": "Ahriman",
+      "faction": "Chaos",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 80,
+        "armour": 18,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 32.25,
+        "adpa_ranged": 32.25,
+        "ehp": 94.39999999999999,
+        "dpt": 64.5,
+        "survivability": 94.39999999999999,
+        "utility": 15,
+        "overall_rating": 58.62
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 81
+    },
+    {
+      "name": "Azkor",
+      "faction": "Chaos",
+      "rarity": "Rare",
+      "stats": {
+        "health": 100,
+        "armour": 20,
+        "damage": 24,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 51.599999999999994,
+        "adpa_ranged": 0,
+        "ehp": 120,
+        "dpt": 51.599999999999994,
+        "survivability": 96,
+        "utility": 30,
+        "overall_rating": 58.44
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 82
+    },
+    {
+      "name": "Aethana",
+      "faction": "Aeldari",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 80,
+        "armour": 17,
+        "damage": 14,
+        "movement": 5
+      },
+      "calculated": {
+        "adpa_melee": 45.15,
+        "adpa_ranged": 0,
+        "ehp": 93.6,
+        "dpt": 75.25,
+        "survivability": 93.6,
+        "utility": 0,
+        "overall_rating": 58.18
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 83
+    },
+    {
+      "name": "Aun'Shi",
+      "faction": "Tau Empire",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 85,
+        "armour": 16,
+        "damage": 13,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 69.875,
+        "adpa_ranged": 0,
+        "ehp": 98.6,
+        "dpt": 69.875,
+        "survivability": 98.6,
+        "utility": 0,
+        "overall_rating": 57.53
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 84
+    },
+    {
+      "name": "Incisus",
+      "faction": "Ultramarines",
+      "rarity": "Common",
+      "stats": {
+        "health": 100,
+        "armour": 22,
+        "damage": 46,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 49.449999999999996,
+        "adpa_ranged": 0,
+        "ehp": 122,
+        "dpt": 49.449999999999996,
+        "survivability": 122,
+        "utility": 0,
+        "overall_rating": 56.38
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 85
+    },
+    {
+      "name": "Baraqiel",
+      "faction": "Dark Angels",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 110,
+        "armour": 29,
+        "damage": 22,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 74.25,
+        "adpa_ranged": 0,
+        "ehp": 141.9,
+        "dpt": 49.5,
+        "survivability": 120.615,
+        "utility": 0,
+        "overall_rating": 55.9845
+      },
+      "breakdown": {
+        "critChance": 0.25,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.15,
+        "synergyMultiplier": 1
+      },
+      "rank": 86
+    },
+    {
+      "name": "Tarvakh",
+      "faction": "World Eaters",
+      "rarity": "Rare",
+      "stats": {
+        "health": 95,
+        "armour": 24,
+        "damage": 48,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 51.599999999999994,
+        "adpa_ranged": 0,
+        "ehp": 117.8,
+        "dpt": 51.599999999999994,
+        "survivability": 117.8,
+        "utility": 0,
+        "overall_rating": 55.98
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 87
+    },
+    {
+      "name": "Mephiston",
+      "faction": "Imperial",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 95,
+        "armour": 20,
+        "damage": 10,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 32.25,
+        "adpa_ranged": 21.5,
+        "ehp": 114,
+        "dpt": 53.75,
+        "survivability": 114,
+        "utility": 0,
+        "overall_rating": 55.699999999999996
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 88
+    },
+    {
+      "name": "Toth",
+      "faction": "Chaos",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 90,
+        "armour": 27,
+        "damage": 10,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 43,
+        "adpa_ranged": 53.75,
+        "ehp": 114.3,
+        "dpt": 64.5,
+        "survivability": 97.155,
+        "utility": 0,
+        "overall_rating": 54.9465
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.15,
+        "synergyMultiplier": 1
+      },
+      "rank": 89
+    },
+    {
+      "name": "Wrask",
+      "faction": "Chaos",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 95,
+        "armour": 28,
+        "damage": 20,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 86,
+        "adpa_ranged": 0,
+        "ehp": 121.60000000000001,
+        "dpt": 57.33333333333333,
+        "survivability": 103.36,
+        "utility": 0,
+        "overall_rating": 53.94133333333333
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.15,
+        "synergyMultiplier": 1
+      },
+      "rank": 90
+    },
+    {
+      "name": "Makhotep",
+      "faction": "Necrons",
+      "rarity": "Common",
+      "stats": {
+        "health": 85,
+        "armour": 20,
+        "damage": 18,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 19.349999999999998,
+        "adpa_ranged": 38.699999999999996,
+        "ehp": 102,
+        "dpt": 58.05,
+        "survivability": 102,
+        "utility": 0,
+        "overall_rating": 53.81999999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 91
+    },
+    {
+      "name": "Eldryon",
+      "faction": "Aeldari",
+      "rarity": "Rare",
+      "stats": {
+        "health": 75,
+        "armour": 16,
+        "damage": 16,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 34.4,
+        "adpa_ranged": 34.4,
+        "ehp": 87,
+        "dpt": 68.8,
+        "survivability": 87,
+        "utility": 0,
+        "overall_rating": 53.62
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 92
+    },
+    {
+      "name": "Maladus",
+      "faction": "Death Guard",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 120,
+        "armour": 33,
+        "damage": 26,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 83.85,
+        "adpa_ranged": 0,
+        "ehp": 159.60000000000002,
+        "dpt": 55.89999999999999,
+        "survivability": 103.74000000000002,
+        "utility": 0,
+        "overall_rating": 53.482000000000006
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.35,
+        "synergyMultiplier": 1
+      },
+      "rank": 93
+    },
+    {
+      "name": "Nauseous Rotbone",
+      "faction": "Death Guard",
+      "rarity": "Epic",
+      "stats": {
+        "health": 120,
+        "armour": 27,
+        "damage": 14,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 60.199999999999996,
+        "adpa_ranged": 0,
+        "ehp": 152.4,
+        "dpt": 40.133333333333326,
+        "survivability": 121.92000000000002,
+        "utility": 0,
+        "overall_rating": 52.629333333333335
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 94
+    },
+    {
+      "name": "Marneus Calgar",
+      "faction": "Ultramarines",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 95,
+        "armour": 20,
+        "damage": 20,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 43,
+        "adpa_ranged": 0,
+        "ehp": 114,
+        "dpt": 43,
+        "survivability": 114,
+        "utility": 0,
+        "overall_rating": 51.39999999999999
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 95
+    },
+    {
+      "name": "Hollan",
+      "faction": "Xenos",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 55,
+        "armour": 12,
+        "damage": 36,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 38.699999999999996,
+        "adpa_ranged": 0,
+        "ehp": 61.60000000000001,
+        "dpt": 38.699999999999996,
+        "survivability": 61.60000000000001,
+        "utility": 50,
+        "overall_rating": 48.96
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 96
+    },
+    {
+      "name": "Pestillian",
+      "faction": "Death Guard",
+      "rarity": "Rare",
+      "stats": {
+        "health": 120,
+        "armour": 27,
+        "damage": 40,
+        "movement": 2
+      },
+      "calculated": {
+        "adpa_melee": 43,
+        "adpa_ranged": 0,
+        "ehp": 152.4,
+        "dpt": 28.666666666666664,
+        "survivability": 121.92000000000002,
+        "utility": 0,
+        "overall_rating": 48.04266666666667
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 97
+    },
+    {
+      "name": "Varro Tigurius",
+      "faction": "Ultramarines",
+      "rarity": "Uncommon",
+      "stats": {
+        "health": 65,
+        "armour": 14,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 32.25,
+        "adpa_ranged": 32.25,
+        "ehp": 74.10000000000001,
+        "dpt": 64.5,
+        "survivability": 74.10000000000001,
+        "utility": 0,
+        "overall_rating": 48.03
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 98
+    },
+    {
+      "name": "Sibyll Devine",
+      "faction": "Astra Militarum",
+      "rarity": "Common",
+      "stats": {
+        "health": 55,
+        "armour": 20,
+        "damage": 30,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 32.25,
+        "adpa_ranged": 32.25,
+        "ehp": 66,
+        "dpt": 64.5,
+        "survivability": 66,
+        "utility": 0,
+        "overall_rating": 45.6
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0,
+        "synergyMultiplier": 1
+      },
+      "rank": 99
+    },
+    {
+      "name": "Trajann",
+      "faction": "Imperial",
+      "rarity": "Legendary",
+      "stats": {
+        "health": 100,
+        "armour": 25,
+        "damage": 11,
+        "movement": 3
+      },
+      "calculated": {
+        "adpa_melee": 35.475,
+        "adpa_ranged": 0,
+        "ehp": 125,
+        "dpt": 35.475,
+        "survivability": 100,
+        "utility": 0,
+        "overall_rating": 44.19
+      },
+      "breakdown": {
+        "critChance": 0.15,
+        "critDamage": 0.5,
+        "blockChance": 0,
+        "healingPerTurn": 0,
+        "damageTakenModifier": 0.2,
+        "synergyMultiplier": 1
+      },
+      "rank": 100
+    }
+  ]
+}
