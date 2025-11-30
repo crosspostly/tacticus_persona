@@ -1,0 +1,101 @@
+Rank,Name,Faction,Rarity,Health,Armour,Damage,Movement,ADPA Melee,ADPA Ranged,EHP,DPT,Survivability,Utility,Overall Rating
+1,"Kharn","Chaos",Legendary,90,20,25,3,434.3,0.0,108.0,434.3,108.0,0.0,206.1
+2,"Titus","Imperial",Epic,95,23,25,3,326.8,0.0,116.8,326.8,116.8,15.0,170.3
+3,"Tanksmasha","Orks",Epic,100,15,24,4,77.4,0.0,115.0,103.2,115.0,185.0,131.3
+4,"Lucien","Imperial",Uncommon,90,21,30,3,129.0,96.8,108.9,225.8,87.1,15.0,120.9
+5,"Snotflogga","Orks",Rare,120,18,30,3,96.8,0.0,141.6,96.8,141.6,130.0,120.2
+6,"Commissar Yarrick","Astra Militarum",Rare,75,17,30,3,96.8,64.5,87.8,161.3,70.2,100.0,115.6
+7,"Asmodai","Imperial",Epic,90,23,20,3,86.0,0.0,110.7,86.0,110.7,150.0,112.6
+8,"Anuphet","Necrons",Epic,85,19,17,3,73.1,54.8,101.1,127.9,101.1,100.0,111.5
+9,"Parasite of Mortrex","Tyranids",Epic,90,17,45,4,48.4,0.0,105.3,64.5,105.3,170.0,108.4
+10,"Sy-Gex","Adeptus Mechanicus",Uncommon,95,17,25,2,112.5,112.5,111.1,150.0,111.1,50.0,108.3
+11,"Re'vas","Tau Empire",Uncommon,105,25,10,3,64.5,64.5,131.3,129.0,131.3,50.0,106.0
+12,"The Patermine","Xenos",Legendary,100,16,14,4,75.3,0.0,116.0,100.3,116.0,100.0,104.9
+13,"Tan Gi'da","Adeptus Mechanicus",Rare,85,16,35,3,75.3,37.6,98.6,112.9,98.6,100.0,104.7
+14,"Winged Prime","Tyranids",Rare,100,19,11,4,71.0,0.0,119.0,94.6,119.0,100.0,103.5
+15,"Sword Brother Godswyl","Black Templars",Common,95,24,60,3,64.5,0.0,135.5,64.5,135.5,120.0,102.4
+16,"Darkstrider","Tau Empire",Rare,75,17,35,3,112.9,75.3,87.8,188.1,87.8,0.0,101.6
+17,"Azrael","Dark Angels",Epic,95,24,28,3,90.3,30.1,117.8,120.4,117.8,50.0,98.5
+18,"Aleph-Null","Necrons",Uncommon,75,22,12,3,64.5,0.0,91.5,64.5,91.5,150.0,98.3
+19,"Thaddeus Noble","Astra Militarum",Rare,50,18,38,3,40.9,122.5,59.0,163.4,59.0,50.0,98.1
+20,"High Marshal Helbrecht","Black Templars",Legendary,95,22,15,3,96.8,48.4,133.3,145.1,133.3,0.0,98.0
+21,"Lucius","Emperor's Children",Legendary,90,20,13,4,83.8,0.0,124.2,111.8,124.2,50.0,97.0
+22,"Archimatos","Black Legion",Uncommon,80,18,16,3,34.4,17.2,94.4,56.8,94.4,150.0,96.0
+23,"Marshal Dreir","Astra Militarum",Epic,100,17,28,4,90.3,0.0,117.0,120.4,93.6,65.0,95.7
+24,"Castellan Creed","Astra Militarum",Legendary,90,21,38,3,81.7,0.0,108.9,81.7,108.9,100.0,95.3
+25,"Roswitha","Adepta Sororitas",Uncommon,85,17,30,3,96.8,64.5,99.4,161.3,99.4,0.0,94.3
+26,"Abraxas","Chaos",Rare,70,20,18,3,38.7,19.3,84.0,58.0,84.0,150.0,93.4
+27,"Macer","Chaos",Uncommon,90,10,30,3,96.8,0.0,99.0,96.8,79.2,100.0,92.5
+28,"Tjark","Space Wolves",Uncommon,85,23,32,3,137.6,0.0,104.5,137.6,104.5,20.0,92.4
+29,"Snappawrecka","Orks",Uncommon,90,20,23,3,74.2,74.2,108.0,148.3,108.0,0.0,91.7
+30,"Boss Gulgortz","Orks",Epic,100,26,26,3,55.9,27.9,126.0,83.8,126.0,65.0,90.8
+31,"Isaak","Xenos",Rare,70,14,30,3,96.8,32.3,79.8,129.0,79.8,50.0,90.5
+32,"Shadowsun","Xenos",Legendary,80,18,27,4,58.0,58.0,94.4,154.8,94.4,0.0,90.2
+33,"Kut Skoden","Astra Militarum",Uncommon,95,35,30,3,129.0,0.0,128.3,129.0,128.3,0.0,90.1
+34,"Ulf","Space Wolves",Uncommon,90,20,33,3,106.4,0.0,108.0,106.4,108.0,50.0,90.0
+35,"Brother Burchard","Black Templars",Uncommon,120,22,18,2,58.0,58.0,146.4,77.4,146.4,50.0,89.9
+36,"Vitruvius","Adeptus Mechanicus",Legendary,90,18,50,3,53.8,53.8,106.2,107.5,106.2,50.0,89.9
+37,"Tyrant Guard","Tyranids",Uncommon,125,22,16,3,34.4,0.0,152.5,34.4,152.5,100.0,89.5
+38,"Aesoth","Imperial",Uncommon,110,28,58,3,62.3,0.0,140.8,62.3,112.6,100.0,88.7
+39,"Brother Jaeger","Black Templars",Epic,110,25,25,3,80.6,0.0,158.1,80.6,158.1,30.0,88.7
+40,"Morvenn Vahl","Adepta Sororitas",Legendary,95,24,24,3,51.6,77.4,117.8,129.0,117.8,0.0,86.9
+41,"Ancient Thoread","Black Templars",Rare,100,22,33,3,71.0,0.0,140.3,71.0,140.3,50.0,85.5
+42,"Judh","Xenos",Epic,60,13,25,3,80.6,80.6,67.8,161.3,67.8,0.0,84.8
+43,"Tyrith","Imperial",Rare,95,22,25,3,80.6,53.8,115.9,134.4,92.7,0.0,81.6
+44,"Abaddon The Despoiler","Black Legion",Legendary,100,25,15,3,80.6,48.4,125.0,141.9,81.3,0.0,81.1
+45,"Thaumachus","Chaos",Epic,75,18,27,3,29.0,29.0,88.5,58.0,88.5,100.0,79.8
+46,"Celestine","Adepta Sororitas",Legendary,60,20,25,4,80.6,0.0,72.0,107.5,72.0,50.0,79.6
+47,"Ragnar","Space Wolves",Legendary,100,24,14,3,105.3,0.0,124.0,105.3,124.0,0.0,79.3
+48,"Yazaghor","Chaos",Common,65,14,49,4,52.7,52.7,74.1,140.5,74.1,0.0,78.4
+49,"Bellator","Ultramarines",Common,85,13,10,4,64.5,0.0,96.0,86.0,96.0,50.0,78.2
+50,"Thutmose","Necrons",Rare,75,16,30,3,64.5,64.5,87.0,129.0,87.0,0.0,77.7
+51,"Actus","Adeptus Mechanicus",Rare,95,19,25,3,53.8,53.8,113.0,107.5,113.0,0.0,76.9
+52,"Arjac","Space Wolves",Rare,110,26,23,2,74.2,0.0,138.6,49.4,90.1,100.0,76.8
+53,"Mataneo","Imperial",Uncommon,90,22,40,4,43.0,0.0,109.8,57.3,109.8,65.0,75.4
+54,"Deathleaper","Tyranids",Epic,80,17,24,3,77.4,0.0,93.6,77.4,93.6,50.0,74.0
+55,"Gibbascrapz","Orks",Common,75,30,25,3,107.5,0.0,97.5,107.5,97.5,0.0,72.3
+56,"Atlacoya","Imperial",Rare,80,19,30,3,96.8,0.0,109.5,96.8,109.5,0.0,71.5
+57,"Isabella","Imperial",Rare,85,18,20,3,64.5,0.0,100.3,64.5,100.3,50.0,70.9
+58,"Sarquael","Dark Angels",Uncommon,70,20,50,3,56.3,56.3,84.0,112.5,84.0,0.0,70.2
+59,"Maugan Ra","Aeldari",Legendary,70,22,9,3,50.6,60.8,85.4,111.4,85.4,0.0,70.2
+60,"Shiron","Emperor's Children",Uncommon,85,20,6,3,20.3,40.5,102.0,60.8,102.0,50.0,69.9
+61,"Forcas","Imperial",Rare,90,21,12,3,77.4,0.0,125.2,77.4,125.2,0.0,68.5
+62,"Vindicta","Adepta Sororitas",Common,70,12,20,3,22.5,90.0,78.4,112.5,78.4,0.0,68.5
+63,"Xybia","Xenos",Rare,55,11,15,3,32.3,32.3,61.1,64.5,61.1,80.0,68.1
+64,"Sho'syl","Tau Empire",Uncommon,65,16,53,2,57.0,57.0,75.4,76.0,75.4,50.0,68.0
+65,"Njal","Space Wolves",Epic,80,26,8,2,25.8,17.2,100.8,28.7,85.7,100.0,67.2
+66,"Imospekh","Necrons",Common,72,15,8,3,51.6,51.6,82.8,103.2,82.8,0.0,66.1
+67,"Calandis","Aeldari",Common,70,18,45,3,50.6,50.6,82.6,101.3,82.6,0.0,65.3
+68,"Volk","Black Legion",Rare,65,10,9,2,38.7,58.0,71.5,71.0,71.5,50.0,64.8
+69,"Corrodius","Death Guard",Rare,125,25,40,2,43.0,0.0,156.3,28.7,125.0,50.0,64.0
+70,"Dante","Blood Angels",Legendary,90,23,11,4,47.3,0.0,110.7,63.1,110.7,15.0,62.9
+71,"Nicodemus","Imperial",Rare,90,23,23,3,74.2,0.0,110.7,74.2,110.7,0.0,62.9
+72,"Exitor-Rho","Adeptus Mechanicus",Uncommon,80,17,30,4,64.5,0.0,93.6,86.0,93.6,0.0,62.5
+73,"Haarken Worldclaimer","Black Legion",Epic,95,20,11,4,47.3,0.0,114.0,69.4,114.0,0.0,61.9
+74,"Typhus","Death Guard",Legendary,120,25,18,2,60.2,60.2,150.0,80.3,97.5,0.0,61.4
+75,"Angrax","Black Legion",Common,110,30,19,2,81.7,0.0,143.0,59.9,121.5,0.0,60.4
+76,"Certus","Ultramarines",Common,60,18,55,2,61.9,61.9,70.8,82.5,70.8,20.0,60.2
+77,"Kariyan","Imperial",Epic,95,24,21,3,67.7,0.0,135.5,67.7,108.4,0.0,59.6
+78,"Jain Zar","Aeldari",Legendary,75,18,19,4,61.3,0.0,88.5,81.7,88.5,0.0,59.2
+79,"Neurothrope","Tyranids",Rare,85,17,25,2,26.9,26.9,99.4,35.8,99.4,50.0,59.2
+80,"Adamatar","Emperor's Children",Rare,100,23,17,3,54.8,0.0,123.0,54.8,123.0,0.0,58.8
+81,"Ahriman","Chaos",Legendary,80,18,30,3,32.3,32.3,94.4,64.5,94.4,15.0,58.6
+82,"Azkor","Chaos",Rare,100,20,24,3,51.6,0.0,120.0,51.6,96.0,30.0,58.4
+83,"Aethana","Aeldari",Uncommon,80,17,14,5,45.1,0.0,93.6,75.3,93.6,0.0,58.2
+84,"Aun'Shi","Tau Empire",Legendary,85,16,13,3,69.9,0.0,98.6,69.9,98.6,0.0,57.5
+85,"Incisus","Ultramarines",Common,100,22,46,3,49.4,0.0,122.0,49.4,122.0,0.0,56.4
+86,"Baraqiel","Dark Angels",Uncommon,110,29,22,2,74.3,0.0,141.9,49.5,120.6,0.0,56.0
+87,"Tarvakh","World Eaters",Rare,95,24,48,3,51.6,0.0,117.8,51.6,117.8,0.0,56.0
+88,"Mephiston","Imperial",Legendary,95,20,10,3,32.3,21.5,114.0,53.8,114.0,0.0,55.7
+89,"Toth","Chaos",Uncommon,90,27,10,2,43.0,53.8,114.3,64.5,97.2,0.0,54.9
+90,"Wrask","Chaos",Uncommon,95,28,20,2,86.0,0.0,121.6,57.3,103.4,0.0,53.9
+91,"Makhotep","Necrons",Common,85,20,18,3,19.3,38.7,102.0,58.0,102.0,0.0,53.8
+92,"Eldryon","Aeldari",Rare,75,16,16,3,34.4,34.4,87.0,68.8,87.0,0.0,53.6
+93,"Maladus","Death Guard",Uncommon,120,33,26,2,83.8,0.0,159.6,55.9,103.7,0.0,53.5
+94,"Nauseous Rotbone","Death Guard",Epic,120,27,14,2,60.2,0.0,152.4,40.1,121.9,0.0,52.6
+95,"Marneus Calgar","Ultramarines",Legendary,95,20,20,3,43.0,0.0,114.0,43.0,114.0,0.0,51.4
+96,"Hollan","Xenos",Uncommon,55,12,36,3,38.7,0.0,61.6,38.7,61.6,50.0,49.0
+97,"Pestillian","Death Guard",Rare,120,27,40,2,43.0,0.0,152.4,28.7,121.9,0.0,48.0
+98,"Varro Tigurius","Ultramarines",Uncommon,65,14,30,3,32.3,32.3,74.1,64.5,74.1,0.0,48.0
+99,"Sibyll Devine","Astra Militarum",Common,55,20,30,3,32.3,32.3,66.0,64.5,66.0,0.0,45.6
+100,"Trajann","Imperial",Legendary,100,25,11,3,35.5,0.0,125.0,35.5,100.0,0.0,44.2

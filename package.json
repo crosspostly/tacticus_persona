@@ -6,7 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scrape:tacticustable": "node parse_tacticustable_api.js",
-    "scrape:tacticustable:force": "node parse_tacticustable_api.js --force"
+    "scrape:tacticustable:force": "node parse_tacticustable_api.js --force",
+    "validate": "node validate-data.js",
+    "calc:ratings": "node generate-ratings-table.js",
+    "parse:abilities": "node parse-abilities-api.js",
+    "parse:abilities:force": "node parse-abilities-api.js --force",
+    "fix:tables": "node fix-ability-tables.js",
+    "workflow": "node workflow-parse-and-validate.js"
   },
   "keywords": [],
   "author": "",
