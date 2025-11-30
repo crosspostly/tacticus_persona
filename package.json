@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "scrape:tacticustable": "node parse_tacticustable_api.js",
     "scrape:tacticustable:force": "node parse_tacticustable_api.js --force",
+    "fetch:characters": "node scripts/fetch-characters.js",
     "validate": "node validate-data.js",
     "calc:ratings": "node generate-ratings-table.js",
     "parse:abilities": "node parse-abilities-api.js",

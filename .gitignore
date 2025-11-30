@@ -97,6 +97,7 @@ env/
 # Backup files
 equipment_upgrades_old.json
 *_backup.*
+*.backup.*
 *.bak
 data_backup_before_fix.json
 
