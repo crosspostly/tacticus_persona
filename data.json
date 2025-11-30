@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdate": "2025-11-30T14:34:04.687Z",
+    "lastUpdate": "2025-11-30T14:45:42.626Z",
     "source": "api.tacticustable.com",
     "apiVersion": "1.34.30.2",
     "charactersCount": 103,
@@ -4344,7 +4344,9 @@
         "ranged": "N/A"
       },
       "movement": "3",
-      "traits": [],
+      "traits": [
+        "Infiltrate"
+      ],
       "rarity": "Legendary",
       "activeAbility": {
         "name": "Inspired to Greatness",
@@ -18467,7 +18469,9 @@
         "ranged": "N/A"
       },
       "movement": "3",
-      "traits": [],
+      "traits": [
+        "Resilient"
+      ],
       "rarity": "Legendary",
       "activeAbility": {
         "name": "Supreme Commander",
