@@ -171,6 +171,9 @@ function validateCharacter(character, index) {
 
 /**
  * Validate ability table structure
+ * Supports both formats:
+ * - NEW: Array of objects with { parameter, type, values }
+ * - OLD: Array of arrays (2D arrays like CSV)
  */
 function validateAbilityTable(tables) {
   const errors = [];
@@ -180,33 +183,74 @@ function validateAbilityTable(tables) {
     return errors;
   }
 
-  tables.forEach((table, tableIndex) => {
-    if (!Array.isArray(table)) {
-      errors.push(`table[${tableIndex}] must be an array`);
-      return;
-    }
+  // Check if this is the new format (array of objects) or old format (array of arrays)
+  if (tables.length === 0) {
+    return errors; // Empty tables are OK
+  }
 
-    if (table.length === 0) {
-      errors.push(`table[${tableIndex}] is empty`);
-      return;
-    }
+  const firstItem = tables[0];
+  const isNewFormat = typeof firstItem === 'object' && !Array.isArray(firstItem) && firstItem.parameter;
 
-    // Check that all rows have same length
-    const headerRow = table[0];
-    const headerLength = headerRow.length;
-
-    for (let rowIndex = 1; rowIndex < table.length; rowIndex++) {
-      const row = table[rowIndex];
-      if (!Array.isArray(row)) {
-        errors.push(`table[${tableIndex}][${rowIndex}] is not an array`);
-      } else if (row.length !== headerLength) {
-        errors.push(
-          `table[${tableIndex}][${rowIndex}] has ${row.length} columns, ` +
-          `but header has ${headerLength}`
-        );
+  if (isNewFormat) {
+    // NEW FORMAT: Array of objects with { parameter, type, values }
+    tables.forEach((table, tableIndex) => {
+      if (typeof table !== 'object' || Array.isArray(table) || !table.parameter) {
+        errors.push(`table[${tableIndex}] must be an object with { parameter, type, values }`);
+        return;
       }
-    }
-  });
+
+      if (!table.parameter || typeof table.parameter !== 'string') {
+        errors.push(`table[${tableIndex}].parameter must be a string`);
+      }
+
+      if (table.type && typeof table.type !== 'string') {
+        errors.push(`table[${tableIndex}].type must be a string`);
+      }
+
+      if (!Array.isArray(table.values)) {
+        errors.push(`table[${tableIndex}].values must be an array`);
+      } else if (table.values.length === 0) {
+        errors.push(`table[${tableIndex}].values is empty`);
+      } else {
+        // Check that all values are numbers
+        for (let i = 0; i < table.values.length; i++) {
+          if (typeof table.values[i] !== 'number') {
+            errors.push(`table[${tableIndex}].values[${i}] must be a number, got ${typeof table.values[i]}`);
+            break; // Only report first error to avoid spam
+          }
+        }
+      }
+    });
+  } else {
+    // OLD FORMAT: Array of arrays (2D arrays like CSV)
+    tables.forEach((table, tableIndex) => {
+      if (!Array.isArray(table)) {
+        errors.push(`table[${tableIndex}] must be an array`);
+        return;
+      }
+
+      if (table.length === 0) {
+        errors.push(`table[${tableIndex}] is empty`);
+        return;
+      }
+
+      // Check that all rows have same length
+      const headerRow = table[0];
+      const headerLength = headerRow.length;
+
+      for (let rowIndex = 1; rowIndex < table.length; rowIndex++) {
+        const row = table[rowIndex];
+        if (!Array.isArray(row)) {
+          errors.push(`table[${tableIndex}][${rowIndex}] is not an array`);
+        } else if (row.length !== headerLength) {
+          errors.push(
+            `table[${tableIndex}][${rowIndex}] has ${row.length} columns, ` +
+            `but header has ${headerLength}`
+          );
+        }
+      }
+    });
+  }
 
   return errors;
 }
