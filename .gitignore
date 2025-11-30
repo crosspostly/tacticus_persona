@@ -98,3 +98,12 @@ env/
 equipment_upgrades_old.json
 *_backup.*
 *.bak
+
+# Scraper debug files
+tacticustable_debug.png
+tacticustable_page.html
+debug-*.html
+debug-*.png
+web_main.js
+web_main.js.map
+raw_game_info.json
